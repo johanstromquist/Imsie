@@ -41,6 +41,7 @@ const NarrativeScene: React.FC<NarrativeSceneProps> = ({ scene, theme, onComplet
           borderRadius: '1rem',
           color: 'white',
           backdropFilter: 'blur(10px)',
+          position: 'relative',
         }}
       >
         {/* Scene image */}
@@ -89,53 +90,76 @@ const NarrativeScene: React.FC<NarrativeSceneProps> = ({ scene, theme, onComplet
           </div>
         )}
 
-        {/* Navigation buttons */}
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', alignItems: 'center' }}>
-          {canGoBack && (
-            <button
-              onClick={onBack}
-              style={{
-                padding: '0.75rem 2rem',
-                fontSize: '1rem',
-                backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                color: 'white',
-                border: 'none',
-                borderRadius: '0.5rem',
-                cursor: 'pointer',
-                transition: 'transform 0.2s',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.05)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-            >
-              ← Back
-            </button>
-          )}
+        {/* Navigation buttons - Round edge buttons */}
+        {canGoBack && (
           <button
-            onClick={onComplete}
+            onClick={onBack}
             style={{
-              padding: '0.75rem 2rem',
-              fontSize: '1rem',
+              position: 'absolute',
+              left: '-30px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: '60px',
+              height: '60px',
+              borderRadius: '50%',
               backgroundColor: theme.secondaryColor,
               color: 'white',
               border: 'none',
-              borderRadius: '0.5rem',
               cursor: 'pointer',
-              transition: 'transform 0.2s',
+              fontSize: '1.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              opacity: 0.2,
+              transition: 'opacity 0.3s, transform 0.2s',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.05)';
+              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.opacity = '0.2';
+              e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
             }}
+            aria-label="Go back"
           >
-            {scene.continueButtonText || 'Continue'} →
+            ←
           </button>
-        </div>
+        )}
+
+        <button
+          onClick={onComplete}
+          style={{
+            position: 'absolute',
+            right: '-30px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: '60px',
+            height: '60px',
+            borderRadius: '50%',
+            backgroundColor: theme.secondaryColor,
+            color: 'white',
+            border: 'none',
+            cursor: 'pointer',
+            fontSize: '1.5rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            opacity: 0.2,
+            transition: 'opacity 0.3s, transform 0.2s',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.opacity = '1';
+            e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.opacity = '0.2';
+            e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+          }}
+          aria-label={scene.continueButtonText || 'Continue'}
+        >
+          →
+        </button>
       </div>
     </div>
   );
