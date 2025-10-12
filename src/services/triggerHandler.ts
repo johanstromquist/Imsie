@@ -1,6 +1,5 @@
 import type {
   SceneTrigger,
-  TriggerCondition,
   AdventureProgress,
   Quiz,
 } from '../types';

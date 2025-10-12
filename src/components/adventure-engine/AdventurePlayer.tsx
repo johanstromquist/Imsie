@@ -3,7 +3,7 @@ import type { Adventure, Chapter, Scene, AdventureProgress, QuizAnswer, QuizScor
 import { progressManager } from '../../services/progressManager';
 import { assetLoader } from '../../services/assetLoader';
 import { useMusicPlayer } from '../../hooks/useMusicPlayer';
-import { getActiveTriggers, resolveQuizData, getTriggerKey } from '../../services/triggerHandler';
+import { getActiveTriggers, resolveQuizData } from '../../services/triggerHandler';
 import SceneRenderer from './SceneRenderer';
 import LoadingScreen from './LoadingScreen';
 import QuizRenderer from '../quiz/QuizRenderer';
@@ -24,7 +24,6 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
   const [playStartTime] = useState<number>(Date.now());
 
   // Trigger state (event-driven system)
-  const [activeTrigger, setActiveTrigger] = useState<SceneTrigger | null>(null);
   const [triggeredIds, setTriggeredIds] = useState<Set<string>>(new Set());
 
   // Quiz state
@@ -137,8 +136,6 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
 
   // Process a trigger (show quiz, mini-game, etc.)
   const processTrigger = useCallback((trigger: SceneTrigger) => {
-    setActiveTrigger(trigger);
-
     // Mark as triggered
     setTriggeredIds((prev) => new Set(prev).add(trigger.componentId));
 

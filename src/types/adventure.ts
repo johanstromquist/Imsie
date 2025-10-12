@@ -120,7 +120,7 @@ export interface Choice {
 export interface TimelineGameScene extends BaseScene {
   type: 'timeline-game';
   prompt: string;
-  events: TimelineEvent[];
+  timelineEvents: TimelineEvent[]; // Renamed from 'events' to avoid conflict with BaseScene.events
   successThreshold: number; // percentage correct needed to pass
 }
 
