@@ -25,9 +25,15 @@ export interface Chapter {
   id: string;
   title: string;
   description?: string;
+  prerequisites?: ChapterPrerequisite; // Optional - defaults to sequential if not specified
   scenes: Scene[];
   endQuiz: Quiz;
   learningObjectives: string[];
+}
+
+export interface ChapterPrerequisite {
+  type: 'sequential' | 'any' | 'all'; // How to check prerequisites
+  chapterIds?: string[]; // Required chapter IDs (not needed for 'sequential')
 }
 
 // Scene Types
@@ -49,6 +55,7 @@ export interface BaseScene {
   type: SceneType;
   learningPoints: LearningPoint[];
   backgroundImage?: string;
+  backgroundVideo?: string; // NEW: optional video version of background
   backgroundMusic?: string;
   events?: SceneEvents; // Event-driven trigger system
 }
@@ -69,6 +76,20 @@ export interface LearningPoint {
   id: string;
   content: string;
   category: string; // e.g., "historical-fact", "literary-analysis", "character-development"
+}
+
+// NEW: Inline Annotations for Contextual Learning
+export interface InlineAnnotation {
+  id: string;
+  text: string; // The word or phrase to underline in the content
+  tooltip: AnnotationTooltip;
+}
+
+export interface AnnotationTooltip {
+  title: string; // Tooltip header
+  content: string; // Explanation or context
+  category: 'historical-context' | 'literary-context' | 'cultural-context' | 'vocabulary' | 'reference';
+  relatedLearningPoints?: string[]; // Optional: link to existing learning points
 }
 
 // Event-Driven Trigger System
@@ -97,8 +118,10 @@ export interface NarrativeScene extends BaseScene {
   type: 'narrative';
   content: string; // markdown supported
   image?: string;
+  imageVideo?: string; // optional video version of the image
   narration?: string; // path to audio file
   continueButtonText?: string;
+  inlineAnnotations?: InlineAnnotation[]; // NEW: Contextual learning tooltips
 }
 
 export interface DecisionScene extends BaseScene {
@@ -185,6 +208,7 @@ export interface Character {
   id: string;
   name: string;
   portrait: string;
+  portraitVideo?: string; // NEW: optional animated/video portrait
   description: string;
   voiceActor?: string; // for future audio support
 }

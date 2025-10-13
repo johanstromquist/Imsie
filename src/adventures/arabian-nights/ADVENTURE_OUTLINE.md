@@ -12,34 +12,43 @@
 - [x] Restart adventure functionality
 - [x] Asset caching system
 - [x] Narrative scene type implementation
+- [x] Chapter-to-chapter navigation with flexible prerequisite system
+  - Sequential (one-to-one) - default
+  - Branching (one-to-many)
+  - Merging (many-to-one)
+  - Complex dependencies (many-to-many)
+- [x] Quiz system (QuizRenderer, QuizQuestion, QuizResults)
+- [x] Decision scene type (branching choices with consequences)
+- [x] Dialogue scene type (conversation trees)
+- [x] Map exploration scene type (interactive maps)
 
 ## Phase 1: Core Interactive Systems 🎮
 
-### A. Quiz System (HIGH PRIORITY)
-**Status**: Quiz data exists but no UI implementation
+### A. Quiz System ✅ COMPLETE
+**Status**: Fully implemented and functional
 **Location**: `src/components/quiz/`
 
-Components to build:
-- [ ] `QuizRenderer.tsx` - Main quiz component
+Components built:
+- [x] `QuizRenderer.tsx` - Main quiz component
   - Display quiz title and description
   - Question navigation
   - Progress indicator (Question X of Y)
-  - Timer display (if timeLimit specified)
+  - Progress bar visualization
   - Score tracking
 
-- [ ] `QuizQuestion.tsx` - Individual question renderer
+- [x] `QuizQuestion.tsx` - Individual question renderer
   - Multiple choice questions
   - True/false questions
   - Short answer questions
   - Matching questions
   - Visual feedback (correct/incorrect)
 
-- [ ] `QuizResults.tsx` - Quiz completion screen
+- [x] `QuizResults.tsx` - Quiz completion screen
   - Final score display
   - Percentage correct
   - Pass/fail indication
-  - Question-by-question review
-  - Learning points recap
+  - Question-by-question expandable review
+  - Statistics grid
   - Retry button (if allowed)
   - Continue to next chapter button
 
@@ -50,14 +59,12 @@ Components to build:
 - Statistics updates
 
 ### B. Additional Scene Types (MEDIUM PRIORITY)
-**Status**: Types defined, implementations needed
+**Status**: Core scene types implemented ✅
 **Location**: `src/components/mini-games/`
 
 Currently implemented:
-- [x] NarrativeScene
-
-Need implementation:
-- [ ] **DecisionScene** - Branching story choices
+- [x] **NarrativeScene** ✅
+- [x] **DecisionScene** ✅ - Branching story choices
   - Display prompt and context
   - Show 2-4 choice buttons
   - Optional time limit with countdown
@@ -65,6 +72,22 @@ Need implementation:
   - Branch to different scenes based on choice
   - Track choice in progress
 
+- [x] **DialogueScene** ✅ - Conversation tree with characters
+  - Character portrait and name
+  - Display dialogue text
+  - Player response options
+  - Navigate through dialogue tree
+  - Dialogue history navigation
+
+- [x] **MapExplorationScene** ✅ - Interactive map with clickable locations
+  - Display map image
+  - Clickable hotspots at specific coordinates
+  - Reveal content when location is clicked
+  - Track visited locations
+  - Require visiting certain locations to continue
+  - Modal detail view for locations
+
+Need implementation:
 - [ ] **TimelineGameScene** - Order historical events
   - Display shuffled events
   - Drag-and-drop interface
@@ -72,25 +95,11 @@ Need implementation:
   - Show correct timeline with explanations
   - Calculate score based on accuracy
 
-- [ ] **MapExplorationScene** - Interactive map with clickable locations
-  - Display map image
-  - Clickable hotspots at specific coordinates
-  - Reveal content when location is clicked
-  - Track visited locations
-  - Require visiting certain locations to continue
-
 - [ ] **PrimarySourceScene** - Analyze historical documents
   - Display source (text, image, audio, video)
   - Show analysis questions
   - Multiple question types
   - Reveal explanations after answering
-
-- [ ] **DialogueScene** - Conversation tree with characters
-  - Character portrait and name
-  - Display dialogue text
-  - Player response options
-  - Navigate through dialogue tree
-  - Conditional responses based on previous choices
 
 - [ ] **CauseEffectScene** - Match causes with effects
   - Display shuffled causes and effects
@@ -370,19 +379,19 @@ Chapters outline:
 ## Recommended Build Order 🏗️
 
 ### Immediate (Do First)
-1. **Quiz System** - Needed to complete Chapter 1
-2. **Quiz Results Screen** - Show scores and feedback
-3. **Chapter-to-Chapter Navigation** - Connect chapters
+1. ✅ **Quiz System** - Needed to complete Chapter 1 ✅ COMPLETE
+2. ✅ **Quiz Results Screen** - Show scores and feedback ✅ COMPLETE
+3. ✅ **Chapter-to-Chapter Navigation** - Connect chapters ✅ COMPLETE
 
 ### Short Term (Next 2-3 weeks)
-4. **Decision Scene Type** - Most useful for storytelling
-5. **Dialogue Scene Type** - Common in adventures
-6. **Chapter 2: The Merchant and the Jinni**
-7. **Generate assets for Chapter 2**
+4. ✅ **Decision Scene Type** - Most useful for storytelling ✅ COMPLETE
+5. ✅ **Dialogue Scene Type** - Common in adventures ✅ COMPLETE
+6. ✅ **Map Exploration Scene Type** ✅ COMPLETE
+7. **Chapter 2: The Merchant and the Jinni**
+8. **Generate assets for Chapter 2**
 
 ### Medium Term (Next 1-2 months)
-8. **Achievement System** - Adds replay value
-9. **Map Exploration Scene Type**
+9. **Achievement System** - Adds replay value
 10. **Timeline Game Scene Type**
 11. **Chapter 3: Aladdin**
 12. **Settings/Preferences**

@@ -1,5 +1,6 @@
 import type { NarrativeScene as NarrativeSceneType, AdventureTheme } from '../../types';
 import { assetLoader } from '../../services/assetLoader';
+import ContentWithAnnotations from '../common/ContentWithAnnotations';
 
 interface NarrativeSceneProps {
   scene: NarrativeSceneType;
@@ -14,7 +15,9 @@ const NarrativeScene: React.FC<NarrativeSceneProps> = ({ scene, theme, onComplet
     ? assetLoader.getImage(scene.backgroundImage)
     : null;
 
+  const backgroundVideo = scene.backgroundVideo;
   const sceneImage = scene.image ? assetLoader.getImage(scene.image) : null;
+  const sceneVideo = scene.imageVideo;
 
   return (
     <div
@@ -24,7 +27,7 @@ const NarrativeScene: React.FC<NarrativeSceneProps> = ({ scene, theme, onComplet
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundImage: backgroundImage ? `url(${backgroundImage.src})` : 'none',
+        backgroundImage: !backgroundVideo && backgroundImage ? `url(${backgroundImage.src})` : 'none',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundColor: theme.primaryColor,
@@ -32,6 +35,25 @@ const NarrativeScene: React.FC<NarrativeSceneProps> = ({ scene, theme, onComplet
         position: 'relative',
       }}
     >
+      {/* Background video if available */}
+      {backgroundVideo && (
+        <video
+          src={backgroundVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+          }}
+        />
+      )}
       {/* Content container */}
       <div
         style={{
@@ -42,34 +64,60 @@ const NarrativeScene: React.FC<NarrativeSceneProps> = ({ scene, theme, onComplet
           color: 'white',
           backdropFilter: 'blur(10px)',
           position: 'relative',
+          zIndex: 1,
         }}
       >
-        {/* Scene image */}
-        {sceneImage && (
-          <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
-            <img
-              src={sceneImage.src}
-              alt="Scene illustration"
-              style={{
-                maxWidth: '100%',
-                maxHeight: '300px',
-                borderRadius: '0.5rem',
-              }}
-            />
+        {/* Scene image or video */}
+        {(sceneImage || sceneVideo) && (
+          <div
+            style={{
+              marginBottom: '1.5rem',
+              textAlign: 'center',
+              position: 'relative',
+              minHeight: '300px',
+              maxHeight: '300px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundImage: sceneImage ? `url(${sceneImage.src})` : 'none',
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              borderRadius: '0.5rem',
+              overflow: 'hidden',
+            }}
+          >
+            {sceneVideo && (
+              <video
+                src={sceneVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  maxWidth: '100%',
+                  maxHeight: '300px',
+                  borderRadius: '0.5rem',
+                  position: 'relative',
+                  zIndex: 1,
+                }}
+              />
+            )}
           </div>
         )}
 
-        {/* Narrative content */}
-        <div
+        {/* Narrative content with annotations */}
+        <ContentWithAnnotations
+          content={scene.content}
+          annotations={scene.inlineAnnotations}
+          theme={theme}
           style={{
             fontSize: '1.125rem',
             lineHeight: '1.75',
             marginBottom: '2rem',
             whiteSpace: 'pre-wrap',
           }}
-        >
-          {scene.content}
-        </div>
+        />
 
         {/* Learning points */}
         {scene.learningPoints && scene.learningPoints.length > 0 && (
@@ -96,17 +144,17 @@ const NarrativeScene: React.FC<NarrativeSceneProps> = ({ scene, theme, onComplet
             onClick={onBack}
             style={{
               position: 'absolute',
-              left: '-30px',
+              left: '-22.5px',
               top: '50%',
               transform: 'translateY(-50%)',
-              width: '60px',
-              height: '60px',
+              width: '45px',
+              height: '45px',
               borderRadius: '50%',
               backgroundColor: theme.secondaryColor,
               color: 'white',
               border: 'none',
               cursor: 'pointer',
-              fontSize: '1.5rem',
+              fontSize: '1.25rem',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -131,17 +179,17 @@ const NarrativeScene: React.FC<NarrativeSceneProps> = ({ scene, theme, onComplet
           onClick={onComplete}
           style={{
             position: 'absolute',
-            right: '-30px',
+            right: '-22.5px',
             top: '50%',
             transform: 'translateY(-50%)',
-            width: '60px',
-            height: '60px',
+            width: '45px',
+            height: '45px',
             borderRadius: '50%',
             backgroundColor: theme.secondaryColor,
             color: 'white',
             border: 'none',
             cursor: 'pointer',
-            fontSize: '1.5rem',
+            fontSize: '1.25rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

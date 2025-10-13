@@ -6,6 +6,7 @@ import { useMusicPlayer } from '../../hooks/useMusicPlayer';
 import { getActiveTriggers, resolveQuizData } from '../../services/triggerHandler';
 import SceneRenderer from './SceneRenderer';
 import LoadingScreen from './LoadingScreen';
+import ChapterNavigation from './ChapterNavigation';
 import QuizRenderer from '../quiz/QuizRenderer';
 import QuizResults from '../quiz/QuizResults';
 
@@ -32,6 +33,9 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
   const [showQuizResults, setShowQuizResults] = useState(false);
   const [quizScore, setQuizScore] = useState<number>(0);
   const [quizAnswers, setQuizAnswers] = useState<QuizAnswer[]>([]);
+
+  // Chapter navigation state
+  const [showChapterNavigation, setShowChapterNavigation] = useState(false);
 
   // Initialize music player if playlist is available
   const { isMuted, needsUserInteraction, startMusic, toggleMute } = useMusicPlayer({
@@ -89,6 +93,10 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
         }
         if ('narration' in scene && scene.narration) {
           assetsToLoad.push({ url: scene.narration, type: 'audio' });
+        }
+        // Preload character portraits for dialogue scenes
+        if (scene.type === 'dialogue' && 'character' in scene && scene.character.portrait) {
+          assetsToLoad.push({ url: scene.character.portrait, type: 'image' });
         }
       });
 
@@ -290,20 +298,66 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
   const handleQuizContinue = useCallback(() => {
     setShowQuizResults(false);
 
-    // Find next chapter
-    const currentChapterIndex = adventure.chapters.findIndex((c) => c.id === currentChapter?.id);
-    const nextChapter = adventure.chapters[currentChapterIndex + 1];
+    // After any quiz (chapter or final), show chapter navigation
+    // This allows non-linear progression where user can choose their next chapter
+    setShowChapterNavigation(true);
+  }, []);
 
-    if (nextChapter) {
-      // Move to next chapter
-      setCurrentChapter(nextChapter);
-      setCurrentScene(nextChapter.scenes[0]);
-      progressManager.updateCurrentScene(adventure.id, nextChapter.id, nextChapter.scenes[0].id);
-    } else {
-      // Adventure complete! Exit to adventure chooser
-      onExit();
+  const handleFinalQuizSelect = useCallback(() => {
+    setCurrentQuiz(adventure.finalQuiz);
+    setShowQuiz(true);
+  }, [adventure]);
+
+  const handleChapterSelect = useCallback(async (chapterId: string) => {
+    if (!progress) return;
+
+    // Find the selected chapter
+    const selectedChapter = adventure.chapters.find((c) => c.id === chapterId);
+    if (!selectedChapter) return;
+
+    // Check if chapter is unlocked
+    const chapterIndex = adventure.chapters.findIndex((c) => c.id === chapterId);
+    if (chapterIndex > 0) {
+      const previousChapter = adventure.chapters[chapterIndex - 1];
+      if (!progress.completedChapters.includes(previousChapter.id)) {
+        // Chapter is locked
+        return;
+      }
     }
-  }, [adventure, currentChapter, onExit]);
+
+    // Find the furthest completed scene in this chapter, or start from the beginning
+    let startingScene = selectedChapter.scenes[0];
+
+    // If this is the current chapter, stay on the current scene
+    if (selectedChapter.id === currentChapter?.id && currentScene) {
+      startingScene = currentScene;
+    } else {
+      // For other chapters, find the first incomplete scene or use the first scene
+      const chapterSceneIds = selectedChapter.scenes.map(s => s.id);
+      const lastCompletedIndex = selectedChapter.scenes.findIndex(
+        (scene, idx) => {
+          const nextScene = selectedChapter.scenes[idx + 1];
+          return progress.completedScenes.includes(scene.id) &&
+                 (!nextScene || !progress.completedScenes.includes(nextScene.id));
+        }
+      );
+
+      if (lastCompletedIndex >= 0 && lastCompletedIndex < selectedChapter.scenes.length - 1) {
+        // Start from the scene after the last completed one
+        startingScene = selectedChapter.scenes[lastCompletedIndex + 1];
+      }
+    }
+
+    // Update current chapter and scene
+    setCurrentChapter(selectedChapter);
+    setCurrentScene(startingScene);
+    setSceneHistory([]);
+
+    // Update progress
+    await progressManager.updateCurrentScene(adventure.id, selectedChapter.id, startingScene.id);
+    const updatedProgress = await progressManager.getAdventureProgress(adventure.id);
+    setProgress(updatedProgress);
+  }, [progress, adventure, currentChapter, currentScene]);
 
   if (!progress || !currentChapter || isLoading) {
     return <LoadingScreen progress={loadingProgress} adventureName={adventure.title} />;
@@ -347,6 +401,19 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
               {isMuted ? '🔇' : '🎵'}
             </button>
           )}
+          <button
+            onClick={() => setShowChapterNavigation(true)}
+            style={{
+              padding: '0.5rem 1rem',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '0.25rem',
+              cursor: 'pointer',
+            }}
+          >
+            Chapters
+          </button>
           <button
             onClick={onExit}
             style={{
@@ -406,6 +473,19 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
               {isMuted ? '🔇' : '🎵'}
             </button>
           )}
+          <button
+            onClick={() => setShowChapterNavigation(true)}
+            style={{
+              padding: '0.5rem 1rem',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '0.25rem',
+              cursor: 'pointer',
+            }}
+          >
+            Chapters
+          </button>
           <button
             onClick={onExit}
             style={{
@@ -530,6 +610,21 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
           </button>
         )}
 
+        {/* Chapters button */}
+        <button
+          onClick={() => setShowChapterNavigation(true)}
+          style={{
+            padding: '0.5rem 1rem',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            color: 'white',
+            border: 'none',
+            borderRadius: '0.25rem',
+            cursor: 'pointer',
+          }}
+        >
+          Chapters
+        </button>
+
         {/* Exit button */}
         <button
           onClick={onExit}
@@ -545,6 +640,20 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
           Exit Adventure
         </button>
       </div>
+
+      {/* Chapter Navigation Modal */}
+      {showChapterNavigation && progress && (
+        <ChapterNavigation
+          chapters={adventure.chapters}
+          currentChapterId={currentChapter.id}
+          progress={progress}
+          theme={adventure.theme}
+          finalQuiz={adventure.finalQuiz}
+          onChapterSelect={handleChapterSelect}
+          onFinalQuizSelect={handleFinalQuizSelect}
+          onClose={() => setShowChapterNavigation(false)}
+        />
+      )}
     </div>
   );
 };
