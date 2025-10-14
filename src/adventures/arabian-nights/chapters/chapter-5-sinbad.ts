@@ -368,6 +368,7 @@ The king rewarded my service with gifts of great value. When I sailed for home, 
       id: 'scene-6-second-voyage-begins',
       type: 'narrative',
       backgroundImage: 'https://cdn.midjourney.com/2139224a-af7f-4d0c-bd74-9687a728ae7d/0_0.png',
+      image: 'https://cdn.midjourney.com/696a6548-cf3e-4e50-ac6b-3521e82d347d/0_0.png',
       content: `"You would think," Sinbad said with a rueful smile, "that after nearly drowning and being cast away on a strange island, I would be content to remain safely at home. But that is not my nature.
 
 For a time, I did enjoy my wealth. I bought a fine house, entertained friends, and lived comfortably. But as the months passed, I grew restless. I would go down to the harbor and watch ships departing for distant lands. I would talk with merchants returning from the Indies and beyond, hearing their tales of exotic ports and strange sights.
@@ -623,6 +624,7 @@ But still, the sea called to me..."`,
       id: 'scene-14-third-voyage-begins',
       type: 'narrative',
       backgroundImage: 'https://cdn.midjourney.com/4343dbf5-f5bf-420e-a550-1526ded96bc6/0_0.png',
+      image: 'https://cdn.midjourney.com/696a6548-cf3e-4e50-ac6b-3521e82d347d/0_0.png',
       content: `"Once again, I grew restless," Sinbad said, and the porter nodded knowingly—he was beginning to understand this aspect of the sailor's nature. "I was wealthy beyond measure, comfortable, respected. But the memory of those adventures—terrible though they were—called to me like a siren song.
 
 So for a third time, I invested in merchandise and joined a merchant vessel. My friends thought I was mad. 'You have wealth enough for ten lifetimes,' they said. 'Why risk it all again?' But I could not explain the hunger that drove me—the need to see what lay beyond the next horizon.
@@ -779,6 +781,7 @@ By the time the serpent emerged that night, I was safely aboard the vessel, watc
       id: 'scene-19-voyages-reflection',
       type: 'narrative',
       backgroundImage: 'https://cdn.midjourney.com/b37cce7f-d7a0-4890-8a85-6d791e6ff348/0_0.png',
+      image: 'https://cdn.midjourney.com/3c8de4fd-df08-46d6-842e-4249927467ca/0_0.png',
       content: `Sinbad paused in his storytelling and took a long drink of water. The porter, who had been listening with rapt attention, sat forward eagerly.
 
 "Those three voyages alone are more adventure than most men experience in a lifetime," the porter said. "Surely you returned to Baghdad and stayed after such terrors?"
@@ -813,22 +816,22 @@ The porter shook his head in wonder. "Seven voyages. Seven times you left safety
         {
           id: 'baghdad',
           name: 'Baghdad',
-          x: 20,
+          x: 52,
           y: 15,
           content: 'Baghdad, the magnificent capital during the reign of Caliph Harun al-Rashid. Here begins and ends each of Sinbad\'s seven voyages—a city of learning, trade, and endless possibility during the Islamic Golden Age.',
         },
         {
           id: 'whale-island',
           name: 'The Living Island',
-          x: 45,
-          y: 35,
+          x: 18,
+          y: 48,
           content: 'First Voyage: What appeared to be a peaceful island was actually an enormous whale! When the sailors lit a fire on its back, the creature awoke and dove into the depths, casting Sinbad into the sea.',
         },
         {
           id: 'rescue-kingdom',
           name: 'Island Kingdom',
-          x: 55,
-          y: 45,
+          x: 25,
+          y: 65,
           content: 'First Voyage: After days adrift on a wooden trough, Sinbad washed ashore here. The kind king rewarded his survival and resourcefulness with gifts, and Sinbad returned home wealthier than before.',
         },
         {
@@ -842,46 +845,46 @@ The porter shook his head in wonder. "Seven voyages. Seven times you left safety
           id: 'roc-island',
           name: 'Island of the Roc',
           x: 50,
-          y: 60,
+          y: 62,
           content: 'Second Voyage: Here Sinbad found a massive white dome—the egg of the legendary Roc, a bird so large it could carry off elephants. He tied himself to the bird\'s leg with his turban and was carried away to...',
           image: 'https://cdn.midjourney.com/ea08bd31-63c3-478a-9b2a-66a9774d5282/0_0.png',
         },
         {
           id: 'diamond-valley',
           name: 'Valley of Diamonds',
-          x: 60,
-          y: 55,
+          x: 62,
+          y: 48,
           content: 'Second Voyage: The Roc dropped Sinbad in a valley surrounded by unclimbable cliffs. The floor sparkled with countless diamonds, but at night, giant serpents emerged to hunt. Sinbad observed the diamond merchants\' ingenious method and used it to escape.',
           image: 'https://cdn.midjourney.com/ef1ce1c9-2ab3-44a8-9a99-ffb3935d83c2/0_0.png',
         },
         {
           id: 'ape-men-island',
           name: 'Island of the Ape-Men',
-          x: 35,
-          y: 75,
+          x: 75,
+          y: 38,
           content: 'Third Voyage: A terrible storm drove Sinbad\'s ship into unknown waters. Hairy, man-like creatures swarmed the vessel, overwhelming the crew through sheer numbers and stranding them on the island.',
         },
         {
           id: 'giant-island',
           name: 'Island of the Giant',
-          x: 48,
-          y: 80,
+          x: 85,
+          y: 30,
           content: 'Third Voyage: The stranded sailors found a palace with an open gate. Its owner was a one-eyed giant who ate them one by one. In desperation, the survivors heated iron spits and blinded the monster, just as Odysseus did to Polyphemus.',
           image: 'https://cdn.midjourney.com/5716620c-e79f-4d99-bea1-f4ebac23d4ed/0_0.png',
         },
         {
           id: 'serpent-island',
           name: 'Island of the Serpent',
-          x: 65,
-          y: 75,
+          x: 88,
+          y: 52,
           content: 'Third Voyage: Only two sailors escaped the giant, reaching this island on makeshift rafts. Here, an enormous serpent hunted them at night. Sinbad was the sole survivor, rescued by a passing ship after building a signal fire.',
           image: 'https://cdn.midjourney.com/b166a488-299e-461d-9023-24a31a5b4824/0_0.png',
         },
         {
           id: 'trade-routes',
           name: 'Indian Ocean Trade Routes',
-          x: 75,
-          y: 45,
+          x: 55,
+          y: 42,
           content: 'During the Islamic Golden Age (8th-13th centuries), Arab merchants dominated these waters, sailing from the Persian Gulf to India, Southeast Asia, and East Africa. These voyages were dangerous but enormously profitable—and full of wonders.',
         },
       ],
@@ -937,18 +940,39 @@ The porter shook his head in wonder. "Seven voyages. Seven times you left safety
       id: 'scene-21-conclusion',
       type: 'narrative',
       backgroundImage: 'https://cdn.midjourney.com/b37cce7f-d7a0-4890-8a85-6d791e6ff348/0_0.png',
-      image: 'https://cdn.midjourney.com/b902b0c5-70f2-46cb-b2a2-7b439d160adc/0_0.png',
+      image: 'https://cdn.midjourney.com/db10fef1-8f0c-43b6-8373-6a31565737fc/0_0.png',
       content: `Sinbad the Sailor looked at Sinbad the Porter with warmth and understanding. "You asked about the justice of our different fortunes. Now you see that my wealth was not given to me—it was earned through trials that would have broken lesser men. Every diamond I own came at the price of terror and loss.
 
 But I have also gained something more valuable than gold: experiences that no amount of money can buy. I have seen wonders that exist nowhere else in the world. I have tested myself against impossible odds and survived. I have learned the value of cleverness, the importance of generosity, and the power of never surrendering to despair.
 
 Come, my friend. From this day forward, you are welcome in my house. Share my table, enjoy my hospitality, and know that fortune favors not just the bold, but those willing to work for their dreams."
 
-From that day on, the two Sinbads became fast friends. The porter continued his work, but with the sailor's patronage, his life became easier. And whenever he visited, Sinbad would tell him more stories of the wonders he had seen.
+From that day on, the two Sinbads became fast friends. The porter continued his work, but with the sailor's patronage, his life became easier. And whenever he visited, Sinbad would tell him more stories of the wonders he had seen.`,
+      learningPoints: [
+        {
+          id: 'lp-ch5-19',
+          content: 'Sinbad\'s stories represent the Islamic Golden Age\'s maritime trade networks and cultural exchange.',
+          category: 'historical-context',
+        },
+        {
+          id: 'lp-ch5-20',
+          content: 'The tales balance wonder and warning: adventure brings rewards but also great risks.',
+          category: 'thematic-analysis',
+        },
+        {
+          id: 'lp-ch5-21',
+          content: 'The frame story of two Sinbads connects wealth to storytelling - both are forms of currency.',
+          category: 'literary-technique',
+        },
+      ],
+    },
 
----
-
-As Scheherazade's voice fell silent, Sultan Shahryar stirred from his thoughts. Dawn light was beginning to creep through the latticed windows.
+    {
+      id: 'scene-22-scheherazade-frame',
+      type: 'narrative',
+      backgroundImage: 'https://cdn.midjourney.com/48a88d78-c764-4f33-86a7-f3c6eef6aa52/0_0.png',
+      image: 'https://cdn.midjourney.com/b902b0c5-70f2-46cb-b2a2-7b439d160adc/0_0.png',
+      content: `As Scheherazade's voice fell silent, Sultan Shahryar stirred from his thoughts. Dawn light was beginning to creep through the latticed windows.
 
 "The story of Sinbad," the sultan said slowly, "teaches us that wealth and comfort are not the same as a life well-lived. This sailor risked everything, suffered terribly, yet would not trade his experiences for a safe, uneventful life."
 
@@ -972,19 +996,14 @@ The stories of the Arabian Nights continue, each one a testament to the enduring
       ],
       learningPoints: [
         {
-          id: 'lp-ch5-19',
-          content: 'Sinbad\'s stories represent the Islamic Golden Age\'s maritime trade networks and cultural exchange.',
-          category: 'historical-context',
-        },
-        {
-          id: 'lp-ch5-20',
-          content: 'The tales balance wonder and warning: adventure brings rewards but also great risks.',
-          category: 'thematic-analysis',
-        },
-        {
-          id: 'lp-ch5-21',
-          content: 'The frame story of two Sinbads connects wealth to storytelling - both are forms of currency.',
+          id: 'lp-ch5-22',
+          content: 'The nested frame structure creates layers of storytelling: Scheherazade tells the Sultan about Sinbad telling the Porter.',
           category: 'literary-technique',
+        },
+        {
+          id: 'lp-ch5-23',
+          content: 'Stories as tools of connection and survival is a central meta-theme of Arabian Nights.',
+          category: 'thematic-analysis',
         },
       ],
       events: {
