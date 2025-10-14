@@ -4,6 +4,7 @@ import { chapter2 } from './chapters/chapter-2-merchant';
 import { chapter3 } from './chapters/chapter-3-aladdin';
 import { chapter4 } from './chapters/chapter-4-ali-baba';
 import { chapter5 } from './chapters/chapter-5-sinbad';
+import { finalQuiz } from './quizzes/final-quiz';
 
 export const arabianNights: Adventure = {
   id: 'arabian-nights',
@@ -31,24 +32,5 @@ export const arabianNights: Adventure = {
     chapter4,
     chapter5,
   ],
-  finalQuiz: {
-    id: 'final-quiz-arabian-nights',
-    title: 'Arabian Nights: Final Assessment',
-    description: 'A comprehensive quiz covering all chapters of the Arabian Nights adventure.',
-    passingScore: 75,
-    allowRetry: true,
-    questions: [
-      // This will be populated as more chapters are added
-      {
-        id: 'fq1',
-        question: 'The Arabian Nights demonstrates that storytelling can be a tool for survival and transformation.',
-        type: 'true-false',
-        points: 20,
-        options: ['True', 'False'],
-        correctAnswer: 'True',
-        explanation: 'True! Scheherazade uses storytelling not just to survive, but to transform the sultan and save her kingdom, demonstrating the profound power of narrative.',
-        relatedLearningPoints: ['lp-9-storytelling-power', 'lp-15-redemption'],
-      },
-    ],
-  },
+  finalQuiz,
 };
