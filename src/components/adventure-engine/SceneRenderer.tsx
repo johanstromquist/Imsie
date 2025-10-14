@@ -2,6 +2,7 @@ import type { Scene, AdventureTheme } from '../../types';
 import NarrativeScene from '../mini-games/NarrativeScene';
 import DecisionScene from '../mini-games/DecisionScene';
 import DialogueScene from '../mini-games/DialogueScene';
+import MapExplorationScene from '../mini-games/MapExplorationScene';
 
 interface SceneRendererProps {
   scene: Scene;
@@ -57,9 +58,19 @@ const SceneRenderer: React.FC<SceneRendererProps> = ({
         />
       );
 
+    case 'map-exploration':
+      return (
+        <MapExplorationScene
+          scene={scene}
+          theme={theme}
+          onComplete={() => onSceneComplete(scene.id)}
+          onBack={onSceneBack}
+          canGoBack={canGoBack}
+        />
+      );
+
     // TODO: Implement other scene types
     case 'timeline-game':
-    case 'map-exploration':
     case 'primary-source':
     case 'cause-effect':
     case 'quote-attribution':

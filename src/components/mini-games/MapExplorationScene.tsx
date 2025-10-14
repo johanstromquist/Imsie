@@ -128,27 +128,28 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
         </div>
 
         {/* Map container */}
-        <div
-          style={{
-            position: 'relative',
-            width: '100%',
-            maxWidth: '900px',
-            margin: '0 auto',
-            borderRadius: '0.75rem',
-            overflow: 'hidden',
-            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5)',
-          }}
-        >
-          {/* Map image */}
-          <img
-            src={mapImage.src}
-            alt="Map"
+        {mapImage && (
+          <div
             style={{
+              position: 'relative',
               width: '100%',
-              height: 'auto',
-              display: 'block',
+              maxWidth: '900px',
+              margin: '0 auto',
+              borderRadius: '0.75rem',
+              overflow: 'hidden',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5)',
             }}
-          />
+          >
+            {/* Map image */}
+            <img
+              src={mapImage.src}
+              alt="Map"
+              style={{
+                width: '100%',
+                height: 'auto',
+                display: 'block',
+              }}
+            />
 
           {/* Location hotspots */}
           {scene.locations.map((location) => {
@@ -201,6 +202,7 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
             );
           })}
         </div>
+        )}
 
         {/* Location legend */}
         <div
@@ -373,30 +375,38 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
               {selectedLocation.name}
             </h3>
 
-            {selectedLocation.image && (
-              <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
-                <img
-                  src={assetLoader.getImage(selectedLocation.image).src}
-                  alt={selectedLocation.name}
-                  style={{
-                    maxWidth: '100%',
-                    maxHeight: '250px',
-                    borderRadius: '0.5rem',
-                  }}
-                />
-              </div>
-            )}
+            {selectedLocation.image && (() => {
+              const locationImage = assetLoader.getImage(selectedLocation.image);
+              return locationImage ? (
+                <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+                  <img
+                    src={locationImage.src}
+                    alt={selectedLocation.name}
+                    style={{
+                      maxWidth: '100%',
+                      maxHeight: '250px',
+                      borderRadius: '0.5rem',
+                    }}
+                  />
+                </div>
+              ) : null;
+            })()}
 
-            <div
-              style={{
-                fontSize: '1.125rem',
-                lineHeight: '1.75',
-                color: '#ddd',
-                marginBottom: '1.5rem',
-                whiteSpace: 'pre-wrap',
-              }}
-            >
-              {selectedLocation.content}
+            <div style={{ marginBottom: '1.5rem' }}>
+              {selectedLocation.content.split('\n\n').map((paragraph, index) => (
+                <div
+                  key={index}
+                  style={{
+                    fontSize: '1.125rem',
+                    lineHeight: '1.75',
+                    color: '#ddd',
+                    marginBottom: index < selectedLocation.content.split('\n\n').length - 1 ? '0.75rem' : '0',
+                    whiteSpace: 'pre-wrap',
+                  }}
+                >
+                  {paragraph}
+                </div>
+              ))}
             </div>
 
             <button

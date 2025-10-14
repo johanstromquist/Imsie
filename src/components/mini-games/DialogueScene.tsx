@@ -80,18 +80,15 @@ const DialogueScene: React.FC<DialogueSceneProps> = ({
   const findNodeById = (node: DialogueNode, id: string): DialogueNode | null => {
     if (node.id === id) return node;
 
-    if (node.responses) {
-      for (const response of node.responses) {
-        // We need to search recursively, but DialogueNode doesn't have nested nodes
-        // In this structure, nodes are referenced by ID only
-        // For now, we'll assume a flat structure and this is just for the initial tree
-      }
+    // Check allNodes array if available (flat structure)
+    if (node.allNodes) {
+      const found = node.allNodes.find(n => n.id === id);
+      if (found) return found;
     }
 
     return null;
   };
 
-  const isPlayer = currentNode.speaker === 'player';
   const isCharacter = currentNode.speaker === scene.character.id;
 
   // Check if dialogue can continue (has responses or nextNodeId)

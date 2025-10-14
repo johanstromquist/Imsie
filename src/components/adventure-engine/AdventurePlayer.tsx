@@ -5,6 +5,7 @@ import { assetLoader } from '../../services/assetLoader';
 import { useMusicPlayer } from '../../hooks/useMusicPlayer';
 import { getActiveTriggers, resolveQuizData } from '../../services/triggerHandler';
 import SceneRenderer from './SceneRenderer';
+import SceneTransition from './SceneTransition';
 import LoadingScreen from './LoadingScreen';
 import ChapterNavigation from './ChapterNavigation';
 import QuizRenderer from '../quiz/QuizRenderer';
@@ -267,6 +268,8 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
   const handleQuizComplete = useCallback(async (passed: boolean, score: number, answers: QuizAnswer[]) => {
     if (!progress || !currentQuiz) return;
 
+    console.log('Quiz completed:', { passed, score, quizId: currentQuiz.id, currentChapter: currentChapter?.id });
+
     setQuizScore(score);
     setQuizAnswers(answers);
 
@@ -282,13 +285,20 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
 
     // Mark chapter as complete if passed (for chapter-end quizzes)
     if (passed && currentChapter) {
+      console.log('Marking chapter as complete:', currentChapter.id);
       await progressManager.markChapterComplete(adventure.id, currentChapter.id);
     }
 
-    setProgress(await progressManager.getAdventureProgress(adventure.id));
+    const updatedProgress = await progressManager.getAdventureProgress(adventure.id);
+    console.log('Updated progress after quiz:', {
+      completedChapters: updatedProgress?.completedChapters,
+      totalChapters: adventure.chapters.length
+    });
+
+    setProgress(updatedProgress);
     setShowQuiz(false);
     setShowQuizResults(true);
-  }, [progress, currentQuiz, currentChapter, adventure.id]);
+  }, [progress, currentQuiz, currentChapter, adventure.id, adventure.chapters.length]);
 
   const handleQuizRetry = useCallback(() => {
     setShowQuizResults(false);
@@ -296,6 +306,7 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
   }, []);
 
   const handleQuizContinue = useCallback(() => {
+    console.log('handleQuizContinue called - showing chapter navigation');
     setShowQuizResults(false);
 
     // After any quiz (chapter or final), show chapter navigation
@@ -308,55 +319,105 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
     setShowQuiz(true);
   }, [adventure]);
 
-  const handleChapterSelect = useCallback(async (chapterId: string) => {
+  const handleChapterSelect = useCallback((chapterId: string) => {
     if (!progress) return;
 
-    // Find the selected chapter
-    const selectedChapter = adventure.chapters.find((c) => c.id === chapterId);
-    if (!selectedChapter) return;
+    // Close modal and show loading screen immediately (synchronously)
+    setShowChapterNavigation(false);
+    setIsLoading(true);
 
-    // Check if chapter is unlocked
-    const chapterIndex = adventure.chapters.findIndex((c) => c.id === chapterId);
-    if (chapterIndex > 0) {
-      const previousChapter = adventure.chapters[chapterIndex - 1];
-      if (!progress.completedChapters.includes(previousChapter.id)) {
-        // Chapter is locked
+    // Use setTimeout to ensure state updates are applied before continuing
+    setTimeout(async () => {
+      // Find the selected chapter
+      const selectedChapter = adventure.chapters.find((c) => c.id === chapterId);
+      if (!selectedChapter) {
+        setIsLoading(false);
         return;
       }
-    }
 
-    // Find the furthest completed scene in this chapter, or start from the beginning
-    let startingScene = selectedChapter.scenes[0];
+      // Check if chapter is unlocked using the same logic as ChapterNavigation
+      const chapterIndex = adventure.chapters.findIndex((c) => c.id === chapterId);
 
-    // If this is the current chapter, stay on the current scene
-    if (selectedChapter.id === currentChapter?.id && currentScene) {
-      startingScene = currentScene;
-    } else {
-      // For other chapters, find the first incomplete scene or use the first scene
-      const chapterSceneIds = selectedChapter.scenes.map(s => s.id);
-      const lastCompletedIndex = selectedChapter.scenes.findIndex(
-        (scene, idx) => {
-          const nextScene = selectedChapter.scenes[idx + 1];
-          return progress.completedScenes.includes(scene.id) &&
-                 (!nextScene || !progress.completedScenes.includes(nextScene.id));
+      // Determine if chapter is unlocked
+      let isUnlocked = true;
+
+      if (chapterIndex === 0 && !selectedChapter.prerequisites) {
+        isUnlocked = true; // First chapter with no prerequisites is always unlocked
+      } else if (!selectedChapter.prerequisites) {
+        // Default to sequential (backward compatible)
+        if (chapterIndex > 0) {
+          const previousChapter = adventure.chapters[chapterIndex - 1];
+          isUnlocked = progress.completedChapters.includes(previousChapter.id);
         }
-      );
+      } else {
+        // Check prerequisites based on type
+        const { type, chapterIds } = selectedChapter.prerequisites;
 
-      if (lastCompletedIndex >= 0 && lastCompletedIndex < selectedChapter.scenes.length - 1) {
-        // Start from the scene after the last completed one
-        startingScene = selectedChapter.scenes[lastCompletedIndex + 1];
+        switch (type) {
+          case 'sequential':
+            if (chapterIndex > 0) {
+              const previousChapter = adventure.chapters[chapterIndex - 1];
+              isUnlocked = progress.completedChapters.includes(previousChapter.id);
+            }
+            break;
+
+          case 'any':
+            if (chapterIds && chapterIds.length > 0) {
+              isUnlocked = chapterIds.some(id => progress.completedChapters.includes(id));
+            }
+            break;
+
+          case 'all':
+            if (chapterIds && chapterIds.length > 0) {
+              isUnlocked = chapterIds.every(id => progress.completedChapters.includes(id));
+            }
+            break;
+
+          default:
+            isUnlocked = false;
+        }
       }
-    }
 
-    // Update current chapter and scene
-    setCurrentChapter(selectedChapter);
-    setCurrentScene(startingScene);
-    setSceneHistory([]);
+      if (!isUnlocked) {
+        // Chapter is locked
+        setIsLoading(false);
+        return;
+      }
 
-    // Update progress
-    await progressManager.updateCurrentScene(adventure.id, selectedChapter.id, startingScene.id);
-    const updatedProgress = await progressManager.getAdventureProgress(adventure.id);
-    setProgress(updatedProgress);
+      // Find the furthest completed scene in this chapter, or start from the beginning
+      let startingScene = selectedChapter.scenes[0];
+
+      // If this is the current chapter, stay on the current scene
+      if (selectedChapter.id === currentChapter?.id && currentScene) {
+        startingScene = currentScene;
+      } else {
+        // For other chapters, find the first incomplete scene or use the first scene
+        const lastCompletedIndex = selectedChapter.scenes.findIndex(
+          (scene, idx) => {
+            const nextScene = selectedChapter.scenes[idx + 1];
+            return progress.completedScenes.includes(scene.id) &&
+                   (!nextScene || !progress.completedScenes.includes(nextScene.id));
+          }
+        );
+
+        if (lastCompletedIndex >= 0 && lastCompletedIndex < selectedChapter.scenes.length - 1) {
+          // Start from the scene after the last completed one
+          startingScene = selectedChapter.scenes[lastCompletedIndex + 1];
+        }
+      }
+
+      // Update current chapter and scene
+      setCurrentChapter(selectedChapter);
+      setCurrentScene(startingScene);
+      setSceneHistory([]);
+
+      // Update progress
+      await progressManager.updateCurrentScene(adventure.id, selectedChapter.id, startingScene.id);
+      const updatedProgress = await progressManager.getAdventureProgress(adventure.id);
+      setProgress(updatedProgress);
+
+      // Loading will be set to false by the asset preloading useEffect
+    }, 0);
   }, [progress, adventure, currentChapter, currentScene]);
 
   if (!progress || !currentChapter || isLoading) {
@@ -519,14 +580,20 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
       minHeight: '100vh',
       fontFamily: adventure.theme.fontFamily || 'inherit',
     }}>
-      <SceneRenderer
-        scene={currentScene}
-        theme={adventure.theme}
-        onSceneComplete={handleSceneComplete}
-        onSceneBack={handleSceneBack}
-        canGoBack={canGoBack}
-        onChoiceSelected={handleChoiceSelected}
-      />
+      <SceneTransition
+        sceneKey={currentScene.id}
+        duration={adventure.theme.transitionDuration}
+        type={adventure.theme.transitionType}
+      >
+        <SceneRenderer
+          scene={currentScene}
+          theme={adventure.theme}
+          onSceneComplete={handleSceneComplete}
+          onSceneBack={handleSceneBack}
+          canGoBack={canGoBack}
+          onChoiceSelected={handleChoiceSelected}
+        />
+      </SceneTransition>
 
       {/* Start overlay (for Safari audio autoplay) */}
       {showStartOverlay && needsUserInteraction && adventure.musicPlaylist && (

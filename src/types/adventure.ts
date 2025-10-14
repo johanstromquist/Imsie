@@ -19,6 +19,8 @@ export interface AdventureTheme {
   fontFamily?: string;
   backgroundMusic?: string; // path to audio file
   ambientSound?: string; // path to ambient audio
+  transitionDuration?: number; // milliseconds, default 300
+  transitionType?: 'fade' | 'slide' | 'zoom'; // default 'fade'
 }
 
 export interface Chapter {
@@ -128,6 +130,7 @@ export interface DecisionScene extends BaseScene {
   type: 'decision';
   prompt: string;
   context?: string;
+  image?: string; // optional scene illustration
   choices: Choice[];
   timeLimit?: number; // seconds
 }
@@ -220,6 +223,8 @@ export interface DialogueNode {
   audio?: string;
   responses?: DialogueResponse[];
   nextNodeId?: string; // if no responses (linear dialogue)
+  isEnd?: boolean; // marks terminal nodes
+  allNodes?: DialogueNode[]; // all other nodes in the tree (for easier definition)
 }
 
 export interface DialogueResponse {

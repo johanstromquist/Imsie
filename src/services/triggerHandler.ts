@@ -85,13 +85,13 @@ export interface TriggerComponent {
 export function resolveQuizData(quizId: string, adventure: any): Quiz | null {
   // Check chapter end quizzes
   for (const chapter of adventure.chapters) {
-    if (chapter.endQuiz.id === quizId) {
+    if (chapter.endQuiz && chapter.endQuiz.id === quizId) {
       return chapter.endQuiz;
     }
   }
 
   // Check final quiz
-  if (adventure.finalQuiz.id === quizId) {
+  if (adventure.finalQuiz && adventure.finalQuiz.id === quizId) {
     return adventure.finalQuiz;
   }
 

@@ -69,11 +69,11 @@ const ChapterNavigation: React.FC<ChapterNavigationProps> = ({
   const handleChapterClick = (chapter: Chapter, index: number) => {
     if (!isChapterUnlocked(index)) return; // Can't select locked chapters
     onChapterSelect(chapter.id);
-    onClose();
+    // Don't close immediately - let parent handle closing when ready
   };
 
   // Get descriptive lock message based on prerequisites
-  const getLockedMessage = (chapter: Chapter, chapterIndex: number): string => {
+  const getLockedMessage = (chapter: Chapter): string => {
     if (!chapter.prerequisites) {
       // Default sequential
       return 'Complete previous chapter to unlock';
@@ -99,10 +99,6 @@ const ChapterNavigation: React.FC<ChapterNavigationProps> = ({
 
       case 'all': {
         if (!chapterIds || chapterIds.length === 0) return 'Locked';
-        // Find chapter titles for required chapters
-        const requiredTitles = chapterIds
-          .map(id => chapters.find(c => c.id === id)?.title)
-          .filter(Boolean);
         // Show which ones are still needed
         const incompleteTitles = chapterIds
           .filter(id => !progress.completedChapters.includes(id))
@@ -353,7 +349,7 @@ const ChapterNavigation: React.FC<ChapterNavigationProps> = ({
                           color: '#888',
                         }}
                       >
-                        {getLockedMessage(chapter, index)}
+                        {getLockedMessage(chapter)}
                       </span>
                     )}
                     {isCurrent && (

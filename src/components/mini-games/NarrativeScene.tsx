@@ -107,17 +107,22 @@ const NarrativeScene: React.FC<NarrativeSceneProps> = ({ scene, theme, onComplet
         )}
 
         {/* Narrative content with annotations */}
-        <ContentWithAnnotations
-          content={scene.content}
-          annotations={scene.inlineAnnotations}
-          theme={theme}
-          style={{
-            fontSize: '1.125rem',
-            lineHeight: '1.75',
-            marginBottom: '2rem',
-            whiteSpace: 'pre-wrap',
-          }}
-        />
+        <div style={{ marginBottom: '2rem' }}>
+          {scene.content.split('\n\n').map((paragraph, index) => (
+            <div key={index} style={{ marginBottom: index < scene.content.split('\n\n').length - 1 ? '0.75rem' : '0' }}>
+              <ContentWithAnnotations
+                content={paragraph}
+                annotations={scene.inlineAnnotations}
+                theme={theme}
+                style={{
+                  fontSize: '1.125rem',
+                  lineHeight: '1.75',
+                  whiteSpace: 'pre-wrap',
+                }}
+              />
+            </div>
+          ))}
+        </div>
 
         {/* Learning points */}
         {scene.learningPoints && scene.learningPoints.length > 0 && (

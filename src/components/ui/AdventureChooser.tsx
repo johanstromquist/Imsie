@@ -93,7 +93,7 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
           Imsie
         </h1>
         <p style={{ fontSize: '1.25rem', color: '#ccc', margin: 0 }}>
-          Interactive Adventures in History and Literature
+          Immersive Adventures in History and Literature
         </p>
       </header>
 
@@ -170,6 +170,9 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
           const progressPercent = progress
             ? Math.round((progress.completedChapters.length / adventure.chapters.length) * 100)
             : 0;
+
+          // Debug logging
+          console.log(`Adventure "${adventure.title}" has ${adventure.chapters.length} chapters`);
 
           const videoRef = useRef<HTMLVideoElement>(null);
           const [isHovered, setIsHovered] = useState(false);
