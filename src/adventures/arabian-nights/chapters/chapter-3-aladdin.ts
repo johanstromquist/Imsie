@@ -651,7 +651,7 @@ In the end, Aladdin became worthy not because he possessed a magic lamp, but bec
     {
       id: 'scene-16-scheherazade-frame',
       type: 'narrative',
-      backgroundImage: 'https://cdn.midjourney.com/48a88d78-c764-4f33-86a7-f3c6eef6aa52/0_0.png',
+      backgroundImage: 'https://cdn.midjourney.com/21808ecf-81eb-41c8-8b95-b352c8fd3b42/0_0.png',
       image: 'https://cdn.midjourney.com/b902b0c5-70f2-46cb-b2a2-7b439d160adc/0_0.png',
       content: `"And that, my lord," Scheherazade said to the Sultan, "is why the tale of Aladdin has endured. It shows us that transformation is possible, but it must come from within. Magic may open doors, but only character can walk through them with honor."
 
