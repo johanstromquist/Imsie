@@ -633,17 +633,7 @@ The lamp was a catalyst, a tool. But Aladdin's true transformation came from wit
 
 He began as an idle street urchin who promised change "tomorrow." The lamp gave him the chance to make that change real—but he had to do the work himself. He had to study, grow, learn responsibility, and develop courage.
 
-In the end, Aladdin became worthy not because he possessed a magic lamp, but because he possessed something far more valuable: a character that grew stronger through both fortune and adversity.
-
----
-
-"And that, my lord," Scheherazade said to the Sultan, "is why the tale of Aladdin has endured. It shows us that transformation is possible, but it must come from within. Magic may open doors, but only character can walk through them with honor."
-
-The Sultan nodded thoughtfully. "A wise tale indeed. The boy had nothing, then everything, then nothing again—and only when stripped of magic did he prove his true worth."
-
-"Exactly," Scheherazade smiled. "And now, my lord, dawn approaches. Shall I tell you tomorrow of Ali Baba and the Forty Thieves?"
-
-"I await tomorrow with great anticipation," the Sultan replied.`,
+In the end, Aladdin became worthy not because he possessed a magic lamp, but because he possessed something far more valuable: a character that grew stronger through both fortune and adversity.`,
       learningPoints: [
         {
           id: 'lp-ch3-11',
@@ -654,6 +644,27 @@ The Sultan nodded thoughtfully. "A wise tale indeed. The boy had nothing, then e
           id: 'lp-ch3-12',
           content: 'The story emphasizes that wisdom, courage, and love are more valuable than magical power.',
           category: 'thematic-analysis',
+        },
+      ],
+    },
+
+    {
+      id: 'scene-16-scheherazade-frame',
+      type: 'narrative',
+      backgroundImage: 'https://cdn.midjourney.com/48a88d78-c764-4f33-86a7-f3c6eef6aa52/0_0.png',
+      image: 'https://cdn.midjourney.com/b902b0c5-70f2-46cb-b2a2-7b439d160adc/0_0.png',
+      content: `"And that, my lord," Scheherazade said to the Sultan, "is why the tale of Aladdin has endured. It shows us that transformation is possible, but it must come from within. Magic may open doors, but only character can walk through them with honor."
+
+The Sultan nodded thoughtfully. "A wise tale indeed. The boy had nothing, then everything, then nothing again—and only when stripped of magic did he prove his true worth."
+
+"Exactly," Scheherazade smiled. "And now, my lord, dawn approaches. Shall I tell you tomorrow of Ali Baba and the Forty Thieves?"
+
+"I await tomorrow with great anticipation," the Sultan replied.`,
+      learningPoints: [
+        {
+          id: 'lp-ch3-13',
+          content: 'The frame narrative allows Scheherazade to explicitly draw moral lessons from the story.',
+          category: 'literary-technique',
         },
       ],
       events: {
