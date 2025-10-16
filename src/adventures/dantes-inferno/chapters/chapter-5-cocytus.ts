@@ -39,12 +39,12 @@ Everything here is frozen. This is Cocytus, the final circle, where all warmth h
         {
           id: 'lp-ch5-1',
           content: 'Cocytus is frozen—ultimate evil is cold, not hot. Traitors lack love\'s warmth, frozen in their own betrayals.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch5-2',
           content: 'The contrapasso begins: Betrayal isolates. Traitors are frozen alone, unable to move, some unable to speak or even cry.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
     },
@@ -150,12 +150,12 @@ The exit requires passing Satan and climbing through Earth. There are no shortcu
         {
           id: 'lp-ch5-6',
           content: 'Betraying benefactors is worst treachery. Those who helped you most trusted you—their betrayal is ultimate evil.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch5-7',
           content: 'Satan is trapped, not ruling. He\'s Hell\'s prisoner, the ultimate traitor (betrayed God). His flapping wings freeze the lake—evil generates its own punishment.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch5-8',
@@ -235,7 +235,7 @@ The exit requires passing Satan and climbing through Earth. There are no shortcu
         {
           id: 'lp-ch5-9',
           content: 'Betrayal is universal—every culture has traitors. Dante\'s categories (family, country, guests, benefactors) span cultures and eras.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch5-10',
@@ -263,7 +263,7 @@ All around you, similar scenes repeat: fathers and sons, siblings, relatives who
         {
           id: 'lp-ch5-11',
           content: 'Familial traitors face each other frozen. They destroyed family unity; now stuck forever with their victim/co-sinner.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
         {
           id: 'lp-ch5-12',
@@ -295,7 +295,7 @@ The gnawing man pauses, lifts his head, and looks at you. His face is terrible�
         {
           id: 'lp-ch5-12a',
           content: 'Ugolino gnaws Ruggieri\'s skull eternally—physical manifestation of hatred. Both damned, one takes revenge on the other forever.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
     },
@@ -319,7 +319,7 @@ The gnawing man pauses, lifts his head, and looks at you. His face is terrible�
           tooltip: {
             title: 'Dante\'s Curse on Pisa',
             content: 'Dante erupts with fury at the city of Pisa for starving Ugolino\'s innocent children. Regardless of their father\'s political crimes, killing children through starvation was an unforgivable atrocity. This outburst shows Dante\'s moral outrage overcoming his usual restraint.',
-            category: 'thematic-analysis',
+            category: 'cultural-context',
           },
         },
         {
@@ -375,7 +375,7 @@ The gnawing man pauses, lifts his head, and looks at you. His face is terrible�
               {
                 id: 'lp-ch5-14',
                 content: 'This is Inferno\'s most emotionally devastating story. Dante gives Ugolino 60+ lines—longest single speech.',
-                category: 'literary-technique',
+                category: 'literary-context',
               },
             ],
           },
@@ -417,7 +417,7 @@ The gnawing man pauses, lifts his head, and looks at you. His face is terrible�
         {
           id: 'lp-ch5-15',
           content: 'The final line is ambiguous: Did Ugolino resort to cannibalism? Dante leaves it uncertain—horrible either way.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
         {
           id: 'lp-ch5-16',
@@ -427,7 +427,7 @@ The gnawing man pauses, lifts his head, and looks at you. His face is terrible�
         {
           id: 'lp-ch5-17',
           content: 'Ugolino is both victim and traitor. He betrayed Pisa politically; Ruggieri betrayed him personally. Both are damned—mutual betrayal.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch5-18',
@@ -466,7 +466,7 @@ These are the guest-traitors: people who invited others into their homes, shared
         {
           id: 'lp-ch5-19',
           content: 'The frozen tears symbolize impenitence. If they could cry (show remorse), they wouldn\'t be damned. Frozen tears = frozen hearts.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -507,7 +507,7 @@ These are the guest-traitors: people who invited others into their homes, shared
               {
                 id: 'lp-ch5-21',
                 content: 'Dante promises to help, then breaks his promise. Is lying to the damned justified? Moral ambiguity—reader must judge.',
-                category: 'thematic-analysis',
+                category: 'cultural-context',
               },
             ],
           },
@@ -537,17 +537,17 @@ These are the guest-traitors: people who invited others into their homes, shared
         {
           id: 'lp-ch5-22',
           content: 'Shocking theology: Guest-traitors are so evil their souls fall to Hell while bodies still live above, possessed by demons. Dante invents this.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch5-23',
           content: 'Dante breaks his promise to Alberigo—lying to traitors is \'courtesy.\' This moral complexity challenges readers: Is betraying betrayers just?',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch5-24',
           content: 'Judecca is silent—no speech, no interaction. Traitors to benefactors destroyed love completely; they\'re isolated eternally.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -582,7 +582,7 @@ Ahead, you see a massive form in the ice.`,
         {
           id: 'lp-ch5-25',
           content: 'Complete submersion represents total spiritual death. They cannot communicate, move, or sense—utterly cut off.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
     },
@@ -629,17 +629,17 @@ In each of his three mouths, he chews a sinner.`,
         {
           id: 'lp-ch5-26',
           content: 'Satan has three heads—grotesque parody of Holy Trinity. Where Trinity represents unity in love, Satan\'s heads represent division.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch5-27',
           content: 'Satan once had the most beautiful angel wings. Now bat-like and useless—his rebellion grotesquely warped God\'s gifts.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch5-28',
           content: 'Satan doesn\'t rule Hell—he\'s imprisoned in it. Flapping wings to escape only freezes him deeper. Evil is self-defeating.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -700,7 +700,7 @@ In each of his three mouths, he chews a sinner.`,
         {
           id: 'lp-ch5-30',
           content: 'Judas suffers most despite Brutus/Cassius killing more people. Medieval ethics: quality (who betrayed) exceeds quantity (how many killed).',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -726,7 +726,7 @@ Why?`,
             {
               id: 'lp-ch5-31',
               content: 'Medieval theology: Evil has no positive existence. It\'s privation of good (like darkness is absence of light). Satan chose nothing, became imprisoned in nothing.',
-              category: 'thematic-analysis',
+              category: 'cultural-context',
             },
           ],
         },
@@ -738,7 +738,7 @@ Why?`,
             {
               id: 'lp-ch5-32',
               content: 'Satan\'s flapping to escape freezes him deeper. Every evil act worsens the sinner\'s state—Hell is self-inflicted.',
-              category: 'thematic-analysis',
+              category: 'cultural-context',
             },
           ],
         },
@@ -750,7 +750,7 @@ Why?`,
             {
               id: 'lp-ch5-33',
               content: 'Hell\'s precise structure mirrors Heaven\'s—both ordered. But Hell orders toward absence (frozen center), Heaven toward presence (God\'s light).',
-              category: 'thematic-analysis',
+              category: 'cultural-context',
             },
           ],
         },
@@ -759,7 +759,7 @@ Why?`,
         {
           id: 'lp-ch5-34',
           content: 'Popular culture\'s powerful, ruling Satan comes later. Dante\'s Satan is pathetic, trapped, weeping—ultimate failure.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -801,7 +801,7 @@ The passage opens into a rocky tunnel. You climb and climb, following the sound 
         {
           id: 'lp-ch5-36',
           content: 'The climb mirrors the descent: to exit Hell, you must face evil (climb Satan), then ascend. No shortcuts—confrontation precedes redemption.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -848,12 +848,12 @@ The journey through Hell is complete. Now the climb toward Paradise begins.`,
         {
           id: 'lp-ch5-37',
           content: 'Inferno ends with \'stars\'—the same word closing all three parts. Stars represent divine guidance, hope, salvation.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
         {
           id: 'lp-ch5-38',
           content: 'The timeline: Good Friday (crucifixion) to Easter Sunday (resurrection). Dante\'s journey mirrors Christ\'s death and revival—personal resurrection.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch5-39',
@@ -909,12 +909,12 @@ The journey through Hell is complete. Now the climb toward Paradise begins.`,
         {
           id: 'lp-ch5-40',
           content: 'Treachery\'s contrapasso is cold isolation. Betrayal destroys relationships; punishment reflects severed bonds—frozen, alone, silent.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
         {
           id: 'lp-ch5-41',
           content: 'The four zones rank betrayals by relationship sanctity: family → country → guests → benefactors. Dante structures sin like Aristotle structures virtue.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
       events: {

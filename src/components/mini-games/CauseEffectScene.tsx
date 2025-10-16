@@ -97,7 +97,7 @@ const CauseEffectScene: React.FC<CauseEffectSceneProps> = ({
     }
 
     // Check if this effect is already matched to another cause
-    const existingCause = Object.entries(matches).find(([_, effId]) => effId === effectId)?.[0];
+    const existingCause = Object.entries(matches).find(([, effId]) => effId === effectId)?.[0];
     if (existingCause) {
       // Remove the existing match
       const newMatches = { ...matches };
@@ -148,7 +148,7 @@ const CauseEffectScene: React.FC<CauseEffectSceneProps> = ({
 
   // Get cause ID for an effect
   const getCauseForEffect = (effectId: string) => {
-    return Object.entries(matches).find(([_, effId]) => effId === effectId)?.[0];
+    return Object.entries(matches).find(([, effId]) => effId === effectId)?.[0];
   };
 
   return (

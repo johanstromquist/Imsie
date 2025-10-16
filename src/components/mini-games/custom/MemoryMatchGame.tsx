@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { customGameRegistry, CustomGameProps } from '../customGameRegistry';
+import { customGameRegistry } from '../customGameRegistry';
+import type { CustomGameProps } from '../customGameRegistry';
 import { assetLoader } from '../../../services/assetLoader';
 
 interface Card {
@@ -16,6 +17,24 @@ interface MemoryMatchConfig {
   showHints?: boolean;
 }
 
+function isMemoryMatchConfig(config: unknown): config is MemoryMatchConfig {
+  if (!config || typeof config !== 'object') return false;
+  const c = config as Record<string, unknown>;
+  return (
+    Array.isArray(c.pairs) &&
+    c.pairs.length > 0 &&
+    c.pairs.every((pair: unknown) =>
+      pair &&
+      typeof pair === 'object' &&
+      pair !== null &&
+      'id' in pair &&
+      'value' in pair &&
+      typeof (pair as Record<string, unknown>).id === 'string' &&
+      typeof (pair as Record<string, unknown>).value === 'string'
+    )
+  );
+}
+
 const MemoryMatchGame: React.FC<CustomGameProps> = ({
   config,
   theme,
@@ -23,7 +42,7 @@ const MemoryMatchGame: React.FC<CustomGameProps> = ({
   onBack,
   canGoBack,
 }) => {
-  const typedConfig = config as MemoryMatchConfig;
+  // Initialize all hooks first (must be called unconditionally)
   const [cards, setCards] = useState<Card[]>([]);
   const [flippedCards, setFlippedCards] = useState<string[]>([]);
   const [moves, setMoves] = useState(0);
@@ -32,10 +51,13 @@ const MemoryMatchGame: React.FC<CustomGameProps> = ({
   const [timeElapsed, setTimeElapsed] = useState(0);
   const [isStarted, setIsStarted] = useState(false);
 
+  // Validate config structure
+  const isValidConfig = isMemoryMatchConfig(config);
+  const typedConfig = isValidConfig ? config : { pairs: [], timeLimit: undefined, showHints: undefined };
+
   // Initialize the game
   useEffect(() => {
-    if (!typedConfig.pairs || typedConfig.pairs.length === 0) {
-      console.error('MemoryMatchGame: No pairs provided in config');
+    if (!isValidConfig || !typedConfig.pairs || typedConfig.pairs.length === 0) {
       return;
     }
 
@@ -61,7 +83,7 @@ const MemoryMatchGame: React.FC<CustomGameProps> = ({
     // Shuffle the cards
     const shuffled = gameCards.sort(() => Math.random() - 0.5);
     setCards(shuffled);
-  }, [typedConfig.pairs]);
+  }, [isValidConfig, typedConfig.pairs]);
 
   // Timer
   useEffect(() => {
@@ -151,6 +173,29 @@ const MemoryMatchGame: React.FC<CustomGameProps> = ({
     const secs = seconds % 60;
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
+
+  // If config is invalid, show error state
+  if (!isValidConfig) {
+    return (
+      <div
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: theme.primaryColor,
+          color: 'white',
+          padding: '2rem',
+          textAlign: 'center',
+        }}
+      >
+        <div>
+          <h2 style={{ marginBottom: '1rem' }}>Configuration Error</h2>
+          <p>Invalid game configuration. Please check the game setup.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

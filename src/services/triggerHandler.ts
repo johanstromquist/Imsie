@@ -2,7 +2,9 @@ import type {
   SceneTrigger,
   AdventureProgress,
   Quiz,
+  Adventure,
 } from '../types';
+import type { ComponentType } from 'react';
 
 /**
  * Trigger Handler Service
@@ -75,14 +77,14 @@ export function getActiveTriggers(
  */
 export interface TriggerComponent {
   type: 'quiz' | 'mini-game' | 'cutscene' | 'custom';
-  component: any; // React component
-  resolveData: (componentId: string, adventure: any) => any;
+  component: ComponentType<unknown>; // React component
+  resolveData: (componentId: string, adventure: Adventure) => unknown;
 }
 
 /**
  * Resolves quiz data from quiz ID
  */
-export function resolveQuizData(quizId: string, adventure: any): Quiz | null {
+export function resolveQuizData(quizId: string, adventure: Adventure): Quiz | null {
   // Check chapter end quizzes
   for (const chapter of adventure.chapters) {
     if (chapter.endQuiz && chapter.endQuiz.id === quizId) {

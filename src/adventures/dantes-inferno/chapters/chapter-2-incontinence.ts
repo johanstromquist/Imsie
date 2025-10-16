@@ -67,7 +67,7 @@ Minos shrinks back, and you pass through his judgment hall.`,
         {
           id: 'lp-ch2-2',
           content: 'The tail\'s wrapping represents mechanical, impersonal divine judgment—no appeals, no mercy, only categorization.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
     },
@@ -91,12 +91,12 @@ You watch as the souls spiral and tumble through the air, unable to find rest or
         {
           id: 'lp-ch2-3',
           content: 'The lustful surrendered reason to passion in life. In death, they\'re literally blown by winds—unable to control direction, mimicking how lust controlled them.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch2-4',
           content: 'This is the first true contrapasso: the punishment directly mirrors the sin\'s nature.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
     },
@@ -130,7 +130,7 @@ Finally, Virgil points to two souls bound together. "Tristan and Isolde, bound b
         {
           id: 'lp-ch2-5b',
           content: 'Each lover\'s story involves choosing passion over duty, reason, or wisdom—the core sin of lust in medieval theology.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -182,12 +182,12 @@ Finally, Virgil points to two souls bound together. "Tristan and Isolde, bound b
         {
           id: 'lp-ch2-5',
           content: 'Dante includes mythical, historical, and literary figures together. His Hell blurs fact and fiction—showing sin as universal across cultures and eras.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
         {
           id: 'lp-ch2-6',
           content: 'Most lustful souls are from classical mythology and medieval romance, not the Bible. Lust is treated as a literary and cultural sin.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -241,7 +241,7 @@ Finally, Virgil points to two souls bound together. "Tristan and Isolde, bound b
               {
                 id: 'lp-ch2-9',
                 content: 'Francesca blames a book—the romance of Lancelot and Guinevere. "That day we read no more." Literature as temptation was a medieval concern.',
-                category: 'thematic-analysis',
+                category: 'cultural-context',
               },
             ],
           },
@@ -282,7 +282,7 @@ Finally, Virgil points to two souls bound together. "Tristan and Isolde, bound b
         {
           id: 'lp-ch2-11',
           content: 'Francesca\'s speech is beautiful but deceptive. She blames fate, love, and literature—never admitting adultery and lust. Her eloquence masks her sin.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
     },
@@ -319,12 +319,12 @@ Virgil quickly throws handfuls of mud into Cerberus's three mouths. The beast, d
         {
           id: 'lp-ch2-12',
           content: 'Gluttony\'s contrapasso: They indulged appetites excessively, so now wallow like pigs in filth. Cold rain represents joyless consumption.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch2-13',
           content: 'Cerberus from Greek mythology guards the gluttons. His three heads represent insatiable hunger—he never stops eating.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
     },
@@ -353,7 +353,7 @@ Virgil quickly throws handfuls of mud into Cerberus's three mouths. The beast, d
               {
                 id: 'lp-ch2-14',
                 content: 'Ciacco means "pig" in Italian. Whether a nickname or real name, it fits his gluttony perfectly.',
-                category: 'literary-technique',
+                category: 'literary-context',
               },
             ],
           },
@@ -377,7 +377,7 @@ Virgil quickly throws handfuls of mud into Cerberus's three mouths. The beast, d
               {
                 id: 'lp-ch2-16',
                 content: 'Ciacco says only two just men remain in Florence, "but no one listens." Dante\'s political pessimism pervades Inferno.',
-                category: 'thematic-analysis',
+                category: 'cultural-context',
               },
             ],
           },
@@ -435,7 +435,7 @@ Virgil quickly throws handfuls of mud into Cerberus's three mouths. The beast, d
         {
           id: 'lp-ch2-18',
           content: 'Dante uses Hell to comment on Florentine politics. Nearly every circle features political figures and prophecies about Florence\'s corruption.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -459,12 +459,12 @@ Then they turn around, pushing their weights back the way they came, only to col
         {
           id: 'lp-ch2-19',
           content: 'Avarice (greed/hoarding) and prodigality (wasteful spending) are opposites but stem from the same root: obsession with material wealth.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch2-20',
           content: 'The contrapasso: They pushed wealth around in life, so push useless weights eternally. Meeting and fighting represents their mutual futility.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
     },
@@ -514,7 +514,7 @@ The sight deeply troubles you. You have seen this corruption yourself in Florenc
         {
           id: 'lp-ch2-21',
           content: 'Dante attacks Church corruption relentlessly. Popes, cardinals, and clergy appear in multiple circles—showing institutional rot.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch2-22',
@@ -557,7 +557,7 @@ Virgil smiles and explains: "Fortune is not a random force, but a divine agent a
         {
           id: 'lp-ch2-23',
           content: 'Medieval people personified Fortune as a goddess turning a wheel. Dante makes her a servant of God—randomness within divine plan.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch2-24',
@@ -599,12 +599,12 @@ But there is more. Looking closer at the surface of the swamp, you see bubbles r
         {
           id: 'lp-ch2-25',
           content: 'The wrathful express anger, so fight eternally. The sullen repressed anger, so choke on it beneath the surface—unable to speak clearly.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch2-26',
           content: 'The River Styx from Greek mythology becomes a swamp of wrath. Classical and Christian geography merge seamlessly in Dante\'s Hell.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
     },
@@ -729,7 +729,7 @@ The demons begin to move along the walls, and you wonder: will they let you pass
         {
           id: 'lp-ch2-31',
           content: 'Upper Hell (Circles II-V) punishes incontinence (weakness). Lower Hell punishes malice (intentional evil). The moral distinction is Aristotelian.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -774,12 +774,12 @@ The demons begin to move along the walls, and you wonder: will they let you pass
         {
           id: 'lp-ch2-32',
           content: 'Sins of incontinence stem from lack of self-control, not evil intent. Dante shows compassion—these sinners are weak, not wicked.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch2-33',
           content: 'Contrapasso operates on symbolic logic: punishment mirrors the sin\'s spiritual nature, not just its physical act.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
       events: {

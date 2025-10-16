@@ -40,12 +40,12 @@ Virgil hurries you past them. "These are despised by Heaven and by Hell alike," 
         {
           id: 'lp-ch1-1',
           content: 'The vestibule punishes those who never took moral stances. Dante despised neutrality—"The hottest places in hell are reserved for those who maintain neutrality in times of moral crisis."',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch1-2',
           content: 'Contrapasso (punishment fitting crime) begins: They followed nothing in life, so chase a meaningless banner in death. They avoided pain in life, so suffer stings eternally.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
     },
@@ -128,7 +128,7 @@ Yet their faces bear unmistakable grief. They know that Paradise exists, that pe
         {
           id: 'lp-ch1-6',
           content: 'This is the "contrapasso" for Limbo: They lived virtuously but lacked Christian revelation. Their punishment is absence—eternal unfulfillment, not torture.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -228,7 +228,7 @@ It is beautiful, peaceful, and eternally sad—a place of dignity without joy, k
         {
           id: 'lp-ch1-9',
           content: 'Seven walls represent the seven liberal arts (grammar, logic, rhetoric, arithmetic, geometry, music, astronomy). Knowledge protects but can\'t save.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
         {
           id: 'lp-ch1-10',
@@ -248,7 +248,7 @@ It is beautiful, peaceful, and eternally sad—a place of dignity without joy, k
         {
           id: 'lp-ch1-13',
           content: 'Virtuous pagans include warriors and leaders. Nobility of character counted, even without Christian faith.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch1-14',
@@ -258,7 +258,7 @@ It is beautiful, peaceful, and eternally sad—a place of dignity without joy, k
         {
           id: 'lp-ch1-15',
           content: 'The meadow evokes the Elysian Fields from classical mythology. Dante merges pagan and Christian afterlife concepts.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
     },
@@ -291,7 +291,7 @@ It is beautiful, peaceful, and eternally sad—a place of dignity without joy, k
               {
                 id: 'lp-ch1-16',
                 content: 'Epic poetry traditionally records heroic deeds. Dante innovates: His epic records moral geography and political critique.',
-                category: 'literary-technique',
+                category: 'literary-context',
               },
             ],
           },
@@ -303,7 +303,7 @@ It is beautiful, peaceful, and eternally sad—a place of dignity without joy, k
               {
                 id: 'lp-ch1-17',
                 content: 'Classical epics featured gods but lacked monotheistic salvation. Dante\'s epic integrates Catholic cosmology with epic tradition.',
-                category: 'literary-technique',
+                category: 'literary-context',
               },
             ],
           },
@@ -315,7 +315,7 @@ It is beautiful, peaceful, and eternally sad—a place of dignity without joy, k
               {
                 id: 'lp-ch1-18',
                 content: 'Literature builds on literature. Dante sees himself continuing Homer → Virgil → Ovid → Dante lineage.',
-                category: 'literary-technique',
+                category: 'literary-context',
               },
             ],
           },
@@ -387,7 +387,7 @@ It is beautiful, peaceful, and eternally sad—a place of dignity without joy, k
         {
           id: 'lp-ch1-16',
           content: 'Epic poetry traditionally records heroic deeds. Dante innovates: His epic records moral geography and political critique.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
     },
@@ -418,7 +418,7 @@ Virgil notices your tears. "Do not weep for us," he says gently. "We have accept
         {
           id: 'lp-ch1-20',
           content: 'Dante\'s compassion for the damned marks him as unusual. Most medieval visions of Hell celebrate punishment; Dante questions justice.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -480,7 +480,7 @@ So important is the unity of this ecclesiastical body that only those remaining 
         {
           id: 'lp-ch1-8',
           content: 'Dante\'s Limbo is controversial: It\'s technically Hell but functions like a noble afterlife. He bends doctrine to honor his intellectual heroes.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -550,7 +550,7 @@ So important is the unity of this ecclesiastical body that only those remaining 
         {
           id: 'lp-ch1-21',
           content: 'Dante\'s Limbo includes pagans, Muslims, and even mythical figures. He constructs a cosmopolitan intellectual community.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch1-22',
@@ -591,7 +591,7 @@ So important is the unity of this ecclesiastical body that only those remaining 
             {
               id: 'lp-ch1-24',
               content: 'Dante bends doctrine: Limbo isn\'t torment but melancholy. He honors pagan wisdom while technically obeying Church cosmology.',
-              category: 'thematic-analysis',
+              category: 'cultural-context',
             },
           ],
         },
@@ -613,7 +613,7 @@ So important is the unity of this ecclesiastical body that only those remaining 
         {
           id: 'lp-ch1-26',
           content: 'Dante\'s Limbo reveals tension between classical humanism and Christian exclusivity. Renaissance humanism would later embrace this tension.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -671,17 +671,17 @@ You steel yourself for the journey ahead, knowing that each circle will reveal n
         {
           id: 'lp-ch1-28',
           content: 'Contrapasso means "counter-suffering"—punishments mirror crimes. Dante creates poetic justice where penalty reflects the sin\'s nature.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
         {
           id: 'lp-ch1-29',
           content: 'The uncommitted chase a meaningless banner; the virtuous unbaptized long eternally for unreachable Heaven. Each punishment reveals the sin\'s spiritual essence.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch1-30',
           content: 'Contrapasso operates through symbolic logic, not simple revenge. Punishments can be literal (chasers chase) or metaphorical (absence punishes those who lacked opportunity).',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
 

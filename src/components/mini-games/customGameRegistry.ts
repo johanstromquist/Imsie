@@ -1,10 +1,10 @@
-import { ComponentType } from 'react';
+import type { ComponentType } from 'react';
 import type { AdventureTheme } from '../../types/adventure';
 
 export interface CustomGameProps {
   config: Record<string, unknown>;
   theme: AdventureTheme;
-  onComplete: (result?: any) => void;
+  onComplete: (result?: unknown) => void;
   onBack: () => void;
   canGoBack: boolean;
 }

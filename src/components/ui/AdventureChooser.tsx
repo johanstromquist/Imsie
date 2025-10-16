@@ -1,10 +1,17 @@
 import { useEffect, useState, useRef } from 'react';
-import type { Adventure, GlobalProgress } from '../../types';
+import type { Adventure, GlobalProgress, AdventureProgress } from '../../types';
 import { adventures } from '../../adventures/adventure-registry';
 import { progressManager } from '../../services/progressManager';
 
 interface AdventureChooserProps {
   onAdventureSelect: (adventure: Adventure) => void;
+}
+
+interface AdventureCardProps {
+  adventure: Adventure;
+  progress: AdventureProgress | undefined;
+  onSelect: () => void;
+  onRestart: (event: React.MouseEvent) => void;
 }
 
 const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }) => {
@@ -167,36 +174,60 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
       >
         {adventures.map((adventure) => {
           const progress = getAdventureProgress(adventure.id);
-          const progressPercent = progress
-            ? Math.round((progress.completedChapters.length / adventure.chapters.length) * 100)
-            : 0;
-
-          // Debug logging
-          console.log(`Adventure "${adventure.title}" has ${adventure.chapters.length} chapters`);
-
-          const videoRef = useRef<HTMLVideoElement>(null);
-          const [isHovered, setIsHovered] = useState(false);
-
-          const handleMouseEnter = () => {
-            setIsHovered(true);
-            if (videoRef.current && adventure.coverVideo) {
-              videoRef.current.play();
-            }
-          };
-
-          const handleMouseLeave = () => {
-            setIsHovered(false);
-            if (videoRef.current) {
-              videoRef.current.pause();
-              videoRef.current.currentTime = 0;
-            }
-          };
 
           return (
-            <div
+            <AdventureCard
               key={adventure.id}
-              onClick={() => onAdventureSelect(adventure)}
-              style={{
+              adventure={adventure}
+              progress={progress}
+              onSelect={() => onAdventureSelect(adventure)}
+              onRestart={(e) => handleRestartAdventure(adventure.id, adventure.title, e)}
+            />
+          );
+        })}
+      </div>
+
+      {/* Footer */}
+      <footer style={{ textAlign: 'center', marginTop: '4rem', color: '#666', fontSize: '0.875rem' }}>
+        <p>Imsie - Learn through adventure</p>
+      </footer>
+    </div>
+  );
+};
+
+// Separate AdventureCard component to use hooks properly
+const AdventureCard: React.FC<AdventureCardProps> = ({
+  adventure,
+  progress,
+  onSelect,
+  onRestart,
+}) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const progressPercent = progress
+    ? Math.round((progress.completedChapters.length / adventure.chapters.length) * 100)
+    : 0;
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (videoRef.current && adventure.coverVideo) {
+      videoRef.current.play();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
+  return (
+    <div
+      onClick={onSelect}
+      style={{
                 backgroundColor: 'rgba(255, 255, 255, 0.05)',
                 borderRadius: '1rem',
                 overflow: 'hidden',
@@ -338,7 +369,7 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
                   {/* Restart button - only show if there's progress */}
                   {progress && (
                     <button
-                      onClick={(e) => handleRestartAdventure(adventure.id, adventure.title, e)}
+                      onClick={onRestart}
                       style={{
                         padding: '0.25rem 0.5rem',
                         backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -363,15 +394,6 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
                 </div>
               </div>
             </div>
-          );
-        })}
-      </div>
-
-      {/* Footer */}
-      <footer style={{ textAlign: 'center', marginTop: '4rem', color: '#666', fontSize: '0.875rem' }}>
-        <p>Imsie - Learn through adventure</p>
-      </footer>
-    </div>
   );
 };
 

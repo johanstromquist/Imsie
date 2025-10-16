@@ -46,7 +46,7 @@ Virgil's expression is grave. "We wait. Reason alone cannot open these gates. We
         {
           id: 'lp-ch3-2',
           content: "Virgil's failure shows reason's limits. Some barriers require divine intervention—foreshadowing grace's necessity.",
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -83,7 +83,7 @@ The demons scatter in terror, and the messenger departs without a word.
           tooltip: {
             title: 'The Gorgon Who Turns to Stone',
             content: 'Medusa was a Gorgon in Greek mythology whose gaze turned anyone who looked at her into stone. In Dante\'s allegory, she represents paralyzing despair—the spiritual death that prevents souls from seeking salvation.',
-            category: 'literary-technique',
+            category: 'literary-context',
           },
         },
       ],
@@ -96,12 +96,12 @@ The demons scatter in terror, and the messenger departs without a word.
         {
           id: 'lp-ch3-4',
           content: 'Medusa (turns viewers to stone) represents paralyzing despair. Virgil protects Dante—reason shields against spiritual petrification.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
         {
           id: 'lp-ch3-5',
           content: "The divine messenger represents God's direct intervention when human effort fails. Grace breaks what reason cannot.",
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -128,7 +128,7 @@ You look at the burning tombs with a mixture of horror and irony. "So those who 
         {
           id: 'lp-ch3-6',
           content: "Heretics denied the soul's immortality. Their punishment: Trapped in burning tombs, they experience the eternal existence they denied.",
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch3-7',
@@ -252,37 +252,16 @@ Yet here he stands, not cowering, but regarding you with aristocratic interest�
             id: 'response-my-family',
             text: 'I am a Guelph—your enemy',
             nextNodeId: 'node-2',
-            learningPoints: [
-              {
-                id: 'lp-ch3-10',
-                content: 'Farinata led the Ghibellines (pro-Emperor) who defeated Dante\'s Guelphs (pro-Pope) at Montaperti (1260). Political enemies meeting in Hell.',
-                category: 'historical-context',
-              },
-            ],
           },
           {
             id: 'response-why-hell',
             text: 'Why are YOU in Hell?',
             nextNodeId: 'node-3',
-            learningPoints: [
-              {
-                id: 'lp-ch3-11',
-                content: 'Farinata was an Epicurean—believing death ends existence. This philosophical heresy (not his political deeds) damns him.',
-                category: 'thematic-analysis',
-              },
-            ],
           },
           {
             id: 'response-battle',
             text: 'You slaughtered my political allies at Montaperti!',
             nextNodeId: 'node-4',
-            learningPoints: [
-              {
-                id: 'lp-ch3-12',
-                content: 'After victory at Montaperti, Farinata saved Florence from destruction—even though the city was his enemy\'s stronghold.',
-                category: 'character-analysis',
-              },
-            ],
           },
         ],
         allNodes: [
@@ -332,18 +311,6 @@ Yet here he stands, not cowering, but regarding you with aristocratic interest�
             speaker: 'virgil',
             text: 'Come, Dante. We must continue. This soul will stand here, proud and unbroken, until Judgment Day—caring more about his family\'s earthly fate than his own eternal torment.',
             isEnd: true,
-            learningPoints: [
-              {
-                id: 'lp-ch3-14',
-                content: 'Farinata maintains dignified pride even in Hell. His concern for Florence and family (not his own suffering) shows noble character despite damnation.',
-                category: 'character-analysis',
-              },
-              {
-                id: 'lp-ch3-15',
-                content: "Dante's encounter with Farinata is deeply personal—a political enemy portrayed with respect. Good people can be damned for wrong beliefs.",
-                category: 'thematic-analysis',
-              },
-            ],
           },
         ],
       },
@@ -366,13 +333,6 @@ Yet here he stands, not cowering, but regarding you with aristocratic interest�
           content: `The cliff descending to Circle VII is treacherous and steep. A massive landslide, caused by the earthquake at Christ's death, provides rough stairs down into the abyss.
 
 Even the landscape of Hell felt the crucifixion—rocks broken, paths shattered. This descent marks your entry into the realm of violence.`,
-          learningPoints: [
-            {
-              id: 'lp-ch3-16',
-              content: "The landscape changed when Christ died—earthquakes broke Hell's structure. Even Hell felt Christ's crucifixion.",
-              category: 'thematic-analysis',
-            },
-          ],
         },
         {
           id: 'phlegethon',
@@ -382,13 +342,6 @@ Even the landscape of Hell felt the crucifixion—rocks broken, paths shattered.
           content: `Ring 1: The Phlegethon, a river of boiling blood. Those who were violent against their neighbors—murderers, tyrants, warriors—are submerged based on the severity of their crimes.
 
 Tyrants who caused mass death are submerged up to their eyebrows. Common murderers stand chest-deep. All burn in the blood they spilled.`,
-          learningPoints: [
-            {
-              id: 'lp-ch3-17',
-              content: 'The Phlegethon (from Greek mythology) is a river of boiling blood. Violent souls immersed based on sin—tyrants up to eyebrows, murderers to chin.',
-              category: 'literary-technique',
-            },
-          ],
         },
         {
           id: 'wood-suicides',
@@ -398,13 +351,6 @@ Tyrants who caused mass death are submerged up to their eyebrows. Common murdere
           content: `Ring 2: A dark, twisted forest where suicides are transformed into gnarled trees. They rejected their God-given bodies, so they are denied human form.
 
 When the branches break, they bleed and scream. Harpies nest in the branches, constantly tearing at the leaves, causing eternal pain.`,
-          learningPoints: [
-            {
-              id: 'lp-ch3-18',
-              content: 'Suicides rejected their God-given bodies. Punishment: Denied human form, trapped as trees. When they speak, they bleed.',
-              category: 'thematic-analysis',
-            },
-          ],
         },
         {
           id: 'burning-sand',
@@ -414,13 +360,6 @@ When the branches break, they bleed and scream. Harpies nest in the branches, co
           content: `Ring 3: An endless desert of burning sand beneath a rain of fire. Three groups suffer here: blasphemers lying on their backs, sodomites running endlessly, and usurers sitting hunched over their money purses.
 
 All three committed violence against God—either by rejecting Him directly or by perverting His natural order.`,
-          learningPoints: [
-            {
-              id: 'lp-ch3-19',
-              content: 'Violence against God includes blasphemy (rejecting God), sodomy (violating natural law), and usury (violating nature\'s productivity).',
-              category: 'historical-context',
-            },
-          ],
         },
         {
           id: 'centaurs-patrol',
@@ -430,13 +369,6 @@ All three committed violence against God—either by rejecting Him directly or b
           content: `Centaurs armed with bows and arrows patrol the banks of the Phlegethon. If any soul tries to rise higher from the blood than their sin allows, the centaurs shoot them back down.
 
 These half-human, half-horse creatures perfectly symbolize violence—the rational mind enslaved to bestial passion.`,
-          learningPoints: [
-            {
-              id: 'lp-ch3-20',
-              content: "Centaurs (half-human, half-horse) symbolize violence's dual nature—rational mind (human) serving bestial passion (horse).",
-              category: 'literary-technique',
-            },
-          ],
         },
         {
           id: 'three-heads',
@@ -450,13 +382,6 @@ Ring 2: Violence Against Self (suicide, squandering)
 Ring 3: Violence Against God (blasphemy, sodomy, usury)
 
 Each category moves from harming others, to harming oneself, to offending the Divine—increasing in spiritual severity.`,
-          learningPoints: [
-            {
-              id: 'lp-ch3-21',
-              content: 'Dante organizes violence philosophically: against others, self, or God. Medieval ethics saw all three as violations of love.',
-              category: 'plot-structure',
-            },
-          ],
         },
       ],
       requiredLocations: ['steep-descent', 'phlegethon'],
@@ -517,12 +442,12 @@ The voice continues, anguished: "We were once human. We took our own lives, reje
         {
           id: 'lp-ch3-24',
           content: "The bleeding trees are one of Dante's most memorable images. Medieval Christianity condemned suicide as rejecting God's gift of life.",
-          category: 'literary-technique',
+          category: 'literary-context',
         },
         {
           id: 'lp-ch3-25',
           content: 'At Judgment Day, suicides will retrieve their bodies but never wear them—hanging on their own trees forever. They chose death, so cannot have full resurrection.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -547,37 +472,16 @@ The voice continues, anguished: "We were once human. We took our own lives, reje
             id: 'response-what-brought',
             text: 'What brought you to this place?',
             nextNodeId: 'node-2',
-            learningPoints: [
-              {
-                id: 'lp-ch3-26',
-                content: "Pier was Frederick II's most trusted advisor. False accusations of betrayal led to his imprisonment. He killed himself to escape shame.",
-                category: 'historical-context',
-              },
-            ],
           },
           {
             id: 'response-why-harsh',
             text: 'Why are suicides punished so harshly?',
             nextNodeId: 'node-3',
-            learningPoints: [
-              {
-                id: 'lp-ch3-27',
-                content: "Suicide was seen as ultimate despair—losing faith in God's mercy. It combines violence with rejection of divine providence.",
-                category: 'thematic-analysis',
-              },
-            ],
           },
           {
             id: 'response-regret',
             text: 'Do you regret your choice?',
             nextNodeId: 'node-4',
-            learningPoints: [
-              {
-                id: 'lp-ch3-28',
-                content: 'Pier killed himself to preserve honor (medieval value). Yet honor meant nothing compared to the sin of self-murder.',
-                category: 'character-analysis',
-              },
-            ],
           },
         ],
         allNodes: [
@@ -604,13 +508,6 @@ The voice continues, anguished: "We were once human. We took our own lives, reje
             speaker: 'pier-della-vigna',
             text: 'When Judgment Day comes, we suicides will retrieve our bodies like all the dead. But we will never wear them again. We will hang our corpses on our own branches—eternally separated from the human form we rejected. We chose death, so we cannot have full resurrection.',
             isEnd: true,
-            learningPoints: [
-              {
-                id: 'lp-ch3-29',
-                content: "Pier's eloquent speech mirrors his reputation as master rhetorician. Even in Hell, his verbal skill persists.",
-                category: 'literary-technique',
-              },
-            ],
           },
         ],
       },
@@ -645,7 +542,7 @@ But money itself is dead metal. Coins do not grow or multiply on their own. When
         {
           id: 'lp-ch3-30',
           content: "The burning sand reverses God's Creation. Instead of life-giving rain, fire falls. Instead of fertile earth, sterile desert.",
-          category: 'literary-technique',
+          category: 'literary-context',
         },
         {
           id: 'lp-ch3-31',
@@ -675,25 +572,11 @@ But money itself is dead metal. Coins do not grow or multiply on their own. When
             id: 'response-why-rage',
             text: 'Why do you rage against God?',
             nextNodeId: 'node-2',
-            learningPoints: [
-              {
-                id: 'lp-ch3-32',
-                content: 'Capaneus besieged Thebes and blasphemed Zeus, who killed him with lightning. His eternal defiance shows impenitence—the core trait of the damned.',
-                category: 'character-analysis',
-              },
-            ],
           },
           {
             id: 'response-punishment-light',
             text: 'Your punishment seems no worse than others here',
             nextNodeId: 'node-3',
-            learningPoints: [
-              {
-                id: 'lp-ch3-33',
-                content: "Virgil says Capaneus's greatest torment is his own rage—'his pride is its own fit punishment.' Internal suffering exceeds external.",
-                category: 'thematic-analysis',
-              },
-            ],
           },
         ],
         allNodes: [
@@ -714,13 +597,6 @@ But money itself is dead metal. Coins do not grow or multiply on their own. When
             speaker: 'virgil',
             text: 'Come, Dante. Do not speak with him further. The unrepentant suffer most from their own unchanged character. Hell does not reform—it freezes souls in their sins eternally.',
             isEnd: true,
-            learningPoints: [
-              {
-                id: 'lp-ch3-34',
-                content: 'The unrepentant suffer most from their own unchanged character. Hell doesn\'t reform—it freezes souls in their sins eternally.',
-                category: 'thematic-analysis',
-              },
-            ],
           },
         ],
       },
@@ -773,7 +649,7 @@ But money itself is dead metal. Coins do not grow or multiply on their own. When
         {
           id: 'lp-ch3-35',
           content: "Violence against God is worst because it attacks the highest good. Violence against self ranks above violence against neighbors—your life is God's gift, not yours to take.",
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch3-36',

@@ -38,11 +38,12 @@ const ChapterNavigation: React.FC<ChapterNavigationProps> = ({
     const { type, chapterIds } = chapter.prerequisites;
 
     switch (type) {
-      case 'sequential':
+      case 'sequential': {
         // Requires previous chapter to be completed
         if (chapterIndex === 0) return true; // First chapter with sequential is always unlocked
         const previousChapter = chapters[chapterIndex - 1];
         return progress.completedChapters.includes(previousChapter.id);
+      }
 
       case 'any':
         // Requires ANY of the specified chapters to be completed (one-to-many merge point)

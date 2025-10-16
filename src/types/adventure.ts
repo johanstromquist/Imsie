@@ -146,6 +146,7 @@ export interface Choice {
 export interface TimelineGameScene extends BaseScene {
   type: 'timeline-game';
   prompt: string;
+  image?: string; // optional scene illustration
   timelineEvents: TimelineEvent[]; // Renamed from 'events' to avoid conflict with BaseScene.events
   successThreshold: number; // percentage correct needed to pass
 }
@@ -162,6 +163,7 @@ export interface MapExplorationScene extends BaseScene {
   type: 'map-exploration';
   mapImage: string;
   prompt: string;
+  image?: string; // optional scene illustration (separate from the interactive map)
   locations: MapLocation[];
   requiredLocations?: string[]; // IDs of locations that must be visited
 }
@@ -179,6 +181,7 @@ export interface MapLocation {
 export interface PrimarySourceScene extends BaseScene {
   type: 'primary-source';
   prompt: string;
+  image?: string; // optional scene illustration
   source: PrimarySource;
   questions: AnalysisQuestion[];
 }
@@ -241,6 +244,7 @@ export interface DialogueResponse {
 export interface CauseEffectScene extends BaseScene {
   type: 'cause-effect';
   prompt: string;
+  image?: string; // optional scene illustration
   pairs: CauseEffectPair[];
   distractors?: string[]; // wrong answers to mix in
 }
@@ -255,6 +259,7 @@ export interface CauseEffectPair {
 export interface QuoteAttributionScene extends BaseScene {
   type: 'quote-attribution';
   prompt: string;
+  image?: string; // optional scene illustration
   quotes: Quote[];
 }
 
@@ -269,6 +274,7 @@ export interface Quote {
 export interface AnachronismScene extends BaseScene {
   type: 'anachronism';
   prompt: string;
+  image?: string; // optional scene illustration
   scenario: string;
   items: AnachronismItem[];
   correctAnswers: string[]; // IDs of items that are anachronisms

@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import type { QuoteAttributionScene as QuoteAttributionSceneType, AdventureTheme, Quote } from '../../types';
+import type { QuoteAttributionScene as QuoteAttributionSceneType, AdventureTheme } from '../../types';
 import { assetLoader } from '../../services/assetLoader';
 
 interface QuoteAttributionSceneProps {

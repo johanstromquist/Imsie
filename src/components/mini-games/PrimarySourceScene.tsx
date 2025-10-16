@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import type {
   PrimarySourceScene as PrimarySourceSceneType,
   AdventureTheme,
-  AnalysisQuestion,
 } from '../../types';
 import { assetLoader } from '../../services/assetLoader';
 
@@ -65,9 +64,9 @@ const PrimarySourceScene: React.FC<PrimarySourceSceneProps> = ({
             {scene.source.content}
           </div>
         );
-      case 'image':
+      case 'image': {
         const img = assetLoader.getImage(scene.source.content);
-        return (
+        return img ? (
           <img
             src={img.src}
             alt={scene.source.title}
@@ -77,7 +76,8 @@ const PrimarySourceScene: React.FC<PrimarySourceSceneProps> = ({
               borderRadius: '0.5rem',
             }}
           />
-        );
+        ) : null;
+      }
       case 'audio':
         return (
           <audio
@@ -104,7 +104,7 @@ const PrimarySourceScene: React.FC<PrimarySourceSceneProps> = ({
     }
   };
 
-  const handleAnswerSelect = (questionId: string, answer: string) => {
+  const handleAnswerSelect = (answer: string) => {
     setCurrentAnswer(answer);
   };
 
@@ -358,7 +358,7 @@ const PrimarySourceScene: React.FC<PrimarySourceSceneProps> = ({
                     return (
                       <button
                         key={index}
-                        onClick={() => handleAnswerSelect(currentQuestion.id, option)}
+                        onClick={() => handleAnswerSelect(option)}
                         disabled={showCurrentExplanation}
                         style={{
                           padding: '1rem 1.25rem',

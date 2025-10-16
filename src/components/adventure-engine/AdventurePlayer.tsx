@@ -156,6 +156,7 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
       // Process first trigger (could be extended to handle multiple)
       processTrigger(triggers[0]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentScene, progress]);
 
   // Process a trigger (show quiz, mini-game, etc.)
@@ -231,6 +232,7 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
       // Move to next chapter or exit
       handleChapterComplete();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [progress, currentChapter, adventure.id, processTrigger, triggeredIds]);
 
   const handleSceneBack = useCallback(() => {

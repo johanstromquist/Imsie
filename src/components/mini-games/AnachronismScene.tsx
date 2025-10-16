@@ -2,7 +2,6 @@ import { useState } from 'react';
 import type {
   AnachronismScene as AnachronismSceneType,
   AdventureTheme,
-  AnachronismItem,
 } from '../../types';
 import { assetLoader } from '../../services/assetLoader';
 

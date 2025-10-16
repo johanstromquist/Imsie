@@ -47,12 +47,12 @@ The flight seems to last forever. The walls of Hell spin past you. The air grows
         {
           id: 'lp-ch4-1',
           content: 'Geryon has an honest face but a fraudulent body—perfect symbol of fraud (appears trustworthy, hides poison).',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
         {
           id: 'lp-ch4-2',
           content: 'The flight on Geryon mirrors Dante\'s increasing moral understanding—he must trust the symbol of fraud to descend deeper.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -171,52 +171,52 @@ These are the falsifiers—alchemists who falsified metals, counterfeiters who f
         {
           id: 'lp-ch4-3',
           content: 'Panders sold others\' dignity. Demons whip them forward—exploiters now exploited.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-4',
           content: 'Flatterers\' false praise was spiritual excrement. Now they wallow in physical sewage—words made concrete.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-5',
           content: 'Simoniacs inverted spiritual values (made holy things commercial). Punishment: Inverted position, fire consuming from below.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-6',
           content: 'Sorcerers perverted sight (claiming to see future). Now their heads face backward—perfect symbolic punishment.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-7',
           content: 'Barrators\' deals were "sticky" (hard to escape). Now literally stuck in tar—corruption made physical.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-8',
           content: 'Hypocrites\' external virtue concealed internal vice. Lead cloaks gilded on outside, crushing inside—duality made eternal.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-9',
           content: 'Thieves stole property. Now their very identities are stolen by serpents—losing self mirrors losing others\' goods.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-10',
           content: 'Counselors hid truth in deceptive speech. Now hidden in flames—their wisdom became fire consuming them.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-11',
           content: 'Discord-sowers split political/religious unity. Demon hacks them apart—wounds heal, cycle repeats. Division made eternal.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-12',
           content: 'Falsifiers corrupted metals, identities, words. Disease corrupts their bodies—falsification turned inward.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -243,12 +243,12 @@ You lean closer to the hole, and suddenly a muffled voice echoes up from the dep
         {
           id: 'lp-ch4-13a',
           content: 'Holes resemble baptismal fonts—sacred objects profaned. Simoniacs corrupted baptism (entry to Church) by making it transactional.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
         {
           id: 'lp-ch4-13b',
           content: 'Intensity of fire indicates severity of sin. Worse simoniacs burn hotter—hierarchical punishment within categories.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -274,37 +274,16 @@ You lean closer to the hole, and suddenly a muffled voice echoes up from the dep
             id: 'response-1',
             text: 'I am not Boniface. Who are you?',
             nextNodeId: 'node-2',
-            learningPoints: [
-              {
-                id: 'lp-ch4-13',
-                content: 'Nicholas expects Pope Boniface VIII (Dante\'s enemy) to arrive soon. Even popes are damned—institutional corruption.',
-                category: 'historical-context',
-              },
-            ],
           },
           {
             id: 'response-2',
             text: 'What is simony?',
             nextNodeId: 'node-3',
-            learningPoints: [
-              {
-                id: 'lp-ch4-14',
-                content: 'Simony (named for Simon Magus who tried to buy apostolic power) is selling spiritual offices for money. Dante saw it destroying the Church.',
-                category: 'historical-context',
-              },
-            ],
           },
           {
             id: 'response-3',
             text: 'Why are you punished this way?',
             nextNodeId: 'node-4',
-            learningPoints: [
-              {
-                id: 'lp-ch4-15',
-                content: 'Simoniacs inverted spiritual priorities (put money above God). Inverted in holes, pushed down by each new arrival—their greed made eternal pressure.',
-                category: 'thematic-analysis',
-              },
-            ],
           },
         ],
         allNodes: [
@@ -317,13 +296,6 @@ You lean closer to the hole, and suddenly a muffled voice echoes up from the dep
                 id: 'response-continue',
                 text: 'Tell me more about your crimes.',
                 nextNodeId: 'node-5',
-                learningPoints: [
-                  {
-                    id: 'lp-ch4-16',
-                    content: '"Son of the she-bear" refers to the Orsini family (orso = bear). Nicholas enriched relatives through nepotism.',
-                    category: 'historical-context',
-                  },
-                ],
               },
             ],
           },
@@ -401,7 +373,7 @@ You realize your error. To pity those justly punished is to question God's justi
         {
           id: 'lp-ch4-18',
           content: 'Sorcerers tried to see the future through forbidden means. Now they cannot see ahead at all—only behind.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-19',
@@ -427,12 +399,12 @@ Virgil negotiates safe passage with the demon leader, Malacoda, who assigns an e
         {
           id: 'lp-ch4-20',
           content: 'Barrators made corrupt deals in darkness. Pitch is black, sticky—their secret dealings made visible and inescapable.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-21',
           content: 'Malebranche demons have absurd names (Draghignazzo, Ciriatto, etc.). Dante satirizes corruption with dark comedy.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
     },
@@ -455,7 +427,7 @@ On the ground, you notice something horrifying—a man crucified to the earth wi
         {
           id: 'lp-ch4-22',
           content: 'Hypocrites\' beauty was superficial. Lead cloaks gilded on outside, crushing inside—their duality made permanent.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-23',
@@ -483,12 +455,12 @@ The thieves stole others' property and identity. Now serpents steal their very f
         {
           id: 'lp-ch4-24',
           content: 'Thieves stole others\' property and identity. Serpents steal their human forms—losing self mirrors their theft.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-25',
           content: 'Dante describes transformations in elaborate detail, challenging Ovid\'s Metamorphoses. He claims his version surpasses the classical master.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
     },
@@ -516,12 +488,12 @@ You lean forward, eager to hear from the legendary Odysseus himself. But Virgil 
         {
           id: 'lp-ch4-26a',
           content: 'Fraudulent counselors are wrapped in flames—their cunning intellect (divine gift) perverted for evil becomes fire consuming them.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-26b',
           content: 'Ulysses and Diomedes share one flame—their partnership in deception binds them in punishment. Shared sin, shared suffering.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -547,13 +519,6 @@ You lean forward, eager to hear from the legendary Odysseus himself. But Virgil 
             id: 'response-1',
             text: 'Why are you in Hell? You\'re a hero!',
             nextNodeId: 'node-2',
-            learningPoints: [
-              {
-                id: 'lp-ch4-26',
-                content: 'Ulysses is punished for fraudulent counsel: the Trojan Horse, deceiving Achilles, stealing Athena\'s statue. Cunning without virtue damns.',
-                category: 'thematic-analysis',
-              },
-            ],
           },
         ],
         allNodes: [
@@ -568,13 +533,6 @@ You lean forward, eager to hear from the legendary Odysseus himself. But Virgil 
                 nextNodeId: 'node-3',
               },
             ],
-            learningPoints: [
-              {
-                id: 'lp-ch4-27',
-                content: 'Ulysses abandoned duty for forbidden knowledge—sailing beyond the known world. Renaissance spirit (exploration) but medieval sin (pride, curiosity).',
-                category: 'thematic-analysis',
-              },
-            ],
           },
           {
             id: 'node-3',
@@ -587,31 +545,12 @@ You lean forward, eager to hear from the legendary Odysseus himself. But Virgil 
                 nextNodeId: 'node-4',
               },
             ],
-            learningPoints: [
-              {
-                id: 'lp-ch4-28',
-                content: 'This is one of literature\'s great speeches. Ulysses\' eloquence shows why he\'s both admirable and damned—noble ideals, sinful execution.',
-                category: 'literary-analysis',
-              },
-            ],
           },
           {
             id: 'node-4',
             speaker: 'ulysses',
             text: 'With this brief speech I made my companions so eager for the voyage that I could hardly have held them back. Turning our stern toward morning, we made wings of our oars for the mad flight. For five months we sailed on, until we saw a mountain, dark in the distance, and it seemed to me the highest I had ever seen. We rejoiced, but soon our joy turned to grief, for from that new land a whirlwind rose and struck the forepart of the ship. Three times it made her whirl with all the waters; the fourth time it lifted the stern on high and plunged the prow below, as pleased Another, until the sea closed over us.',
             isEnd: true,
-            learningPoints: [
-              {
-                id: 'lp-ch4-29',
-                content: 'The mountain is Mount Purgatory. God sinks Ulysses\' ship—humans cannot reach salvation through reason/exploration alone. Grace is required.',
-                category: 'thematic-analysis',
-              },
-              {
-                id: 'lp-ch4-30',
-                content: 'Dante admires Ulysses but condemns him. This tension—heroic yet damned—captures medieval ambivalence toward classical virtues.',
-                category: 'thematic-analysis',
-              },
-            ],
           },
         ],
       },
@@ -677,12 +616,12 @@ With this brief speech I made my companions so eager for the voyage that I could
         {
           id: 'lp-ch4-31',
           content: 'Dante rewrites classical mythology to fit Christian morality. Ulysses\' heroism becomes sin when it violates God\'s boundaries.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
         {
           id: 'lp-ch4-32',
           content: 'The Ulysses canto foreshadows the Renaissance: pursuit of knowledge as both noble and dangerous.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -703,7 +642,7 @@ The demon hacks them, they walk the circuit as their wounds heal, and return to 
         {
           id: 'lp-ch4-33',
           content: 'Sowers of discord divided communities. They\'re physically divided—wounds heal, cycle repeats. The sin made eternal.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-34',
@@ -734,7 +673,7 @@ Disease was thought to come from inner corruption. These sinners' moral rot has 
         {
           id: 'lp-ch4-36',
           content: 'Falsifiers corrupted reality—metals, identities, truth. Disease corrupts their bodies—falsification reflected in physical decay.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-37',
@@ -765,25 +704,11 @@ Disease was thought to come from inner corruption. These sinners' moral rot has 
             id: 'response-1',
             text: 'What did you falsify?',
             nextNodeId: 'node-2',
-            learningPoints: [
-              {
-                id: 'lp-ch4-38',
-                content: 'Master Adam counterfeited Florence\'s gold florin (trusted currency). His crime destabilized economy—personal greed, public harm.',
-                category: 'historical-context',
-              },
-            ],
           },
           {
             id: 'response-2',
             text: 'Why are you so thirsty?',
             nextNodeId: 'node-3',
-            learningPoints: [
-              {
-                id: 'lp-ch4-39',
-                content: 'Counterfeiters falsified gold (associated with water in alchemy). Dropsy disease causes unquenchable thirst—wanting what they corrupted.',
-                category: 'thematic-analysis',
-              },
-            ],
           },
           {
             id: 'response-3',
@@ -827,26 +752,12 @@ Disease was thought to come from inner corruption. These sinners' moral rot has 
                 nextNodeId: 'node-5',
               },
             ],
-            learningPoints: [
-              {
-                id: 'lp-ch4-40',
-                content: 'Master Adam blames employers, not himself. The damned never accept responsibility—impenitence defines Hell.',
-                category: 'thematic-analysis',
-              },
-            ],
           },
           {
             id: 'node-5',
             speaker: 'virgil',
             text: 'Dante, why do you watch them so eagerly? Do you take pleasure in their degradation? To listen to such vile wrangling is a base desire. I expected better of you.',
             isEnd: true,
-            learningPoints: [
-              {
-                id: 'lp-ch4-41',
-                content: 'Virgil\'s rebuke teaches Dante: Taking pleasure in others\' degradation, even the damned, is itself sinful.',
-                category: 'character-analysis',
-              },
-            ],
           },
         ],
       },
@@ -869,7 +780,7 @@ Disease was thought to come from inner corruption. These sinners' moral rot has 
             {
               id: 'lp-ch4-42',
               content: 'Dante reserves special fury for simoniacs. Church corruption damns both clergy and flock—institutional betrayal of the highest order.',
-              category: 'thematic-analysis',
+              category: 'cultural-context',
             },
           ],
         },
@@ -881,7 +792,7 @@ Disease was thought to come from inner corruption. These sinners' moral rot has 
             {
               id: 'lp-ch4-43',
               content: 'Fraudulent counselors weaponize intelligence. They use reason (God\'s gift) for evil—perverting humanity\'s highest faculty.',
-              category: 'thematic-analysis',
+              category: 'cultural-context',
             },
           ],
         },
@@ -905,7 +816,7 @@ Disease was thought to come from inner corruption. These sinners' moral rot has 
             {
               id: 'lp-ch4-45',
               content: 'Fraud is worse than violence because it requires human intelligence. Animals can be violent; only humans can deceive.',
-              category: 'thematic-analysis',
+              category: 'cultural-context',
             },
           ],
         },
@@ -914,7 +825,7 @@ Disease was thought to come from inner corruption. These sinners' moral rot has 
         {
           id: 'lp-ch4-46',
           content: 'Fraud requires reason—humans\' divine spark. Using intelligence for evil is worse than bestial violence. That\'s why fraud is deeper than violence in Hell.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -937,12 +848,12 @@ One giant, Antaeus, is unchained. Virgil negotiates with him, and Antaeus agrees
         {
           id: 'lp-ch4-47',
           content: 'Giants represent prideful rebellion against God. They\'re too dangerous for any circle—used as guards/tools instead.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-48',
           content: 'Nimrod speaks gibberish—his Tower of Babel caused linguistic confusion. His punishment is incomprehensibility.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -965,12 +876,12 @@ You are standing on the threshold of treachery itself.`,
         {
           id: 'lp-ch4-49',
           content: 'The descent from fire (Malebolge) to ice (Cocytus) represents evil\'s progression. Fraud is \'hot\' passion; treachery is \'cold\' calculation.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-50',
           content: 'Hell\'s very bottom is frozen, not fire—medieval inversion. Ultimate evil is coldness of heart, absence of love\'s warmth.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -991,7 +902,7 @@ You are standing on the threshold of treachery itself.`,
             {
               id: 'lp-ch4-51',
               content: 'Treachery destroys love—betraying those who trust you most. It\'s the coldest sin, closest to Satan.',
-              category: 'thematic-analysis',
+              category: 'cultural-context',
             },
           ],
         },
@@ -1003,7 +914,7 @@ You are standing on the threshold of treachery itself.`,
             {
               id: 'lp-ch4-52',
               content: 'Premeditation makes sin worse. Treachery requires sustained evil intent—not momentary weakness.',
-              category: 'thematic-analysis',
+              category: 'cultural-context',
             },
           ],
         },
@@ -1024,7 +935,7 @@ You are standing on the threshold of treachery itself.`,
         {
           id: 'lp-ch4-54',
           content: 'Hell\'s structure is moral: incontinence (weakness) → violence (malice) → fraud (intelligent evil) → treachery (betrayal of love). Each level colder, more calculated.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -1107,7 +1018,7 @@ You are standing on the threshold of treachery itself.`,
         {
           id: 'lp-ch4-56',
           content: 'Fraudulent counselors (Bolgia 8) and sowers of discord (Bolgia 9) are deepest—intellectual sins worse than physical theft or seduction.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
       ],
     },
@@ -1164,12 +1075,12 @@ You are standing on the threshold of treachery itself.`,
         {
           id: 'lp-ch4-57',
           content: 'Fraud\'s contrapasso is intellectual: reversals, transformations, hidden made visible. Punishments mirror the mind\'s deceptions.',
-          category: 'thematic-analysis',
+          category: 'cultural-context',
         },
         {
           id: 'lp-ch4-58',
           content: 'Dante\'s creativity peaks in Malebolge. Ten unique punishments show his imaginative range—allegory becomes art.',
-          category: 'literary-technique',
+          category: 'literary-context',
         },
       ],
       events: {

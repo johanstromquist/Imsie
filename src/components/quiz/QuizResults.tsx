@@ -6,7 +6,7 @@ interface QuizResultsProps {
   score: number; // percentage 0-100
   answers: Array<{
     questionId: string;
-    answer: any;
+    answer: unknown;
     correct: boolean;
     pointsEarned: number;
   }>;
@@ -17,7 +17,6 @@ interface QuizResultsProps {
 
 const QuizResults: React.FC<QuizResultsProps> = ({
   quiz,
-  score,
   answers,
   theme,
   onRetry,
@@ -81,10 +80,10 @@ const QuizResults: React.FC<QuizResultsProps> = ({
     }));
   };
 
-  const formatAnswer = (answer: any): string => {
+  const formatAnswer = (answer: unknown): string => {
     if (typeof answer === 'string') return answer;
     if (Array.isArray(answer)) return answer.join(', ');
-    if (typeof answer === 'object') return JSON.stringify(answer);
+    if (typeof answer === 'object' && answer !== null) return JSON.stringify(answer);
     return String(answer);
   };
 
