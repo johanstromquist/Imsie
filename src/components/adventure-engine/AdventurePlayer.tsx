@@ -150,7 +150,7 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
     if (!events?.onEnter || events.onEnter.length === 0) return;
 
     // Get triggers that should fire
-    const triggers = getActiveTriggers(events.onEnter, progress, triggeredIds);
+    const triggers = getActiveTriggers(events.onEnter, progress, adventure, triggeredIds);
 
     if (triggers.length > 0) {
       // Process first trigger (could be extended to handle multiple)
@@ -210,7 +210,7 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
 
     // Check for onExit triggers
     if (scene?.events?.onExit && scene.events.onExit.length > 0) {
-      const triggers = getActiveTriggers(scene.events.onExit, progress, triggeredIds);
+      const triggers = getActiveTriggers(scene.events.onExit, progress, adventure, triggeredIds);
 
       if (triggers.length > 0) {
         // Process first trigger

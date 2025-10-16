@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import type { QuizQuestion as QuizQuestionType, AdventureTheme } from '../../types';
 
 interface QuizQuestionProps {
@@ -19,6 +19,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
   const [localAnswer, setLocalAnswer] = useState<string | string[] | Record<string, string>>(
     currentAnswer || ''
   );
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   // Check if answer is correct (for feedback display)
   const isCorrect = showFeedback && checkAnswer();
@@ -281,95 +282,275 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
   }
 
   function renderMatching() {
-    if (!question.options) return null;
-
     // For matching questions, we expect correctAnswer to be a Record<string, string>
     // where keys are items and values are their correct matches
+    if (typeof question.correctAnswer !== 'object' || Array.isArray(question.correctAnswer)) {
+      return <div>Invalid matching question configuration</div>;
+    }
+
     const correctAnswer = question.correctAnswer as Record<string, string>;
     const items = Object.keys(correctAnswer);
     const matches = [...new Set(Object.values(correctAnswer))]; // unique matches
 
+    // Helper function to shuffle array with a seed (for consistent randomization per item)
+    const shuffleWithSeed = (array: string[], seed: string): string[] => {
+      const arr = [...array];
+      let currentIndex = arr.length;
+
+      // Simple seeded random number generator
+      const seedNum = seed.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+      let random = seedNum;
+
+      const seededRandom = () => {
+        random = (random * 9301 + 49297) % 233280;
+        return random / 233280;
+      };
+
+      while (currentIndex !== 0) {
+        const randomIndex = Math.floor(seededRandom() * currentIndex);
+        currentIndex--;
+        [arr[currentIndex], arr[randomIndex]] = [arr[randomIndex], arr[currentIndex]];
+      }
+
+      return arr;
+    };
+
+    // Create shuffled versions for each item (using useMemo to keep stable across renders)
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const shuffledMatches = useMemo(() => {
+      const result: Record<string, string[]> = {};
+      items.forEach((item) => {
+        result[item] = shuffleWithSeed(matches, item + question.id);
+      });
+      return result;
+    }, [items.join(','), matches.join(','), question.id]);
+
     return (
-      <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {items.map((item) => {
             const currentMatch =
               typeof localAnswer === 'object' && !Array.isArray(localAnswer)
                 ? localAnswer[item]
                 : '';
+            const isOpen = openDropdown === item;
 
             return (
               <div
                 key={item}
                 style={{
                   display: 'flex',
-                  alignItems: 'center',
+                  alignItems: 'stretch',
                   gap: '1rem',
-                  padding: '1rem',
+                  padding: '1.25rem',
                   backgroundColor: 'rgba(255, 255, 255, 0.05)',
                   borderRadius: '0.75rem',
-                  flexWrap: 'wrap',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  transition: 'all 0.2s',
                 }}
               >
+                {/* Left side - Item name */}
                 <div
                   style={{
-                    flex: '1 1 200px',
-                    fontSize: '1rem',
+                    flex: '1',
+                    fontSize: '1.05rem',
                     color: 'white',
-                    fontWeight: '500',
+                    fontWeight: '600',
+                    display: 'flex',
+                    alignItems: 'center',
+                    paddingRight: '1rem',
                   }}
                 >
                   {item}
                 </div>
-                <div style={{ flex: '0 0 auto', color: 'rgba(255, 255, 255, 0.5)' }}>→</div>
-                <select
-                  value={currentMatch}
-                  onChange={(e) => handleMatching(item, e.target.value)}
-                  disabled={showFeedback}
+
+                {/* Arrow */}
+                <div
                   style={{
-                    flex: '1 1 200px',
-                    padding: '0.75rem 1rem',
-                    fontSize: '1rem',
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                    color: 'white',
-                    border: `2px solid ${currentMatch ? theme.secondaryColor : 'rgba(255, 255, 255, 0.3)'}`,
-                    borderRadius: '0.5rem',
-                    cursor: showFeedback ? 'default' : 'pointer',
-                    outline: 'none',
-                    transition: 'all 0.2s',
-                  }}
-                  onFocus={(e) => {
-                    if (!showFeedback) {
-                      e.currentTarget.style.borderColor = theme.secondaryColor;
-                      e.currentTarget.style.boxShadow = `0 0 0 3px ${theme.secondaryColor}40`;
-                    }
-                  }}
-                  onBlur={(e) => {
-                    if (!showFeedback) {
-                      e.currentTarget.style.borderColor = currentMatch
-                        ? theme.secondaryColor
-                        : 'rgba(255, 255, 255, 0.3)';
-                      e.currentTarget.style.boxShadow = 'none';
-                    }
+                    display: 'flex',
+                    alignItems: 'center',
+                    color: theme.secondaryColor,
+                    fontSize: '1.5rem',
+                    fontWeight: 'bold',
                   }}
                 >
-                  <option value="" style={{ backgroundColor: '#1a1a1a', color: 'white' }}>
-                    Select a match...
-                  </option>
-                  {matches.map((match) => (
-                    <option
-                      key={match}
-                      value={match}
-                      style={{ backgroundColor: '#1a1a1a', color: 'white' }}
+                  →
+                </div>
+
+                {/* Right side - Custom dropdown */}
+                <div style={{ flex: '1', position: 'relative' }}>
+                  <button
+                    onClick={() => {
+                      if (!showFeedback) {
+                        setOpenDropdown(isOpen ? null : item);
+                      }
+                    }}
+                    disabled={showFeedback}
+                    style={{
+                      width: '100%',
+                      padding: '0.875rem 1.25rem',
+                      fontSize: '1rem',
+                      textAlign: 'left',
+                      backgroundColor: currentMatch
+                        ? 'rgba(255, 255, 255, 0.15)'
+                        : 'rgba(255, 255, 255, 0.08)',
+                      color: currentMatch ? 'white' : 'rgba(255, 255, 255, 0.5)',
+                      border: `2px solid ${
+                        currentMatch ? theme.secondaryColor : 'rgba(255, 255, 255, 0.2)'
+                      }`,
+                      borderRadius: '0.5rem',
+                      cursor: showFeedback ? 'default' : 'pointer',
+                      outline: 'none',
+                      transition: 'all 0.2s',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      fontWeight: currentMatch ? '500' : '400',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!showFeedback) {
+                        e.currentTarget.style.borderColor = theme.secondaryColor;
+                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!showFeedback && !isOpen) {
+                        e.currentTarget.style.borderColor = currentMatch
+                          ? theme.secondaryColor
+                          : 'rgba(255, 255, 255, 0.2)';
+                        e.currentTarget.style.backgroundColor = currentMatch
+                          ? 'rgba(255, 255, 255, 0.15)'
+                          : 'rgba(255, 255, 255, 0.08)';
+                      }
+                    }}
+                  >
+                    <span>{currentMatch || 'Select a match...'}</span>
+                    <span
+                      style={{
+                        marginLeft: '0.5rem',
+                        transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: 'transform 0.2s',
+                        fontSize: '1.2rem',
+                      }}
                     >
-                      {match}
-                    </option>
-                  ))}
-                </select>
+                      ▼
+                    </span>
+                  </button>
+
+                  {/* Dropdown menu */}
+                  {isOpen && !showFeedback && (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: 'calc(100% + 0.5rem)',
+                        left: 0,
+                        right: 0,
+                        backgroundColor: 'rgba(20, 20, 20, 0.98)',
+                        border: `2px solid ${theme.secondaryColor}`,
+                        borderRadius: '0.5rem',
+                        overflow: 'hidden',
+                        zIndex: 100,
+                        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
+                        backdropFilter: 'blur(10px)',
+                      }}
+                    >
+                      <div
+                        style={{
+                          maxHeight: '300px',
+                          overflowY: 'auto',
+                        }}
+                      >
+                        {shuffledMatches[item].map((match) => {
+                          const isSelected = currentMatch === match;
+                          return (
+                            <button
+                              key={match}
+                              onClick={() => {
+                                handleMatching(item, match);
+                                setOpenDropdown(null);
+                              }}
+                              style={{
+                                width: '100%',
+                                padding: '1rem 1.25rem',
+                                fontSize: '1rem',
+                                textAlign: 'left',
+                                backgroundColor: isSelected
+                                  ? `${theme.secondaryColor}30`
+                                  : 'transparent',
+                                color: 'white',
+                                border: 'none',
+                                borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                                cursor: 'pointer',
+                                outline: 'none',
+                                transition: 'all 0.15s',
+                                fontWeight: isSelected ? '600' : '400',
+                              }}
+                              onMouseEnter={(e) => {
+                                e.currentTarget.style.backgroundColor = `${theme.secondaryColor}40`;
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.backgroundColor = isSelected
+                                  ? `${theme.secondaryColor}30`
+                                  : 'transparent';
+                              }}
+                            >
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                                <div
+                                  style={{
+                                    width: '18px',
+                                    height: '18px',
+                                    borderRadius: '50%',
+                                    border: `2px solid ${
+                                      isSelected ? theme.secondaryColor : 'rgba(255, 255, 255, 0.3)'
+                                    }`,
+                                    backgroundColor: isSelected
+                                      ? theme.secondaryColor
+                                      : 'transparent',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    flexShrink: 0,
+                                  }}
+                                >
+                                  {isSelected && (
+                                    <div
+                                      style={{
+                                        width: '8px',
+                                        height: '8px',
+                                        borderRadius: '50%',
+                                        backgroundColor: 'white',
+                                      }}
+                                    />
+                                  )}
+                                </div>
+                                <span>{match}</span>
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             );
           })}
         </div>
+
+        {/* Click outside to close dropdown */}
+        {openDropdown && !showFeedback && (
+          <div
+            onClick={() => setOpenDropdown(null)}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 99,
+            }}
+          />
+        )}
       </div>
     );
   }

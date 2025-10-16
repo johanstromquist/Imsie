@@ -534,9 +534,8 @@ const QuizResults: React.FC<QuizResultsProps> = ({
                                 lineHeight: 1.6,
                                 border: '1px solid rgba(255, 200, 0, 0.3)',
                               }}
-                            >
-                              {question.modelAnswer}
-                            </div>
+                              dangerouslySetInnerHTML={{ __html: question.modelAnswer }}
+                            />
                           </div>
                         )}
 
@@ -582,7 +581,7 @@ const QuizResults: React.FC<QuizResultsProps> = ({
                                         lineHeight: 1.5,
                                       }}
                                     >
-                                      {criterion.text}
+                                      <span dangerouslySetInnerHTML={{ __html: criterion.text }} />
                                       <span
                                         style={{
                                           marginLeft: '0.5rem',

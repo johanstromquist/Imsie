@@ -17,6 +17,7 @@ import type { ComponentType } from 'react';
 export function shouldTriggerFire(
   trigger: SceneTrigger,
   progress: AdventureProgress,
+  adventure: Adventure | null = null,
   triggeredBefore: boolean = false
 ): boolean {
   // If no condition, always trigger
@@ -35,12 +36,28 @@ export function shouldTriggerFire(
       return !triggeredBefore;
 
     case 'if-not-completed':
-      // Check if the component (e.g., quiz) has been completed
-      if (trigger.type === 'quiz') {
-        const quizCompleted = progress.quizScores.some(
+      // Check if the component (e.g., quiz) has been completed AND passed
+      if (trigger.type === 'quiz' && adventure) {
+        // Find the quiz score
+        const quizScore = progress.quizScores.find(
           (score) => score.quizId === trigger.componentId
         );
-        return !quizCompleted;
+
+        // If no score exists, quiz hasn't been attempted - should trigger
+        if (!quizScore) {
+          return true;
+        }
+
+        // Find the quiz to get the passing score
+        const quiz = resolveQuizData(trigger.componentId, adventure);
+
+        // If we can't find the quiz, default to checking if score exists
+        if (!quiz) {
+          return !quizScore;
+        }
+
+        // Only consider the quiz completed if the score meets the passing threshold
+        return quizScore.score < quiz.passingScore;
       }
       // For other types, default to always trigger
       return true;
@@ -63,11 +80,12 @@ export function shouldTriggerFire(
 export function getActiveTriggers(
   triggers: SceneTrigger[],
   progress: AdventureProgress,
+  adventure: Adventure | null = null,
   triggeredIds: Set<string> = new Set()
 ): SceneTrigger[] {
   return triggers.filter((trigger) => {
     const triggeredBefore = triggeredIds.has(trigger.componentId);
-    return shouldTriggerFire(trigger, progress, triggeredBefore);
+    return shouldTriggerFire(trigger, progress, adventure, triggeredBefore);
   });
 }
 
