@@ -27,6 +27,10 @@ const DecisionScene: React.FC<DecisionSceneProps> = ({
     ? assetLoader.getImage(scene.backgroundImage)
     : null;
 
+  const sceneImage = scene.image
+    ? assetLoader.getImage(scene.image)
+    : null;
+
   // Timer countdown
   useEffect(() => {
     if (timeRemaining === null || timeRemaining <= 0 || selectedChoice) return;
@@ -115,6 +119,28 @@ const DecisionScene: React.FC<DecisionSceneProps> = ({
           >
             <span>⏱</span>
             <span>{timeRemaining}s</span>
+          </div>
+        )}
+
+        {/* Scene Image */}
+        {sceneImage && (
+          <div
+            style={{
+              marginBottom: '2rem',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <img
+              src={sceneImage.src}
+              alt={scene.prompt}
+              style={{
+                maxWidth: '100%',
+                maxHeight: '400px',
+                borderRadius: '0.75rem',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
+              }}
+            />
           </div>
         )}
 

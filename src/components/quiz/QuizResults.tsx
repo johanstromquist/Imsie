@@ -25,11 +25,41 @@ const QuizResults: React.FC<QuizResultsProps> = ({
 }) => {
   const [expandedQuestions, setExpandedQuestions] = useState<Set<string>>(new Set());
 
-  const passed = score >= quiz.passingScore;
+  // Self-assessment state: track selections for each criterion
+  const [selfAssessments, setSelfAssessments] = useState<Record<string, Record<string, 'covered' | 'not-covered'>>>({});
+
+  // Identify self-assessment questions
+  const selfAssessmentQuestions = quiz.questions.filter(q => q.type === 'self-assessment');
+  const haselfAssessments = selfAssessmentQuestions.length > 0;
+
+  // Check if all self-assessments are complete
+  const allSelfAssessmentsComplete = selfAssessmentQuestions.every(q => {
+    const assessment = selfAssessments[q.id];
+    if (!assessment || !q.assessmentCriteria) return false;
+    return q.assessmentCriteria.every(criterion => assessment[criterion.id] !== undefined);
+  });
+
+  // Calculate self-assessment points
+  const selfAssessmentPoints = selfAssessmentQuestions.reduce((total, q) => {
+    const assessment = selfAssessments[q.id];
+    if (!assessment || !q.assessmentCriteria) return total;
+
+    return total + q.assessmentCriteria.reduce((sum, criterion) => {
+      return sum + (assessment[criterion.id] === 'covered' ? criterion.points : 0);
+    }, 0);
+  }, 0);
+
   const correctCount = answers.filter((a) => a.correct).length;
   const totalQuestions = quiz.questions.length;
   const totalPoints = quiz.questions.reduce((sum, q) => sum + q.points, 0);
-  const earnedPoints = answers.reduce((sum, a) => sum + a.pointsEarned, 0);
+  const earnedPoints = answers.reduce((sum, a) => sum + a.pointsEarned, 0) + selfAssessmentPoints;
+
+  // Recalculate percentage score including self-assessment points
+  const actualScore = totalPoints > 0
+    ? Math.round((earnedPoints / totalPoints) * 100)
+    : 0;
+
+  const passed = actualScore >= quiz.passingScore;
 
   const toggleQuestion = (questionId: string) => {
     const newExpanded = new Set(expandedQuestions);
@@ -39,6 +69,16 @@ const QuizResults: React.FC<QuizResultsProps> = ({
       newExpanded.add(questionId);
     }
     setExpandedQuestions(newExpanded);
+  };
+
+  const handleSelfAssessment = (questionId: string, criterionId: string, value: 'covered' | 'not-covered') => {
+    setSelfAssessments(prev => ({
+      ...prev,
+      [questionId]: {
+        ...(prev[questionId] || {}),
+        [criterionId]: value
+      }
+    }));
   };
 
   const formatAnswer = (answer: any): string => {
@@ -133,7 +173,7 @@ const QuizResults: React.FC<QuizResultsProps> = ({
                 textShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
               }}
             >
-              {score}%
+              {actualScore}%
             </div>
             <div
               style={{
@@ -166,7 +206,7 @@ const QuizResults: React.FC<QuizResultsProps> = ({
               }}
             >
               <span>Your Score</span>
-              <span>{score}%</span>
+              <span>{actualScore}%</span>
             </div>
             <div
               style={{
@@ -181,7 +221,7 @@ const QuizResults: React.FC<QuizResultsProps> = ({
               {/* Score Bar */}
               <div
                 style={{
-                  width: `${score}%`,
+                  width: `${actualScore}%`,
                   height: '100%',
                   backgroundColor: passed ? '#228B22' : '#B22222',
                   transition: 'width 1s ease-out',
@@ -302,6 +342,21 @@ const QuizResults: React.FC<QuizResultsProps> = ({
             if (!answer) return null;
 
             const isExpanded = expandedQuestions.has(question.id);
+            const isSelfAssessment = question.type === 'self-assessment';
+
+            // For self-assessment, check if all criteria have been evaluated
+            const selfAssessmentComplete = isSelfAssessment && question.assessmentCriteria
+              ? question.assessmentCriteria.every(criterion =>
+                  selfAssessments[question.id]?.[criterion.id] !== undefined
+                )
+              : true;
+
+            // Calculate points earned from self-assessment for this question
+            const selfAssessmentPointsForQuestion = isSelfAssessment && question.assessmentCriteria
+              ? question.assessmentCriteria.reduce((sum, criterion) => {
+                  return sum + (selfAssessments[question.id]?.[criterion.id] === 'covered' ? criterion.points : 0);
+                }, 0)
+              : 0;
 
             return (
               <div
@@ -311,7 +366,9 @@ const QuizResults: React.FC<QuizResultsProps> = ({
                   backgroundColor: 'rgba(255, 255, 255, 0.05)',
                   borderRadius: '0.75rem',
                   overflow: 'hidden',
-                  border: `2px solid ${answer.correct ? '#228B22' : '#B22222'}`,
+                  border: isSelfAssessment
+                    ? `2px solid ${selfAssessmentComplete ? 'rgba(255, 200, 0, 0.5)' : 'rgba(255, 100, 100, 0.5)'}`
+                    : `2px solid ${answer.correct ? '#228B22' : '#B22222'}`,
                 }}
               >
                 {/* Question Header - Always Visible */}
@@ -323,20 +380,26 @@ const QuizResults: React.FC<QuizResultsProps> = ({
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    backgroundColor: answer.correct
-                      ? 'rgba(34, 139, 34, 0.1)'
-                      : 'rgba(178, 34, 34, 0.1)',
+                    backgroundColor: isSelfAssessment
+                      ? 'rgba(255, 200, 0, 0.1)'
+                      : answer.correct
+                        ? 'rgba(34, 139, 34, 0.1)'
+                        : 'rgba(178, 34, 34, 0.1)',
                     transition: 'background-color 0.2s',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = answer.correct
-                      ? 'rgba(34, 139, 34, 0.2)'
-                      : 'rgba(178, 34, 34, 0.2)';
+                    e.currentTarget.style.backgroundColor = isSelfAssessment
+                      ? 'rgba(255, 200, 0, 0.2)'
+                      : answer.correct
+                        ? 'rgba(34, 139, 34, 0.2)'
+                        : 'rgba(178, 34, 34, 0.2)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = answer.correct
-                      ? 'rgba(34, 139, 34, 0.1)'
-                      : 'rgba(178, 34, 34, 0.1)';
+                    e.currentTarget.style.backgroundColor = isSelfAssessment
+                      ? 'rgba(255, 200, 0, 0.1)'
+                      : answer.correct
+                        ? 'rgba(34, 139, 34, 0.1)'
+                        : 'rgba(178, 34, 34, 0.1)';
                   }}
                 >
                   <div style={{ flex: 1 }}>
@@ -353,7 +416,7 @@ const QuizResults: React.FC<QuizResultsProps> = ({
                           fontSize: '1.5rem',
                         }}
                       >
-                        {answer.correct ? '✓' : '✗'}
+                        {isSelfAssessment ? '📝' : (answer.correct ? '✓' : '✗')}
                       </span>
                       <span
                         style={{
@@ -363,6 +426,7 @@ const QuizResults: React.FC<QuizResultsProps> = ({
                         }}
                       >
                         Question {index + 1}
+                        {isSelfAssessment && ' (Self-Assessment)'}
                       </span>
                       <span
                         style={{
@@ -370,7 +434,10 @@ const QuizResults: React.FC<QuizResultsProps> = ({
                           color: '#aaa',
                         }}
                       >
-                        {answer.pointsEarned}/{question.points} pts
+                        {isSelfAssessment
+                          ? `${selfAssessmentPointsForQuestion}/${question.points} pts`
+                          : `${answer.pointsEarned}/${question.points} pts`
+                        }
                       </span>
                     </div>
                     <div
@@ -381,6 +448,18 @@ const QuizResults: React.FC<QuizResultsProps> = ({
                     >
                       {question.question}
                     </div>
+                    {isSelfAssessment && !selfAssessmentComplete && (
+                      <div
+                        style={{
+                          marginTop: '0.5rem',
+                          fontSize: '0.875rem',
+                          color: 'rgba(255, 100, 100, 0.9)',
+                          fontWeight: 'bold',
+                        }}
+                      >
+                        ⚠️ Please complete your self-assessment below
+                      </div>
+                    )}
                   </div>
                   <div
                     style={{
@@ -403,81 +482,286 @@ const QuizResults: React.FC<QuizResultsProps> = ({
                       borderTop: '1px solid rgba(255, 255, 255, 0.1)',
                     }}
                   >
-                    {/* Your Answer */}
-                    <div style={{ marginBottom: '1rem' }}>
-                      <div
-                        style={{
-                          fontSize: '0.875rem',
-                          color: '#888',
-                          marginBottom: '0.5rem',
-                          fontWeight: 'bold',
-                        }}
-                      >
-                        Your Answer:
-                      </div>
-                      <div
-                        style={{
-                          padding: '0.75rem',
-                          backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                          borderRadius: '0.5rem',
-                          color: 'white',
-                        }}
-                      >
-                        {formatAnswer(answer.answer)}
-                      </div>
-                    </div>
+                    {isSelfAssessment ? (
+                      // Self-Assessment Section
+                      <>
+                        {/* Your Answer */}
+                        <div style={{ marginBottom: '1.5rem' }}>
+                          <div
+                            style={{
+                              fontSize: '0.875rem',
+                              color: '#888',
+                              marginBottom: '0.5rem',
+                              fontWeight: 'bold',
+                            }}
+                          >
+                            Your Answer:
+                          </div>
+                          <div
+                            style={{
+                              padding: '1rem',
+                              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                              borderRadius: '0.5rem',
+                              color: 'white',
+                              whiteSpace: 'pre-wrap',
+                              lineHeight: 1.6,
+                              border: '1px solid rgba(255, 255, 255, 0.1)',
+                            }}
+                          >
+                            {formatAnswer(answer.answer) || '(No answer provided)'}
+                          </div>
+                        </div>
 
-                    {/* Correct Answer (if wrong) */}
-                    {!answer.correct && (
-                      <div style={{ marginBottom: '1rem' }}>
-                        <div
-                          style={{
-                            fontSize: '0.875rem',
-                            color: '#888',
-                            marginBottom: '0.5rem',
-                            fontWeight: 'bold',
-                          }}
-                        >
-                          Correct Answer:
+                        {/* Model Answer */}
+                        {question.modelAnswer && (
+                          <div style={{ marginBottom: '1.5rem' }}>
+                            <div
+                              style={{
+                                fontSize: '0.875rem',
+                                color: '#888',
+                                marginBottom: '0.5rem',
+                                fontWeight: 'bold',
+                              }}
+                            >
+                              Model Answer:
+                            </div>
+                            <div
+                              style={{
+                                padding: '1rem',
+                                backgroundColor: 'rgba(255, 200, 0, 0.1)',
+                                borderRadius: '0.5rem',
+                                color: 'rgba(255, 220, 100, 1)',
+                                whiteSpace: 'pre-wrap',
+                                lineHeight: 1.6,
+                                border: '1px solid rgba(255, 200, 0, 0.3)',
+                              }}
+                            >
+                              {question.modelAnswer}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Self-Assessment Criteria */}
+                        {question.assessmentCriteria && question.assessmentCriteria.length > 0 && (
+                          <div style={{ marginBottom: '1rem' }}>
+                            <div
+                              style={{
+                                fontSize: '0.875rem',
+                                color: '#888',
+                                marginBottom: '1rem',
+                                fontWeight: 'bold',
+                              }}
+                            >
+                              Evaluate Your Answer:
+                            </div>
+                            <div
+                              style={{
+                                padding: '1rem',
+                                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                                borderRadius: '0.5rem',
+                                border: '1px solid rgba(255, 255, 255, 0.1)',
+                              }}
+                            >
+                              {question.assessmentCriteria.map((criterion, critIndex) => {
+                                const selection = selfAssessments[question.id]?.[criterion.id];
+                                return (
+                                  <div
+                                    key={criterion.id}
+                                    style={{
+                                      marginBottom: critIndex < question.assessmentCriteria!.length - 1 ? '1.5rem' : '0',
+                                      paddingBottom: critIndex < question.assessmentCriteria!.length - 1 ? '1.5rem' : '0',
+                                      borderBottom: critIndex < question.assessmentCriteria!.length - 1
+                                        ? '1px solid rgba(255, 255, 255, 0.1)'
+                                        : 'none',
+                                    }}
+                                  >
+                                    <div
+                                      style={{
+                                        color: 'white',
+                                        marginBottom: '0.75rem',
+                                        fontSize: '0.95rem',
+                                        lineHeight: 1.5,
+                                      }}
+                                    >
+                                      {criterion.text}
+                                      <span
+                                        style={{
+                                          marginLeft: '0.5rem',
+                                          color: '#aaa',
+                                          fontSize: '0.875rem',
+                                        }}
+                                      >
+                                        ({criterion.points} pts)
+                                      </span>
+                                    </div>
+                                    <div
+                                      style={{
+                                        display: 'flex',
+                                        gap: '1.5rem',
+                                        marginLeft: '0.5rem',
+                                      }}
+                                    >
+                                      <label
+                                        style={{
+                                          display: 'flex',
+                                          alignItems: 'center',
+                                          gap: '0.5rem',
+                                          cursor: 'pointer',
+                                          color: selection === 'covered' ? '#90EE90' : '#ccc',
+                                          fontWeight: selection === 'covered' ? 'bold' : 'normal',
+                                          transition: 'color 0.2s',
+                                        }}
+                                      >
+                                        <input
+                                          type="radio"
+                                          name={`${question.id}-${criterion.id}`}
+                                          checked={selection === 'covered'}
+                                          onChange={() => handleSelfAssessment(question.id, criterion.id, 'covered')}
+                                          style={{
+                                            cursor: 'pointer',
+                                            width: '16px',
+                                            height: '16px',
+                                          }}
+                                        />
+                                        ✓ Covered in my answer
+                                      </label>
+                                      <label
+                                        style={{
+                                          display: 'flex',
+                                          alignItems: 'center',
+                                          gap: '0.5rem',
+                                          cursor: 'pointer',
+                                          color: selection === 'not-covered' ? '#FF6B6B' : '#ccc',
+                                          fontWeight: selection === 'not-covered' ? 'bold' : 'normal',
+                                          transition: 'color 0.2s',
+                                        }}
+                                      >
+                                        <input
+                                          type="radio"
+                                          name={`${question.id}-${criterion.id}`}
+                                          checked={selection === 'not-covered'}
+                                          onChange={() => handleSelfAssessment(question.id, criterion.id, 'not-covered')}
+                                          style={{
+                                            cursor: 'pointer',
+                                            width: '16px',
+                                            height: '16px',
+                                          }}
+                                        />
+                                        ✗ Not covered in my answer
+                                      </label>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Explanation */}
+                        <div>
+                          <div
+                            style={{
+                              fontSize: '0.875rem',
+                              color: '#888',
+                              marginBottom: '0.5rem',
+                              fontWeight: 'bold',
+                            }}
+                          >
+                            Additional Context:
+                          </div>
+                          <div
+                            style={{
+                              padding: '0.75rem',
+                              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                              borderRadius: '0.5rem',
+                              color: '#ddd',
+                              lineHeight: 1.6,
+                            }}
+                          >
+                            {question.explanation}
+                          </div>
                         </div>
-                        <div
-                          style={{
-                            padding: '0.75rem',
-                            backgroundColor: 'rgba(34, 139, 34, 0.2)',
-                            borderRadius: '0.5rem',
-                            color: '#90EE90',
-                            border: '1px solid rgba(34, 139, 34, 0.5)',
-                          }}
-                        >
-                          {formatAnswer(question.correctAnswer)}
+                      </>
+                    ) : (
+                      // Regular Question Section
+                      <>
+                        {/* Your Answer */}
+                        <div style={{ marginBottom: '1rem' }}>
+                          <div
+                            style={{
+                              fontSize: '0.875rem',
+                              color: '#888',
+                              marginBottom: '0.5rem',
+                              fontWeight: 'bold',
+                            }}
+                          >
+                            Your Answer:
+                          </div>
+                          <div
+                            style={{
+                              padding: '0.75rem',
+                              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                              borderRadius: '0.5rem',
+                              color: 'white',
+                            }}
+                          >
+                            {formatAnswer(answer.answer)}
+                          </div>
                         </div>
-                      </div>
+
+                        {/* Correct Answer (if wrong) */}
+                        {!answer.correct && (
+                          <div style={{ marginBottom: '1rem' }}>
+                            <div
+                              style={{
+                                fontSize: '0.875rem',
+                                color: '#888',
+                                marginBottom: '0.5rem',
+                                fontWeight: 'bold',
+                              }}
+                            >
+                              Correct Answer:
+                            </div>
+                            <div
+                              style={{
+                                padding: '0.75rem',
+                                backgroundColor: 'rgba(34, 139, 34, 0.2)',
+                                borderRadius: '0.5rem',
+                                color: '#90EE90',
+                                border: '1px solid rgba(34, 139, 34, 0.5)',
+                              }}
+                            >
+                              {formatAnswer(question.correctAnswer)}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Explanation */}
+                        <div>
+                          <div
+                            style={{
+                              fontSize: '0.875rem',
+                              color: '#888',
+                              marginBottom: '0.5rem',
+                              fontWeight: 'bold',
+                            }}
+                          >
+                            Explanation:
+                          </div>
+                          <div
+                            style={{
+                              padding: '0.75rem',
+                              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                              borderRadius: '0.5rem',
+                              color: '#ddd',
+                              lineHeight: 1.6,
+                            }}
+                          >
+                            {question.explanation}
+                          </div>
+                        </div>
+                      </>
                     )}
-
-                    {/* Explanation */}
-                    <div>
-                      <div
-                        style={{
-                          fontSize: '0.875rem',
-                          color: '#888',
-                          marginBottom: '0.5rem',
-                          fontWeight: 'bold',
-                        }}
-                      >
-                        Explanation:
-                      </div>
-                      <div
-                        style={{
-                          padding: '0.75rem',
-                          backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                          borderRadius: '0.5rem',
-                          color: '#ddd',
-                          lineHeight: 1.6,
-                        }}
-                      >
-                        {question.explanation}
-                      </div>
-                    </div>
                   </div>
                 )}
               </div>
@@ -528,20 +812,25 @@ const QuizResults: React.FC<QuizResultsProps> = ({
           {/* Continue Button */}
           <button
             onClick={onContinue}
+            disabled={haselfAssessments && !allSelfAssessmentsComplete}
             style={{
               padding: '1rem 2.5rem',
               fontSize: '1.125rem',
               fontWeight: 'bold',
-              backgroundColor: passed ? '#228B22' : '#666',
-              color: 'white',
+              backgroundColor: (haselfAssessments && !allSelfAssessmentsComplete)
+                ? '#444'
+                : (passed ? '#228B22' : '#666'),
+              color: (haselfAssessments && !allSelfAssessmentsComplete) ? '#888' : 'white',
               border: 'none',
               borderRadius: '0.75rem',
-              cursor: 'pointer',
+              cursor: (haselfAssessments && !allSelfAssessmentsComplete) ? 'not-allowed' : 'pointer',
               transition: 'all 0.2s',
               boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
               minWidth: '200px',
+              opacity: (haselfAssessments && !allSelfAssessmentsComplete) ? 0.6 : 1,
             }}
             onMouseEnter={(e) => {
+              if (haselfAssessments && !allSelfAssessmentsComplete) return;
               e.currentTarget.style.transform = 'translateY(-2px)';
               e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 0, 0, 0.4)';
               if (passed) {
@@ -549,12 +838,16 @@ const QuizResults: React.FC<QuizResultsProps> = ({
               }
             }}
             onMouseLeave={(e) => {
+              if (haselfAssessments && !allSelfAssessmentsComplete) return;
               e.currentTarget.style.transform = 'translateY(0)';
               e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
               e.currentTarget.style.backgroundColor = passed ? '#228B22' : '#666';
             }}
           >
-            {passed ? 'Continue to Next Chapter' : 'Continue'}
+            {(haselfAssessments && !allSelfAssessmentsComplete)
+              ? 'Complete Self-Assessments to Continue'
+              : (passed ? 'Continue to Next Chapter' : 'Continue')
+            }
           </button>
         </div>
       </div>

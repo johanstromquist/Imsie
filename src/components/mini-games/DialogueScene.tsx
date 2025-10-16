@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import type {
   DialogueScene as DialogueSceneType,
   AdventureTheme,
   DialogueNode,
   DialogueResponse,
+  InlineAnnotation,
 } from '../../types';
 import { assetLoader } from '../../services/assetLoader';
+import AnnotatedText from '../common/AnnotatedText';
 
 interface DialogueSceneProps {
   scene: DialogueSceneType;
@@ -32,8 +34,26 @@ const DialogueScene: React.FC<DialogueSceneProps> = ({
     ? assetLoader.getImage(scene.backgroundImage)
     : null;
 
-  const characterPortrait = assetLoader.getImage(scene.character.portrait);
-  const characterPortraitVideo = scene.character.portraitVideo;
+  const sceneImage = scene.image
+    ? assetLoader.getImage(scene.image)
+    : null;
+
+  // Build a map of all characters (main character + optional additional characters)
+  const allCharacters = scene.characters
+    ? [scene.character, ...scene.characters]
+    : [scene.character];
+
+  const characterMap = Object.fromEntries(
+    allCharacters.map(char => [char.id, char])
+  );
+
+  // Get the current speaker's character info
+  const currentSpeaker = characterMap[currentNode.speaker];
+
+  const characterPortrait = currentSpeaker
+    ? assetLoader.getImage(currentSpeaker.portrait)
+    : null;
+  const characterPortraitVideo = currentSpeaker?.portraitVideo;
 
   // Fade in text animation
   useEffect(() => {
@@ -89,7 +109,96 @@ const DialogueScene: React.FC<DialogueSceneProps> = ({
     return null;
   };
 
-  const isCharacter = currentNode.speaker === scene.character.id;
+  // Helper to render text with inline annotations (using ContentWithAnnotations logic)
+  const renderTextWithAnnotations = (text: string) => {
+    if (!scene.inlineAnnotations || scene.inlineAnnotations.length === 0) {
+      return text;
+    }
+
+    interface Segment {
+      type: 'text' | 'annotation';
+      content: string;
+      annotation?: InlineAnnotation;
+      start: number;
+      end: number;
+    }
+
+    const segments: Segment[] = [];
+
+    // Find all annotation positions in the text
+    const annotationPositions = scene.inlineAnnotations
+      .map((annotation) => {
+        const index = text.indexOf(annotation.text);
+        if (index === -1) {
+          return null;
+        }
+        return {
+          annotation,
+          start: index,
+          end: index + annotation.text.length,
+        };
+      })
+      .filter((pos): pos is NonNullable<typeof pos> => pos !== null)
+      .sort((a, b) => a.start - b.start);
+
+    // Build segments
+    let currentPos = 0;
+
+    for (const { annotation, start, end } of annotationPositions) {
+      // Add text before annotation
+      if (currentPos < start) {
+        segments.push({
+          type: 'text',
+          content: text.slice(currentPos, start),
+          start: currentPos,
+          end: start,
+        });
+      }
+
+      // Add annotation
+      segments.push({
+        type: 'annotation',
+        content: annotation.text,
+        annotation,
+        start,
+        end,
+      });
+
+      currentPos = end;
+    }
+
+    // Add remaining text
+    if (currentPos < text.length) {
+      segments.push({
+        type: 'text',
+        content: text.slice(currentPos),
+        start: currentPos,
+        end: text.length,
+      });
+    }
+
+    return (
+      <>
+        {segments.map((segment, index) => {
+          if (segment.type === 'text') {
+            return <Fragment key={`text-${index}-${segment.start}`}>{segment.content}</Fragment>;
+          } else {
+            return (
+              <AnnotatedText
+                key={`annotation-${segment.annotation!.id}-${index}`}
+                id={segment.annotation!.id}
+                text={segment.content}
+                tooltip={segment.annotation!.tooltip}
+                theme={theme}
+              />
+            );
+          }
+        })}
+      </>
+    );
+  };
+
+  const isCharacter = currentSpeaker !== undefined && currentNode.speaker !== 'player';
 
   // Check if dialogue can continue (has responses or nextNodeId)
   const canContinue = !!currentNode.nextNodeId || (currentNode.responses && currentNode.responses.length > 0);
@@ -110,6 +219,30 @@ const DialogueScene: React.FC<DialogueSceneProps> = ({
         position: 'relative',
       }}
     >
+      {/* Scene Image */}
+      {sceneImage && (
+        <div
+          style={{
+            marginBottom: '2rem',
+            display: 'flex',
+            justifyContent: 'center',
+            maxWidth: '1000px',
+            width: '100%',
+          }}
+        >
+          <img
+            src={sceneImage.src}
+            alt="Scene illustration"
+            style={{
+              maxWidth: '100%',
+              maxHeight: '400px',
+              borderRadius: '0.75rem',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
+            }}
+          />
+        </div>
+      )}
+
       {/* Dialogue box container */}
       <div
         style={{
@@ -117,7 +250,7 @@ const DialogueScene: React.FC<DialogueSceneProps> = ({
           maxWidth: '1000px',
           backgroundColor: 'rgba(0, 0, 0, 0.85)',
           borderRadius: '1rem',
-          overflow: 'hidden',
+          overflow: 'visible', // Changed from 'hidden' to allow tooltips to extend outside
           boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.5)',
           marginBottom: '2rem',
         }}
@@ -177,10 +310,10 @@ const DialogueScene: React.FC<DialogueSceneProps> = ({
                   color: theme.secondaryColor,
                 }}
               >
-                {scene.character.name}
+                {currentSpeaker?.name}
               </div>
               <div style={{ fontSize: '0.875rem', color: '#aaa' }}>
-                {scene.character.description}
+                {currentSpeaker?.description}
               </div>
             </div>
           </div>
@@ -191,6 +324,7 @@ const DialogueScene: React.FC<DialogueSceneProps> = ({
           style={{
             padding: '2rem',
             minHeight: '120px',
+            overflow: 'visible', // Allow tooltips to extend outside
           }}
         >
           <div
@@ -200,9 +334,10 @@ const DialogueScene: React.FC<DialogueSceneProps> = ({
               color: 'white',
               opacity: showText ? 1 : 0,
               transition: 'opacity 0.3s ease-in',
+              overflow: 'visible', // Allow tooltips to extend outside
             }}
           >
-            {currentNode.text}
+            {renderTextWithAnnotations(currentNode.text)}
           </div>
 
           {/* Linear continuation button */}

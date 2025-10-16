@@ -1,11 +1,11 @@
 import type { Adventure } from '../types';
 import { arabianNights } from './arabian-nights';
+import { dantesInferno } from './dantes-inferno';
 
 // Registry of all available adventures
 export const adventures: Adventure[] = [
   arabianNights,
-  // Add more adventures here as they're created
-  // dantesInferno,
+  dantesInferno,
 ];
 
 // Helper function to get adventure by ID

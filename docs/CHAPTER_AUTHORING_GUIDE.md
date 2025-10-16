@@ -317,18 +317,46 @@ Imsie supports multiple scene types. Each serves a different educational and nar
 - Consider required locations for pacing
 - Make hotspot areas large enough (20-30px radius)
 
-### 5-9. Not Yet Implemented ⚠️
+### 5. Quote Attribution Scene ✅ IMPLEMENTED
 
-The following scene types are defined in the type system but not yet implemented:
+**Purpose**: Identify which character or person said famous quotes
 
-- **Timeline Game**: Order events chronologically
-- **Primary Source**: Analyze documents/artifacts
-- **Cause-Effect**: Match causes with effects
-- **Quote Attribution**: Identify speakers
-- **Anachronism**: Find historical inaccuracies
-- **Custom Mini-Game**: Extensible game framework
+See `docs/SCENE_TYPES_REFERENCE.md` for complete documentation.
 
-See [Not Yet Implemented](#not-yet-implemented) for details on what's needed to build these.
+### 6. Timeline Game Scene ✅ IMPLEMENTED
+
+**Purpose**: Order historical events chronologically
+
+See `docs/SCENE_TYPES_REFERENCE.md` for complete documentation.
+
+### 7. Cause-Effect Scene ✅ IMPLEMENTED
+
+**Purpose**: Match historical causes with their effects
+
+See `docs/SCENE_TYPES_REFERENCE.md` for complete documentation.
+
+### 8. Primary Source Scene ✅ IMPLEMENTED
+
+**Purpose**: Analyze historical documents, images, or media
+
+See `docs/SCENE_TYPES_REFERENCE.md` for complete documentation.
+
+### 9. Anachronism Scene ✅ IMPLEMENTED
+
+**Purpose**: Find items that don't belong in a time period
+
+See `docs/SCENE_TYPES_REFERENCE.md` for complete documentation.
+
+### 10. Custom Mini-Game Scene ✅ IMPLEMENTED
+
+**Purpose**: Extensible framework for unique game mechanics
+
+See `docs/SCENE_TYPES_REFERENCE.md` for complete documentation.
+
+---
+
+**For detailed documentation of all scene types, including structures, examples, and best practices, see:**
+## → `docs/SCENE_TYPES_REFERENCE.md`
 
 ---
 
@@ -681,72 +709,21 @@ See `docs/CHAPTER_PREREQUISITES_EXAMPLES.md` for complex patterns like:
 
 ## Not Yet Implemented
 
-The following features are defined in types but not yet built:
+### Scene Types ✅ ALL IMPLEMENTED
 
-### Scene Types Needing Implementation
+**All 10 scene types are now fully implemented!** See `docs/SCENE_TYPES_REFERENCE.md` for complete documentation.
 
-#### Timeline Game Scene
-**What it needs**:
-- Drag-and-drop interface component
-- Timeline visualization
-- Scoring algorithm based on ordering accuracy
-- Component: `src/components/mini-games/TimelineGameScene.tsx`
-
-**Type structure already exists**:
-```typescript
-{
-  id: 'scene-timeline',
-  type: 'timeline-game',
-  prompt: 'Order these events chronologically',
-  timelineEvents: [
-    {
-      id: 'event-1',
-      title: 'Event Name',
-      year: 1850,
-      description: 'What happened',
-      image: 'optional-image.png',
-    },
-  ],
-  successThreshold: 75,  // % correct needed
-}
-```
-
-#### Primary Source Scene
-**What it needs**:
-- Document viewer component
-- Image/audio/video player
-- Question renderer for analysis
-- Component: `src/components/mini-games/PrimarySourceScene.tsx`
-
-**Type structure already exists** - see `src/types/adventure.ts`
-
-#### Cause-Effect Scene
-**What it needs**:
-- Matching interface (drag-drop or click)
-- Pair validation logic
-- Explanation reveal system
-- Component: `src/components/mini-games/CauseEffectScene.tsx`
-
-#### Quote Attribution Scene
-**What it needs**:
-- Quote display component
-- Multiple choice character selection
-- Context/explanation system
-- Component: `src/components/mini-games/QuoteAttributionScene.tsx`
-
-#### Anachronism Scene
-**What it needs**:
-- Grid display of items
-- Click-to-mark interaction
-- Correct/incorrect reveal
-- Component: `src/components/mini-games/AnachronismScene.tsx`
-
-#### Custom Mini-Game Scene
-**What it needs**:
-- Component registry system
-- Standard interface for game components
-- Props passing mechanism
-- Component: `src/components/mini-games/CustomMiniGameScene.tsx`
+Implemented scene types:
+- ✅ Narrative Scene
+- ✅ Decision Scene
+- ✅ Dialogue Scene
+- ✅ Map Exploration Scene
+- ✅ Quote Attribution Scene
+- ✅ Timeline Game Scene
+- ✅ Cause-Effect Scene
+- ✅ Primary Source Scene
+- ✅ Anachronism Scene
+- ✅ Custom Mini-Game Scene (with registry system)
 
 ### System Features Needing Implementation
 
@@ -788,16 +765,15 @@ The following features are defined in types but not yet built:
 - Historical context sidebars
 - Optional "learn more" links
 
-### Implementing New Scene Types
+### Using Scene Types
 
-When ready to implement a new scene type:
+All scene types are fully implemented and ready to use:
 
-1. Create component in `src/components/mini-games/[SceneType]Scene.tsx`
-2. Import in `src/components/adventure-engine/SceneRenderer.tsx`
-3. Add case to switch statement
-4. Remove from "not yet implemented" section
-5. Test thoroughly with example content
-6. Update this documentation
+1. Reference `docs/SCENE_TYPES_REFERENCE.md` for complete documentation
+2. Choose appropriate scene type for your educational goal
+3. Follow the type structure exactly as defined
+4. Test thoroughly with your content
+5. Ensure learning points are present
 
 ---
 

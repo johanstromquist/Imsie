@@ -29,6 +29,10 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
     ? assetLoader.getImage(scene.backgroundImage)
     : null;
 
+  const sceneImage = scene.image
+    ? assetLoader.getImage(scene.image)
+    : null;
+
   const handleLocationClick = (location: MapLocation) => {
     // Check if location has unlock condition
     if (location.unlockCondition) {
@@ -83,6 +87,30 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
         position: 'relative',
       }}
     >
+      {/* Scene Image */}
+      {sceneImage && (
+        <div
+          style={{
+            marginBottom: '2rem',
+            display: 'flex',
+            justifyContent: 'center',
+            maxWidth: '1200px',
+            width: '100%',
+          }}
+        >
+          <img
+            src={sceneImage.src}
+            alt="Scene illustration"
+            style={{
+              maxWidth: '100%',
+              maxHeight: '400px',
+              borderRadius: '0.75rem',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
+            }}
+          />
+        </div>
+      )}
+
       {/* Content container */}
       <div
         style={{

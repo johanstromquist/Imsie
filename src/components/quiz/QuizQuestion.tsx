@@ -101,6 +101,8 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
         return renderShortAnswer();
       case 'matching':
         return renderMatching();
+      case 'self-assessment':
+        return renderSelfAssessmentInput();
       default:
         return <div>Unknown question type</div>;
     }
@@ -368,6 +370,60 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
             );
           })}
         </div>
+      </div>
+    );
+  }
+
+  function renderSelfAssessmentInput() {
+    // During quiz, just show a text area for the student's answer
+    // Self-assessment happens on the results screen
+    return (
+      <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+        <div
+          style={{
+            marginBottom: '1rem',
+            padding: '1rem',
+            backgroundColor: 'rgba(255, 200, 0, 0.1)',
+            border: '1px solid rgba(255, 200, 0, 0.3)',
+            borderRadius: '0.5rem',
+            color: 'rgba(255, 200, 0, 0.9)',
+            fontSize: '0.9rem',
+          }}
+        >
+          ℹ️ This is a reflection question. You'll compare your answer to a model answer and self-assess after submitting the quiz.
+        </div>
+        <textarea
+          value={typeof localAnswer === 'string' ? localAnswer : ''}
+          onChange={(e) => handleShortAnswer(e.target.value)}
+          disabled={showFeedback}
+          placeholder="Type your answer here. Be thorough - you'll evaluate your own response later."
+          rows={6}
+          style={{
+            width: '100%',
+            padding: '1rem 1.5rem',
+            fontSize: '1rem',
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            color: 'white',
+            border: '2px solid rgba(255, 255, 255, 0.3)',
+            borderRadius: '0.75rem',
+            outline: 'none',
+            transition: 'all 0.2s',
+            resize: 'vertical',
+            fontFamily: 'inherit',
+          }}
+          onFocus={(e) => {
+            if (!showFeedback) {
+              e.currentTarget.style.borderColor = theme.secondaryColor;
+              e.currentTarget.style.boxShadow = `0 0 0 3px ${theme.secondaryColor}40`;
+            }
+          }}
+          onBlur={(e) => {
+            if (!showFeedback) {
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+              e.currentTarget.style.boxShadow = 'none';
+            }
+          }}
+        />
       </div>
     );
   }

@@ -96,8 +96,23 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
           assetsToLoad.push({ url: scene.narration, type: 'audio' });
         }
         // Preload character portraits for dialogue scenes
-        if (scene.type === 'dialogue' && 'character' in scene && scene.character.portrait) {
-          assetsToLoad.push({ url: scene.character.portrait, type: 'image' });
+        if (scene.type === 'dialogue' && 'character' in scene) {
+          // Main character portrait
+          if (scene.character.portrait) {
+            assetsToLoad.push({ url: scene.character.portrait, type: 'image' });
+          }
+          // Additional characters' portraits
+          if ('characters' in scene && scene.characters) {
+            scene.characters.forEach((char) => {
+              if (char.portrait) {
+                assetsToLoad.push({ url: char.portrait, type: 'image' });
+              }
+            });
+          }
+        }
+        // Preload map images for map-exploration scenes
+        if (scene.type === 'map-exploration' && 'mapImage' in scene && scene.mapImage) {
+          assetsToLoad.push({ url: scene.mapImage, type: 'image' });
         }
       });
 

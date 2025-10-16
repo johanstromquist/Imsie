@@ -3,6 +3,12 @@ import NarrativeScene from '../mini-games/NarrativeScene';
 import DecisionScene from '../mini-games/DecisionScene';
 import DialogueScene from '../mini-games/DialogueScene';
 import MapExplorationScene from '../mini-games/MapExplorationScene';
+import QuoteAttributionScene from '../mini-games/QuoteAttributionScene';
+import TimelineGameScene from '../mini-games/TimelineGameScene';
+import PrimarySourceScene from '../mini-games/PrimarySourceScene';
+import CauseEffectScene from '../mini-games/CauseEffectScene';
+import AnachronismScene from '../mini-games/AnachronismScene';
+import CustomMiniGameScene from '../mini-games/CustomMiniGameScene';
 
 interface SceneRendererProps {
   scene: Scene;
@@ -69,23 +75,70 @@ const SceneRenderer: React.FC<SceneRendererProps> = ({
         />
       );
 
-    // TODO: Implement other scene types
-    case 'timeline-game':
-    case 'primary-source':
-    case 'cause-effect':
     case 'quote-attribution':
+      return (
+        <QuoteAttributionScene
+          scene={scene}
+          theme={theme}
+          onComplete={() => onSceneComplete(scene.id)}
+          onBack={onSceneBack}
+          canGoBack={canGoBack}
+        />
+      );
+
+    case 'timeline-game':
+      return (
+        <TimelineGameScene
+          scene={scene}
+          theme={theme}
+          onComplete={() => onSceneComplete(scene.id)}
+          onBack={onSceneBack}
+          canGoBack={canGoBack}
+        />
+      );
+
+    case 'primary-source':
+      return (
+        <PrimarySourceScene
+          scene={scene}
+          theme={theme}
+          onComplete={() => onSceneComplete(scene.id)}
+          onBack={onSceneBack}
+          canGoBack={canGoBack}
+        />
+      );
+
+    case 'cause-effect':
+      return (
+        <CauseEffectScene
+          scene={scene}
+          theme={theme}
+          onComplete={() => onSceneComplete(scene.id)}
+          onBack={onSceneBack}
+          canGoBack={canGoBack}
+        />
+      );
+
     case 'anachronism':
+      return (
+        <AnachronismScene
+          scene={scene}
+          theme={theme}
+          onComplete={() => onSceneComplete(scene.id)}
+          onBack={onSceneBack}
+          canGoBack={canGoBack}
+        />
+      );
+
     case 'custom-mini-game':
       return (
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minHeight: '100vh',
-          color: 'white',
-        }}>
-          <p>Scene type "{scene.type}" not yet implemented</p>
-        </div>
+        <CustomMiniGameScene
+          scene={scene}
+          theme={theme}
+          onComplete={() => onSceneComplete(scene.id)}
+          onBack={onSceneBack}
+          canGoBack={canGoBack}
+        />
       );
 
     default:

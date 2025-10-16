@@ -204,7 +204,10 @@ export interface AnalysisQuestion {
 export interface DialogueScene extends BaseScene {
   type: 'dialogue';
   character: Character;
+  characters?: Character[]; // Optional: additional characters for multi-character dialogues
   dialogueTree: DialogueNode;
+  image?: string; // optional scene illustration
+  inlineAnnotations?: InlineAnnotation[]; // NEW: Contextual learning tooltips
 }
 
 export interface Character {
@@ -299,12 +302,21 @@ export interface Quiz {
 export interface QuizQuestion {
   id: string;
   question: string;
-  type: 'multiple-choice' | 'true-false' | 'short-answer' | 'matching';
+  type: 'multiple-choice' | 'true-false' | 'short-answer' | 'matching' | 'self-assessment';
   points: number;
   options?: string[]; // for multiple choice
-  correctAnswer: string | string[] | Record<string, string>; // flexible for different types
+  correctAnswer?: string | string[] | Record<string, string>; // flexible for different types (optional for self-assessment)
   explanation: string;
   relatedLearningPoints: string[]; // IDs of learning points
+  // Self-assessment specific fields
+  modelAnswer?: string; // The expert answer to compare against
+  assessmentCriteria?: AssessmentCriterion[]; // Points to self-evaluate
+}
+
+export interface AssessmentCriterion {
+  id: string;
+  text: string; // Description of what should be in the answer
+  points: number; // Points awarded if student says they covered this
 }
 
 // Progress Tracking
@@ -335,6 +347,9 @@ export interface QuizAnswer {
   answer: string | string[] | Record<string, string>;
   correct: boolean;
   pointsEarned: number;
+  // Self-assessment specific fields
+  selfAssessment?: Record<string, 'covered' | 'not-covered'>; // criterionId -> selection
+  selfAssessmentComplete?: boolean; // Whether self-assessment has been completed
 }
 
 export interface PlayerStatistics {

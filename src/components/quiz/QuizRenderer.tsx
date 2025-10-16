@@ -26,15 +26,33 @@ const QuizRenderer: React.FC<QuizRendererProps> = ({ quiz, theme, onComplete }) 
   const handleAnswerChange = (answer: string | string[] | Record<string, string>) => {
     setValidationError(null);
 
-    // Determine if answer is correct
-    const isCorrect = checkAnswer(currentQuestion.correctAnswer, answer);
-    const pointsEarned = isCorrect ? currentQuestion.points : 0;
+    // Self-assessment questions are always marked as "correct" with 0 points initially
+    // Points will be awarded later during self-assessment phase
+    const isSelfAssessment = currentQuestion.type === 'self-assessment';
+
+    let isCorrect: boolean;
+    let pointsEarned: number;
+
+    if (isSelfAssessment) {
+      // Self-assessment: mark as correct (neutral), 0 points initially
+      isCorrect = true;
+      pointsEarned = 0;
+    } else {
+      // Regular questions: check answer and award points
+      isCorrect = checkAnswer(currentQuestion.correctAnswer, answer);
+      pointsEarned = isCorrect ? currentQuestion.points : 0;
+    }
 
     const newAnswer: QuizAnswer = {
       questionId: currentQuestion.id,
       answer,
       correct: isCorrect,
       pointsEarned,
+      // Initialize self-assessment fields for self-assessment questions
+      ...(isSelfAssessment && {
+        selfAssessment: {},
+        selfAssessmentComplete: false,
+      }),
     };
 
     // Update or add answer
@@ -45,9 +63,12 @@ const QuizRenderer: React.FC<QuizRendererProps> = ({ quiz, theme, onComplete }) 
   };
 
   const checkAnswer = (
-    correctAnswer: string | string[] | Record<string, string>,
+    correctAnswer: string | string[] | Record<string, string> | undefined,
     userAnswer: string | string[] | Record<string, string>
   ): boolean => {
+    // If no correct answer is defined (e.g., self-assessment), return false
+    if (correctAnswer === undefined) return false;
+
     // Handle different answer types
     if (Array.isArray(correctAnswer)) {
       if (!Array.isArray(userAnswer)) return false;
@@ -65,7 +86,10 @@ const QuizRenderer: React.FC<QuizRendererProps> = ({ quiz, theme, onComplete }) 
         (key) => correctAnswer[key] === userAnswer[key]
       );
     } else {
-      // Simple string comparison
+      // String comparison - case-insensitive with trimming for short-answer questions
+      if (typeof correctAnswer === 'string' && typeof userAnswer === 'string') {
+        return correctAnswer.toLowerCase().trim() === userAnswer.toLowerCase().trim();
+      }
       return correctAnswer === userAnswer;
     }
   };
@@ -104,9 +128,9 @@ const QuizRenderer: React.FC<QuizRendererProps> = ({ quiz, theme, onComplete }) 
       0
     );
 
-    // Calculate percentage score
+    // Calculate percentage score (rounded to whole number)
     const percentageScore = totalPossiblePoints > 0
-      ? (totalPointsEarned / totalPossiblePoints) * 100
+      ? Math.round((totalPointsEarned / totalPossiblePoints) * 100)
       : 0;
 
     // Determine pass/fail
@@ -191,6 +215,7 @@ const QuizRenderer: React.FC<QuizRendererProps> = ({ quiz, theme, onComplete }) 
 
         {/* Current question */}
         <QuizQuestion
+          key={currentQuestion.id}
           question={currentQuestion}
           currentAnswer={currentAnswer?.answer}
           onAnswer={handleAnswerChange}
