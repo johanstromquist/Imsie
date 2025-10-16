@@ -236,7 +236,7 @@ export interface DialogueNode {
 export interface DialogueResponse {
   id: string;
   text: string;
-  nextNodeId: string;
+  nextNodeId?: string;
   requiresCondition?: string;
   learningPoints?: LearningPoint[];
 }

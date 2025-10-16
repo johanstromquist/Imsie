@@ -143,12 +143,10 @@ export const chapter5: Chapter = {
               {
                 id: 'response-white-black',
                 text: 'We will arrange a signal. If she comes with you, raise a white sail. If she refuses, raise a black sail',
-                nextNodeId: null,
               },
               {
                 id: 'response-hope-despair',
                 text: 'Let us agree on this: a white sail means hope and healing. A black sail means I am beyond saving',
-                nextNodeId: null,
               },
             ],
           },
@@ -378,12 +376,10 @@ export const chapter5: Chapter = {
               {
                 id: 'response-no-regret',
                 text: 'I would drink it again, knowing all that came after. I would choose him every time',
-                nextNodeId: null,
               },
               {
                 id: 'response-real-love',
                 text: 'Perhaps. But the potion only awakened what was already in our hearts',
-                nextNodeId: null,
               },
             ],
           },
@@ -692,7 +688,6 @@ The ship sails toward the harbor, its white sail gleaming in the afternoon sun--
               {
                 id: 'response-did-he-know',
                 text: 'Then he knew I was here? He knew I came for him?',
-                nextNodeId: null,
               },
             ],
           },

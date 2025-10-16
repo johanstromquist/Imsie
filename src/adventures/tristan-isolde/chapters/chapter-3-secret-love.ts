@@ -143,12 +143,10 @@ export const chapter3: Chapter = {
               {
                 id: 'response-caution',
                 text: 'Then we meet rarely, and only with the greatest caution.',
-                nextNodeId: null,
               },
               {
                 id: 'response-defiant',
                 text: 'Let them watch. I will not give up these moments, no matter the cost.',
-                nextNodeId: null,
               },
             ],
           },
@@ -442,12 +440,10 @@ export const chapter3: Chapter = {
               {
                 id: 'response-accept',
                 text: 'Then do what you must. We accept the consequences of our love.',
-                nextNodeId: null,
               },
               {
                 id: 'response-mercy',
                 text: 'Please, Mark, remember the love you bore us. Show mercy.',
-                nextNodeId: null,
               },
             ],
           },
@@ -705,12 +701,10 @@ export const chapter3: Chapter = {
               {
                 id: 'response-embrace-exile',
                 text: 'I was a princess who became a queen. Now I will be a forest exile. For you, I embrace it.',
-                nextNodeId: null,
               },
               {
                 id: 'response-romantic',
                 text: 'As long as we are together, I fear nothing. The forest will be our kingdom.',
-                nextNodeId: null,
               },
             ],
           },

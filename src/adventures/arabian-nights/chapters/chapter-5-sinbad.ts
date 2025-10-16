@@ -970,7 +970,7 @@ From that day on, the two Sinbads became fast friends. The porter continued his 
     {
       id: 'scene-22-scheherazade-frame',
       type: 'narrative',
-      backgroundImage: 'https://cdn.midjourney.com/48a88d78-c764-4f33-86a7-f3c6eef6aa52/0_0.png',
+      backgroundImage: 'https://cdn.midjourney.com/b37cce7f-d7a0-4890-8a85-6d791e6ff348/0_0.png',
       image: 'https://cdn.midjourney.com/b902b0c5-70f2-46cb-b2a2-7b439d160adc/0_0.png',
       content: `As Scheherazade's voice fell silent, Sultan Shahryar stirred from his thoughts. Dawn light was beginning to creep through the latticed windows.
 

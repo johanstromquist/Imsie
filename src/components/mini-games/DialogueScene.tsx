@@ -63,6 +63,12 @@ const DialogueScene: React.FC<DialogueSceneProps> = ({
   }, [currentNode]);
 
   const handleResponseClick = (response: DialogueResponse) => {
+    // If no nextNodeId, end the dialogue
+    if (!response.nextNodeId) {
+      onComplete();
+      return;
+    }
+
     // Find next node
     const nextNode = findNodeById(scene.dialogueTree, response.nextNodeId);
     if (nextNode) {

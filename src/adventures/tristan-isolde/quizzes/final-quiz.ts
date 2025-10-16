@@ -33,6 +33,7 @@ export const finalQuiz: Quiz = {
       explanation:
         "Tristan's first journey to Ireland follows the classic hero's journey pattern: he ventures into enemy territory (dangerous place) " +
         'and receives help from Isolde (the helper figure) who heals his poisoned wound. This establishes their connection before the love potion.',
+      relatedLearningPoints: [],
     },
 
     {
@@ -50,6 +51,7 @@ export const finalQuiz: Quiz = {
       explanation:
         "The circular structure is a sophisticated literary technique: Tristan's story begins with a poisoned wound that brings him to Isolde, " +
         "and ends with a poisoned wound that he hopes Isolde can heal again. The repetition emphasizes fate's role in the tragedy.",
+      relatedLearningPoints: [],
     },
 
     {
@@ -67,6 +69,7 @@ export const finalQuiz: Quiz = {
       explanation:
         'The two Isoldes represent different kinds of love: Isolde the Fair embodies irresistible passion (created by the potion), while Isolde of ' +
         'the White Hands represents the kind of dutiful marriage Tristan could have chosen. The contrast highlights the impossibility of Tristan moving on.',
+      relatedLearningPoints: [],
     },
 
     // CHARACTER ANALYSIS QUESTIONS
@@ -86,6 +89,7 @@ export const finalQuiz: Quiz = {
         'King Mark is deliberately portrayed as sympathetic: he loves Tristan as a son and Isolde as a wife. When he discovers them in the forest ' +
         'with the sword between them, he chooses mercy. This complexity makes the betrayal more tragic--if Mark were a villain, the lovers would be heroic. ' +
         'Instead, everyone suffers.',
+      relatedLearningPoints: [],
     },
 
     {
@@ -104,6 +108,7 @@ export const finalQuiz: Quiz = {
         "Despite being subject to medieval constraints (political marriage), Isolde makes crucial choices: sparing Tristan's life, accepting exile " +
         'with him, and ultimately choosing to rush to his deathbed. Her final choice to die with him is the ultimate assertion of agency--choosing love ' +
         'and death over life without Tristan.',
+      relatedLearningPoints: [],
     },
 
     {
@@ -121,6 +126,7 @@ export const finalQuiz: Quiz = {
       explanation:
         'Isolde of the White Hands is innocent, trapped in an unconsummated marriage with a man who loves someone else. Her fatal lie about the ' +
         "sail's color is both terrible and understandable--she's been wronged, yet her revenge destroys everyone. This moral complexity is typical of great literature.",
+      relatedLearningPoints: [],
     },
 
     // THEMATIC QUESTIONS
@@ -139,6 +145,7 @@ export const finalQuiz: Quiz = {
       explanation:
         'The entire tragedy stems from Tristan and Isolde being torn between duty (to King Mark, to political alliance, to honor) and love ' +
         '(created by the potion, irresistible and eternal). Neither can fully abandon either obligation, creating impossible suffering.',
+      relatedLearningPoints: [],
     },
 
     {
@@ -156,6 +163,7 @@ export const finalQuiz: Quiz = {
       explanation:
         'This moral ambiguity is intentional. Poets argued the lovers were victims of fate; the Church said they should resist. The story never ' +
         'resolves this--it presents the tragedy without simple moral judgment, which is what makes it enduring literature.',
+      relatedLearningPoints: [],
     },
 
     // LITERARY TECHNIQUE QUESTIONS
@@ -174,6 +182,7 @@ export const finalQuiz: Quiz = {
       explanation:
         'Liebestod (German: "love-death") describes when love and death become inseparable. Isolde dies of grief beside Tristan--their love is so ' +
         "powerful that it literally cannot exist without both partners alive. This motif influenced countless later works, including Wagner's opera.",
+      relatedLearningPoints: [],
     },
 
     {
@@ -191,6 +200,7 @@ export const finalQuiz: Quiz = {
       explanation:
         "Dramatic irony occurs when the audience knows something the character doesn't. We see the white sail (Isolde has come!) while Tristan is " +
         "told it's black. This creates excruciating tension--we watch Tristan die of grief moments before Isolde arrives. The timing is tragic and inevitable.",
+      relatedLearningPoints: [],
     },
 
     {
@@ -209,6 +219,7 @@ export const finalQuiz: Quiz = {
         'In medieval romance, a sword between lovers symbolized chastity. Though Tristan and Isolde loved each other, they placed the sword between ' +
         'them while sleeping--showing restraint. When King Mark saw this, it influenced his merciful decision. The sword represents the lovers trying to ' +
         'honor their duty even in exile.',
+      relatedLearningPoints: [],
     },
 
     // CULTURAL/HISTORICAL CONTEXT QUESTIONS
@@ -227,6 +238,7 @@ export const finalQuiz: Quiz = {
       explanation:
         "Isolde's marriage to King Mark represents standard medieval practice: noble women were married to forge political alliances. The Irish " +
         'Queen even prepared a love potion to help ensure happiness in an arranged marriage--showing awareness that such marriages needed help to succeed.',
+      relatedLearningPoints: [],
     },
 
     {
@@ -244,6 +256,7 @@ export const finalQuiz: Quiz = {
       explanation:
         'Hermits in medieval literature represented religious/moral voices outside courtly society. Ogrin counseled Tristan and Isolde that their love ' +
         "was sinful and they should return to proper Christian life. He represents the medieval Church's view, contrasting with the romantic ideal the story also presents.",
+      relatedLearningPoints: [],
     },
 
     // True/False Questions
@@ -258,6 +271,7 @@ export const finalQuiz: Quiz = {
       explanation:
         'True. In Chapter 4, the hermit tells them the potion has faded after three years. This is thematically crucial: their continued love is now ' +
         "their choice, not magical compulsion. This makes their ongoing affair more morally complex--they could stop but won't.",
+      relatedLearningPoints: [],
     },
 
     {
@@ -271,6 +285,7 @@ export const finalQuiz: Quiz = {
       explanation:
         'True. This powerful symbol (rose from one grave, vine from the other, growing together in a Celtic knot) shows their love cannot be separated ' +
         "even by death. It's a hopeful image in an otherwise tragic story--their love endures and is beautiful, even if it destroyed their lives.",
+      relatedLearningPoints: [],
     },
 
     // Matching Question
@@ -290,6 +305,7 @@ export const finalQuiz: Quiz = {
         'Each character serves a specific thematic function: Tristan embodies the knight caught between obligations; Isolde the Fair represents ' +
         "irresistible passion; Mark shows why betrayal is tragic (he doesn't deserve it); Isolde of the White Hands contrasts duty with passion; " +
         'Brangien enables the plot through her mistake and loyalty.',
+      relatedLearningPoints: [],
     },
 
     // Short Answer
@@ -302,6 +318,7 @@ export const finalQuiz: Quiz = {
       explanation:
         'Tristan called himself "Tantris" to hide his identity as the killer of the Morholt. This disguise allowed Isolde to heal him--creating their ' +
         'initial bond before the love potion. The name is actually an anagram of Tristan in some versions.',
+      relatedLearningPoints: [],
     },
 
     // Self-Assessment Question - Comprehensive
@@ -360,6 +377,7 @@ The tragedy arises from this tension: the lovers are neither completely innocent
       explanation:
         'The fate versus free will question is central to the Tristan and Isolde legend and to medieval philosophy generally. The story presents both ' +
         'forces as real and interacting, making it philosophically sophisticated and eternally relevant.',
+      relatedLearningPoints: [],
     },
 
     // Bonus Integration Question
@@ -380,6 +398,7 @@ The tragedy arises from this tension: the lovers are neither completely innocent
         'The story exemplifies courtly love ideals: passionate love is portrayed as ennobling (making Tristan and Isolde into noble tragic figures) but ' +
         'existing outside marriage (Isolde loves Tristan, not her husband). The tradition saw such love as more "real" than arranged marriages, though ' +
         'also dangerous and transgressive. The story both celebrates and mourns this kind of love.',
+      relatedLearningPoints: [],
     },
 
     // Final Synthesis Question
@@ -400,6 +419,7 @@ The tragedy arises from this tension: the lovers are neither completely innocent
         "Classical tragedy requires noble protagonists (Tristan and Isolde are both of high birth and character), undeserved suffering (they didn't " +
         'choose to drink the potion), inevitability (once the potion is drunk, we sense disaster coming), and emotional catharsis. The story follows these ' +
         'patterns perfectly, making it one of the great tragic romances of Western literature. Its influence continues in modern stories of doomed love.',
+      relatedLearningPoints: [],
     },
   ],
 };

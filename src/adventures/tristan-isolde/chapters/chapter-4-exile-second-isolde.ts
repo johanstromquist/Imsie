@@ -211,12 +211,10 @@ export const chapter4: Chapter = {
               {
                 id: 'response-try',
                 text: 'I will try, my lord. You deserve that much and more',
-                nextNodeId: null,
               },
               {
                 id: 'response-dignity',
                 text: 'I promise to honor you and rule at your side with dignity',
-                nextNodeId: null,
               },
             ],
           },
@@ -450,12 +448,10 @@ export const chapter4: Chapter = {
               {
                 id: 'response-kind',
                 text: 'You are kind, Lady Isolde. Kinder than I deserve',
-                nextNodeId: null,
               },
               {
                 id: 'response-stay',
                 text: 'Brittany has been good to me. I think I will stay',
-                nextNodeId: null,
               },
             ],
           },
@@ -728,12 +724,10 @@ export const chapter4: Chapter = {
               {
                 id: 'response-trapped-now',
                 text: 'I do not know. I am trapped in a marriage I cannot honor and a love I cannot have',
-                nextNodeId: null,
               },
               {
                 id: 'response-leave',
                 text: 'Perhaps I should leave Brittany, free your sister from this mockery',
-                nextNodeId: null,
               },
             ],
           },

@@ -403,7 +403,6 @@ export const chapter1: Chapter = {
               {
                 id: 'response-honor',
                 text: 'It would be my honor, lady',
-                nextNodeId: null,
                 learningPoints: [
                   {
                     id: 'lp-ch1-7e-courtly',
@@ -415,7 +414,6 @@ export const chapter1: Chapter = {
               {
                 id: 'response-whole',
                 text: 'Music and your skill together will make me whole again',
-                nextNodeId: null,
                 learningPoints: [
                   {
                     id: 'lp-ch1-7f-connection',

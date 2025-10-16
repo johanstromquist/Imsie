@@ -227,7 +227,6 @@ export const chapter2: Chapter = {
               {
                 id: 'response-understand',
                 text: 'I understand, and I am grateful for your mercy',
-                nextNodeId: null,
                 learningPoints: [
                   {
                     id: 'lp-ch2-3g-grace',
@@ -239,7 +238,6 @@ export const chapter2: Chapter = {
               {
                 id: 'response-regret',
                 text: 'I regret that our friendship must be a casualty of politics',
-                nextNodeId: null,
                 learningPoints: [
                   {
                     id: 'lp-ch2-3h-loss',
@@ -660,7 +658,6 @@ export const chapter2: Chapter = {
               {
                 id: 'response-grateful',
                 text: 'Thank you, Brangien. Your loyalty means everything',
-                nextNodeId: null,
                 learningPoints: [
                   {
                     id: 'lp-ch2-10e-gratitude',
@@ -672,7 +669,6 @@ export const chapter2: Chapter = {
               {
                 id: 'response-oath',
                 text: 'We will need all the help we can get. Swear your oath of silence',
-                nextNodeId: null,
                 learningPoints: [
                   {
                     id: 'lp-ch2-10f-formal',
