@@ -104,7 +104,6 @@ Don Quixote makes a fundamental mistake: he treats these fictional ideals as rea
           id: 'dq-ch3-s2-q1',
           question: 'Why is Don Quixote\'s application of courtly love both perfect and absurd?',
           type: 'multiple-choice',
-          points: 15,
           options: [
             'He follows every courtly love rule perfectly, but applies a literary convention meant for fiction to real life—loving someone he\'s never met',
             'He breaks all the rules of courtly love by speaking openly about his devotion instead of keeping it secret',
@@ -113,7 +112,6 @@ Don Quixote makes a fundamental mistake: he treats these fictional ideals as rea
           ],
           correctAnswer: 'He follows every courtly love rule perfectly, but applies a literary convention meant for fiction to real life—loving someone he\'s never met',
           explanation: 'Don Quixote\'s approach to courtly love is perfect in execution but absurd in application. He meticulously follows every rule: idealization (placing Dulcinea on a pedestal), distance (never speaking to her), service (performing deeds in her name), secrecy (she doesn\'t know he exists), and suffering (enduring constant defeats). However, it\'s absurd because courtly love was always a literary convention meant for poetry and romance, not meant to be lived literally in the real world. His extreme version—loving someone he\'s never even met—reveals both the artificiality of the tradition and its power to motivate behavior.',
-          relatedLearningPoints: ['dq-lp-ch3-s2-convention', 'dq-lp-ch3-s2-extreme'],
         },
       ],
 
@@ -734,7 +732,6 @@ These questions remain relevant four centuries later.`,
           id: 'dq-ch3-s13-q1',
           question: 'What is Cervantes suggesting about the relationship between fiction and reality? Can something be both false and valuable?',
           type: 'multiple-choice',
-          points: 15,
           options: [
             'Dulcinea is factually false but produces real virtues like bravery and generosity—Cervantes shows ideals can be powerful even when disconnected from reality, maintaining deliberate ambiguity about whether this is wisdom or madness',
             'Fiction is always harmful—Cervantes clearly condemns Don Quixote\'s idealization as pure delusion that should be rejected in favor of accepting reality as it is',
@@ -743,7 +740,6 @@ These questions remain relevant four centuries later.`,
           ],
           correctAnswer: 'Dulcinea is factually false but produces real virtues like bravery and generosity—Cervantes shows ideals can be powerful even when disconnected from reality, maintaining deliberate ambiguity about whether this is wisdom or madness',
           explanation: 'Cervantes maintains deliberate ambiguity about idealism. He shows that Don Quixote\'s false belief in Dulcinea produces real virtues like bravery and generosity, suggesting that ideals can function powerfully even when disconnected from reality. By revealing the process of idealization (how Aldonza becomes Dulcinea), Cervantes both critiques its artificiality and validates its power to inspire excellence. The novel refuses to simply condemn or celebrate this—instead asking whether we all create "Dulcineas" in our lives, and whether that\'s madness or wisdom. This ambiguity is central to the novel\'s genius.',
-          relatedLearningPoints: ['dq-lp-ch3-s13-ambiguity', 'dq-lp-ch3-s13-modern'],
         },
       ],
 

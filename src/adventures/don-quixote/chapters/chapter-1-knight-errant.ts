@@ -154,7 +154,6 @@ Not just any books—chivalric romances. Tales of noble knights, fire-breathing 
           id: 'dq-ch1-s2-q1',
           question: 'What is Cervantes\' main technique for creating parody in Don Quixote?',
           type: 'multiple-choice',
-          points: 15,
           options: [
             'He uses elevated, chivalric language to describe pathetic, mundane reality—rusty armor instead of shining silver, a decrepit horse instead of a noble steed',
             'He completely abandons the structure of chivalric romances and invents an entirely new literary form',
@@ -163,7 +162,6 @@ Not just any books—chivalric romances. Tales of noble knights, fire-breathing 
           ],
           correctAnswer: 'He uses elevated, chivalric language to describe pathetic, mundane reality—rusty armor instead of shining silver, a decrepit horse instead of a noble steed',
           explanation: 'Cervantes creates parody by maintaining the elevated style and structure of chivalric romances while completely subverting the content. He describes rusty armor, skinny horses, and windmills using the same grandiose language that chivalric romances used for shining knights and dragons. This contrast between the elevated language and the humble reality creates both humor and sharp social commentary about those who confuse fiction with real life.',
-          relatedLearningPoints: ['dq-lp-ch1-s2-parody', 'dq-lp-ch1-s2-satire'],
         },
       ],
 

@@ -453,7 +453,6 @@ Two men come before Sancho. One lent the other ten gold pieces. The borrower cla
           id: 'dq-ch4-s9-q1',
           question: 'What does Sancho\'s success as governor reveal about intelligence and wisdom?',
           type: 'multiple-choice',
-          points: 15,
           options: [
             'Wisdom requires formal education and legal training—Sancho succeeds only because the cases are simple',
             'Practical experience and common sense can be more valuable than book learning—Sancho\'s lack of legal training helps him avoid technicalities and treat all classes equally',
@@ -462,7 +461,6 @@ Two men come before Sancho. One lent the other ten gold pieces. The borrower cla
           ],
           correctAnswer: 'Practical experience and common sense can be more valuable than book learning—Sancho\'s lack of legal training helps him avoid technicalities and treat all classes equally',
           explanation: 'Cervantes distinguishes between different types of intelligence. Sancho\'s practical experience gives him advantages: he listens fully, asks practical questions, uses common-sense tests, and treats all classes equally. His lack of legal education helps him avoid getting trapped in technicalities. This represents a radical class critique suggesting that peasants can govern as well as educated nobles, and that wisdom is experiential rather than purely academic.',
-          relatedLearningPoints: ['dq-lp-ch4-s9-intelligence', 'dq-lp-ch4-s9-class'],
         },
       ],
 
