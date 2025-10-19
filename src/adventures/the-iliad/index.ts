@@ -16,9 +16,10 @@ import { finalQuiz } from './quizzes/final-quiz';
 /**
  * The Iliad Adventure
  *
- * Homer's epic tale of the Trojan War presented in the visual style of
- * Frank Miller's 300. Experience the rage of Achilles, the tragedy of
- * Hector, and the brutal glory of ancient Greek warfare.
+ * Homer's epic tale of the Trojan War. Experience the rage of Achilles,
+ * the tragedy of Hector, and the brutal glory of ancient Greek warfare
+ * in this timeless story of heroism, honor, and the devastating human
+ * cost of war.
  *
  * Structure:
  * - Chapter 0: Prologue - Before the Wrath (optional context, 25-30 min)
@@ -35,7 +36,7 @@ import { finalQuiz } from './quizzes/final-quiz';
 export const theIliad: Adventure = {
   id: 'the-iliad',
   title: 'The Iliad',
-  description: 'Experience Homer\'s epic tale of the Trojan War through the brutal, stylized lens of Frank Miller\'s 300. Witness the rage of Achilles, the fall of Hector, and the human cost of glory.',
+  description: 'Experience Homer\'s epic tale of the Trojan War. Witness the rage of Achilles, the tragedy of Hector, and the devastating human cost of glory in ancient Greece\'s greatest story.',
   estimatedTime: 300,  // minutes (5 hours including optional prologue and epilogue)
   coverArt: 'https://cdn.midjourney.com/1bc0db5f-60b0-4b1c-9b11-d8700c9a672d/0_0.png',
   coverVideo: 'https://cdn.midjourney.com/video/a5e48034-422d-4bd3-8519-3fc88f5e5996/3.mp4',
@@ -62,8 +63,8 @@ export const theIliad: Adventure = {
     'Trojan Horse', 'Helen of Troy', 'Face that Launched a Thousand Ships',
     'Shield of Achilles', 'Achilles Heel', 'Myrmidons',
 
-    // Style reference
-    '300', 'Frank Miller', 'Graphic Novel', 'Bronze Age',
+    // Era and style
+    'Bronze Age', 'Ancient Epic', 'Classical Literature',
   ],
 
   effort: 1.5,  // Higher effort due to complex themes and longer chapters
