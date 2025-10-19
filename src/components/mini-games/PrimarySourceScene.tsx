@@ -26,6 +26,7 @@ const PrimarySourceScene: React.FC<PrimarySourceSceneProps> = ({
   const [showExplanation, setShowExplanation] = useState<Record<string, boolean>>({});
   const [allQuestionsAnswered, setAllQuestionsAnswered] = useState(false);
   const [currentAnswer, setCurrentAnswer] = useState<string>('');
+  const [shuffledOptions, setShuffledOptions] = useState<Record<string, string[]>>({});
 
   const backgroundImage = scene.backgroundImage
     ? assetLoader.getImage(scene.backgroundImage)
@@ -36,6 +37,26 @@ const PrimarySourceScene: React.FC<PrimarySourceSceneProps> = ({
     : null;
 
   const currentQuestion = scene.questions[currentQuestionIndex];
+
+  // Shuffle options for multiple-choice questions on mount
+  useEffect(() => {
+    const shuffleArray = <T,>(array: T[]): T[] => {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    };
+
+    const shuffled: Record<string, string[]> = {};
+    scene.questions.forEach(question => {
+      if (question.type === 'multiple-choice' && question.options) {
+        shuffled[question.id] = shuffleArray(question.options);
+      }
+    });
+    setShuffledOptions(shuffled);
+  }, [scene.questions]);
 
   // Check if all questions have been answered
   useEffect(() => {
@@ -346,9 +367,9 @@ const PrimarySourceScene: React.FC<PrimarySourceSceneProps> = ({
               </h4>
 
               {/* Multiple choice options */}
-              {currentQuestion.type === 'multiple-choice' && currentQuestion.options && (
+              {currentQuestion.type === 'multiple-choice' && currentQuestion.options && shuffledOptions[currentQuestion.id] && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                  {currentQuestion.options.map((option, index) => {
+                  {shuffledOptions[currentQuestion.id].map((option, index) => {
                     const isSelected = currentAnswer === option;
                     const isThisCorrect =
                       showCurrentExplanation &&

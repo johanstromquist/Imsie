@@ -34,11 +34,11 @@ export const chapter3: Chapter = {
 
       content: `Life at King Mark's court has settled into a dangerous routine. Isolde sits at the high table as queen, wearing her crown and royal robes, every inch the proper consort. Tristan stands among the king's closest knights, his face a mask of loyalty and duty.
 
-      But beneath the surface, a fire burns that the love potion kindled and cannot extinguish. Every glance between them carries the weight of unspoken words. Every formal conversation masks desperate longing. The court sees a devoted queen and a loyal nephew--they do not see the lovers dying by inches, separated by mere feet yet unable to touch.
+But beneath the surface, a fire burns that the love potion kindled and cannot extinguish. Every glance between them carries the weight of unspoken words. Every formal conversation masks desperate longing. The court sees a devoted queen and a loyal nephew--they do not see the lovers dying by inches, separated by mere feet yet unable to touch.
 
-      At night, Isolde lies in the royal chamber, Mark sleeping peacefully beside her. She stares at the ceiling, her heart across the corridor in Tristan's chamber, where he too lies sleepless, tormented by proximity and impossibility.
+At night, Isolde lies in the royal chamber, Mark sleeping peacefully beside her. She stares at the ceiling, her heart across the corridor in Tristan's chamber, where he too lies sleepless, tormented by proximity and impossibility.
 
-      They are careful--so careful. But love this powerful cannot remain hidden forever.`,
+They are careful--so careful. But love this powerful cannot remain hidden forever.`,
 
       learningPoints: [
         {
@@ -178,11 +178,11 @@ export const chapter3: Chapter = {
       prompt: 'How should the lovers respond to growing suspicion?',
       context: `Frocin the dwarf is a cunning advisor to King Mark, skilled in astronomy and observation. He has begun to notice things: how Tristan"s eyes follow the queen, how Isolde's voice changes when Tristan enters a room, how they seem always aware of each other's presence.
 
-      One evening, Frocin approaches King Mark with careful words: "My lord, I would not trouble you with idle gossip, but have you noticed how Sir Tristan and the Queen seem... particularly friendly?"
+One evening, Frocin approaches King Mark with careful words: "My lord, I would not trouble you with idle gossip, but have you noticed how Sir Tristan and the Queen seem... particularly friendly?"
 
-      Mark bristles at the suggestion. "Tristan is my nephew, the most loyal knight in Cornwall. And Isolde is an honorable queen. I will hear no more of this, Frocin."
+Mark bristles at the suggestion. "Tristan is my nephew, the most loyal knight in Cornwall. And Isolde is an honorable queen. I will hear no more of this, Frocin."
 
-      But the seed of doubt has been planted. Frocin begins watching more carefully, and the lovers sense the scrutiny.`,
+But the seed of doubt has been planted. Frocin begins watching more carefully, and the lovers sense the scrutiny.`,
 
       choices: [
         {
@@ -190,11 +190,11 @@ export const chapter3: Chapter = {
           text: 'Avoid each other completely in public to allay suspicion',
           consequence: `For weeks, Tristan and Isolde maintain careful distance. They barely speak in public, avoid looking at each other, seem almost cold. The court murmurs about a falling-out between the queen and the king's nephew.
 
-          Frocin watches but sees nothing amiss. His suspicions begin to fade--perhaps he imagined the attraction.
+Frocin watches but sees nothing amiss. His suspicions begin to fade--perhaps he imagined the attraction.
 
-          But the separation torments the lovers. Unable to meet even briefly, they suffer terribly. Isolde grows pale and listless. Tristan becomes withdrawn and melancholy.
+But the separation torments the lovers. Unable to meet even briefly, they suffer terribly. Isolde grows pale and listless. Tristan becomes withdrawn and melancholy.
 
-          King Mark notices his wife's unhappiness and tries to cheer her, never guessing the true cause. The irony cuts deep: she suffers from being parted from Tristan, while Mark thinks she simply needs more attention from him.`,
+King Mark notices his wife's unhappiness and tries to cheer her, never guessing the true cause. The irony cuts deep: she suffers from being parted from Tristan, while Mark thinks she simply needs more attention from him.`,
 
           learningPoints: [
             {
@@ -210,11 +210,11 @@ export const chapter3: Chapter = {
           text: 'Continue meeting but with extreme caution and planning',
           consequence: `The lovers decide that complete separation is unbearable. Instead, they devise elaborate precautions for their meetings.
 
-          They use Brangaine, Isolde"s loyal maid who knows their secret, as a messenger and lookout. They meet only when certain conditions are safe. They develop codes and signals--a particular song played on Tristan's harp means the garden is watched; a certain arrangement of flowers in Isolde's chamber means she can receive no visitor.
+They use Brangaine, Isolde"s loyal maid who knows their secret, as a messenger and lookout. They meet only when certain conditions are safe. They develop codes and signals--a particular song played on Tristan's harp means the garden is watched; a certain arrangement of flowers in Isolde's chamber means she can receive no visitor.
 
-          The intrigue becomes a dangerous game. Every meeting is planned like a military campaign. They leave no trace, take no chances they can avoid.
+The intrigue becomes a dangerous game. Every meeting is planned like a military campaign. They leave no trace, take no chances they can avoid.
 
-          But Frocin is patient and clever. He continues watching, waiting for them to make a mistake. It is only a matter of time.`,
+But Frocin is patient and clever. He continues watching, waiting for them to make a mistake. It is only a matter of time.`,
 
           learningPoints: [
             {
@@ -239,17 +239,17 @@ export const chapter3: Chapter = {
 
       content: `Frocin's patience yields a sinister plan. He convinces King Mark to test his nephew and wife with a trap so clever it seems foolproof.
 
-      Tristan's chamber is across a corridor from the royal bedchamber. The distance is short but visible--no one could cross it unseen. However, Frocin notes that Tristan sleeps with his door ajar, and sometimes wakes in the night to pace the corridor.
+Tristan's chamber is across a corridor from the royal bedchamber. The distance is short but visible--no one could cross it unseen. However, Frocin notes that Tristan sleeps with his door ajar, and sometimes wakes in the night to pace the corridor.
 
-      "My lord," Frocin whispers to Mark, "let me spread fine flour upon the floor between the chambers. If anyone crosses in the night, their footprints will reveal the truth. If your nephew and wife are innocent, the flour will remain undisturbed."
+"My lord," Frocin whispers to Mark, "let me spread fine flour upon the floor between the chambers. If anyone crosses in the night, their footprints will reveal the truth. If your nephew and wife are innocent, the flour will remain undisturbed."
 
-      Mark reluctantly agrees, desperate to prove his suspicions wrong.
+Mark reluctantly agrees, desperate to prove his suspicions wrong.
 
-      That very night, Tristan, restless and tormented by Isolde's proximity, wakes and sees moonlight on the corridor floor. Something makes him pause--the floor looks strange, too white, too even. Understanding floods through him: a trap.
+That very night, Tristan, restless and tormented by Isolde's proximity, wakes and sees moonlight on the corridor floor. Something makes him pause--the floor looks strange, too white, too even. Understanding floods through him: a trap.
 
-      He dares not cross. He lies back down, frustrated but safe. The flour remains untouched.
+He dares not cross. He lies back down, frustrated but safe. The flour remains untouched.
 
-      But Frocin is not finished. The next night, he whispers to Mark: "The queen was recently injured by a thorn and has a small wound on her foot. Watch whether it bleeds in the night, which would suggest she walked despite the pain."`,
+But Frocin is not finished. The next night, he whispers to Mark: "The queen was recently injured by a thorn and has a small wound on her foot. Watch whether it bleeds in the night, which would suggest she walked despite the pain."`,
 
       learningPoints: [
         {
@@ -275,17 +275,17 @@ export const chapter3: Chapter = {
 
       content: `Unable to bear another night of separation, Tristan makes a reckless decision. Late at night, when the moon has set and darkness covers the castle, he decides to cross to Isolde's chamber--not by the corridor, but by leaping from his window across the gap to hers.
 
-      It is a desperate, dangerous act. The distance is considerable, and below lies a courtyard of stone. One slip means death. But love has made him reckless.
+It is a desperate, dangerous act. The distance is considerable, and below lies a courtyard of stone. One slip means death. But love has made him reckless.
 
-      He makes the leap successfully and climbs through Isolde's window. They have precious hours together while Mark, exhausted from weeks of surveillance, sleeps deeply.
+He makes the leap successfully and climbs through Isolde's window. They have precious hours together while Mark, exhausted from weeks of surveillance, sleeps deeply.
 
-      But Tristan has one wound that never fully healed--an old injury to his leg, reopened by the strain of the leap. It bleeds onto Isolde's chamber floor.
+But Tristan has one wound that never fully healed--an old injury to his leg, reopened by the strain of the leap. It bleeds onto Isolde's chamber floor.
 
-      As dawn approaches, Tristan must return. He leaps back across the gap, landing hard in his own chamber. But the damage is done.
+As dawn approaches, Tristan must return. He leaps back across the gap, landing hard in his own chamber. But the damage is done.
 
-      In the morning, Brangaine discovers the blood. She wakes Isolde in terror, but it is too late to clean all traces. When King Mark enters his wife's chamber, he sees the blood on the floor.
+In the morning, Brangaine discovers the blood. She wakes Isolde in terror, but it is too late to clean all traces. When King Mark enters his wife's chamber, he sees the blood on the floor.
 
-      The trap has sprung. Not through Frocin's cleverness, but through love's own recklessness.`,
+The trap has sprung. Not through Frocin's cleverness, but through love's own recklessness.`,
 
       learningPoints: [
         {
@@ -475,11 +475,11 @@ export const chapter3: Chapter = {
       prompt: 'What should Tristan do when faced with trial?',
       context: `The court is assembled. Frocin and the hostile barons demand the harshest punishment. Some sympathetic knights plead for mercy, but they are outnumbered.
 
-      King Mark, though personally anguished, has allowed the trial to proceed. He sits on his throne, looking older than his years, silent.
+King Mark, though personally anguished, has allowed the trial to proceed. He sits on his throne, looking older than his years, silent.
 
-      Tristan and Isolde stand accused of treason through adultery. The punishment, if they are found guilty, is death.
+Tristan and Isolde stand accused of treason through adultery. The punishment, if they are found guilty, is death.
 
-      Tristan must choose: face the judgment, or attempt to escape while he still can.`,
+Tristan must choose: face the judgment, or attempt to escape while he still can.`,
 
       choices: [
         {
@@ -487,15 +487,15 @@ export const chapter3: Chapter = {
           text: 'Face the trial with dignity and accept the judgment',
           consequence: `Tristan stands tall before the court. "I will face any ordeal you demand," he says. "I will not flee like a coward."
 
-          The barons demand trial by combat--let God decide the truth. Tristan is one of the finest knights in the realm, but they will pit him against three champions simultaneously, ensuring his defeat.
+The barons demand trial by combat--let God decide the truth. Tristan is one of the finest knights in the realm, but they will pit him against three champions simultaneously, ensuring his defeat.
 
-          Before the trial can begin, however, Isolde intervenes. "If my lord Tristan must die, then I die with him. We face judgment together."
+Before the trial can begin, however, Isolde intervenes. "If my lord Tristan must die, then I die with him. We face judgment together."
 
-          Her words move even the hardest hearts. Some knights begin to question whether justice should be so harsh.
+Her words move even the hardest hearts. Some knights begin to question whether justice should be so harsh.
 
-          But Frocin and the hostile barons press forward. The trial is set for dawn. Tristan and Isolde are imprisoned separately to await their fate.
+But Frocin and the hostile barons press forward. The trial is set for dawn. Tristan and Isolde are imprisoned separately to await their fate.
 
-          That night, as they wait in their cells, they each resolve that if they must die, they will die bravely, as befits their love and their honor.`,
+That night, as they wait in their cells, they each resolve that if they must die, they will die bravely, as befits their love and their honor.`,
 
           learningPoints: [
             {
@@ -511,17 +511,17 @@ export const chapter3: Chapter = {
           text: 'Try to escape before judgment can be passed',
           consequence: `Tristan looks around the hall and realizes the trial is a farce--the verdict is already decided, and mercy will not be granted. He cannot let Isolde die for their love.
 
-          "Forgive me, uncle," Tristan says, and suddenly moves. With the speed and skill that made him Cornwall's champion, he seizes a sword from a guard and fights his way to Isolde.
+"Forgive me, uncle," Tristan says, and suddenly moves. With the speed and skill that made him Cornwall's champion, he seizes a sword from a guard and fights his way to Isolde.
 
-          The court erupts in chaos. Knights rush forward to stop him, but Tristan is formidable. He reaches Isolde and cuts her bonds.
+The court erupts in chaos. Knights rush forward to stop him, but Tristan is formidable. He reaches Isolde and cuts her bonds.
 
-          "Will you come with me?" he asks. "Into exile, with nothing but each other?"
+"Will you come with me?" he asks. "Into exile, with nothing but each other?"
 
-          "Anywhere," she answers. "Always."
+"Anywhere," she answers. "Always."
 
-          They fight their way out of the hall, Tristan holding off multiple attackers while Isolde runs ahead. The escape is desperate, violent, and exhilarating.
+They fight their way out of the hall, Tristan holding off multiple attackers while Isolde runs ahead. The escape is desperate, violent, and exhilarating.
 
-          But they are not free yet. The entire kingdom will be hunting them. They must flee to the one place where royal authority cannot reach: the wild Forest of Morois.`,
+But they are not free yet. The entire kingdom will be hunting them. They must flee to the one place where royal authority cannot reach: the wild Forest of Morois.`,
 
           learningPoints: [
             {
@@ -545,21 +545,21 @@ export const chapter3: Chapter = {
 
       content: `The verdict is pronounced: guilty of treason. The sentence: death by burning for Queen Isolde, and execution by beheading for Sir Tristan.
 
-      But before the sentence can be carried out, King Mark's barons suggest something even crueler. "Give the queen to the lepers who live outside the city walls," one suggests. "A fate worse than death, and one that will serve as a warning to others who might betray their lord."
+But before the sentence can be carried out, King Mark's barons suggest something even crueler. "Give the queen to the lepers who live outside the city walls," one suggests. "A fate worse than death, and one that will serve as a warning to others who might betray their lord."
 
-      Mark, in his anguish and anger, agrees. Isolde will be handed over to the leper colony--a terrible fate, as lepers were outcasts, their disease considered both curse and punishment.
+Mark, in his anguish and anger, agrees. Isolde will be handed over to the leper colony--a terrible fate, as lepers were outcasts, their disease considered both curse and punishment.
 
-      As for Tristan, he is to be led to the execution site the next morning. But that night, as he is transferred between prisons, he is taken through the castle chapel so he might make his confession and final prayers.
+As for Tristan, he is to be led to the execution site the next morning. But that night, as he is transferred between prisons, he is taken through the castle chapel so he might make his confession and final prayers.
 
-      The chapel sits on a high cliff overlooking the sea. Inside, Tristan looks out the window at the sheer drop below. Sharp rocks jut from the surf far below. No one could survive such a fall--or could they?
+The chapel sits on a high cliff overlooking the sea. Inside, Tristan looks out the window at the sheer drop below. Sharp rocks jut from the surf far below. No one could survive such a fall--or could they?
 
-      His guards stand at the chapel door, confident. What condemned man would leap to certain death?
+His guards stand at the chapel door, confident. What condemned man would leap to certain death?
 
-      But Tristan is not ready to die. And he cannot let Isolde suffer her terrible fate.
+But Tristan is not ready to die. And he cannot let Isolde suffer her terrible fate.
 
-      He remembers a story from his youth--a man who dove from these very cliffs and, by God's grace or sheer luck, survived. The window is narrow, the rocks below deadly. But it is a chance.
+He remembers a story from his youth--a man who dove from these very cliffs and, by God's grace or sheer luck, survived. The window is narrow, the rocks below deadly. But it is a chance.
 
-      Tristan says a prayer--not for forgiveness, but for success. And then he leaps.`,
+Tristan says a prayer--not for forgiveness, but for success. And then he leaps.`,
 
       learningPoints: [
         {
@@ -586,17 +586,17 @@ export const chapter3: Chapter = {
 
       content: `Tristan hurls himself through the chapel window. For a moment, he hangs in the air, the sea wind rushing past him, the rocks reaching up like teeth.
 
-      He twists his body, trying to aim for the one spot where deep water meets the cliff--the only place survival is possible. Time seems to slow. He thinks of Isolde, and what will happen to her if he dies.
+He twists his body, trying to aim for the one spot where deep water meets the cliff--the only place survival is possible. Time seems to slow. He thinks of Isolde, and what will happen to her if he dies.
 
-      He strikes the water hard, the impact driving the air from his lungs. The cold sea engulfs him, and for terrible moments he cannot tell up from down. His wounded leg screams in agony.
+He strikes the water hard, the impact driving the air from his lungs. The cold sea engulfs him, and for terrible moments he cannot tell up from down. His wounded leg screams in agony.
 
-      But he surfaces, gasping, alive. The current is strong, pulling him away from the rocks. He swims with desperate strength, making for the shoreline.
+But he surfaces, gasping, alive. The current is strong, pulling him away from the rocks. He swims with desperate strength, making for the shoreline.
 
-      Above, his guards stare down in amazement. Some cross themselves--surely this is a miracle, or the devil's work. But Tristan is already too far away to recapture. The alarm is raised, but he has a lead.
+Above, his guards stare down in amazement. Some cross themselves--surely this is a miracle, or the devil's work. But Tristan is already too far away to recapture. The alarm is raised, but he has a lead.
 
-      Soaking, injured, but free, Tristan drags himself onto a rocky beach. He has no weapons, no horse, no allies. But he is alive, and Isolde still needs him.
+Soaking, injured, but free, Tristan drags himself onto a rocky beach. He has no weapons, no horse, no allies. But he is alive, and Isolde still needs him.
 
-      He knows where they are taking her--to the leper colony on the edge of the forest. He has until nightfall to reach her. It is just enough time.`,
+He knows where they are taking her--to the leper colony on the edge of the forest. He has until nightfall to reach her. It is just enough time.`,
 
       learningPoints: [
         {
@@ -823,23 +823,23 @@ Isolde sometimes weeps when she sees it--not for the lost luxury, but for the un
 
       content: `Weeks pass in the Forest of Morois. Tristan and Isolde learn to survive as exiles.
 
-      They wake with the sun and sleep when darkness falls. Tristan hunts and guards their bower. Isolde tends the fire, cooks their simple meals, and gathers berries and herbs. They drink from clear streams and bathe in forest pools.
+They wake with the sun and sleep when darkness falls. Tristan hunts and guards their bower. Isolde tends the fire, cooks their simple meals, and gathers berries and herbs. They drink from clear streams and bathe in forest pools.
 
-      Their clothes grow worn and patched. Isolde's hands, once carefully tended, become rough with work. Tristan's hair and beard grow long. They look like wild folk now, not court nobles.
+Their clothes grow worn and patched. Isolde's hands, once carefully tended, become rough with work. Tristan's hair and beard grow long. They look like wild folk now, not court nobles.
 
-      But in some ways, they are happier than they ever were at Cornwall's court. Here, they can love openly. No one watches them with suspicious eyes. No one whispers accusations. They are free to be together, to speak freely, to hold each other without fear.
+But in some ways, they are happier than they ever were at Cornwall's court. Here, they can love openly. No one watches them with suspicious eyes. No one whispers accusations. They are free to be together, to speak freely, to hold each other without fear.
 
-      At night, they lie in their bower looking up at stars through the branches. Tristan plays melodies on a simple flute he carved. Isolde sings old Irish songs her mother taught her.
+At night, they lie in their bower looking up at stars through the branches. Tristan plays melodies on a simple flute he carved. Isolde sings old Irish songs her mother taught her.
 
-      "Are you sorry?" Tristan asks one night. "You were a queen. Now you live like a peasant in the wilderness."
+"Are you sorry?" Tristan asks one night. "You were a queen. Now you live like a peasant in the wilderness."
 
-      "I was a queen in a cage," Isolde answers. "Now I am free. No, I am not sorry. Not while we have this."
+"I was a queen in a cage," Isolde answers. "Now I am free. No, I am not sorry. Not while we have this."
 
-      They are not alone in the forest. Tristan's hunting dog, Husdent, followed them from the castle and found them in the woods. The faithful hound becomes their companion, warning them of any approach and sharing their shelter.
+They are not alone in the forest. Tristan's hunting dog, Husdent, followed them from the castle and found them in the woods. The faithful hound becomes their companion, warning them of any approach and sharing their shelter.
 
-      The forest is hard, but they endure. They even find moments of joy. For a brief time, it seems they might live like this forever, forgotten by the world.
+The forest is hard, but they endure. They even find moments of joy. For a brief time, it seems they might live like this forever, forgotten by the world.
 
-      But the world has not forgotten them. King Mark, torn between anger and love, still searches. And the forest cannot hide them forever.`,
+But the world has not forgotten them. King Mark, torn between anger and love, still searches. And the forest cannot hide them forever.`,
 
       learningPoints: [
         {
@@ -872,27 +872,27 @@ Isolde sometimes weeps when she sees it--not for the lost luxury, but for the un
 
       content: `It happens on a summer morning when the heat is oppressive even in the forest shade. Tristan and Isolde, exhausted from a night of little sleep, lie down to rest in their bower.
 
-      They mean to rest only briefly, but the heat and weariness overcome them. They fall into deep sleep, lying side by side on the soft moss.
+They mean to rest only briefly, but the heat and weariness overcome them. They fall into deep sleep, lying side by side on the soft moss.
 
-      But--and this is crucial--Tristan has placed his naked sword between them. It is a ritual they have maintained throughout their exile: a symbol that though they love, they do not fully consummate that love while Isolde remains lawfully wed to Mark.
+But--and this is crucial--Tristan has placed his naked sword between them. It is a ritual they have maintained throughout their exile: a symbol that though they love, they do not fully consummate that love while Isolde remains lawfully wed to Mark.
 
-      It is this detail that saves their lives.
+It is this detail that saves their lives.
 
-      King Mark, guided by his huntsmen, approaches the bower. He has come with armed men, prepared to execute them on the spot. The betrayal has burned in his heart for months, and he is determined to end it.
+King Mark, guided by his huntsmen, approaches the bower. He has come with armed men, prepared to execute them on the spot. The betrayal has burned in his heart for months, and he is determined to end it.
 
-      But when he peers into the bower and sees them sleeping, something stops him. The sword between them catches his eye. He knows what it means--what it has always meant in knightly tradition.
+But when he peers into the bower and sees them sleeping, something stops him. The sword between them catches his eye. He knows what it means--what it has always meant in knightly tradition.
 
-      Mark stands frozen, emotions warring within him. Here are the two people who betrayed him, helpless before him. Justice demands their death. His wounded pride screams for vengeance.
+Mark stands frozen, emotions warring within him. Here are the two people who betrayed him, helpless before him. Justice demands their death. His wounded pride screams for vengeance.
 
-      But the sword speaks of restraint, of honor maintained even in impossible circumstances. And looking at their sleeping faces, he sees not triumphant lovers but weary exiles, aged by hardship, their fine clothes reduced to rags.
+But the sword speaks of restraint, of honor maintained even in impossible circumstances. And looking at their sleeping faces, he sees not triumphant lovers but weary exiles, aged by hardship, their fine clothes reduced to rags.
 
-      Isolde's face is uncovered, and a shaft of sunlight falls directly upon it. Gently, Mark removes his glove and places it to shade her face--his first gesture of tenderness toward her in months.
+Isolde's face is uncovered, and a shaft of sunlight falls directly upon it. Gently, Mark removes his glove and places it to shade her face--his first gesture of tenderness toward her in months.
 
-      Then he makes his decision. He takes Tristan's sword and leaves his own royal blade in its place. He removes his ring and places it where they will see it upon waking. These are his messages: "I have been here. I saw the sword between you. I remember mercy."
+Then he makes his decision. He takes Tristan's sword and leaves his own royal blade in its place. He removes his ring and places it where they will see it upon waking. These are his messages: "I have been here. I saw the sword between you. I remember mercy."
 
-      He signals his men to retreat silently. They withdraw through the forest, leaving the lovers sleeping, spared.
+He signals his men to retreat silently. They withdraw through the forest, leaving the lovers sleeping, spared.
 
-      When Tristan and Isolde wake and discover what happened, they weep--not from relief at being spared, but from grief at Mark's generosity and their own guilt. The sword saved them, but it also reminds them of what they have cost the king they both still love.`,
+When Tristan and Isolde wake and discover what happened, they weep--not from relief at being spared, but from grief at Mark's generosity and their own guilt. The sword saved them, but it also reminds them of what they have cost the king they both still love.`,
 
       learningPoints: [
         {
@@ -1006,11 +1006,11 @@ The king's heart softened. He took off his own glove and placed it where the sun
       prompt: 'What should King Mark do after discovering the lovers?',
       context: `King Mark walks back through the forest, his mind churning. His men wait at a distance, ready to follow whatever command he gives.
 
-      He has spared the lovers in the moment, moved by the sight of the sword and their pitiful condition. But what now? Should he leave them to their exile? Try to bring them back? Pursue justice after all?
+He has spared the lovers in the moment, moved by the sight of the sword and their pitiful condition. But what now? Should he leave them to their exile? Try to bring them back? Pursue justice after all?
 
-      His advisors will demand explanations. Frocin and the hostile barons will call him weak if he does not punish the betrayal. But Mark has seen something in that bower that changed him--evidence that even in their guilt, Tristan and Isolde maintained some shred of honor.
+His advisors will demand explanations. Frocin and the hostile barons will call him weak if he does not punish the betrayal. But Mark has seen something in that bower that changed him--evidence that even in their guilt, Tristan and Isolde maintained some shred of honor.
 
-      The choice before him will determine not just their fates, but his own character. What kind of king is he? What kind of man?`,
+The choice before him will determine not just their fates, but his own character. What kind of king is he? What kind of man?`,
 
       choices: [
         {
@@ -1018,13 +1018,13 @@ The king's heart softened. He took off his own glove and placed it where the sun
           text: 'Leave them in exile--they are punished enough, and the sword proves some honor remains',
           consequence: `Mark decides to leave them in the forest. They have lost everything--crown, comfort, reputation. That is punishment sufficient. The sword between them showed they maintained some boundary, some honor even in their guilt.
 
-          He tells his men: "We found no trace of them. The forest is vast--they may be dead already, or have fled to distant lands. We will search no more."
+He tells his men: "We found no trace of them. The forest is vast--they may be dead already, or have fled to distant lands. We will search no more."
 
-          The barons grumble but cannot disobey a direct order. The search is called off.
+The barons grumble but cannot disobey a direct order. The search is called off.
 
-          Tristan and Isolde, discovering Mark's tokens, understand his message. They have been granted their lives and their forest sanctuary. But they also understand this is not forgiveness--merely a temporary mercy.
+Tristan and Isolde, discovering Mark's tokens, understand his message. They have been granted their lives and their forest sanctuary. But they also understand this is not forgiveness--merely a temporary mercy.
 
-          They remain in the Forest of Morois, living their simple life, grateful for reprieve but uncertain how long it can last. The sword stays between them every night, a promise to the king who spared them.`,
+They remain in the Forest of Morois, living their simple life, grateful for reprieve but uncertain how long it can last. The sword stays between them every night, a promise to the king who spared them.`,
 
           learningPoints: [
             {
@@ -1040,13 +1040,13 @@ The king's heart softened. He took off his own glove and placed it where the sun
           text: 'Send a message offering conditional reconciliation if they agree to separate forever',
           consequence: `Mark decides on a middle path. He will offer terms: Isolde may return to court as queen, and Tristan may return as a knight--but they must swear never to speak privately again, never to meet alone, never to continue their love.
 
-          It is a cruel mercy: life and honor restored, but at the cost of what makes life worth living for them. They can see each other daily but never touch. They can speak in public but never share private words.
+It is a cruel mercy: life and honor restored, but at the cost of what makes life worth living for them. They can see each other daily but never touch. They can speak in public but never share private words.
 
-          Through a messenger (for Mark will not face them himself), the offer is conveyed. Tristan and Isolde must choose: accept these terms and return to civilization, or remain exiles forever.
+Through a messenger (for Mark will not face them himself), the offer is conveyed. Tristan and Isolde must choose: accept these terms and return to civilization, or remain exiles forever.
 
-          The choice tears at them. Return means seeing each other constantly while being forbidden to love. Exile means poverty and hardship, but freedom to be together.
+The choice tears at them. Return means seeing each other constantly while being forbidden to love. Exile means poverty and hardship, but freedom to be together.
 
-          They ask for time to decide, and the messenger agrees to return in three days for their answer. Those three days in the forest, knowing they might be their last together, are among the most bittersweet of their lives.`,
+They ask for time to decide, and the messenger agrees to return in three days for their answer. Those three days in the forest, knowing they might be their last together, are among the most bittersweet of their lives.`,
 
           learningPoints: [
             {

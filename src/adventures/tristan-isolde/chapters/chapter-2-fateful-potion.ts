@@ -32,11 +32,11 @@ export const chapter2: Chapter = {
 
       content: `Tristan returns to Ireland, this time openly as a Cornish knight seeking to win Princess Isolde for King Mark. The dragon terrorizing Ireland is no mere legend--its lair is a burned wasteland of blackened trees and scorched earth.
 
-      Local villagers point Tristan toward the cave with trembling fingers. "Many brave knights have gone in," an old man says. "None have come out. The dragon is a demon, breathing fire and death."
+Local villagers point Tristan toward the cave with trembling fingers. "Many brave knights have gone in," an old man says. "None have come out. The dragon is a demon, breathing fire and death."
 
-      But Tristan is undeterred. He has faced the Morholt; he will face this beast too. For Cornwall. For peace. And, though he barely admits it to himself, for a chance to see Isolde again.
+But Tristan is undeterred. He has faced the Morholt; he will face this beast too. For Cornwall. For peace. And, though he barely admits it to himself, for a chance to see Isolde again.
 
-      He approaches the dark cave entrance, where smoke curls into the grey Irish sky like fingers beckoning him toward doom.`,
+He approaches the dark cave entrance, where smoke curls into the grey Irish sky like fingers beckoning him toward doom.`,
 
       learningPoints: [
         {
@@ -61,11 +61,11 @@ export const chapter2: Chapter = {
 
       content: `The battle with the dragon is fierce and terrifying. The beast is massive, with scales like iron and breath that scorches stone. Its roar shakes the earth, and its tail can shatter trees.
 
-      Tristan fights with desperate courage, dodging gouts of flame and seeking any weakness in the monster's armor. His sword glances off the scales again and again until he finds his opportunity: when the dragon rears back to breathe fire, its throat is exposed.
+Tristan fights with desperate courage, dodging gouts of flame and seeking any weakness in the monster's armor. His sword glances off the scales again and again until he finds his opportunity: when the dragon rears back to breathe fire, its throat is exposed.
 
-      Tristan drives his sword deep into the soft flesh beneath the dragon's jaw. The beast thrashes in its death throes, and Tristan narrowly avoids being crushed. As proof of his victory, he cuts out the dragon's tongue--a grisly trophy.
+Tristan drives his sword deep into the soft flesh beneath the dragon's jaw. The beast thrashes in its death throes, and Tristan narrowly avoids being crushed. As proof of his victory, he cuts out the dragon's tongue--a grisly trophy.
 
-      But the dragon's poison affects Tristan again. Wounded and overcome by toxic fumes, he collapses near the dragon's corpse, the tongue still clutched in his hand.`,
+But the dragon's poison affects Tristan again. Wounded and overcome by toxic fumes, he collapses near the dragon's corpse, the tongue still clutched in his hand.`,
 
       learningPoints: [
         {
@@ -274,9 +274,9 @@ export const chapter2: Chapter = {
       prompt: 'As Isolde, what do you feel about this impossible situation?',
       context: `Isolde stands alone in her chamber after sparing Tristan. The sword fragment that proved his identity lies on the table, glinting in the candlelight.
 
-      Her heart is in turmoil. Part of her still burns with anger at the deception. Part of her mourns her uncle. But another part--a part she doesn't fully understand--is relieved she didn't kill Tristan.
+Her heart is in turmoil. Part of her still burns with anger at the deception. Part of her mourns her uncle. But another part--a part she doesn't fully understand--is relieved she didn't kill Tristan.
 
-      Now she must decide whether to marry King Mark of Cornwall as a sacrifice for peace, knowing his nephew is the man who killed her uncle.`,
+Now she must decide whether to marry King Mark of Cornwall as a sacrifice for peace, knowing his nephew is the man who killed her uncle.`,
 
       choices: [
         {
@@ -284,13 +284,13 @@ export const chapter2: Chapter = {
           text: 'Accept the marriage as her duty to Ireland',
           consequence: `Isolde makes the decision with a heavy heart. She is a princess, and princesses sometimes must marry for political reasons rather than love. If her marriage to King Mark brings peace between Ireland and Cornwall, then at least the Morholt's death will have served a purpose.
 
-          "I will do my duty," she tells her parents. "I will marry King Mark and unite our kingdoms."
+"I will do my duty," she tells her parents. "I will marry King Mark and unite our kingdoms."
 
-          Her father the King is proud. Her mother the Queen looks worried, as if she senses the storm gathering on the horizon.
+Her father the King is proud. Her mother the Queen looks worried, as if she senses the storm gathering on the horizon.
 
-          As she prepares for the journey to Cornwall, Isolde tells herself that she can forget the complex feelings stirred by Tristan. She will be a good wife to King Mark. She will be a good queen.
+As she prepares for the journey to Cornwall, Isolde tells herself that she can forget the complex feelings stirred by Tristan. She will be a good wife to King Mark. She will be a good queen.
 
-          It is a beautiful lie, but she clings to it.`,
+It is a beautiful lie, but she clings to it.`,
 
           learningPoints: [
             {
@@ -305,13 +305,13 @@ export const chapter2: Chapter = {
           text: 'Accept reluctantly, feeling trapped by circumstances',
           consequence: `Isolde feels like a pawn in a game of thrones. She doesn't want this marriage, but what choice does she have? To refuse would shame her father and possibly restart the cycle of violence.
 
-          "I will go to Cornwall," she says, though her voice lacks enthusiasm. "But do not expect me to rejoice in it."
+"I will go to Cornwall," she says, though her voice lacks enthusiasm. "But do not expect me to rejoice in it."
 
-          Her parents see her reluctance but press forward nonetheless. Peace is too important. The dragon is slain, the bargain must be kept.
+Her parents see her reluctance but press forward nonetheless. Peace is too important. The dragon is slain, the bargain must be kept.
 
-          As servants pack her belongings, Isolde feels her freedom slipping away. She will be Queen of Cornwall--powerful in title, perhaps, but powerless over her own fate.
+As servants pack her belongings, Isolde feels her freedom slipping away. She will be Queen of Cornwall--powerful in title, perhaps, but powerless over her own fate.
 
-          And Tristan will be there, a constant reminder of everything complicated and confusing about this arrangement.`,
+And Tristan will be there, a constant reminder of everything complicated and confusing about this arrangement.`,
 
           learningPoints: [
             {
@@ -334,15 +334,15 @@ export const chapter2: Chapter = {
 
       content: `The Irish court holds a grand ceremony. Princess Isolde is officially betrothed to King Mark of Cornwall, with Tristan standing as his uncle's representative. The irony is not lost on Isolde.
 
-      Before they depart, Isolde's mother, the Queen, prepares something special: a love potion of extraordinary power. She calls her most trusted maid, Brangien.
+Before they depart, Isolde's mother, the Queen, prepares something special: a love potion of extraordinary power. She calls her most trusted maid, Brangien.
 
-      "Guard this potion with your life," the Queen whispers. "On Isolde's wedding night, she and King Mark must drink it together. It will bind them in perfect love, ensuring a happy marriage despite the political nature of their union."
+"Guard this potion with your life," the Queen whispers. "On Isolde's wedding night, she and King Mark must drink it together. It will bind them in perfect love, ensuring a happy marriage despite the political nature of their union."
 
-      The potion glimmers golden in its crystal flask, mysterious and potent. Brangien promises to guard it carefully.
+The potion glimmers golden in its crystal flask, mysterious and potent. Brangien promises to guard it carefully.
 
-      As the ship prepares to sail, Isolde stands at the rail, watching Ireland's green hills recede. She is leaving her homeland, perhaps forever, to marry a man she has never met and live alongside the nephew who killed her uncle.
+As the ship prepares to sail, Isolde stands at the rail, watching Ireland's green hills recede. She is leaving her homeland, perhaps forever, to marry a man she has never met and live alongside the nephew who killed her uncle.
 
-      What could possibly go wrong?`,
+What could possibly go wrong?`,
 
       learningPoints: [
         {
@@ -418,15 +418,15 @@ export const chapter2: Chapter = {
 
       content: `The sun beats down mercilessly on the ship's deck. It is one of those rare, sweltering days when the Irish Sea feels more like the Mediterranean. Tristan and Isolde sit in the shade of the sail, having exhausted the safe topics of conversation.
 
-      The ice between them has thawed somewhat. They have spoken of music, of poetry, of the stars. Carefully, they have rebuilt something like the friendship they had when Tristan was "Tantris."
+The ice between them has thawed somewhat. They have spoken of music, of poetry, of the stars. Carefully, they have rebuilt something like the friendship they had when Tristan was "Tantris."
 
-      But neither speaks of the deeper currents running between them--the confusion, the attraction neither will name, the impossible situation they're in.
+But neither speaks of the deeper currents running between them--the confusion, the attraction neither will name, the impossible situation they're in.
 
-      "I am thirsty," Isolde says, fanning herself. "This heat is unbearable."
+"I am thirsty," Isolde says, fanning herself. "This heat is unbearable."
 
-      "I'll ask Brangien for wine," Tristan says, rising.
+"I'll ask Brangien for wine," Tristan says, rising.
 
-      It is such a small, innocent request. But fate turns on small moments.`,
+It is such a small, innocent request. But fate turns on small moments.`,
 
       learningPoints: [
         {
@@ -451,13 +451,13 @@ export const chapter2: Chapter = {
       prompt: 'Brangien brings out a flask--but is it the right one?',
       context: `Brangien is exhausted from her duties and the heat. She goes to fetch wine but in her fatigue, she grabs the wrong flask--not the ordinary wine, but the crystal flask containing the love potion.
 
-      She doesn't realize her mistake. To her tired eyes, both vessels look similar.
+She doesn't realize her mistake. To her tired eyes, both vessels look similar.
 
-      She returns to where Tristan and Isolde sit and offers the flask. "Wine, my lady. Fresh and cool."
+She returns to where Tristan and Isolde sit and offers the flask. "Wine, my lady. Fresh and cool."
 
-      Isolde takes the flask, drinks deeply, then passes it to Tristan who also drinks. It tastes like wine--sweet, refreshing, innocent.
+Isolde takes the flask, drinks deeply, then passes it to Tristan who also drinks. It tastes like wine--sweet, refreshing, innocent.
 
-      They hand the flask back to Brangien and return to their conversation, unaware that everything has just changed.`,
+They hand the flask back to Brangien and return to their conversation, unaware that everything has just changed.`,
 
       choices: [
         {
@@ -465,15 +465,15 @@ export const chapter2: Chapter = {
           text: 'The potion takes effect immediately',
           consequence: `As Tristan and Isolde talk, something shifts. The air between them seems to shimmer, to thicken. Their eyes meet, and neither can look away.
 
-          Isolde's heart begins to race. Every word Tristan speaks sounds like poetry. The sight of his face fills her with an emotion so powerful it frightens her. This isn't mere attraction--this is overwhelming, all-consuming need.
+Isolde's heart begins to race. Every word Tristan speaks sounds like poetry. The sight of his face fills her with an emotion so powerful it frightens her. This isn't mere attraction--this is overwhelming, all-consuming need.
 
-          Tristan feels as if scales have fallen from his eyes. How did he not see before how beautiful Isolde is? How perfect? The thought of her marrying his uncle suddenly feels like a knife in his chest.
+Tristan feels as if scales have fallen from his eyes. How did he not see before how beautiful Isolde is? How perfect? The thought of her marrying his uncle suddenly feels like a knife in his chest.
 
-          "What is happening?" Isolde whispers, even as she knows. The potion. The terrible, powerful potion meant for her wedding night.
+"What is happening?" Isolde whispers, even as she knows. The potion. The terrible, powerful potion meant for her wedding night.
 
-          "We drank the potion," Tristan says, horror and joy warring in his voice. "We drank it."
+"We drank the potion," Tristan says, horror and joy warring in his voice. "We drank it."
 
-          And there is no cure for a love potion. None at all.`,
+And there is no cure for a love potion. None at all.`,
 
           learningPoints: [
             {
@@ -488,15 +488,15 @@ export const chapter2: Chapter = {
           text: 'The potion works gradually, deepening existing feelings',
           consequence: `At first, nothing seems different. But as the afternoon wears on, Tristan notices he cannot stop watching Isolde. Every gesture she makes seems graceful. Every word she speaks seems wise and wonderful.
 
-          For her part, Isolde finds herself laughing more at Tristan's remarks, finding excuses to sit closer, feeling a warmth in her chest that has nothing to do with the sun.
+For her part, Isolde finds herself laughing more at Tristan's remarks, finding excuses to sit closer, feeling a warmth in her chest that has nothing to do with the sun.
 
-          By evening, they realize something is terribly wrong. These feelings are too intense, too sudden. Then Brangien discovers her mistake and comes to them weeping, confessing what she's done.
+By evening, they realize something is terribly wrong. These feelings are too intense, too sudden. Then Brangien discovers her mistake and comes to them weeping, confessing what she's done.
 
-          The love potion hasn't created feelings from nothing--it has taken the attraction that was already budding between them and amplified it a thousandfold, making it irresistible and eternal.
+The love potion hasn't created feelings from nothing--it has taken the attraction that was already budding between them and amplified it a thousandfold, making it irresistible and eternal.
 
-          "What have we done?" Isolde whispers.
+"What have we done?" Isolde whispers.
 
-          "What fate has done to us," Tristan replies, taking her hand. And he does not let go.`,
+"What fate has done to us," Tristan replies, taking her hand. And he does not let go.`,
 
           learningPoints: [
             {
@@ -520,15 +520,15 @@ export const chapter2: Chapter = {
 
       content: `Alone in the cabin, Tristan and Isolde face the truth of what has happened. The potion has bound them together with a love that will not fade, cannot be denied, and must not be acted upon.
 
-      "I love you," Tristan says, the words both a declaration and a lament. "I love you more than life, more than honor, more than heaven itself. And I wish to God I did not, because this love will destroy us both."
+"I love you," Tristan says, the words both a declaration and a lament. "I love you more than life, more than honor, more than heaven itself. And I wish to God I did not, because this love will destroy us both."
 
-      Isolde's eyes fill with tears. "I love you too. From the moment we drank, it was as if my soul recognized yours. But I am promised to your uncle. I will be his wife. This love is impossible."
+Isolde's eyes fill with tears. "I love you too. From the moment we drank, it was as if my soul recognized yours. But I am promised to your uncle. I will be his wife. This love is impossible."
 
-      "I know," Tristan says. "And yet it is real. The potion did not create a lie--it has bound us to a terrible truth."
+"I know," Tristan says. "And yet it is real. The potion did not create a lie--it has bound us to a terrible truth."
 
-      They hold each other as the ship rocks gently, knowing that when they reach Cornwall, they will have to hide this love or watch it tear apart everything they both hold dear.
+They hold each other as the ship rocks gently, knowing that when they reach Cornwall, they will have to hide this love or watch it tear apart everything they both hold dear.
 
-      The greatest love story of the age has begun. And it is already a tragedy.`,
+The greatest love story of the age has begun. And it is already a tragedy.`,
 
       learningPoints: [
         {
@@ -854,15 +854,15 @@ If a love potion works, can the lovers be blamed for their passion? The Church s
 
       content: `The ship reaches Cornwall's rocky shores as the sun sets, painting the sky in gold and crimson. King Mark waits on the dock with his entire court to greet his bride.
 
-      Tristan and Isolde stand at the rail, their hands almost touching but not quite. They have spent the rest of the voyage preparing themselves for this moment--steeling themselves to hide their love, to play their roles, to endure.
+Tristan and Isolde stand at the rail, their hands almost touching but not quite. They have spent the rest of the voyage preparing themselves for this moment--steeling themselves to hide their love, to play their roles, to endure.
 
-      "I will be faithful to my uncle," Tristan whispers. "In every way but one."
+"I will be faithful to my uncle," Tristan whispers. "In every way but one."
 
-      "And I will be a good wife to King Mark," Isolde replies. "In every way I can bear."
+"And I will be a good wife to King Mark," Isolde replies. "In every way I can bear."
 
-      As the ship docks, they separate. Tristan bows formally, the perfect nephew. Isolde stands regally, the perfect princess.
+As the ship docks, they separate. Tristan bows formally, the perfect nephew. Isolde stands regally, the perfect princess.
 
-      Only Brangien sees the way their eyes linger on each other, full of longing and despair.`,
+Only Brangien sees the way their eyes linger on each other, full of longing and despair.`,
 
       learningPoints: [
         {
@@ -886,15 +886,15 @@ If a love potion works, can the lovers be blamed for their passion? The Church s
 
       content: `The wedding takes place with great ceremony. Isolde wears white and gold, and King Mark is kind and gentle, pleased with his beautiful bride. The hall celebrates late into the night.
 
-      But when the wedding night comes, Isolde and Brangien enact a desperate plan. In the darkness of the bedchamber, Brangien takes Isolde's place. King Mark, in the dark and after much wine, does not realize the substitution.
+But when the wedding night comes, Isolde and Brangien enact a desperate plan. In the darkness of the bedchamber, Brangien takes Isolde's place. King Mark, in the dark and after much wine, does not realize the substitution.
 
-      Isolde waits in an adjacent chamber, her heart breaking. She is married but has deceived her husband on the very first night. The web of lies has already begun, woven from the moment the potion was drunk.
+Isolde waits in an adjacent chamber, her heart breaking. She is married but has deceived her husband on the very first night. The web of lies has already begun, woven from the moment the potion was drunk.
 
-      When morning comes, Brangien returns to Isolde, and they embrace, both women weeping for the impossible situation they're in.
+When morning comes, Brangien returns to Isolde, and they embrace, both women weeping for the impossible situation they're in.
 
-      "It is done," Brangien whispers. "Your secret is kept. But oh, my lady, how long can this last?"
+"It is done," Brangien whispers. "Your secret is kept. But oh, my lady, how long can this last?"
 
-      "As long as it must," Isolde replies. But she does not know the answer either.`,
+"As long as it must," Isolde replies. But she does not know the answer either.`,
 
       learningPoints: [
         {

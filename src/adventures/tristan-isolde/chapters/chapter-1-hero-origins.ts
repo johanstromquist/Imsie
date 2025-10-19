@@ -33,9 +33,9 @@ export const chapter1: Chapter = {
 
       content: `In the windswept kingdom of Cornwall, where stone castles cling to dramatic cliffs above the crashing sea, King Mark rules with wisdom and grace. His court is a place of honor, where knights gather to feast and tell tales of valor.
 
-      But a shadow hangs over Cornwall. Every year, the kingdom must pay a terrible tribute to Ireland: thirty young men and thirty maidens, taken as slaves. This humiliation has gone on for too long, and the people whisper of rebellion.
+But a shadow hangs over Cornwall. Every year, the kingdom must pay a terrible tribute to Ireland: thirty young men and thirty maidens, taken as slaves. This humiliation has gone on for too long, and the people whisper of rebellion.
 
-      The cause of this tribute? Years ago, Cornwall lost a war with Ireland. The price of peace was this annual shame, enforced by the threat of the fearsome Irish champion--the Morholt, brother to the Irish queen, a giant of a man whom no Cornish knight has dared to challenge.`,
+The cause of this tribute? Years ago, Cornwall lost a war with Ireland. The price of peace was this annual shame, enforced by the threat of the fearsome Irish champion--the Morholt, brother to the Irish queen, a giant of a man whom no Cornish knight has dared to challenge.`,
 
       learningPoints: [
         {
@@ -59,11 +59,11 @@ export const chapter1: Chapter = {
 
       content: `Into this troubled court arrives a young man of remarkable bearing. Orphaned as a child, Tristan has been raised by loyal retainers who taught him the arts of knighthood, music, and courtesy.
 
-      When King Mark sees the youth, he is struck by a resemblance to his own late sister. Investigation reveals the truth: Tristan is Mark's nephew, the rightful heir to Cornwall's throne.
+When King Mark sees the youth, he is struck by a resemblance to his own late sister. Investigation reveals the truth: Tristan is Mark's nephew, the rightful heir to Cornwall's throne.
 
-      King Mark embraces his newfound kinsman with joy, and Tristan quickly proves himself worthy of his lineage. He excels in swordplay, can play the harp like a master minstrel, and speaks with the eloquence of a courtier. The court loves him, and Mark treats him as a son.
+King Mark embraces his newfound kinsman with joy, and Tristan quickly proves himself worthy of his lineage. He excels in swordplay, can play the harp like a master minstrel, and speaks with the eloquence of a courtier. The court loves him, and Mark treats him as a son.
 
-      But Tristan's arrival comes at a fateful time. The Morholt has returned to collect this year's tribute.`,
+But Tristan's arrival comes at a fateful time. The Morholt has returned to collect this year's tribute.`,
 
       learningPoints: [
         {
@@ -88,7 +88,7 @@ export const chapter1: Chapter = {
       prompt: 'What should Tristan do?',
       context: `The great hall falls silent as the Morholt's messenger delivers the demand: thirty young men and thirty maidens, or face Ireland's wrath. King Mark looks defeated--no champion has come forward in years.
 
-      Tristan feels the weight of every eye in the hall. He is young, untested in real battle, but he cannot bear to see his uncle's shame and his people's suffering. Yet the Morholt is a giant, a veteran of countless battles, feared throughout the Celtic lands.`,
+Tristan feels the weight of every eye in the hall. He is young, untested in real battle, but he cannot bear to see his uncle's shame and his people's suffering. Yet the Morholt is a giant, a veteran of countless battles, feared throughout the Celtic lands.`,
 
       choices: [
         {
@@ -96,11 +96,11 @@ export const chapter1: Chapter = {
           text: 'Volunteer to fight the Morholt in single combat',
           consequence: `Tristan steps forward, his voice ringing clear: "Uncle, I will be Cornwall's champion. I will face the Morholt and free our people from this tribute."
 
-          The hall erupts in cheers and gasps. King Mark's face shows both pride and terror for his nephew. The Morholt's messenger smirks--he has seen many brave fools accept this challenge, and none have survived.
+The hall erupts in cheers and gasps. King Mark's face shows both pride and terror for his nephew. The Morholt's messenger smirks--he has seen many brave fools accept this challenge, and none have survived.
 
-          "You will die, boy," the messenger says. "The Morholt has killed every knight who has faced him. Your courage is admirable, but it will make you no less dead."
+"You will die, boy," the messenger says. "The Morholt has killed every knight who has faced him. Your courage is admirable, but it will make you no less dead."
 
-          But Tristan's mind is made up. Honor demands it. Duty demands it. Cornwall needs a champion, and he will not let fear stop him.`,
+But Tristan's mind is made up. Honor demands it. Duty demands it. Cornwall needs a champion, and he will not let fear stop him.`,
 
           learningPoints: [
             {
@@ -115,11 +115,11 @@ export const chapter1: Chapter = {
           text: 'Wait to see if another knight volunteers first',
           consequence: `Tristan hesitates, waiting for one of the veteran knights to step forward. But the hall remains silent. The older warriors have seen the Morholt fight; they know what facing him means.
 
-          As the silence stretches, Tristan realizes the truth: no one else will do this. If he does not act, sixty young people will be taken into slavery.
+As the silence stretches, Tristan realizes the truth: no one else will do this. If he does not act, sixty young people will be taken into slavery.
 
-          His hesitation lasts only moments, but it teaches him a valuable lesson: sometimes the hero must act not because he is ready, but because he is needed.
+His hesitation lasts only moments, but it teaches him a valuable lesson: sometimes the hero must act not because he is ready, but because he is needed.
 
-          "Uncle," Tristan says, stepping forward at last, "I will be Cornwall's champion."`,
+"Uncle," Tristan says, stepping forward at last, "I will be Cornwall's champion."`,
 
           learningPoints: [
             {
@@ -143,17 +143,17 @@ export const chapter1: Chapter = {
 
       content: `The combat takes place on a small island near the coast, according to ancient custom. Tristan and the Morholt face each other on the sandy ground, the sea crashing around them.
 
-      The Morholt is indeed a giant--half again Tristan's size, with arms like tree trunks and a sword nearly as long as Tristan is tall. His red beard bristles as he laughs at the young knight before him.
+The Morholt is indeed a giant--half again Tristan's size, with arms like tree trunks and a sword nearly as long as Tristan is tall. His red beard bristles as he laughs at the young knight before him.
 
-      "Go home, boy," the Morholt says. "I have no wish to kill someone barely out of childhood. Cornwall will pay the tribute, as always."
+"Go home, boy," the Morholt says. "I have no wish to kill someone barely out of childhood. Cornwall will pay the tribute, as always."
 
-      But Tristan raises his sword. "Cornwall pays no more tribute. Today, one of us dies--and it will not be me."
+But Tristan raises his sword. "Cornwall pays no more tribute. Today, one of us dies--and it will not be me."
 
-      The battle is fierce and brutal. The Morholt's strength is immense, each blow of his sword like a hammer strike. But Tristan is faster, more agile, and fighting for something the Morholt is not: his people's freedom.
+The battle is fierce and brutal. The Morholt's strength is immense, each blow of his sword like a hammer strike. But Tristan is faster, more agile, and fighting for something the Morholt is not: his people's freedom.
 
-      Finally, Tristan sees his opening. He dodges a massive swing and drives his sword deep into the Morholt's skull. The force of the blow is so great that a fragment of Tristan's blade breaks off, remaining lodged in the wound. The giant warrior falls, defeated at last.
+Finally, Tristan sees his opening. He dodges a massive swing and drives his sword deep into the Morholt's skull. The force of the blow is so great that a fragment of Tristan's blade breaks off, remaining lodged in the wound. The giant warrior falls, defeated at last.
 
-      But as Tristan stands victorious, he realizes something terrible: the Morholt's blade was poisoned. A dark wound on Tristan's side begins to burn with unnatural pain.`,
+But as Tristan stands victorious, he realizes something terrible: the Morholt's blade was poisoned. A dark wound on Tristan's side begins to burn with unnatural pain.`,
 
       learningPoints: [
         {
@@ -177,11 +177,11 @@ export const chapter1: Chapter = {
 
       content: `The poison spreads through Tristan's body, turning his wound black and filling the air with a terrible stench. No healer in Cornwall can cure him. As weeks pass, Tristan grows weaker, the poison consuming him from within.
 
-      In desperation, Tristan makes a strange request: "Put me in a boat with my harp and my sword. Let the sea take me where it will. If I am meant to live, God will guide me to a cure. If I am meant to die, let me die on the open water, not rotting in a sickbed."
+In desperation, Tristan makes a strange request: "Put me in a boat with my harp and my sword. Let the sea take me where it will. If I am meant to live, God will guide me to a cure. If I am meant to die, let me die on the open water, not rotting in a sickbed."
 
-      King Mark reluctantly agrees. They place Tristan in a small boat with provisions, his harp, and his sword. As the boat drifts away from Cornwall's shores, Mark watches through tears, certain he will never see his nephew again.
+King Mark reluctantly agrees. They place Tristan in a small boat with provisions, his harp, and his sword. As the boat drifts away from Cornwall's shores, Mark watches through tears, certain he will never see his nephew again.
 
-      But the currents and winds have their own plan. The boat drifts north and east, carried by forces beyond mortal control, toward the shores of Ireland--the land of Tristan's enemies, and his only hope.`,
+But the currents and winds have their own plan. The boat drifts north and east, carried by forces beyond mortal control, toward the shores of Ireland--the land of Tristan's enemies, and his only hope.`,
 
       learningPoints: [
         {
@@ -255,19 +255,19 @@ export const chapter1: Chapter = {
 
       content: `Days pass. The small boat drifts on the currents, guided by winds and tides beyond human reckoning. Tristan lies in the bottom of the vessel, drifting in and out of fevered consciousness. Sometimes he dreams of Cornwall. Sometimes he plays phantom melodies on his harp, though his fingers are too weak to actually touch the strings.
 
-      Then, one grey morning, the boat scrapes against sand. Irish fishermen, checking their nets along the rocky shore, spot the drifting vessel and wade out to investigate.
+Then, one grey morning, the boat scrapes against sand. Irish fishermen, checking their nets along the rocky shore, spot the drifting vessel and wade out to investigate.
 
-      "There's a man in it!" one shouts. "Barely alive, by the look of him. And smell that wound--poison, or I'm no judge."
+"There's a man in it!" one shouts. "Barely alive, by the look of him. And smell that wound--poison, or I'm no judge."
 
-      They pull the boat ashore and lift Tristan carefully. His fine clothes, though salt-stained, mark him as a man of quality. His harp and sword suggest a knight with artistic training--rare and valuable.
+They pull the boat ashore and lift Tristan carefully. His fine clothes, though salt-stained, mark him as a man of quality. His harp and sword suggest a knight with artistic training--rare and valuable.
 
-      "Take him to the castle," the eldest fisherman decides. "If he's someone important, there'll be a reward for saving him. And if he's dying anyway, better he does it under a lord's roof than on our beach. The King's daughter knows healing--if anyone can save him, she can."
+"Take him to the castle," the eldest fisherman decides. "If he's someone important, there'll be a reward for saving him. And if he's dying anyway, better he does it under a lord's roof than on our beach. The King's daughter knows healing--if anyone can save him, she can."
 
-      They fashion a litter and carry Tristan up the winding path toward the Irish castle. He stirs briefly, muttering a name: "Tantris... my name is Tantris..." The fishermen exchange puzzled glances but say nothing.
+They fashion a litter and carry Tristan up the winding path toward the Irish castle. He stirs briefly, muttering a name: "Tantris... my name is Tantris..." The fishermen exchange puzzled glances but say nothing.
 
-      None of them recognize the man they're carrying. None know he is the knight who killed their champion, the Morholt, barely two months past. Fate has a dark sense of humor, bringing the killer directly to the victim's family for aid.
+None of them recognize the man they're carrying. None know he is the knight who killed their champion, the Morholt, barely two months past. Fate has a dark sense of humor, bringing the killer directly to the victim's family for aid.
 
-      Word spreads through the castle: a mysterious stranger, gravely wounded, has washed ashore. Princess Isolde, hearing of the poisoned wound and the fishermen's description, gathers her healing supplies and descends to the chamber where the stranger lies.`,
+Word spreads through the castle: a mysterious stranger, gravely wounded, has washed ashore. Princess Isolde, hearing of the poisoned wound and the fishermen's description, gathers her healing supplies and descends to the chamber where the stranger lies.`,
 
       learningPoints: [
         {
@@ -522,11 +522,11 @@ A wound that blackens and stinks shows the presence of evil humors. These must b
 
       content: `Under Isolde's care, Tristan slowly recovers. The poison is drawn out, the wound begins to heal, and color returns to his face. During the long weeks of healing, Tristan plays his harp for Isolde, teaching her new songs and learning Irish melodies from her.
 
-      They spend hours together in the healing chamber, talking of music, poetry, and philosophy. Isolde is unlike any woman Tristan has known--as skilled with words as she is with herbs, quick to laugh, and fearless in debate.
+They spend hours together in the healing chamber, talking of music, poetry, and philosophy. Isolde is unlike any woman Tristan has known--as skilled with words as she is with herbs, quick to laugh, and fearless in debate.
 
-      For her part, Isolde finds "Tantris" fascinating. He is courtly yet genuine, skilled yet humble, and his music moves her deeply. She looks forward to their daily conversations, though she tells herself it is merely the satisfaction of seeing a patient recover.
+For her part, Isolde finds "Tantris" fascinating. He is courtly yet genuine, skilled yet humble, and his music moves her deeply. She looks forward to their daily conversations, though she tells herself it is merely the satisfaction of seeing a patient recover.
 
-      Neither admits, even to themselves, that something deeper is beginning to grow between them.`,
+Neither admits, even to themselves, that something deeper is beginning to grow between them.`,
 
       learningPoints: [
         {
@@ -598,17 +598,17 @@ A wound that blackens and stinks shows the presence of evil humors. These must b
 
       content: `Fully healed, Tristan knows he must leave Ireland before his identity is discovered. He bids farewell to Isolde, thanking her for saving his life.
 
-      "You have given me more than healing, lady," Tristan says. "You have given me hope and beauty in dark times. I will never forget your kindness."
+"You have given me more than healing, lady," Tristan says. "You have given me hope and beauty in dark times. I will never forget your kindness."
 
-      Isolde feels a strange pang as she watches him prepare to leave. "Will you return to your homeland, Tantris?"
+Isolde feels a strange pang as she watches him prepare to leave. "Will you return to your homeland, Tantris?"
 
-      "I must," Tristan replies. "My lord needs me. But I will never forget Ireland, or you."
+"I must," Tristan replies. "My lord needs me. But I will never forget Ireland, or you."
 
-      Their parting is bittersweet. Neither knows they will meet again under very different, and far more complicated, circumstances.
+Their parting is bittersweet. Neither knows they will meet again under very different, and far more complicated, circumstances.
 
-      When Tristan returns to Cornwall, King Mark's joy knows no bounds. The nephew he thought dead has returned, healthy and whole. The court celebrates for three days.
+When Tristan returns to Cornwall, King Mark's joy knows no bounds. The nephew he thought dead has returned, healthy and whole. The court celebrates for three days.
 
-      But fate is not done with Tristan and Ireland. Not by far.`,
+But fate is not done with Tristan and Ireland. Not by far.`,
 
       learningPoints: [
         {
@@ -633,15 +633,15 @@ A wound that blackens and stinks shows the presence of evil humors. These must b
       prompt: 'A new challenge arises--what should Tristan do?',
       context: `Months pass. Cornwall prospers without the burden of tribute. But King Mark's barons begin to pressure him to marry and produce an heir.
 
-      "You should wed, my lord," they say. "Cornwall needs stability. What if something happens to you?"
+"You should wed, my lord," they say. "Cornwall needs stability. What if something happens to you?"
 
-      Mark is reluctant--he has grown to love Tristan as a son and wishes him to inherit. But the pressure mounts.
+Mark is reluctant--he has grown to love Tristan as a son and wishes him to inherit. But the pressure mounts.
 
-      Then news arrives from Ireland: a fearsome dragon is terrorizing the kingdom. The Irish King has declared that whoever slays the dragon will marry Princess Isolde and unite the two kingdoms in peace.
+Then news arrives from Ireland: a fearsome dragon is terrorizing the kingdom. The Irish King has declared that whoever slays the dragon will marry Princess Isolde and unite the two kingdoms in peace.
 
-      Mark's barons see an opportunity: "Send someone to slay the dragon and win Isolde for you, sire! A marriage alliance with Ireland would end all hostilities."
+Mark's barons see an opportunity: "Send someone to slay the dragon and win Isolde for you, sire! A marriage alliance with Ireland would end all hostilities."
 
-      Tristan realizes this could secure peace for Cornwall--but it would also bring Isolde to Cornwall as his uncle's bride. The thought troubles him more than he wants to admit.`,
+Tristan realizes this could secure peace for Cornwall--but it would also bring Isolde to Cornwall as his uncle's bride. The thought troubles him more than he wants to admit.`,
 
       choices: [
         {
@@ -649,11 +649,11 @@ A wound that blackens and stinks shows the presence of evil humors. These must b
           text: 'Volunteer to win Isolde for King Mark',
           consequence: `Despite his conflicted feelings, Tristan steps forward. "Uncle, I will go to Ireland and slay this dragon. A marriage alliance with Ireland would be the final proof that our kingdoms are at peace."
 
-          King Mark is both pleased and worried. "Nephew, you have already risked your life for Cornwall once. Must you do so again?"
+King Mark is both pleased and worried. "Nephew, you have already risked your life for Cornwall once. Must you do so again?"
 
-          "It is my duty and my honor," Tristan replies.
+"It is my duty and my honor," Tristan replies.
 
-          What he does not say: part of him wants to see Isolde again, even knowing she will be another man's wife. Already, fate's web is drawing tighter around them both.`,
+What he does not say: part of him wants to see Isolde again, even knowing she will be another man's wife. Already, fate's web is drawing tighter around them both.`,
 
           learningPoints: [
             {
@@ -668,11 +668,11 @@ A wound that blackens and stinks shows the presence of evil humors. These must b
           text: 'Suggest another knight should attempt the quest',
           consequence: `"Uncle, perhaps another knight should attempt this quest," Tristan says carefully. "I am your heir--you should not risk me unnecessarily."
 
-          But King Mark shakes his head. "The other knights do not have your skill, nor your gift for diplomacy. Besides, who better to represent Cornwall than my own nephew?"
+But King Mark shakes his head. "The other knights do not have your skill, nor your gift for diplomacy. Besides, who better to represent Cornwall than my own nephew?"
 
-          The barons agree, and Tristan finds himself committed to the quest whether he volunteered or not. Perhaps fate cannot be avoided, only delayed.
+The barons agree, and Tristan finds himself committed to the quest whether he volunteered or not. Perhaps fate cannot be avoided, only delayed.
 
-          As he prepares for the journey, Tristan admits to himself the truth: part of him wants to see Isolde again, regardless of the cost.`,
+As he prepares for the journey, Tristan admits to himself the truth: part of him wants to see Isolde again, regardless of the cost.`,
 
           learningPoints: [
             {

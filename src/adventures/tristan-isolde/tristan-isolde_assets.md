@@ -581,29 +581,29 @@ Medieval artwork: Isolde the Fair being received back at Cornwall court by King 
 - **Usage:** Chapter 4, Scene 3
 https://cdn.midjourney.com/cbd2abdd-ca45-4750-af2e-b72fc73b4aa4/0_0.png
 
-#### 12. Meeting Isolde of the White Hands
+#### 12. White Hand: Meeting Isolde of the White Hands
 
 - **File:** `scenes/meeting-second-isolde.png`
 - **Prompt:**
 
 ```
-Medieval artwork: Tristan meeting Isolde of the White Hands in Brittany garden, she wears white and blue gown contrasting with Isolde the Fair's colors, pretty but clearly not the same passion, formal courtly introduction, Tristan looks distant despite her beauty, Breton castle in background. In the style of medieval manuscript illumination with Pre-Raphaelite detail and Celtic knotwork, rich jewel tones (emerald green, sapphire blue, ruby red, gold), romantic yet historically evocative, lush natural settings --ar 3:2
+Medieval artwork: Tristan meeting Isolde of the White Hands in Brittany garden, she has DARK HAIR (brunette or black) and wears white and blue gown contrasting with Isolde the Fair's golden/auburn hair and green/gold colors, pretty but clearly not the same passion, formal courtly introduction, Tristan looks distant despite her beauty, Breton castle in background. In the style of medieval manuscript illumination with Pre-Raphaelite detail and Celtic knotwork, rich jewel tones (emerald green, sapphire blue, ruby red, gold), romantic yet historically evocative, lush natural settings --ar 3:2
 ```
 
 - **Usage:** Chapter 4, Scene 6
-https://cdn.midjourney.com/b8aaf957-e0f1-4363-b3e6-3f91bff4c183/0_0.png
+https://cdn.midjourney.com/d9425830-f7d8-4c45-9fd2-e38a895516a3/0_0.png
 
-#### 13. Unconsummated Wedding Night
+#### 13. White Hand: Unconsummated Wedding Night
 
 - **File:** `scenes/wedding-night.png`
 - **Prompt:**
 
 ```
-Medieval artwork: Tristan and Isolde of the White Hands in wedding chamber, Tristan looking away toward window showing stars, Isolde of the White Hands looking confused and hurt, marriage unconsummated, Tristan wearing wedding ring but thinking of Isolde the Fair, tragic unfairness to new bride, melancholic. In the style of medieval manuscript illumination with Pre-Raphaelite detail and Celtic knotwork, rich jewel tones (emerald green, sapphire blue, ruby red, gold), romantic yet historically evocative, lush natural settings --ar 3:2
+Medieval artwork: Tristan and Isolde of the White Hands (DARK HAIRED brunette woman in white gown) in wedding chamber, Tristan looking away toward window showing stars, Isolde of the White Hands looking confused and hurt, marriage unconsummated, Tristan wearing wedding ring but thinking of Isolde the Fair, tragic unfairness to new bride, melancholic. In the style of medieval manuscript illumination with Pre-Raphaelite detail and Celtic knotwork, rich jewel tones (emerald green, sapphire blue, ruby red, gold), romantic yet historically evocative, lush natural settings --ar 3:2
 ```
 
 - **Usage:** Chapter 4, Scene 9
-https://cdn.midjourney.com/40c8291e-b580-4521-9d4b-6a4892ae81be/0_0.png
+https://cdn.midjourney.com/0d3d3aae-7473-463b-b029-5d7e9dfffe98/0_0.png
 
 #### 14. Tristan as Fool
 
@@ -665,29 +665,29 @@ Medieval artwork: Isolde the Fair in Cornwall chamber receiving messenger's news
 - **Usage:** Chapter 5, Scene 6
 https://cdn.midjourney.com/39b5e5b6-08e5-4229-b0e7-63d1f200a7e5/0_0.png
 
-#### 19. Isolde of White Hands' Jealousy
+#### 19. White Hand: Isolde of White Hands' Jealousy
 
 - **File:** `scenes/jealous-isolde.png`
 - **Prompt:**
 
 ```
-Medieval artwork: Isolde of the White Hands eavesdropping at door, overhearing the white/black sail plan, her face showing hurt and growing jealousy and anger, shadows emphasizing her conflicted emotions, Brittany castle corridor, tragic antagonist moment, sympathetic villain. In the style of medieval manuscript illumination with Pre-Raphaelite detail and Celtic knotwork, rich jewel tones (emerald green, sapphire blue, ruby red, gold), romantic yet historically evocative, lush natural settings --ar 3:2
+Medieval artwork: Isolde of the White Hands (DARK HAIRED brunette woman in white and blue) eavesdropping at door, overhearing the white/black sail plan, her face showing hurt and growing jealousy and anger, shadows emphasizing her conflicted emotions, Brittany castle corridor, tragic antagonist moment, sympathetic villain. In the style of medieval manuscript illumination with Pre-Raphaelite detail and Celtic knotwork, rich jewel tones (emerald green, sapphire blue, ruby red, gold), romantic yet historically evocative, lush natural settings --ar 3:2
 ```
 
 - **Usage:** Chapter 5, Scene 9
-https://cdn.midjourney.com/8474e3b9-c390-4792-b510-baf3389d4fc3/0_0.png
+https://cdn.midjourney.com/4d1f35cd-db5f-4f82-9136-697764fd870d/0_0.png
 
-#### 20. The Fatal Lie
+#### 20. White Hand: The Fatal Lie
 
 - **File:** `scenes/fatal-lie.png`
 - **Prompt:**
 
 ```
-Medieval artwork: Isolde of the White Hands leaning over dying Tristan, telling him the lie "the sail is black," visible through window behind her is the ship with WHITE sail, dramatic irony, Tristan's face showing despair and death approaching, tragic deception, moment of ultimate tragedy. In the style of medieval manuscript illumination with Pre-Raphaelite detail and Celtic knotwork, rich jewel tones (emerald green, sapphire blue, ruby red, gold), romantic yet historically evocative, lush natural settings --ar 3:2
+Medieval artwork: Isolde of the White Hands (DARK HAIRED brunette woman in white and blue) leaning over dying Tristan, telling him the lie "the sail is black," visible through window behind her is the ship with WHITE sail, dramatic irony, Tristan's face showing despair and death approaching, tragic deception, moment of ultimate tragedy. In the style of medieval manuscript illumination with Pre-Raphaelite detail and Celtic knotwork, rich jewel tones (emerald green, sapphire blue, ruby red, gold), romantic yet historically evocative, lush natural settings --ar 3:2
 ```
 
 - **Usage:** Chapter 5, Scene 11
-https://cdn.midjourney.com/3386f02f-6616-4252-b79a-b344732537c3/0_0.png
+https://cdn.midjourney.com/6e8c3ad5-a908-4e15-9a69-d9dc6543a808/0_0.png
 
 #### 21. Tristan's Death
 
@@ -803,17 +803,17 @@ Medieval artwork: Portrait of King Mark of Cornwall, middle-aged king with noble
 - **Usage:** Dialogue scenes throughout
 https://cdn.midjourney.com/b1d403f7-0456-42d2-bf24-7c39a6daebdd/0_0.png
 
-#### 6. Isolde of the White Hands
+#### 6. White Hand: Isolde of the White Hands
 
 - **File:** `portraits/isolde-white-hands.png`
 - **Prompt:**
 
 ```
-Medieval artwork: Portrait of Isolde of the White Hands, pretty young Breton woman, dark hair, pale skin, wearing white and blue gown (contrasting with Isolde the Fair's green and gold), innocent appearance, pure but ultimately capable of jealous rage, sympathetic secondary character. In the style of medieval manuscript illumination with Pre-Raphaelite detail and Celtic knotwork, rich jewel tones (emerald green, sapphire blue, ruby red, gold), romantic yet historically evocative, lush natural settings --ar 1:1
+Medieval artwork: Portrait of Isolde of the White Hands, pretty young Breton woman with DARK HAIR (brunette or black), pale skin, wearing white and blue gown (contrasting with Isolde the Fair's golden/auburn hair and green/gold clothing), innocent appearance, pure but ultimately capable of jealous rage, sympathetic secondary character. In the style of medieval manuscript illumination with Pre-Raphaelite detail and Celtic knotwork, rich jewel tones (emerald green, sapphire blue, ruby red, gold), romantic yet historically evocative, lush natural settings --ar 1:1
 ```
 
 - **Usage:** Dialogue scenes Chapter 4-5
-https://cdn.midjourney.com/39821936-23e0-4998-9330-ee5636797b84/0_0.png
+https://cdn.midjourney.com/6f81dddc-cb0a-400d-84f4-86335437501d/0_0.png
 
 #### 7. The Morholt
 

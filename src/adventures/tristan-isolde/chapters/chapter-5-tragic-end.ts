@@ -34,13 +34,13 @@ export const chapter5: Chapter = {
 
       content: `In his chamber in Brittany, Tristan lies dying. The wound he received from the poisoned spear will not heal--it festers and blackens, spreading its venom through his body just as the Morholt's poisoned blade did years ago.
 
-      Physicians come and go, shaking their heads. Isolde of the White Hands tends him dutifully, but her remedies have no effect. The wound is beyond mortal healing.
+Physicians come and go, shaking their heads. Isolde of the White Hands tends him dutifully, but her remedies have no effect. The wound is beyond mortal healing.
 
-      Tristan knows the terrible truth: he has been poisoned before, and only one person in the world possesses the skill to save him now. The same person who healed him when he first lay dying in Ireland, who saved him from the dragon's poison, who knows the secret arts of Celtic healing.
+Tristan knows the terrible truth: he has been poisoned before, and only one person in the world possesses the skill to save him now. The same person who healed him when he first lay dying in Ireland, who saved him from the dragon's poison, who knows the secret arts of Celtic healing.
 
-      Isolde the Fair. His true love, the woman he has not seen in years, who lives far across the sea in Cornwall as King Mark's queen.
+Isolde the Fair. His true love, the woman he has not seen in years, who lives far across the sea in Cornwall as King Mark's queen.
 
-      As fever consumes him and death draws near, Tristan makes a desperate decision. He must send for her. One last time, he will see the woman he has loved beyond reason, beyond duty, beyond life itself.`,
+As fever consumes him and death draws near, Tristan makes a desperate decision. He must send for her. One last time, he will see the woman he has loved beyond reason, beyond duty, beyond life itself.`,
 
       learningPoints: [
         {
@@ -175,13 +175,13 @@ export const chapter5: Chapter = {
 
       content: `Kaherdin prepares for his desperate voyage. He chooses his fastest ship, a crew of loyal sailors who ask no questions, and provisions for a swift journey across treacherous waters.
 
-      Tristan's ring burns in his pocket--a simple band of gold that has touched Isolde's hand, that carries years of love and longing within its circle.
+Tristan's ring burns in his pocket--a simple band of gold that has touched Isolde's hand, that carries years of love and longing within its circle.
 
-      As the ship leaves Brittany"s harbor, Tristan watches from his window, his fevered eyes straining to see the vessel disappear beyond the horizon. Everything now depends on Kaherdin's speed, Isolde's willingness to come, and whether Tristan can hold onto life long enough for her arrival.
+As the ship leaves Brittany"s harbor, Tristan watches from his window, his fevered eyes straining to see the vessel disappear beyond the horizon. Everything now depends on Kaherdin's speed, Isolde's willingness to come, and whether Tristan can hold onto life long enough for her arrival.
 
-      In the sickroom, Isolde of the White Hands also watches the ship depart. She has overheard everything. She knows her husband's brother sails to fetch the woman Tristan truly loves--the woman whose very name has haunted their unconsummated marriage.
+In the sickroom, Isolde of the White Hands also watches the ship depart. She has overheard everything. She knows her husband's brother sails to fetch the woman Tristan truly loves--the woman whose very name has haunted their unconsummated marriage.
 
-      Jealousy, hurt, and anger bloom in her heart like poison spreading through a wound.`,
+Jealousy, hurt, and anger bloom in her heart like poison spreading through a wound.`,
 
       learningPoints: [
         {
@@ -207,11 +207,11 @@ export const chapter5: Chapter = {
       prompt: 'As Tristan grows weaker, he reviews the plan with those who remain. What details matter most?',
       context: `Days pass. Tristan's condition worsens. He can no longer leave his bed, can barely speak. But his mind remains fixed on one thing: the signal that will tell him whether Isolde is coming.
 
-      He gathers his strength to speak to those around him--servants, physicians, and his wife--explaining the arrangement so that when the ship returns, someone can tell him what color the sail bears.
+He gathers his strength to speak to those around him--servants, physicians, and his wife--explaining the arrangement so that when the ship returns, someone can tell him what color the sail bears.
 
-      "Remember," he whispers hoarsely, "if the sail is white, Isolde the Fair comes to heal me. If it is black, I am lost."
+"Remember," he whispers hoarsely, "if the sail is white, Isolde the Fair comes to heal me. If it is black, I am lost."
 
-      But in making the signal so widely known, he has ensured that Isolde of the White Hands learns the exact plan she will later exploit.`,
+But in making the signal so widely known, he has ensured that Isolde of the White Hands learns the exact plan she will later exploit.`,
 
       choices: [
         {
@@ -219,11 +219,11 @@ export const chapter5: Chapter = {
           text: "Ask your wife to watch for the ship and report the sail's color",
           consequence: `You turn to Isolde of the White Hands, trusting in her duty as your wife. "When the ship returns," you tell her, "you must tell me immediately what color sail it bears. My life depends on knowing."
 
-          She nods, her face unreadable. "I will watch from the harbor every day," she promises. "The moment I see the ship, I will come to you."
+She nods, her face unreadable. "I will watch from the harbor every day," she promises. "The moment I see the ship, I will come to you."
 
-          But behind her composed expression, pain and anger war within her. She knows this ship carries the woman you truly love, the reason your marriage has never been consummated, the phantom who has stood between you from the beginning.
+But behind her composed expression, pain and anger war within her. She knows this ship carries the woman you truly love, the reason your marriage has never been consummated, the phantom who has stood between you from the beginning.
 
-          You have placed your fate in the hands of a woman you have wounded deeply.`,
+You have placed your fate in the hands of a woman you have wounded deeply.`,
 
           learningPoints: [
             {
@@ -238,11 +238,11 @@ export const chapter5: Chapter = {
           text: 'Ask a loyal servant to watch for the ship',
           consequence: `You try to assign the task to a trusted servant, but your wife interrupts. "I will watch for the ship," Isolde of the White Hands insists. "It is my duty as your wife to attend your sickbed and bring you news."
 
-          In your weakened state, you cannot argue. Medieval custom supports her claim--a wife's place is by her dying husband's side, receiving news and making decisions.
+In your weakened state, you cannot argue. Medieval custom supports her claim--a wife's place is by her dying husband's side, receiving news and making decisions.
 
-          "Very well," you whisper. "But please, when you see the ship, tell me immediately what color the sail bears."
+"Very well," you whisper. "But please, when you see the ship, tell me immediately what color the sail bears."
 
-          She promises, but you cannot read her expression. Have you just placed your life in the hands of someone who has every reason to feel betrayed?`,
+She promises, but you cannot read her expression. Have you just placed your life in the hands of someone who has every reason to feel betrayed?`,
 
           learningPoints: [
             {
@@ -266,15 +266,15 @@ export const chapter5: Chapter = {
 
       content: `In Cornwall, Isolde the Fair sits in her chamber when a stranger seeks urgent audience. Kaherdin bows before her and holds out a simple gold ring.
 
-      The moment she sees it, Isolde's breath catches. Tristan's ring. The token they exchanged long ago, proof of their enduring bond.
+The moment she sees it, Isolde's breath catches. Tristan's ring. The token they exchanged long ago, proof of their enduring bond.
 
-      "He is dying, my lady," Kaherdin says quietly. "Poisoned, as he was when you first healed him in Ireland. No physician in Brittany can cure him. He asks--no, he begs--that you come. You alone can save him."
+"He is dying, my lady," Kaherdin says quietly. "Poisoned, as he was when you first healed him in Ireland. No physician in Brittany can cure him. He asks--no, he begs--that you come. You alone can save him."
 
-      Isolde's mind races. To go would mean leaving Cornwall, risking King Mark's wrath, perhaps never returning. To refuse would mean letting Tristan die alone in a foreign land, never seeing him again in this life.
+Isolde's mind races. To go would mean leaving Cornwall, risking King Mark's wrath, perhaps never returning. To refuse would mean letting Tristan die alone in a foreign land, never seeing him again in this life.
 
-      But in her heart, there is no real choice. There never has been.
+But in her heart, there is no real choice. There never has been.
 
-      "I will come," she says, her voice steady despite the tears in her eyes. "Prepare your ship. We leave tonight."`,
+"I will come," she says, her voice steady despite the tears in her eyes. "Prepare your ship. We leave tonight."`,
 
       learningPoints: [
         {
@@ -371,7 +371,7 @@ export const chapter5: Chapter = {
           {
             id: 'node-3',
             speaker: 'brangien',
-            text: 'I wish you had drunk that potion all those years ago, my lady. Then none of this pain would have come to pass.',
+            text: 'I wish you had not drunk that potion all those years ago, my lady. Then none of this pain would have come to pass.',
             responses: [
               {
                 id: 'response-no-regret',
@@ -452,19 +452,19 @@ The ship sails toward the harbor, its white sail gleaming in the afternoon sun--
       id: 'scene-ch5-8-jealousy',
       type: 'narrative',
       backgroundImage: 'https://cdn.midjourney.com/bc988edb-d455-47dd-8b27-cfe2568bfb75/0_0.png',
-      image: 'https://cdn.midjourney.com/8474e3b9-c390-4792-b510-baf3389d4fc3/0_0.png',
+      image: 'https://cdn.midjourney.com/4d1f35cd-db5f-4f82-9136-697764fd870d/0_0.png',
 
       content: `In Tristan's chamber, Isolde of the White Hands maintains her vigil. Day after day, she tends her dying husband, changing bandages, offering water, watching him slip further from life.
 
-      And day after day, she hears him whisper one name: "Isolde... Isolde..."
+And day after day, she hears him whisper one name: "Isolde... Isolde..."
 
-      But it is not her name he calls. It has never been her name.
+But it is not her name he calls. It has never been her name.
 
-      She thinks of their wedding night, when he could not bring himself to consummate their marriage. She thinks of the distance in his eyes when he looks at her, the way he flinches when she takes his hand. She thinks of all the ways she has been a wife in name only, married to a man whose heart belongs to someone else.
+She thinks of their wedding night, when he could not bring himself to consummate their marriage. She thinks of the distance in his eyes when he looks at her, the way he flinches when she takes his hand. She thinks of all the ways she has been a wife in name only, married to a man whose heart belongs to someone else.
 
-      When she overheard the sail plan--white for the woman he loves, black for death--she felt something harden in her chest. Why should the other Isolde have everything? Why should she arrive and play the hero, healing Tristan and claiming his gratitude, his love, his very life?
+When she overheard the sail plan--white for the woman he loves, black for death--she felt something harden in her chest. Why should the other Isolde have everything? Why should she arrive and play the hero, healing Tristan and claiming his gratitude, his love, his very life?
 
-      A dark thought takes root: she alone will know what color the sail bears. She alone will tell Tristan. And in that moment of reporting, she will have the power that has eluded her throughout this hollow marriage--the power to determine his fate.`,
+A dark thought takes root: she alone will know what color the sail bears. She alone will tell Tristan. And in that moment of reporting, she will have the power that has eluded her throughout this hollow marriage--the power to determine his fate.`,
 
       learningPoints: [
         {
@@ -488,19 +488,19 @@ The ship sails toward the harbor, its white sail gleaming in the afternoon sun--
 
       content: `The cry goes up from the harbor: "A ship! A ship approaches!"
 
-      Isolde of the White Hands leaves Tristan's chamber and hurries to the harbor. From the docks, she can see the vessel clearly--Kaherdin's ship, returned from Cornwall.
+Isolde of the White Hands leaves Tristan's chamber and hurries to the harbor. From the docks, she can see the vessel clearly--Kaherdin's ship, returned from Cornwall.
 
-      And flying from its mast, brilliant in the afternoon sun, is a white sail.
+And flying from its mast, brilliant in the afternoon sun, is a white sail.
 
-      White. The color of hope, of healing, of salvation. The signal that means Isolde the Fair has come to save Tristan's life.
+White. The color of hope, of healing, of salvation. The signal that means Isolde the Fair has come to save Tristan's life.
 
-      For a long moment, Isolde of the White Hands stands frozen, staring at that white sail. She knows what it means. She knows what she should do--run back to Tristan, tell him his love has come, give him hope to cling to while they bring Isolde to his bedside.
+For a long moment, Isolde of the White Hands stands frozen, staring at that white sail. She knows what it means. She knows what she should do--run back to Tristan, tell him his love has come, give him hope to cling to while they bring Isolde to his bedside.
 
-      But she also knows what she could do. What no one could prove or disprove. What would keep that other Isolde from playing the rescuer, from succeeding where she has failed, from taking even this final moment from her.
+But she also knows what she could do. What no one could prove or disprove. What would keep that other Isolde from playing the rescuer, from succeeding where she has failed, from taking even this final moment from her.
 
-      She could lie.
+She could lie.
 
-      Making her decision, Isolde of the White Hands turns and walks slowly back to the castle, back to the sickroom where Tristan waits for news that will mean life or death.`,
+Making her decision, Isolde of the White Hands turns and walks slowly back to the castle, back to the sickroom where Tristan waits for news that will mean life or death.`,
 
       learningPoints: [
         {
@@ -579,23 +579,23 @@ The ship sails toward the harbor, its white sail gleaming in the afternoon sun--
       id: 'scene-ch5-11-fatal-lie',
       type: 'narrative',
       backgroundImage: 'https://cdn.midjourney.com/bc988edb-d455-47dd-8b27-cfe2568bfb75/0_0.png',
-      image: 'https://cdn.midjourney.com/3386f02f-6616-4252-b79a-b344732537c3/0_0.png',
+      image: 'https://cdn.midjourney.com/6e8c3ad5-a908-4e15-9a69-d9dc6543a808/0_0.png',
 
       content: `Tristan lies in his bed, barely conscious. He has held on this long through sheer force of will, waiting for news, waiting for hope.
 
-      When Isolde of the White Hands enters, he summons his last reserves of strength to speak. "The ship... has it returned? What color is the sail?"
+When Isolde of the White Hands enters, he summons his last reserves of strength to speak. "The ship... has it returned? What color is the sail?"
 
-      She stands beside his bed and looks down at him. This man she married, this man who never loved her, this man who even now calls for someone else. One lie. Just one small lie.
+She stands beside his bed and looks down at him. This man she married, this man who never loved her, this man who even now calls for someone else. One lie. Just one small lie.
 
-      "The sail is black," she says quietly.
+"The sail is black," she says quietly.
 
-      Tristan's eyes close. A sound like a sob escapes him. "Black," he whispers. "Then she has refused to come. She will not save me."
+Tristan's eyes close. A sound like a sob escapes him. "Black," he whispers. "Then she has refused to come. She will not save me."
 
-      "I am sorry," Isolde of the White Hands says, and perhaps she means it.
+"I am sorry," Isolde of the White Hands says, and perhaps she means it.
 
-      But Tristan no longer hears. All the hope that kept him alive drains away in an instant. If Isolde will not come, if she has refused him this final time, then there is nothing left to fight for, no reason to cling to life.
+But Tristan no longer hears. All the hope that kept him alive drains away in an instant. If Isolde will not come, if she has refused him this final time, then there is nothing left to fight for, no reason to cling to life.
 
-      "Isolde," he murmurs one last time--and dies, his heart breaking before his body does.`,
+"Isolde," he murmurs one last time--and dies, his heart breaking before his body does.`,
 
       learningPoints: [
         {
@@ -717,17 +717,17 @@ The ship sails toward the harbor, its white sail gleaming in the afternoon sun--
 
       content: `Isolde the Fair does not weep. She does not cry out. Instead, she lies down beside Tristan on the bed, taking his cold hand in hers.
 
-      "All these years," she whispers, "we were kept apart by duty, by honor, by the demands of others. I was queen to a king I did not love. You were husband to a woman you could not love. We stole moments in gardens, in forests, in secret meetings that could never be enough.
+"All these years," she whispers, "we were kept apart by duty, by honor, by the demands of others. I was queen to a king I did not love. You were husband to a woman you could not love. We stole moments in gardens, in forests, in secret meetings that could never be enough.
 
-      But no one can separate us now."
+But no one can separate us now."
 
-      She pulls his hand to her heart. "In life, we could not be together. But in death, no force on earth can keep us apart."
+She pulls his hand to her heart. "In life, we could not be together. But in death, no force on earth can keep us apart."
 
-      Kaherdin starts forward, realizing what she intends, but it is already too late. Isolde closes her eyes, and with an act of pure will, she follows Tristan into death. Not through poison or violence, but through grief so absolute that her body simply surrenders.
+Kaherdin starts forward, realizing what she intends, but it is already too late. Isolde closes her eyes, and with an act of pure will, she follows Tristan into death. Not through poison or violence, but through grief so absolute that her body simply surrenders.
 
-      She dies with her hand in his, a peaceful smile on her face, released at last from years of impossible love and separation.
+She dies with her hand in his, a peaceful smile on her face, released at last from years of impossible love and separation.
 
-      This is the Liebestod--the love-death. The final union that not even death can deny.`,
+This is the Liebestod--the love-death. The final union that not even death can deny.`,
 
       learningPoints: [
         {
@@ -837,19 +837,19 @@ From Gottfried's Version (13th century):
 
       content: `When news reached Cornwall of the lovers' death, King Mark wept. Despite everything--the betrayal, the lies, the years of pain--he had loved them both. Tristan had been like a son to him. Isolde had been his queen.
 
-      Mark ordered their bodies brought home to Cornwall and buried with honor. He placed their graves side by side in the castle cemetery, beneath the sky they had both loved.
+Mark ordered their bodies brought home to Cornwall and buried with honor. He placed their graves side by side in the castle cemetery, beneath the sky they had both loved.
 
-      And as the legends tell, a miracle occurred. From Tristan's grave grew a thornless rose bush, its blooms the color of blood and passion. From Isolde's grave grew a vine with white flowers, pure as her name. The two plants grew toward each other, their branches intertwining above the graves in an embrace that no force could break.
+And as the legends tell, a miracle occurred. From Tristan's grave grew a thornless rose bush, its blooms the color of blood and passion. From Isolde's grave grew a vine with white flowers, pure as her name. The two plants grew toward each other, their branches intertwining above the graves in an embrace that no force could break.
 
-      Three times, it is said, King Mark ordered the plants cut down--perhaps unable to bear this reminder of a love that exceeded his own. Three times they grew back, ever more tightly entwined, until finally he understood: some loves cannot be severed by any earthly power.
+Three times, it is said, King Mark ordered the plants cut down--perhaps unable to bear this reminder of a love that exceeded his own. Three times they grew back, ever more tightly entwined, until finally he understood: some loves cannot be severed by any earthly power.
 
-      He let them grow.
+He let them grow.
 
-      The story of Tristan and Isolde spread throughout the Celtic lands, across Europe, through the centuries. Poets sang of them, lovers invoked them, and their names became synonymous with a love so powerful that not even death could defeat it.
+The story of Tristan and Isolde spread throughout the Celtic lands, across Europe, through the centuries. Poets sang of them, lovers invoked them, and their names became synonymous with a love so powerful that not even death could defeat it.
 
-      They had paid a terrible price--years of separation, hearts divided between duty and desire, a tragic end that came too soon. But in dying, they achieved what life denied them: eternal union, remembered always, their love preserved forever in story and song.
+They had paid a terrible price--years of separation, hearts divided between duty and desire, a tragic end that came too soon. But in dying, they achieved what life denied them: eternal union, remembered always, their love preserved forever in story and song.
 
-      The rose and the vine still grow there, legend says, intertwined above the graves in Cornwall, where the Celtic sea crashes against ancient cliffs and the wind carries whispers of a love that would not die.`,
+The rose and the vine still grow there, legend says, intertwined above the graves in Cornwall, where the Celtic sea crashes against ancient cliffs and the wind carries whispers of a love that would not die.`,
 
       learningPoints: [
         {

@@ -36,15 +36,15 @@ export const chapter4: Chapter = {
 
       content: `After three years in the Forest of Morois, the lovers seek counsel from Ogrin, a holy hermit who lives in a simple cell deep in the woods. The old man receives them with compassion but speaks hard truths.
 
-      "You live in sin," Ogrin says gently. "Isolde is another man's wife--anointed queen, consecrated by holy vows. Tristan, you betray your lord who raised you and loved you as a son. This cannot continue."
+"You live in sin," Ogrin says gently. "Isolde is another man's wife--anointed queen, consecrated by holy vows. Tristan, you betray your lord who raised you and loved you as a son. This cannot continue."
 
-      The lovers try to explain about the potion, how it bound them against their will. But Ogrin shakes his head. "Three years have passed. The strongest potions lose their power after three years. What holds you together now is not magic--it is your own choice."
+The lovers try to explain about the potion, how it bound them against their will. But Ogrin shakes his head. "Three years have passed. The strongest potions lose their power after three years. What holds you together now is not magic--it is your own choice."
 
-      His words strike like hammers. The potion is fading. Their love is no longer fate's doing but their own decision to defy honor, duty, and divine law.
+His words strike like hammers. The potion is fading. Their love is no longer fate's doing but their own decision to defy honor, duty, and divine law.
 
-      Ogrin counsels them to separate: Isolde must return to King Mark and seek his forgiveness. Tristan must leave Cornwall entirely, going into exile to spare them all further suffering.
+Ogrin counsels them to separate: Isolde must return to King Mark and seek his forgiveness. Tristan must leave Cornwall entirely, going into exile to spare them all further suffering.
 
-      The lovers listen in anguished silence. They know the hermit speaks truth, but the thought of parting is unbearable.`,
+The lovers listen in anguished silence. They know the hermit speaks truth, but the thought of parting is unbearable.`,
 
       learningPoints: [
         {
@@ -74,11 +74,11 @@ export const chapter4: Chapter = {
       prompt: 'What should the lovers do now that the potion has faded?',
       context: `The hermit's words hang heavy in the air. Three years of exile in the forest have been hard--beautiful in their freedom, but marked by hunger, danger, and the knowledge that they are hunted.
 
-      Isolde speaks first: "I am weary, Tristan. I love you more than life, but I cannot bear to see you suffer this way--living as outlaws, always in fear. Perhaps the hermit is right. Perhaps we must choose duty over desire."
+Isolde speaks first: "I am weary, Tristan. I love you more than life, but I cannot bear to see you suffer this way--living as outlaws, always in fear. Perhaps the hermit is right. Perhaps we must choose duty over desire."
 
-      Tristan feels his heart breaking, but he also knows she speaks truth. He cannot give Isolde the life she deserves. She should be a queen in a castle, not a fugitive in the forest.
+Tristan feels his heart breaking, but he also knows she speaks truth. He cannot give Isolde the life she deserves. She should be a queen in a castle, not a fugitive in the forest.
 
-      Yet the thought of letting her return to Mark's bed while he wanders in exile is agony beyond words.`,
+Yet the thought of letting her return to Mark's bed while he wanders in exile is agony beyond words.`,
 
       choices: [
         {
@@ -86,11 +86,11 @@ export const chapter4: Chapter = {
           text: "Accept the hermit's counsel--Isolde returns to Mark, Tristan goes into exile",
           consequence: `"The hermit is right," Tristan says, though his voice breaks. "We have been selfish, thinking only of our love while the kingdom suffers. You are the rightful queen, Isolde. You must return to your throne and your duty."
 
-          Isolde weeps, but nods. "And you must live, Tristan. Not as an outlaw, but as the noble knight you were meant to be. Go to another land where no one knows your shame. Find honor again, if you can."
+Isolde weeps, but nods. "And you must live, Tristan. Not as an outlaw, but as the noble knight you were meant to be. Go to another land where no one knows your shame. Find honor again, if you can."
 
-          They embrace one final time in the hermit's cell, knowing this parting must happen even as it tears them apart. Love alone is not enough--duty and honor demand their sacrifice.
+They embrace one final time in the hermit's cell, knowing this parting must happen even as it tears them apart. Love alone is not enough--duty and honor demand their sacrifice.
 
-          Ogrin sends word to King Mark, proposing Isolde's return and Tristan's voluntary exile. To their surprise, Mark agrees with unexpected mercy.`,
+Ogrin sends word to King Mark, proposing Isolde's return and Tristan's voluntary exile. To their surprise, Mark agrees with unexpected mercy.`,
 
           learningPoints: [
             {
@@ -105,11 +105,11 @@ export const chapter4: Chapter = {
           text: "Reject the hermit's counsel--stay together in the forest",
           consequence: `"No," Tristan says fiercely. "Three years or thirty, potion or not--my love for you is real, Isolde. I will not give you up to please the hermit or anyone else."
 
-          Isolde looks at him with both joy and sorrow. "Then we stay together, come what may. Let them call us sinners. We have found something rare and precious--why should we surrender it?"
+Isolde looks at him with both joy and sorrow. "Then we stay together, come what may. Let them call us sinners. We have found something rare and precious--why should we surrender it?"
 
-          But even as they speak these brave words, doubt gnaws at them. Can they truly live this way forever? The forest that seemed a paradise now feels like a prison.
+But even as they speak these brave words, doubt gnaws at them. Can they truly live this way forever? The forest that seemed a paradise now feels like a prison.
 
-          Within a week, hunger and desperation drive them to reconsider. They return to Ogrin, this time ready to hear his counsel. The hermit receives them with patience: "You needed to choose this for yourselves, not have it forced upon you. Now, let us speak of how to part with dignity and honor."`,
+Within a week, hunger and desperation drive them to reconsider. They return to Ogrin, this time ready to hear his counsel. The hermit receives them with patience: "You needed to choose this for yourselves, not have it forced upon you. Now, let us speak of how to part with dignity and honor."`,
 
           learningPoints: [
             {
@@ -243,15 +243,15 @@ export const chapter4: Chapter = {
 
       content: `Tristan wanders through foreign lands, hiring himself out as a mercenary knight to any lord who will have him. He seeks glory in battle, hoping to lose himself in the clash of swords and forget the woman he left behind.
 
-      But battle brings no peace. He fights with reckless courage that borders on desperation, earning a reputation as a brilliant but haunted warrior. Other knights whisper that he fights like a man who wants to die but cannot quite manage it.
+But battle brings no peace. He fights with reckless courage that borders on desperation, earning a reputation as a brilliant but haunted warrior. Other knights whisper that he fights like a man who wants to die but cannot quite manage it.
 
-      At night, Tristan lies awake in army camps, staring at the stars and wondering what Isolde is doing at this moment. Is she sleeping in Mark's arms? Has she learned to love her husband as duty demands?
+At night, Tristan lies awake in army camps, staring at the stars and wondering what Isolde is doing at this moment. Is she sleeping in Mark's arms? Has she learned to love her husband as duty demands?
 
-      The thoughts torture him more than any wound.
+The thoughts torture him more than any wound.
 
-      Months turn into a year. Tristan drifts south through France, taking service with various lords. His name is forgotten--he calls himself "Tantris" again, the same false name he used when Isolde first healed him. It is as if he is trying to return to that earlier, simpler time before the potion, before the love that ruined them both.
+Months turn into a year. Tristan drifts south through France, taking service with various lords. His name is forgotten--he calls himself "Tantris" again, the same false name he used when Isolde first healed him. It is as if he is trying to return to that earlier, simpler time before the potion, before the love that ruined them both.
 
-      Finally, he arrives in Brittany, in the service of Duke Hoel. Here, his wanderings will end--though not in the way he expects.`,
+Finally, he arrives in Brittany, in the service of Duke Hoel. Here, his wanderings will end--though not in the way he expects.`,
 
       learningPoints: [
         {
@@ -325,23 +325,23 @@ export const chapter4: Chapter = {
       id: 'scene-ch4-6-brittany-arrival',
       type: 'narrative',
       backgroundImage: 'https://cdn.midjourney.com/a1063d97-cde8-4a27-b0fc-ec0ebaa305da/0_0.png',
-      image: 'https://cdn.midjourney.com/b8aaf957-e0f1-4363-b3e6-3f91bff4c183/0_0.png',
+      image: 'https://cdn.midjourney.com/d9425830-f7d8-4c45-9fd2-e38a895516a3/0_0.png',
 
       content: `In Duke Hoel"s court in Brittany, Tristan finds an unexpected friendship. Kaherdin, the duke's son, is close to Tristan's age--a skilled warrior with an open, honest nature. He befriends the mysterious knight who calls himself Tantris, sensing the sorrow beneath the stern exterior.
 
-      "You fight like a man with nothing to lose," Kaherdin says one day after a tournament. "I have seen that look before--in men whose hearts are broken. Was it a woman?"
+"You fight like a man with nothing to lose," Kaherdin says one day after a tournament. "I have seen that look before--in men whose hearts are broken. Was it a woman?"
 
-      Tristan does not answer, but his silence speaks volumes.
+Tristan does not answer, but his silence speaks volumes.
 
-      Kaherdin takes him to meet his sister, Isolde of the White Hands. She is beautiful in a gentle, innocent way--dark-haired where Isolde the Fair is golden, pale where the other is vibrant. When Tristan hears her name, he staggers as if struck.
+Kaherdin takes him to meet his sister, Isolde of the White Hands. She is beautiful in a gentle, innocent way--dark-haired where Isolde the Fair is golden, pale where the other is vibrant. When Tristan hears her name, he staggers as if struck.
 
-      "Your sister is called... Isolde?" he asks.
+"Your sister is called... Isolde?" he asks.
 
-      "Yes," Kaherdin says, puzzled. "Is something wrong?"
+"Yes," Kaherdin says, puzzled. "Is something wrong?"
 
-      Tristan forces a smile. "No. It is just... I knew someone by that name once. Long ago."
+Tristan forces a smile. "No. It is just... I knew someone by that name once. Long ago."
 
-      But it is not long ago--it has been only a year since he left Cornwall. And the name, the same cursed name, seems like fate laughing at him.`,
+But it is not long ago--it has been only a year since he left Cornwall. And the name, the same cursed name, seems like fate laughing at him.`,
 
       learningPoints: [
         {
@@ -371,7 +371,7 @@ export const chapter4: Chapter = {
       character: {
         id: 'isolde-white-hands',
         name: 'Isolde of the White Hands',
-        portrait: 'https://cdn.midjourney.com/39821936-23e0-4998-9330-ee5636797b84/0_0.png',
+        portrait: 'https://cdn.midjourney.com/6f81dddc-cb0a-400d-84f4-86335437501d/0_0.png',
         description: 'The innocent and gentle daughter of Duke Hoel, drawn to the mysterious knight',
       },
 
@@ -481,13 +481,13 @@ export const chapter4: Chapter = {
       prompt: 'Duke Hoel proposes a marriage between Tristan and his daughter. What should Tristan do?',
       context: `Duke Hoel summons Tristan to his private chamber. "Tantris--or whatever your true name is, for I suspect you hide your past--I want you to become my son-in-law. Marry my daughter Isolde."
 
-      Tristan is stunned. "My lord, I am honored, but--"
+Tristan is stunned. "My lord, I am honored, but--"
 
-      "You are a skilled knight of noble bearing," Hoel continues. "My daughter loves you. My son vouches for your character. I can see you are running from something, but I do not care about your past. Here in Brittany, you can start anew."
+"You are a skilled knight of noble bearing," Hoel continues. "My daughter loves you. My son vouches for your character. I can see you are running from something, but I do not care about your past. Here in Brittany, you can start anew."
 
-      Kaherdin adds his voice: "Say yes, my friend. You are like a ghost, haunting your own life. Let my sister bring you back to the living. She loves you--and love can heal."
+Kaherdin adds his voice: "Say yes, my friend. You are like a ghost, haunting your own life. Let my sister bring you back to the living. She loves you--and love can heal."
 
-      But Tristan knows: Isolde of the White Hands is kind and beautiful, but she is not Isolde the Fair. Can duty replace passion? Can a convenient marriage heal a heart broken by true love?`,
+But Tristan knows: Isolde of the White Hands is kind and beautiful, but she is not Isolde the Fair. Can duty replace passion? Can a convenient marriage heal a heart broken by true love?`,
 
       choices: [
         {
@@ -495,13 +495,13 @@ export const chapter4: Chapter = {
           text: 'Accept the marriage--try to build a new life in Brittany',
           consequence: `Tristan bows his head. "I accept, my lord. It would be an honor to join your family."
 
-          The duke is delighted. Kaherdin embraces him as a brother. Isolde of the White Hands weeps with joy when she hears the news.
+The duke is delighted. Kaherdin embraces him as a brother. Isolde of the White Hands weeps with joy when she hears the news.
 
-          Only Tristan feels the hollowness of it. He is marrying her because she shares a name with the woman he truly loves. He is using her innocence and affection as a bandage for a wound that will never heal.
+Only Tristan feels the hollowness of it. He is marrying her because she shares a name with the woman he truly loves. He is using her innocence and affection as a bandage for a wound that will never heal.
 
-          But perhaps, he tells himself, duty will be enough. Perhaps in time, companionship will grow into something resembling love.
+But perhaps, he tells himself, duty will be enough. Perhaps in time, companionship will grow into something resembling love.
 
-          The wedding is arranged for a month hence. Tristan goes through the preparations like a man in a dream.`,
+The wedding is arranged for a month hence. Tristan goes through the preparations like a man in a dream.`,
 
           learningPoints: [
             {
@@ -516,19 +516,19 @@ export const chapter4: Chapter = {
           text: 'Refuse the marriage--admit he still loves another',
           consequence: `"My lord," Tristan says carefully, "I cannot accept. It would not be fair to your daughter. My heart... belongs to another. It always will."
 
-          Duke Hoel's face darkens. "Then you should have said so before leading my daughter to hope! Do you know how she speaks of you? How she dreams of you?"
+Duke Hoel's face darkens. "Then you should have said so before leading my daughter to hope! Do you know how she speaks of you? How she dreams of you?"
 
-          Tristan feels shame wash over him. The duke is right--he has been unfair to Isolde of the White Hands by spending time with her, by letting her fall in love with him when he knew he could never love her back.
+Tristan feels shame wash over him. The duke is right--he has been unfair to Isolde of the White Hands by spending time with her, by letting her fall in love with him when he knew he could never love her back.
 
-          Kaherdin looks betrayed. "I trusted you with my sister's heart, my friend. I see that was a mistake."
+Kaherdin looks betrayed. "I trusted you with my sister's heart, my friend. I see that was a mistake."
 
-          But even as Tristan faces their anger, he knows he made the right choice. Better to hurt them now with truth than later with a loveless marriage.
+But even as Tristan faces their anger, he knows he made the right choice. Better to hurt them now with truth than later with a loveless marriage.
 
-          However, Duke Hoel is a powerful man, and Tristan has insulted him. "You will leave Brittany tomorrow," the duke says coldly. "And you will never return."
+However, Duke Hoel is a powerful man, and Tristan has insulted him. "You will leave Brittany tomorrow," the duke says coldly. "And you will never return."
 
-          Tristan bows and departs, once again an exile. But at least he has been honest.
+Tristan bows and departs, once again an exile. But at least he has been honest.
 
-          **[For the story to continue, Tristan reconsiders and returns to accept the marriage after all--he has nowhere else to go, and duty demands it]**`,
+**[For the story to continue, Tristan reconsiders and returns to accept the marriage after all--he has nowhere else to go, and duty demands it]**`,
 
           learningPoints: [
             {
@@ -548,27 +548,27 @@ export const chapter4: Chapter = {
       id: 'scene-ch4-9-wedding-night',
       type: 'narrative',
       backgroundImage: 'https://cdn.midjourney.com/009e6fb1-a0ba-4900-9aca-3d38b0d57494/0_0.png',
-      image: 'https://cdn.midjourney.com/40c8291e-b580-4521-9d4b-6a4892ae81be/0_0.png',
+      image: 'https://cdn.midjourney.com/0d3d3aae-7473-463b-b029-5d7e9dfffe98/0_0.png',
 
       content: `The wedding is celebrated with all the splendor of a duke's daughter's marriage. Isolde of the White Hands looks radiant in her bridal gown. Tristan stands beside her, handsome and hollow.
 
-      That night, in the bridal chamber, the terrible truth emerges.
+That night, in the bridal chamber, the terrible truth emerges.
 
-      Isolde of the White Hands waits for her husband to join her in bed. But Tristan stands by the window, staring out at the stars over the sea--the sea that separates him from Cornwall, from Isolde the Fair.
+Isolde of the White Hands waits for her husband to join her in bed. But Tristan stands by the window, staring out at the stars over the sea--the sea that separates him from Cornwall, from Isolde the Fair.
 
-      "My lord?" his bride asks softly. "Will you not come to bed?"
+"My lord?" his bride asks softly. "Will you not come to bed?"
 
-      Tristan turns, and she sees tears on his face. "I cannot," he says. "Forgive me, Isolde. I cannot."
+Tristan turns, and she sees tears on his face. "I cannot," he says. "Forgive me, Isolde. I cannot."
 
-      She does not understand at first. Then, slowly, the realization dawns: her husband does not desire her. He will not consummate their marriage.
+She does not understand at first. Then, slowly, the realization dawns: her husband does not desire her. He will not consummate their marriage.
 
-      "Is it... the other woman?" she asks, her voice breaking. "The one you will not name?"
+"Is it... the other woman?" she asks, her voice breaking. "The one you will not name?"
 
-      Tristan cannot speak. His silence is answer enough.
+Tristan cannot speak. His silence is answer enough.
 
-      Isolde of the White Hands lies down alone in the marriage bed, weeping silently. Her husband sleeps in a chair by the window, as far from her as he can be while remaining in the same room.
+Isolde of the White Hands lies down alone in the marriage bed, weeping silently. Her husband sleeps in a chair by the window, as far from her as he can be while remaining in the same room.
 
-      The marriage is a mockery, a lie. They are husband and wife in name only, and everyone in the castle will soon know it.`,
+The marriage is a mockery, a lie. They are husband and wife in name only, and everyone in the castle will soon know it.`,
 
       learningPoints: [
         {
@@ -757,17 +757,17 @@ export const chapter4: Chapter = {
 
       content: `Unable to bear the separation any longer, Tristan devises a desperate plan. He will return to Cornwall in disguise--not as a knight, but as a fool, a jester, a madman. Such men wander freely through courts, entertaining nobles with their wit and absurdity. No one suspects them or takes them seriously.
 
-      He cuts his hair strangely, stains his face, dresses in motley clothes, and arrives at King Mark's court during a great feast.
+He cuts his hair strangely, stains his face, dresses in motley clothes, and arrives at King Mark's court during a great feast.
 
-      "Who is this fool?" the courtiers laugh as Tristan capers and speaks in riddles.
+"Who is this fool?" the courtiers laugh as Tristan capers and speaks in riddles.
 
-      But Isolde, seated at the high table beside Mark, goes pale when she sees the "fool's" eyes. She knows those eyes. She knows that voice, disguised though it is.
+But Isolde, seated at the high table beside Mark, goes pale when she sees the "fool's" eyes. She knows those eyes. She knows that voice, disguised though it is.
 
-      Tristan approaches the high table, bowing and speaking nonsense: "A fool knows many things, my lord king! A fool knows that love is madness, and madness is truth, and truth is what we dare not speak aloud!"
+Tristan approaches the high table, bowing and speaking nonsense: "A fool knows many things, my lord king! A fool knows that love is madness, and madness is truth, and truth is what we dare not speak aloud!"
 
-      He holds Isolde's gaze for just a moment, and she understands: he has come back to her, risking everything for one more moment in her presence.
+He holds Isolde's gaze for just a moment, and she understands: he has come back to her, risking everything for one more moment in her presence.
 
-      Later, when the feast ends, Isolde sends her trusted maid to the fool: "Come to the garden at midnight. Someone wishes to speak with you."`,
+Later, when the feast ends, Isolde sends her trusted maid to the fool: "Come to the garden at midnight. Someone wishes to speak with you."`,
 
       learningPoints: [
         {
@@ -871,19 +871,19 @@ The Queen watched the fool with strange intensity, and though he seemed mad to a
 
       content: `After his secret meeting with Isolde--bittersweet, passionate, and far too brief--Tristan returns to Brittany. He has seen his true love one last time, but the separation is even more agonizing now.
 
-      Back in Brittany, Tristan throws himself into battle once more, fighting alongside Kaherdin in a border skirmish. But his mind is elsewhere, still in that moonlit garden with Isolde.
+Back in Brittany, Tristan throws himself into battle once more, fighting alongside Kaherdin in a border skirmish. But his mind is elsewhere, still in that moonlit garden with Isolde.
 
-      His distraction proves fatal.
+His distraction proves fatal.
 
-      An enemy knight's spear catches Tristan in the side. It is not a mortal wound--until Kaherdin examines it more closely and his face goes pale.
+An enemy knight's spear catches Tristan in the side. It is not a mortal wound--until Kaherdin examines it more closely and his face goes pale.
 
-      "Tristan... the spear was poisoned. Look--the wound already darkens. The poison spreads."
+"Tristan... the spear was poisoned. Look--the wound already darkens. The poison spreads."
 
-      Tristan stares at the blackening flesh and laughs bitterly. It is happening again. Just as the Morholt's poisoned sword once sent him to Ireland and to Isolde's healing hands, now another poisoned weapon will bring him to his end.
+Tristan stares at the blackening flesh and laughs bitterly. It is happening again. Just as the Morholt's poisoned sword once sent him to Ireland and to Isolde's healing hands, now another poisoned weapon will bring him to his end.
 
-      "There is only one person who can heal a wound like this," Tristan says quietly. "The same person who healed me before. But she is in Cornwall, married to a king, and I am dying in Brittany."
+"There is only one person who can heal a wound like this," Tristan says quietly. "The same person who healed me before. But she is in Cornwall, married to a king, and I am dying in Brittany."
 
-      Fate, it seems, has come full circle. The story that began with a poisoned wound will end with one as well.`,
+Fate, it seems, has come full circle. The story that began with a poisoned wound will end with one as well.`,
 
       learningPoints: [
         {
