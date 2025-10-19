@@ -15,6 +15,7 @@ Before registering:
 - [ ] All chapters complete and working
 - [ ] All quizzes created and linked
 - [ ] Assets integrated
+- [ ] Search keywords added (recommended)
 - [ ] Type checking passes (`npx tsc --noEmit`)
 - [ ] Build succeeds (`npm run build`)
 
@@ -32,9 +33,75 @@ export const yourAdventure: Adventure = {
   id: 'adventure-name',
   title: 'Adventure Title',
   description: '...',
+  searchKeywords: [
+    // Add search keywords here (see Step 1.5)
+  ],
   // ... rest of adventure config
 };
 ```
+
+### Step 1.5: Add Search Keywords (Recommended)
+
+Add `searchKeywords` to make your adventure discoverable through search:
+
+```typescript
+searchKeywords: [
+  // Character names
+  'Main Character', 'Supporting Character',
+
+  // Alternative titles
+  'Alternative Title', 'Original Language Title',
+
+  // Thematic keywords
+  'Love', 'Adventure', 'Magic', 'War', 'Quest',
+
+  // Cultural/geographic context
+  'Country', 'Region', 'Culture', 'Time Period',
+
+  // Story elements
+  'Dragon', 'Sword', 'Treasure', 'Journey',
+
+  // Literary themes
+  'Tragedy', 'Comedy', 'Romance', 'Epic',
+
+  // Author/source
+  'Author Name', 'Collection Name',
+],
+```
+
+**Examples from existing adventures:**
+
+**Arabian Nights:**
+```typescript
+searchKeywords: [
+  'One Thousand and One Nights', '1001 Nights',
+  'Aladdin', 'Ali Baba', 'Sinbad', 'Scheherazade',
+  'Genie', 'Jinn', 'Djinn', 'Magic Lamp', 'Wishes',
+  'Merchant', 'Sultan', 'Caliph', 'Baghdad',
+  'Magic', 'Treasure', 'Cave', 'Forty Thieves',
+  'Storytelling', 'Persian', 'Arabic', 'Middle East',
+],
+```
+
+**Don Quixote:**
+```typescript
+searchKeywords: [
+  'Cervantes', 'Miguel de Cervantes', 'Don Quijote',
+  'Sancho Panza', 'Dulcinea', 'Rocinante',
+  'La Mancha', 'Spain', 'Spanish', 'Golden Age',
+  'Windmills', 'Giants', 'Tilting at Windmills',
+  'Knight', 'Chivalry', 'Idealism', 'Madness',
+],
+```
+
+**Tips for choosing keywords:**
+- Include character names (main and supporting)
+- Add alternative spellings and translations
+- Think about what students might search for
+- Include thematic elements (magic, love, war, etc.)
+- Add cultural/historical context terms
+- Consider famous scenes or iconic elements
+- Include literary terms (tragedy, epic, satire, etc.)
 
 ### Step 2: Register in Adventure Registry
 
@@ -132,12 +199,14 @@ npx tsc --noEmit  # See specific error
 
 ## Completion Checklist
 
+- [ ] Search keywords added to adventure definition
 - [ ] Adventure imported in `adventure-registry.ts`
 - [ ] Adventure added to `adventures` array
 - [ ] TypeScript compiles without errors
 - [ ] Build succeeds
 - [ ] Adventure appears on home screen in dev mode
 - [ ] Cover image displays
+- [ ] Search finds adventure by keywords (test multiple terms)
 - [ ] Adventure loads and plays correctly
 - [ ] All chapters accessible
 - [ ] All quizzes functional

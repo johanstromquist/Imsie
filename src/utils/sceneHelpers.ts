@@ -137,3 +137,15 @@ export const getLetterLabel = (index: number): string => {
 export const splitIntoParagraphs = (text: string): string[] => {
   return text.split('\n\n').filter(p => p.trim().length > 0);
 };
+
+/**
+ * Calculates the estimated time to complete an adventure based on effort level
+ * Formula: 1.5 minutes × effort level × number of scenes
+ * @param effort - Effort/difficulty level (1.0 - 2.0)
+ * @param chapters - Array of chapters to count scenes from
+ * @returns Estimated time in minutes
+ */
+export const calculateAdventureTime = (effort: number, chapters: Array<{ scenes: unknown[] }>): number => {
+  const totalScenes = chapters.reduce((sum, chapter) => sum + chapter.scenes.length, 0);
+  return Math.round(1.5 * effort * totalScenes);
+};

@@ -6,6 +6,15 @@ import { chapter3 } from './chapters/chapter-3-secret-love';
 import { chapter4 } from './chapters/chapter-4-exile-second-isolde';
 import { chapter5 } from './chapters/chapter-5-tragic-end';
 import { finalQuiz } from './quizzes/final-quiz';
+import { calculateAdventureTime } from '../../utils/sceneHelpers';
+
+const chapters = [
+  chapter1, // The Hero's Origins
+  chapter2, // The Fateful Potion
+  chapter3, // Secret Love and Discovery
+  chapter4, // Exile and the Second Isolde
+  chapter5, // The Tragic End
+];
 
 /**
  * Tristan & Isolde: A Tale of Forbidden Love
@@ -24,7 +33,6 @@ import { finalQuiz } from './quizzes/final-quiz';
  * - Literary symbolism and motifs
  *
  * Recommended for: High school students (16-20 years old)
- * Duration: 4-5 hours across 5 chapters
  */
 
 export const tristanIsolde: Adventure = {
@@ -35,11 +43,21 @@ export const tristanIsolde: Adventure = {
     'Experience the legendary medieval romance of Tristan and Isolde--a tale of forbidden love, ' +
     'duty versus desire, and tragic destiny. Explore Celtic traditions, courtly love, and the ' +
     'timeless themes that have captivated audiences for nearly a millennium.',
+  searchKeywords: [
+    'Tristan and Isolde', 'Iseult', 'Yseult', 'King Mark', 'Brangien',
+    'Courtly Love', 'Forbidden Love', 'Romance', 'Tragic Love',
+    'Celtic', 'Arthurian', 'King Arthur', 'Knights',
+    'Medieval', 'Middle Ages', 'Chivalry', 'Honor',
+    'Cornwall', 'Ireland', 'Brittany',
+    'Love Potion', 'Magic', 'Destiny', 'Fate',
+    'Duty', 'Loyalty', 'Betrayal', 'Adultery',
+    'Harp', 'Music', 'Poetry', 'Dragon',
+    'Knight', 'Quest', 'Legend', 'Myth',
+    'Tragedy', 'Death', 'Sacrifice'
+  ],
 
-  // Estimated time: 4-5 hours total
-  // Chapter 1: 35 min, Chapter 2: 40 min, Chapter 3: 45 min,
-  // Chapter 4: 40 min, Chapter 5: 40 min, Final Quiz: 25 min
-  estimatedTime: 265, // minutes (4 hours 25 minutes)
+  effort: 1.25,
+  estimatedTime: calculateAdventureTime(1.25, chapters),
 
   coverArt: 'https://cdn.midjourney.com/36168fda-a608-42de-ab6f-e9e4a4284957/0_0.png',
   coverVideo: 'https://cdn.midjourney.com/video/0fd26d2a-dbe9-4def-88ef-8115033f44f6/3.mp4',
@@ -47,13 +65,7 @@ export const tristanIsolde: Adventure = {
   theme: tristanIsoldeTheme,
   musicPlaylist,
 
-  chapters: [
-    chapter1, // The Hero's Origins
-    chapter2, // The Fateful Potion
-    chapter3, // Secret Love and Discovery
-    chapter4, // Exile and the Second Isolde
-    chapter5, // The Tragic End
-  ],
+  chapters,
 
   finalQuiz,
 

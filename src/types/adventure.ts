@@ -4,7 +4,9 @@ export interface Adventure {
   id: string;
   title: string;
   description: string;
-  estimatedTime: number; // in minutes
+  searchKeywords?: string[]; // additional keywords for search (character names, alternative titles, etc.)
+  estimatedTime: number; // in minutes (calculated from effort level)
+  effort: number; // difficulty/complexity level (1.0 - 2.0) - used to calculate time
   coverArt: string; // path to cover image
   coverVideo?: string; // optional video URL (plays on hover)
   theme: AdventureTheme;
