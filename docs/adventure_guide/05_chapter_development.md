@@ -1130,6 +1130,253 @@ Once you've completed your chapter:
 
 ---
 
+## Chapter Quality Checklist
+
+### Run These Checks BEFORE Marking Chapter Complete
+
+Complete this checklist for every chapter to avoid cleanup work later. Each check includes the command to verify and common fixes.
+
+#### 1. TypeScript Type Check ✅
+
+**Check single file for errors:**
+```bash
+npx tsc --noEmit src/adventures/[adventure-name]/chapters/chapter-X-name.ts
+```
+
+**Common type errors and fixes:**
+
+| Error | Fix |
+|-------|-----|
+| `'title' does not exist in type 'PrimarySourceScene'` | Remove `title`, use only `prompt` |
+| `'content' does not exist in type 'PrimarySourceScene'` | Move scene-level `content` into `prompt` field |
+| `'title' does not exist in type 'MapExplorationScene'` | Replace `title` and `description` with single `prompt` |
+| `'description' does not exist in type 'MapExplorationScene'` | Merge into `prompt` field |
+| `'events' does not exist in type 'TimelineGameScene'` | Rename to `timelineEvents` |
+| `'correctOrder' does not exist in type 'TimelineEvent'` | Remove field (order determined by array position) |
+| `Type 'string' is not assignable to type 'number'` (year) | Change year from `'Book 16'` to `16` |
+| `'points' does not exist in type 'AnalysisQuestion'` | Remove `points` field |
+| `'successThreshold' does not exist in type 'CauseEffectScene'` | Remove field (not applicable to this scene type) |
+| `'description' does not exist in type 'TimelineGameScene'` | Merge into `prompt` |
+| `'description' does not exist in type 'MapLocation'` | Rename to `content` |
+| `'context' does not exist in type 'PrimarySource'` | Rename to `content` and add `type: 'text'` |
+
+**Type-specific field reference:**
+
+```typescript
+// PrimarySourceScene - ONLY these fields
+{
+  type: 'primary-source',
+  prompt: string,              // ✅ Use this, NOT title or content
+  image?: string,              // Optional
+  source: PrimarySource,
+  questions: AnalysisQuestion[],
+}
+
+// MapExplorationScene - ONLY these fields
+{
+  type: 'map-exploration',
+  mapImage: string,
+  prompt: string,              // ✅ Use this, NOT title or description
+  image?: string,              // Optional
+  locations: MapLocation[],
+  requiredLocations?: string[],
+}
+
+// TimelineGameScene - ONLY these fields
+{
+  type: 'timeline-game',
+  prompt: string,              // ✅ Use this, NOT description
+  image?: string,
+  timelineEvents: TimelineEvent[], // ✅ NOT 'events'
+  successThreshold: number,    // ✅ Required!
+}
+
+// TimelineEvent - ONLY these fields
+{
+  id: string,
+  title: string,
+  year: number,                // ✅ Must be number, NOT string
+  description: string,
+  image?: string,
+}
+
+// MapLocation - ONLY these fields
+{
+  id: string,
+  name: string,
+  x: number,
+  y: number,
+  content: string,             // ✅ Use 'content', NOT 'description'
+  image?: string,
+}
+
+// PrimarySource - ONLY these fields
+{
+  title: string,
+  author?: string,
+  date?: string,
+  type: 'text' | 'image' | 'audio' | 'video',
+  content: string,             // ✅ Use 'content', NOT 'context'
+  citation?: string,
+}
+
+// CauseEffectScene - Does NOT have
+// ❌ successThreshold
+// ❌ description
+```
+
+#### 2. Learning Point Category Check ✅
+
+**Valid categories ONLY:**
+- `historical-context`
+- `literary-context` ⚠️ NOT `literary-technique` or `character-analysis`
+- `cultural-context`
+- `vocabulary`
+- `reference`
+
+**Quick fix:**
+```typescript
+// ❌ WRONG
+category: 'character-analysis'
+category: 'literary-technique'
+category: 'thematic-analysis'
+category: 'plot-structure'
+
+// ✅ CORRECT - Use one of the 5 valid categories
+category: 'literary-context'  // For character analysis, themes, plot, techniques
+category: 'historical-context'
+category: 'cultural-context'
+category: 'vocabulary'
+category: 'reference'
+```
+
+#### 3. Quiz Question Type Verification ✅
+
+**Rule: Never use `short-answer` for analysis questions**
+
+```bash
+# Search for problematic short-answer questions
+grep -n "type: 'short-answer'" src/adventures/[adventure-name]/chapters/chapter-X-name.ts
+```
+
+**Check each match:**
+- If question asks "Why?", "How?", "Explain...", "Analyze..." → Change to `multiple-choice`
+- Only keep `short-answer` for exact names, terms, or numbers
+
+#### 4. Required Field Verification ✅
+
+**Check for missing required fields:**
+
+```bash
+# Check if successThreshold exists in timeline-game scenes
+grep -A 5 "type: 'timeline-game'" src/adventures/[adventure-name]/chapters/chapter-X-name.ts | grep "successThreshold"
+```
+
+If no results, add `successThreshold: 70` to your timeline-game scenes.
+
+#### 5. Quiz Trigger Verification ✅
+
+**CRITICAL: Verify quiz trigger exists on LAST scene:**
+
+```bash
+# Check last scene has quiz trigger
+tail -50 src/adventures/[adventure-name]/chapters/chapter-X-name.ts | grep -A 5 "events:"
+```
+
+**Must see:**
+```typescript
+events: {
+  onExit: [{
+    type: 'quiz',
+    componentId: 'quiz-chapter-X',
+    condition: { type: 'if-not-completed' },
+  }],
+},
+```
+
+**If missing, add to the LAST scene** (after learningPoints, before closing brace).
+
+#### 6. ID Uniqueness Check ✅
+
+**Check for duplicate IDs within chapter:**
+
+```bash
+# Extract all IDs and check for duplicates
+grep -o "id: '[^']*'" src/adventures/[adventure-name]/chapters/chapter-X-name.ts | sort | uniq -d
+```
+
+If any duplicates appear, make them unique by adding suffixes or better descriptors.
+
+#### 7. Learning Points Existence ✅
+
+**Every scene must have learning points (even if empty array):**
+
+```bash
+# Check all scenes have learningPoints field
+grep -c "learningPoints:" src/adventures/[adventure-name]/chapters/chapter-X-name.ts
+```
+
+Count should match number of scenes. If not, add `learningPoints: []` to scenes missing it.
+
+#### 8. Asset Path Format ✅
+
+**Check asset paths use correct format:**
+
+```bash
+# Check for incorrect asset paths
+grep -n "backgroundImage:\|image:\|mapImage:" src/adventures/[adventure-name]/chapters/chapter-X-name.ts
+```
+
+**Correct formats:**
+- External: `https://cdn.midjourney.com/...` ✅
+- Local: `/Imsie/assets/[adventure-name]/...` ✅ (note capital I)
+- Wrong: `/assets/...` ❌
+- Wrong: `./assets/...` ❌
+
+#### 9. Final Build Test ✅
+
+**After all fixes, run full build:**
+
+```bash
+npm run build
+```
+
+**If build fails:**
+1. Read error message for file and line number
+2. Check error type against table in Check #1
+3. Apply appropriate fix
+4. Re-run build
+5. Repeat until clean build
+
+---
+
+### Quick Pre-Completion Checklist
+
+Print this and check off for each chapter:
+
+```
+Chapter: ________________  Date: __________
+
+□ TypeScript check passes (npx tsc --noEmit [file])
+□ All learning point categories are valid (5 categories only)
+□ No short-answer questions for analysis
+□ All timeline-game scenes have successThreshold
+□ Quiz trigger exists on LAST scene
+□ No duplicate IDs in chapter
+□ All scenes have learningPoints field
+□ Asset paths use correct format
+□ Full build succeeds (npm run build)
+□ Quiz file created and imported
+□ endQuiz field added to chapter
+□ Playthrough tested from start to quiz
+
+Notes/Issues:
+_____________________________________________
+_____________________________________________
+```
+
+---
+
 **Version:** 1.0
 **Last Updated:** October 2025
 **Part of:** Adventure Authoring Guide

@@ -133,18 +133,18 @@ Not just any books—chivalric romances. Tales of noble knights, fire-breathing 
         date: '1605',
         type: 'text',
         content: `**Typical Chivalric Romance:**
-
+<br /><br />
 "The valiant knight Sir Amadis, clad in shining armor of purest silver, mounted his noble steed Excalibur. With lance in hand and heart aflame with righteous purpose, he charged toward the terrible dragon that threatened the kingdom. The beast, scales gleaming like emeralds, breathed fire upon him, but the knight's enchanted shield turned aside the flames..."
-
+<br /><br />
 **Cervantes' Parody (Don Quixote):**
-
+<br /><br />
 "Don Quixote, armed in rusty pieces of ancient armor that hadn't been used in generations, mounted Rocinante—a skinny old workhorse with a dull coat and protruding ribs. With a lance made from a broken broomstick and his head filled with impossible dreams, he rode forth seeking adventures in the dusty plains of La Mancha, where the only 'dragons' were windmills and the only 'castles' were wayside inns..."
-
-**Key Differences:**
-- **Knight:** Noble vs. Delusional
-- **Horse:** Magnificent vs. Decrepit
-- **Equipment:** Enchanted vs. Rusty
-- **Enemies:** Fantastic vs. Mundane
+<br /><br />
+**Key Differences:**<br />
+- **Knight:** Noble vs. Delusional<br />
+- **Horse:** Magnificent vs. Decrepit<br />
+- **Equipment:** Enchanted vs. Rusty<br />
+- **Enemies:** Fantastic vs. Mundane<br />
 - **Setting:** Magical kingdoms vs. Rural Spain`,
         citation: 'Comparison of actual chivalric romance conventions with Cervantes\' parody',
       },
