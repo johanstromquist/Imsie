@@ -1,4 +1,5 @@
 import type { Chapter } from '../../../types';
+import { finalQuiz } from '../quizzes/final-quiz';
 
 /**
  * Epilogue: The Fall of Troy
@@ -150,28 +151,19 @@ They build the horse.`,
         {
           id: 'choice-burn',
           text: 'Burn it—it\'s obviously a trick',
-          consequences: {
-            immediate: 'Some Trojans agree. Laocoön, a priest, warns: "I fear Greeks even when they bring gifts!" But Cassandra\'s prophecies are never believed, and the crowd overrules caution.',
-            points: { wisdom: 10 },
-          },
+          consequence: 'Some Trojans agree. Laocoön, a priest, warns: "I fear Greeks even when they bring gifts!" But Cassandra\'s prophecies are never believed, and the crowd overrules caution.',
           nextSceneId: 'iliad-epi-sc5-horse-enters',
         },
         {
           id: 'choice-destroy',
           text: 'Drag it to the cliffs and push it into the sea',
-          consequences: {
-            immediate: 'Wise counsel! But the Trojans, drunk on what they think is victory, ignore warnings. They want the horse as a trophy of their triumph over Greece.',
-            points: { wisdom: 10 },
-          },
+          consequence: 'Wise counsel! But the Trojans, drunk on what they think is victory, ignore warnings. They want the horse as a trophy of their triumph over Greece.',
           nextSceneId: 'iliad-epi-sc5-horse-enters',
         },
         {
           id: 'choice-inside',
           text: 'Bring it inside the city as a victory trophy',
-          consequences: {
-            immediate: 'The Trojans celebrate, certain the war is over. They ignore Cassandra\'s screams of warning, ignore Laocoön\'s prophecy. Hubris blinds them to danger.',
-            points: { hubris: 10 },
-          },
+          consequence: 'The Trojans celebrate, certain the war is over. They ignore Cassandra\'s screams of warning, ignore Laocoön\'s prophecy. Hubris blinds them to danger.',
           nextSceneId: 'iliad-epi-sc5-horse-enters',
         },
       ],
@@ -286,37 +278,25 @@ No one truly wins this war.`,
         {
           id: 'choice-glory',
           text: 'Glory in battle is worth dying for',
-          consequences: {
-            immediate: 'The Iliad shows glory\'s cost as much as its appeal. Achilles achieves eternal fame but dies young. Hector dies honorably but his family is destroyed. Glory comes at a terrible price.',
-            points: { honor: 5 },
-          },
+          consequence: 'The Iliad shows glory\'s cost as much as its appeal. Achilles achieves eternal fame but dies young. Hector dies honorably but his family is destroyed. Glory comes at a terrible price.',
           nextSceneId: 'iliad-epi-sc8-conclusion',
         },
         {
           id: 'choice-humanity',
           text: 'Our shared humanity transcends even the deepest conflicts',
-          consequences: {
-            immediate: 'This is why Homer ends with Achilles and Priam weeping together. Enemies recognizing their common suffering is more powerful than any victory. Compassion matters more than conquest.',
-            points: { wisdom: 10 },
-          },
+          consequence: 'This is why Homer ends with Achilles and Priam weeping together. Enemies recognizing their common suffering is more powerful than any victory. Compassion matters more than conquest.',
           nextSceneId: 'iliad-epi-sc8-conclusion',
         },
         {
           id: 'choice-futility',
           text: 'War destroys everyone—there are no winners',
-          consequences: {
-            immediate: 'Troy falls, but the Greeks suffer for it. Achilles dies young. Hector\'s family is destroyed. Ten years of suffering for what? The Iliad shows war\'s cost to all sides.',
-            points: { wisdom: 10 },
-          },
+          consequence: 'Troy falls, but the Greeks suffer for it. Achilles dies young. Hector\'s family is destroyed. Ten years of suffering for what? The Iliad shows war\'s cost to all sides.',
           nextSceneId: 'iliad-epi-sc8-conclusion',
         },
         {
           id: 'choice-fate',
           text: 'Fate governs all—mortals cannot escape their doom',
-          consequences: {
-            immediate: 'Every prophecy comes true. Achilles chooses death for glory. Troy falls despite Hector\'s heroism. The Iliad shows mortals navigating fate they cannot change, finding meaning in how they face the inevitable.',
-            points: { wisdom: 8 },
-          },
+          consequence: 'Every prophecy comes true. Achilles chooses death for glory. Troy falls despite Hector\'s heroism. The Iliad shows mortals navigating fate they cannot change, finding meaning in how they face the inevitable.',
           nextSceneId: 'iliad-epi-sc8-conclusion',
         },
       ],
@@ -381,14 +361,10 @@ And like Achilles' name, these stories will live forever—not because of the gl
             componentId: 'final-quiz-the-iliad',
             condition: { type: 'if-not-completed' },
           },
-          {
-            type: 'chapter-complete',
-            chapterId: 'iliad-epilogue',
-          },
         ],
       },
     },
   ],
 
-  // No quiz for the epilogue - this is wrap-up/context
+  endQuiz: finalQuiz,
 };

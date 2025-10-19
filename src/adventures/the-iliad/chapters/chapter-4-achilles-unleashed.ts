@@ -252,28 +252,19 @@ They stare at him, understanding: the man before them has already died inside. W
         {
           id: 'choice-honor',
           text: 'Honor demands it—Hector killed my friend and took my armor',
-          consequences: {
-            immediate: 'Odysseus nods gravely. "Then fight for honor, as heroes should."',
-            points: { honor: 5 },
-          },
+          consequence: 'Odysseus nods gravely. "Then fight for honor, as heroes should."',
           nextSceneId: 'iliad-ch4-sc6-arming',
         },
         {
           id: 'choice-love',
           text: 'Love drives me—I cannot exist in a world without Patroclus',
-          consequences: {
-            immediate: 'Odysseus looks at you with unexpected gentleness. "That is the truest reason of all. Fight well, Achilles. May the gods grant you peace."',
-            points: { compassion: 5 },
-          },
+          consequence: 'Odysseus looks at you with unexpected gentleness. "That is the truest reason of all. Fight well, Achilles. May the gods grant you peace."',
           nextSceneId: 'iliad-ch4-sc6-arming',
         },
         {
           id: 'choice-rage',
           text: 'Rage consumes me—I will drown Troy in blood',
-          consequences: {
-            immediate: 'Odysseus steps back, seeing something inhuman in your eyes. "Then may the gods have mercy on Troy. You will have none."',
-            points: { wrath: 5 },
-          },
+          consequence: 'Odysseus steps back, seeing something inhuman in your eyes. "Then may the gods have mercy on Troy. You will have none."',
           nextSceneId: 'iliad-ch4-sc6-arming',
         },
       ],
@@ -620,28 +611,19 @@ He knows what you've come for. And he will give it to you.`,
         {
           id: 'choice-hate',
           text: 'Pure hatred—he killed Patroclus and must die',
-          consequences: {
-            immediate: 'Rage fills your vision. You see only the target of your vengeance.',
-            points: { wrath: 5 },
-          },
+          consequence: 'Rage fills your vision. You see only the target of your vengeance.',
           nextSceneId: 'iliad-ch4-sc14-chapter-end',
         },
         {
           id: 'choice-respect',
           text: 'Grim respect—he stands bravely to face certain death',
-          consequences: {
-            immediate: 'Despite everything, you recognize courage when you see it. But it changes nothing.',
-            points: { honor: 5 },
-          },
+          consequence: 'Despite everything, you recognize courage when you see it. But it changes nothing.',
           nextSceneId: 'iliad-ch4-sc14-chapter-end',
         },
         {
           id: 'choice-empty',
           text: 'Emptiness—killing him won\'t bring Patroclus back',
-          consequences: {
-            immediate: 'The truth settles over you like ash: revenge is hollow. But you will take it anyway.',
-            points: { wisdom: 5 },
-          },
+          consequence: 'The truth settles over you like ash: revenge is hollow. But you will take it anyway.',
           nextSceneId: 'iliad-ch4-sc14-chapter-end',
         },
       ],

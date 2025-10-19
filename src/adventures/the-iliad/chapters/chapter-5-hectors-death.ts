@@ -560,28 +560,19 @@ Priam takes a breath and enters.`,
         {
           id: 'choice-rage',
           text: 'Rage—he is the enemy, father of the man who killed Patroclus',
-          consequences: {
-            immediate: 'The rage flares for a moment. But then you see his tears, his trembling hands, and the rage... fades. He is just an old man who lost his son. Like your father will lose you.',
-            points: { wrath: -5, compassion: 5 },
-          },
+          consequence: 'The rage flares for a moment. But then you see his tears, his trembling hands, and the rage... fades. He is just an old man who lost his son. Like your father will lose you.',
           nextSceneId: 'iliad-ch5-sc13-resolution',
         },
         {
           id: 'choice-pity',
           text: 'Pity—he reminds you of your own father, waiting at home',
-          consequences: {
-            immediate: 'You see Peleus in Priam\'s face. Old, grieving, powerless. Your father will weep like this when news of your death reaches home. The thought breaks something in you.',
-            points: { compassion: 10 },
-          },
+          consequence: 'You see Peleus in Priam\'s face. Old, grieving, powerless. Your father will weep like this when news of your death reaches home. The thought breaks something in you.',
           nextSceneId: 'iliad-ch5-sc13-resolution',
         },
         {
           id: 'choice-recognition',
           text: 'Recognition—we are all victims of fate and loss',
-          consequences: {
-            immediate: 'For the first time since Patroclus died, you see clearly: you and Priam are the same. War has destroyed you both. Neither of you chose this suffering.',
-            points: { wisdom: 10 },
-          },
+          consequence: 'For the first time since Patroclus died, you see clearly: you and Priam are the same. War has destroyed you both. Neither of you chose this suffering.',
           nextSceneId: 'iliad-ch5-sc13-resolution',
         },
       ],
