@@ -1008,7 +1008,7 @@ You are standing on the threshold of treachery itself.`,
           description: 'Diseased, scratching, rotting. Alchemists, counterfeiters, perjurers. They corrupted truth/reality.',
         },
       ],
-      successThreshold: 70,
+      successThreshold: 50,
       learningPoints: [
         {
           id: 'lp-ch4-55',

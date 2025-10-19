@@ -289,8 +289,15 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
     }
 
     const correctAnswer = question.correctAnswer as Record<string, string>;
-    const items = Object.keys(correctAnswer);
-    const matches = [...new Set(Object.values(correctAnswer))]; // unique matches
+
+    // Extract question.id to a separate variable for stable dependency
+    const questionId = question.id;
+
+    // Memoize items and matches to prevent them from changing on every render
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const items = useMemo(() => Object.keys(correctAnswer), [correctAnswer]);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const matches = useMemo(() => [...new Set(Object.values(correctAnswer))], [correctAnswer]);
 
     // Helper function to shuffle array with a seed (for consistent randomization per item)
     const shuffleWithSeed = (array: string[], seed: string): string[] => {
@@ -320,10 +327,10 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
     const shuffledMatches = useMemo(() => {
       const result: Record<string, string[]> = {};
       items.forEach((item) => {
-        result[item] = shuffleWithSeed(matches, item + question.id);
+        result[item] = shuffleWithSeed(matches, item + questionId);
       });
       return result;
-    }, [items.join(','), matches.join(','), question.id]);
+    }, [questionId, items, matches]);
 
     return (
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>

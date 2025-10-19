@@ -9,7 +9,7 @@ This guide walks you through creating an educational adventure for Imsie from in
 
 ---
 
-## Overview: The 9-Step Process
+## Overview: The 10-Step Process
 
 Creating an adventure involves these major phases:
 
@@ -22,10 +22,11 @@ Creating an adventure involves these major phases:
 7. **Quiz Creation** - Build all quizzes and verify question types
 8. **Type & Lint Checking** - Run automated checks to catch errors
 9. **Asset Integration** - User provides URLs/files, we integrate them
+10. **Adventure Registration** - Register adventure in main application
 
 **Estimated Timeline:** 2-4 months for a complete adventure
 
-**Note:** User handles asset generation (parallel to steps 4-7) and play testing (after step 9)
+**Note:** User handles asset generation (parallel to steps 4-7) and play testing (after step 10)
 
 ---
 
@@ -233,7 +234,27 @@ When a user asks you to help create an adventure, follow this exact workflow. **
 - Run build to ensure no broken references
 
 **After integration complete, inform user:**
-"Asset integration complete! The adventure is ready for play testing. Please test thoroughly and report any issues."
+"Asset integration complete! Now proceeding to register the adventure in the application."
+
+**Automatically proceed to Step 10 when complete.**
+
+---
+
+#### Step 10: Adventure Registration
+**INSTRUCTION:** Create a todo list and follow `10_adventure_registration.md`.
+
+**Todo items should include:**
+- Read the adventure registration guide
+- Verify adventure export in `index.ts`
+- Import adventure in `src/adventures/adventure-registry.ts`
+- Add adventure to `adventures` array
+- Run TypeScript type check (`npx tsc --noEmit`)
+- Run build (`npm run build`)
+- Start dev server and verify adventure appears
+- Test adventure loads and plays correctly
+
+**After registration complete, inform user:**
+"Registration complete! The adventure is now live in the application and ready for play testing. Please test thoroughly on different devices and report any issues."
 
 **Guide workflow ends here. User performs play testing and provides feedback for any fixes needed.**
 
@@ -277,6 +298,7 @@ Each step has its own detailed guide:
 - **[07_quiz_creation.md](07_quiz_creation.md)** - Question writing, type selection, validation
 - **[08_type_lint_checking.md](08_type_lint_checking.md)** - Automated error checking
 - **[09_asset_integration.md](09_asset_integration.md)** - Integrating user-provided assets
+- **[10_adventure_registration.md](10_adventure_registration.md)** - Register adventure in application
 
 **Additional Resources:**
 - **[appendices.md](appendices.md)** - Reference materials, tools, glossary
@@ -297,8 +319,8 @@ Each step has its own detailed guide:
 
 **If you're ready to begin:**
 
-1. Confirm you understand the 8-step process
-2. Start with Step 1: Read `01_planning_and_concept.md`
+1. Confirm you understand the 10-step process
+2. Start with Step 1: Read `01_file_structure.md`
 3. Create your first todo list
 4. Begin execution
 

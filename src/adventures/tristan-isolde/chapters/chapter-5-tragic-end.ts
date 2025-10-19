@@ -524,7 +524,7 @@ The ship sails toward the harbor, its white sail gleaming in the afternoon sun--
 
       prompt: 'Order these events as they unfold in the final days:',
 
-      successThreshold: 70,
+      successThreshold: 50,
 
       timelineEvents: [
         {

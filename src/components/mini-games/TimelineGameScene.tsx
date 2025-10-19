@@ -85,17 +85,18 @@ const TimelineGameScene: React.FC<TimelineGameSceneProps> = ({
   const validateTimeline = () => {
     if (orderedEvents.length < 2) return 0;
 
-    let correctPairs = 0;
-    const totalPairs = orderedEvents.length - 1;
+    // Get the correct order
+    const correctOrder = [...scene.timelineEvents].sort((a, b) => a.year - b.year);
 
-    // Check each adjacent pair
-    for (let i = 0; i < orderedEvents.length - 1; i++) {
-      if (orderedEvents[i].year <= orderedEvents[i + 1].year) {
-        correctPairs++;
+    // Count how many events are in the correct position
+    let correctPositions = 0;
+    for (let i = 0; i < orderedEvents.length; i++) {
+      if (orderedEvents[i].id === correctOrder[i].id) {
+        correctPositions++;
       }
     }
 
-    const scorePercent = (correctPairs / totalPairs) * 100;
+    const scorePercent = (correctPositions / orderedEvents.length) * 100;
     return Math.round(scorePercent);
   };
 
@@ -555,16 +556,15 @@ const TimelineGameScene: React.FC<TimelineGameSceneProps> = ({
                     </h3>
                     <div style={{ position: 'relative' }}>
                       {orderedEvents.map((event, index) => {
-                        const isCorrectOrder =
-                          index === orderedEvents.length - 1 ||
-                          event.year <= orderedEvents[index + 1].year;
+                        // Check if this event is in the correct position
+                        const isCorrectPosition = event.id === correctOrder[index].id;
                         return (
                           <div
                             key={event.id}
                             style={{
                               padding: '1rem',
                               backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                              borderLeft: `4px solid ${isCorrectOrder ? '#4ade80' : '#ef4444'}`,
+                              borderLeft: `4px solid ${isCorrectPosition ? '#4ade80' : '#ef4444'}`,
                               borderRadius: '0.5rem',
                               marginBottom: '1rem',
                             }}
@@ -585,7 +585,7 @@ const TimelineGameScene: React.FC<TimelineGameSceneProps> = ({
                                 </div>
                               </div>
                               <div style={{ fontSize: '1.5rem' }}>
-                                {isCorrectOrder ? '✓' : '✗'}
+                                {isCorrectPosition ? '✓' : '✗'}
                               </div>
                             </div>
                           </div>

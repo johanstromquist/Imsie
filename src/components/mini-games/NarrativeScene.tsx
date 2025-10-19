@@ -19,6 +19,15 @@ const NarrativeScene: React.FC<NarrativeSceneProps> = ({ scene, theme, onComplet
   const sceneImage = scene.image ? assetLoader.getImage(scene.image) : null;
   const sceneVideo = scene.imageVideo;
 
+  // Validate annotations against full content (only warn if annotation doesn't appear ANYWHERE)
+  if (scene.inlineAnnotations && scene.inlineAnnotations.length > 0) {
+    scene.inlineAnnotations.forEach((annotation) => {
+      if (!scene.content.includes(annotation.text)) {
+        console.warn(`[NarrativeScene] Annotation text "${annotation.text}" not found in content for scene ${scene.id}`);
+      }
+    });
+  }
+
   return (
     <div
       style={{
@@ -114,10 +123,10 @@ const NarrativeScene: React.FC<NarrativeSceneProps> = ({ scene, theme, onComplet
                 content={paragraph}
                 annotations={scene.inlineAnnotations}
                 theme={theme}
+                enableMarkdown={true}
                 style={{
                   fontSize: '1.125rem',
                   lineHeight: '1.75',
-                  whiteSpace: 'pre-wrap',
                 }}
               />
             </div>

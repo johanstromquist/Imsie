@@ -1,13 +1,12 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 import type {
   DialogueScene as DialogueSceneType,
   AdventureTheme,
   DialogueNode,
   DialogueResponse,
-  InlineAnnotation,
 } from '../../types';
 import { assetLoader } from '../../services/assetLoader';
-import AnnotatedText from '../common/AnnotatedText';
+import ContentWithAnnotations from '../common/ContentWithAnnotations';
 
 interface DialogueSceneProps {
   scene: DialogueSceneType;
@@ -113,95 +112,6 @@ const DialogueScene: React.FC<DialogueSceneProps> = ({
     }
 
     return null;
-  };
-
-  // Helper to render text with inline annotations (using ContentWithAnnotations logic)
-  const renderTextWithAnnotations = (text: string) => {
-    if (!scene.inlineAnnotations || scene.inlineAnnotations.length === 0) {
-      return text;
-    }
-
-    interface Segment {
-      type: 'text' | 'annotation';
-      content: string;
-      annotation?: InlineAnnotation;
-      start: number;
-      end: number;
-    }
-
-    const segments: Segment[] = [];
-
-    // Find all annotation positions in the text
-    const annotationPositions = scene.inlineAnnotations
-      .map((annotation) => {
-        const index = text.indexOf(annotation.text);
-        if (index === -1) {
-          return null;
-        }
-        return {
-          annotation,
-          start: index,
-          end: index + annotation.text.length,
-        };
-      })
-      .filter((pos): pos is NonNullable<typeof pos> => pos !== null)
-      .sort((a, b) => a.start - b.start);
-
-    // Build segments
-    let currentPos = 0;
-
-    for (const { annotation, start, end } of annotationPositions) {
-      // Add text before annotation
-      if (currentPos < start) {
-        segments.push({
-          type: 'text',
-          content: text.slice(currentPos, start),
-          start: currentPos,
-          end: start,
-        });
-      }
-
-      // Add annotation
-      segments.push({
-        type: 'annotation',
-        content: annotation.text,
-        annotation,
-        start,
-        end,
-      });
-
-      currentPos = end;
-    }
-
-    // Add remaining text
-    if (currentPos < text.length) {
-      segments.push({
-        type: 'text',
-        content: text.slice(currentPos),
-        start: currentPos,
-        end: text.length,
-      });
-    }
-
-    return (
-      <>
-        {segments.map((segment, index) => {
-          if (segment.type === 'text') {
-            return <Fragment key={`text-${index}-${segment.start}`}>{segment.content}</Fragment>;
-          } else {
-            return (
-              <AnnotatedText
-                key={`annotation-${segment.annotation!.id}-${index}`}
-                id={segment.annotation!.id}
-                text={segment.content}
-                tooltip={segment.annotation!.tooltip}
-                theme={theme}
-              />
-            );
-          }
-        })}
-      </>
-    );
   };
 
   const isCharacter = currentSpeaker !== undefined && currentNode.speaker !== 'player';
@@ -335,15 +245,22 @@ const DialogueScene: React.FC<DialogueSceneProps> = ({
         >
           <div
             style={{
-              fontSize: '1.125rem',
-              lineHeight: '1.75',
-              color: 'white',
               opacity: showText ? 1 : 0,
               transition: 'opacity 0.3s ease-in',
               overflow: 'visible', // Allow tooltips to extend outside
             }}
           >
-            {renderTextWithAnnotations(currentNode.text)}
+            <ContentWithAnnotations
+              content={currentNode.text}
+              annotations={scene.inlineAnnotations}
+              theme={theme}
+              enableMarkdown={true}
+              style={{
+                fontSize: '1.125rem',
+                lineHeight: '1.75',
+                color: 'white',
+              }}
+            />
           </div>
 
           {/* Linear continuation button */}

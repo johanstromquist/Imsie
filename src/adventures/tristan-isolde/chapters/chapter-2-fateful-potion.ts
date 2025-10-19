@@ -704,7 +704,7 @@ export const chapter2: Chapter = {
 
       prompt: 'Put these events in the correct order:',
 
-      successThreshold: 70,
+      successThreshold: 50,
 
       timelineEvents: [
         {

@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import type { AnnotationTooltip, AdventureTheme } from '../../types';
 
 interface AnnotatedTextProps {
@@ -19,6 +20,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 const AnnotatedText: React.FC<AnnotatedTextProps> = ({ id, text, tooltip, theme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [position, setPosition] = useState<'top' | 'bottom'>('top');
+  const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
   const textRef = useRef<HTMLSpanElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
 
@@ -30,7 +32,14 @@ const AnnotatedText: React.FC<AnnotatedTextProps> = ({ id, text, tooltip, theme 
       const spaceBelow = window.innerHeight - rect.bottom;
 
       // Show below if not enough space above
-      setPosition(spaceAbove < 200 && spaceBelow > spaceAbove ? 'bottom' : 'top');
+      const newPosition = spaceAbove < 200 && spaceBelow > spaceAbove ? 'bottom' : 'top';
+      setPosition(newPosition);
+
+      // Calculate absolute position for portal
+      const left = rect.left + rect.width / 2;
+      const top = newPosition === 'top' ? rect.top : rect.bottom;
+
+      setTooltipPosition({ top, left });
     }
   }, [isOpen]);
 
@@ -70,8 +79,95 @@ const AnnotatedText: React.FC<AnnotatedTextProps> = ({ id, text, tooltip, theme 
 
   const categoryColor = CATEGORY_COLORS[tooltip.category] || theme.secondaryColor;
 
+  // Render tooltip as a portal to avoid nesting issues
+  const tooltipContent = isOpen ? createPortal(
+    <div
+      ref={tooltipRef}
+      id={`tooltip-${id}`}
+      role="tooltip"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+      style={{
+        position: 'fixed',
+        left: `${tooltipPosition.left}px`,
+        top: `${tooltipPosition.top}px`,
+        transform: position === 'top'
+          ? 'translate(-50%, calc(-100% - 8px))'
+          : 'translate(-50%, 8px)',
+        width: 'max-content',
+        maxWidth: '400px',
+        backgroundColor: 'rgba(0, 0, 0, 0.95)',
+        color: 'white',
+        padding: '1rem',
+        borderRadius: '0.5rem',
+        borderLeft: `4px solid ${categoryColor}`,
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
+        zIndex: 1000,
+        animation: 'fadeIn 200ms ease-out',
+        pointerEvents: 'auto',
+      }}
+    >
+      {/* Title */}
+      <div
+        style={{
+          fontWeight: 'bold',
+          fontSize: '1rem',
+          marginBottom: '0.5rem',
+          fontFamily: theme.fontFamily || 'inherit',
+        }}
+      >
+        {tooltip.title}
+      </div>
+
+      {/* Content */}
+      <div
+        style={{
+          fontSize: '0.875rem',
+          lineHeight: '1.5',
+          marginBottom: '0.5rem',
+        }}
+      >
+        {tooltip.content}
+      </div>
+
+      {/* Category badge */}
+      <div
+        style={{
+          display: 'inline-block',
+          fontSize: '0.75rem',
+          textTransform: 'uppercase',
+          letterSpacing: '0.5px',
+          color: categoryColor,
+          backgroundColor: `${categoryColor}20`,
+          padding: '0.25rem 0.5rem',
+          borderRadius: '0.25rem',
+          marginTop: '0.5rem',
+        }}
+      >
+        {tooltip.category.replace('-', ' ')}
+      </div>
+
+      {/* CSS animation */}
+      <style>
+        {`
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translate(-50%, ${position === 'top' ? 'calc(-100% - 4px)' : '4px'});
+            }
+            to {
+              opacity: 1;
+              transform: translate(-50%, ${position === 'top' ? 'calc(-100% - 8px)' : '8px'});
+            }
+          }
+        `}
+      </style>
+    </div>,
+    document.body
+  ) : null;
+
   return (
-    <span style={{ position: 'relative', display: 'inline' }}>
+    <>
       <span
         ref={textRef}
         onClick={() => setIsOpen(!isOpen)}
@@ -107,92 +203,8 @@ const AnnotatedText: React.FC<AnnotatedTextProps> = ({ id, text, tooltip, theme 
       >
         {text}
       </span>
-
-      {isOpen && (
-        <div
-          ref={tooltipRef}
-          id={`tooltip-${id}`}
-          role="tooltip"
-          onMouseEnter={() => setIsOpen(true)}
-          onMouseLeave={() => setIsOpen(false)}
-          style={{
-            position: 'absolute',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            ...(position === 'top'
-              ? { bottom: '100%', marginBottom: '8px' }
-              : { top: '100%', marginTop: '8px' }),
-            width: 'max-content',
-            maxWidth: '400px',
-            backgroundColor: 'rgba(0, 0, 0, 0.95)',
-            color: 'white',
-            padding: '1rem',
-            borderRadius: '0.5rem',
-            borderLeft: `4px solid ${categoryColor}`,
-            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
-            zIndex: 1000,
-            animation: 'fadeIn 200ms ease-out',
-            pointerEvents: 'auto',
-          }}
-        >
-          {/* Title */}
-          <div
-            style={{
-              fontWeight: 'bold',
-              fontSize: '1rem',
-              marginBottom: '0.5rem',
-              fontFamily: theme.fontFamily || 'inherit',
-            }}
-          >
-            {tooltip.title}
-          </div>
-
-          {/* Content */}
-          <div
-            style={{
-              fontSize: '0.875rem',
-              lineHeight: '1.5',
-              marginBottom: '0.5rem',
-            }}
-          >
-            {tooltip.content}
-          </div>
-
-          {/* Category badge */}
-          <div
-            style={{
-              display: 'inline-block',
-              fontSize: '0.75rem',
-              textTransform: 'uppercase',
-              letterSpacing: '0.5px',
-              color: categoryColor,
-              backgroundColor: `${categoryColor}20`,
-              padding: '0.25rem 0.5rem',
-              borderRadius: '0.25rem',
-              marginTop: '0.5rem',
-            }}
-          >
-            {tooltip.category.replace('-', ' ')}
-          </div>
-        </div>
-      )}
-
-      {/* CSS animation */}
-      <style>
-        {`
-          @keyframes fadeIn {
-            from {
-              opacity: 0;
-              transform: translateX(-50%) translateY(${position === 'top' ? '4px' : '-4px'});
-            }
-            to {
-              opacity: 1;
-              transform: translateX(-50%) translateY(0);
-            }
-          }
-        `}
-      </style>
-    </span>
+      {tooltipContent}
+    </>
   );
 };
 

@@ -9,6 +9,7 @@ interface ChapterNavigationProps {
   onChapterSelect: (chapterId: string) => void;
   onFinalQuizSelect?: () => void;
   onClose: () => void;
+  onFinishAdventure?: () => void;
 }
 
 const ChapterNavigation: React.FC<ChapterNavigationProps> = ({
@@ -20,6 +21,7 @@ const ChapterNavigation: React.FC<ChapterNavigationProps> = ({
   onChapterSelect,
   onFinalQuizSelect,
   onClose,
+  onFinishAdventure,
 }) => {
   // Determine which chapters are unlocked
   const isChapterUnlocked = (chapterIndex: number): boolean => {
@@ -128,6 +130,21 @@ const ChapterNavigation: React.FC<ChapterNavigationProps> = ({
   const isFinalQuizCompleted = () => {
     if (!finalQuiz) return false;
     return progress.quizScores.some(score => score.quizId === finalQuiz.id);
+  };
+
+  // Check if final quiz is passed (completed with passing score)
+  const isFinalQuizPassed = () => {
+    if (!finalQuiz || !isFinalQuizCompleted()) return false;
+    const quizScore = progress.quizScores.find(score => score.quizId === finalQuiz.id);
+    return quizScore ? quizScore.score >= finalQuiz.passingScore : false;
+  };
+
+  // Check if adventure is complete (all chapters done and final quiz passed)
+  const isAdventureComplete = () => {
+    const allChaptersCompleted = chapters.every(chapter =>
+      progress.completedChapters.includes(chapter.id)
+    );
+    return allChaptersCompleted && isFinalQuizPassed();
   };
 
   const handleFinalQuizClick = () => {
@@ -534,33 +551,63 @@ const ChapterNavigation: React.FC<ChapterNavigationProps> = ({
           </div>
         )}
 
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          style={{
-            marginTop: '2rem',
-            width: '100%',
-            padding: '1rem',
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-            color: 'white',
-            border: '2px solid rgba(255, 255, 255, 0.2)',
-            borderRadius: '0.75rem',
-            cursor: 'pointer',
-            transition: 'all 0.2s',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
-            e.currentTarget.style.borderColor = theme.secondaryColor;
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-          }}
-        >
-          Close
-        </button>
+        {/* Close or Finish Adventure button */}
+        {isAdventureComplete() && onFinishAdventure ? (
+          <button
+            onClick={onFinishAdventure}
+            style={{
+              marginTop: '2rem',
+              width: '100%',
+              padding: '1.5rem',
+              fontSize: '1.25rem',
+              fontWeight: 'bold',
+              backgroundColor: theme.secondaryColor,
+              color: 'white',
+              border: `3px solid ${theme.secondaryColor}`,
+              borderRadius: '0.75rem',
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
+            }}
+          >
+            🎉 Finish Adventure
+          </button>
+        ) : (
+          <button
+            onClick={onClose}
+            style={{
+              marginTop: '2rem',
+              width: '100%',
+              padding: '1rem',
+              fontSize: '1rem',
+              fontWeight: 'bold',
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              color: 'white',
+              border: '2px solid rgba(255, 255, 255, 0.2)',
+              borderRadius: '0.75rem',
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+              e.currentTarget.style.borderColor = theme.secondaryColor;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            }}
+          >
+            Close
+          </button>
+        )}
       </div>
 
       {/* CSS Animation */}

@@ -13,8 +13,9 @@
 5. [Adding Learning Points](#adding-learning-points)
 6. [Using Inline Annotations](#using-inline-annotations)
 7. [Quiz Trigger Setup](#quiz-trigger-setup)
-8. [Complete Chapter Example](#complete-chapter-example)
-9. [Best Practices](#best-practices)
+8. [Quiz Question Types for Scenes](#quiz-question-types-for-scenes)
+9. [Complete Chapter Example](#complete-chapter-example)
+10. [Best Practices](#best-practices)
 
 ---
 
@@ -29,10 +30,19 @@
 5. ✅ **Implement scenes one by one** (start with narrative, add interactive)
 6. ✅ **Add learning points to each scene** (1-3 per scene)
 7. ✅ **Create chapter quiz** (see Phase 6)
-8. ✅ **Test chapter playthrough** (full walkthrough)
-9. ✅ **Refine and polish** (based on testing)
+8. ✅ **Add quiz trigger to last scene** ⚠️ **CRITICAL - Don't forget!**
+9. ✅ **Test chapter playthrough** (full walkthrough)
+10. ✅ **Refine and polish** (based on testing)
 
 **Key Principle:** Build incrementally. Complete each scene fully before moving to the next.
+
+### ⚠️ Critical: Quiz Trigger Checklist
+
+Before marking a chapter as complete, verify:
+- [ ] Quiz file created in `quizzes/chapter-X-quiz.ts`
+- [ ] Quiz imported at top of chapter file
+- [ ] `endQuiz: chapterXQuiz` added at end of chapter
+- [ ] **Quiz trigger event added to LAST scene's `events.onExit`** ← Most commonly missed!
 
 ---
 
@@ -174,7 +184,7 @@ scenes: [
 | Character knowledge | Quote Attribution | Test recognition |
 | Chronological understanding | Timeline Game | Sequence comprehension |
 | Causal relationships | Cause-Effect | Logic connections |
-| Source analysis | Primary Source | Critical thinking |
+| Source analysis | Primary Source | Critical thinking (use self-assessment) |
 | Historical accuracy | Anachronism | Attention to detail |
 | Unique mechanics | Custom Mini-Game | Flexible creativity |
 
@@ -207,7 +217,7 @@ What is the primary goal of this scene?
 │  → Use CAUSE-EFFECT
 │
 ├─ Analyze primary source documents?
-│  → Use PRIMARY SOURCE
+│  → Use PRIMARY SOURCE (with self-assessment questions)
 │
 ├─ Test historical accuracy?
 │  → Use ANACHRONISM
@@ -533,9 +543,13 @@ category: 'etymology'           // Word origins
 
 ## Quiz Trigger Setup
 
+### ⚠️ CRITICAL: Every Chapter Needs a Quiz Trigger!
+
+**Common mistake:** Creating the quiz but forgetting to add the trigger event to the last scene. Without this, the quiz will never appear and players will skip directly to the next chapter.
+
 ### Basic Quiz Trigger
 
-Add to the **last scene** of the chapter:
+Add to the **LAST SCENE** of the chapter (the `events` property is separate from `learningPoints`):
 
 ```typescript
 {
@@ -543,10 +557,15 @@ Add to the **last scene** of the chapter:
   type: 'narrative',
   // ... content and learning points ...
 
+  learningPoints: [
+    // ... your learning points ...
+  ],
+
+  // ⚠️ THIS IS REQUIRED - Add AFTER learningPoints
   events: {
     onExit: [{
       type: 'quiz',
-      componentId: 'quiz-chapter-1',  // Must match quiz ID
+      componentId: 'quiz-chapter-1',  // Must match quiz ID exactly
       condition: { type: 'if-not-completed' },
     }],
   },
@@ -558,6 +577,8 @@ Add to the **last scene** of the chapter:
 2. Clicks "Continue"
 3. If quiz not already completed → Quiz launches
 4. If quiz already completed → Advances to next chapter
+
+**Verification:** After implementing a chapter, play through to the end. You should see the quiz appear, not jump to the next chapter.
 
 ### Multiple Event Triggers (Advanced)
 
@@ -596,6 +617,89 @@ events: {
 ```
 
 **Note:** Conditional triggers beyond `if-not-completed` require custom implementation in the engine.
+
+---
+
+## Quiz Question Types for Scenes
+
+When designing interactive scenes (especially `primary-source` scenes), it's critical to choose the right question type for assessment.
+
+### ⚠️ Critical Rule: Avoid `short-answer` for Analysis
+
+**`short-answer` should ONLY be used for exact word/phrase matching:**
+- Character names (e.g., "Scheherazade")
+- Location names (e.g., "Baghdad")
+- Specific terms (e.g., "Open Sesame")
+- Numbers or dates (e.g., "1001")
+
+**DO NOT use `short-answer` for:**
+- ❌ Questions asking "Why?", "How?", "Explain...", "Analyze...", "Describe..."
+- ❌ Questions requiring reasoning or critical thinking
+- ❌ Questions with multiple valid phrasings
+- ❌ Questions requiring sentences or paragraphs
+
+### Use `multiple-choice` for Analysis Questions
+
+For scenes like `primary-source` that ask students to analyze content, **always use `multiple-choice` questions**:
+
+**❌ WRONG - Using short-answer for analysis:**
+```typescript
+{
+  id: 'scene-primary-source',
+  type: 'primary-source',
+  questions: [
+    {
+      id: 'q1',
+      question: 'What techniques does Cervantes use to parody chivalric romances?',
+      type: 'short-answer',  // WRONG! This requires analysis
+      correctAnswer: 'He uses elevated language to describe mundane reality',
+      // This will frustrate students - they need exact wording!
+    },
+  ],
+}
+```
+
+**✅ CORRECT - Using multiple-choice for analysis:**
+```typescript
+{
+  id: 'scene-primary-source',
+  type: 'primary-source',
+  questions: [
+    {
+      id: 'q1',
+      question: 'What techniques does Cervantes use to parody chivalric romances? Consider how he contrasts idealized descriptions with harsh reality.',
+      type: 'multiple-choice',  // CORRECT!
+      options: [
+        'He completely rejects the structure of chivalric romances',
+        'He uses elevated language to describe mundane reality while maintaining the chivalric structure',
+        'He focuses only on realistic depictions without any literary techniques',
+        'He avoids any reference to chivalric traditions',
+      ],
+      correctAnswer: 'He uses elevated language to describe mundane reality while maintaining the chivalric structure',
+      explanation: 'Cervantes employs parody by using the elevated language and structure of chivalric romances to describe decidedly un-chivalric reality (rusty armor, skinny horse, windmills instead of dragons). This creates both humor and social commentary by highlighting the gap between romantic ideals and actual life.',
+    },
+  ],
+}
+```
+
+### Question Type Decision Tree
+
+```
+Is this question in a scene (primary-source, dialogue, etc.)?
+│
+├─ Asking for exact name/term/number?
+│  → Use `short-answer` (rare - consider `multiple-choice` instead)
+│
+├─ Asking for analysis, reasoning, or explanation?
+│  → Use `multiple-choice` (most common for educational scenes)
+│
+└─ Testing recognition from limited options?
+   → Use `multiple-choice`
+```
+
+**Best Practice:** For primary-source scenes, always use `multiple-choice` questions with well-crafted distractors that test understanding.
+
+**For detailed quiz question guidance, see:** `docs/QUIZ_SYSTEM_REFERENCE.md`
 
 ---
 
@@ -962,8 +1066,8 @@ export const chapter1: Chapter = {
 - ❌ Duplicate IDs across scenes
 - ❌ Wrong asset paths
 - ❌ Missing learning points
-- ❌ Quiz trigger on wrong scene
-- ❌ No quiz trigger at all
+- ❌ Quiz trigger on wrong scene (must be LAST scene)
+- ❌ **No quiz trigger at all** ← MOST COMMON MISTAKE - Always verify!
 
 **Educational Mistakes:**
 - ❌ Learning objectives not addressed in content
@@ -971,6 +1075,7 @@ export const chapter1: Chapter = {
 - ❌ No connection between scenes and quiz questions
 - ❌ Concepts introduced but never reinforced
 - ❌ Assuming prior knowledge without teaching it
+- ❌ **Using `short-answer` questions for analysis/reasoning (use `self-assessment` instead)**
 
 ### Pacing Guidelines
 
@@ -1007,10 +1112,10 @@ export const chapter1: Chapter = {
 
 Once you've completed your chapter:
 
-1. **Create the quiz** → See Phase 6: Quiz Creation
-2. **Test thoroughly** → See Phase 7: Testing and Refinement
-3. **Document assets** → Update `[adventure]_assets.md`
-4. **Move to next chapter** → Repeat this process
+1. **Repeat for all chapters** → Complete all chapter development in parallel
+2. **Review structure** → See Phase 6: Structure Review
+3. **Create quizzes** → See Phase 7: Quiz Creation
+4. **Document assets** → Update `[adventure]_assets.md` as needed
 
 ---
 
@@ -1018,7 +1123,8 @@ Once you've completed your chapter:
 
 - **`docs/SCENE_TYPES_REFERENCE.md`** - Complete technical reference for all 10 scene types
 - **`docs/FEATURE_INLINE_ANNOTATIONS.md`** - Detailed annotation documentation
-- **`docs/adventure_guide/06_quiz_creation.md`** - Creating effective quizzes
+- **`docs/adventure_guide/06_structure_review.md`** - Verify scene sequence and flow
+- **`docs/adventure_guide/07_quiz_creation.md`** - Creating effective quizzes
 - **`src/adventures/arabian-nights/chapters/`** - Example chapters to reference
 - **`src/types/adventure.ts`** - Type definitions (source of truth)
 
@@ -1028,4 +1134,4 @@ Once you've completed your chapter:
 **Last Updated:** October 2025
 **Part of:** Adventure Authoring Guide
 **Previous Phase:** [04 - Theme and Configuration](04_theme_configuration.md)
-**Next Phase:** [06 - Quiz Creation](06_quiz_creation.md)
+**Next Phase:** [06 - Structure Review](06_structure_review.md)

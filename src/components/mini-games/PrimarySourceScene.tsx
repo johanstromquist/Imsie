@@ -4,6 +4,7 @@ import type {
   AdventureTheme,
 } from '../../types';
 import { assetLoader } from '../../services/assetLoader';
+import ContentWithAnnotations from '../common/ContentWithAnnotations';
 
 interface PrimarySourceSceneProps {
   scene: PrimarySourceSceneType;
@@ -53,16 +54,17 @@ const PrimarySourceScene: React.FC<PrimarySourceSceneProps> = ({
     switch (scene.source.type) {
       case 'text':
         return (
-          <div
+          <ContentWithAnnotations
+            content={scene.source.content}
+            annotations={[]}
+            theme={theme}
+            enableMarkdown={true}
             style={{
-              whiteSpace: 'pre-wrap',
               lineHeight: '1.75',
               fontSize: '1rem',
               color: '#ddd',
             }}
-          >
-            {scene.source.content}
-          </div>
+          />
         );
       case 'image': {
         const img = assetLoader.getImage(scene.source.content);

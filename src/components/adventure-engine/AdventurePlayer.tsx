@@ -78,6 +78,11 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
 
     const preloadChapterAssets = async () => {
       setIsLoading(true);
+      setLoadingProgress(0);
+
+      // Small delay to ensure loading screen renders before asset loading completes
+      // This prevents the "stuck at 100%" bug when assets are already cached
+      await new Promise(resolve => setTimeout(resolve, 100));
 
       const assetsToLoad: Array<{ url: string; type: 'image' | 'audio' }> = [];
 
@@ -111,8 +116,26 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
           }
         }
         // Preload map images for map-exploration scenes
-        if (scene.type === 'map-exploration' && 'mapImage' in scene && scene.mapImage) {
-          assetsToLoad.push({ url: scene.mapImage, type: 'image' });
+        if (scene.type === 'map-exploration') {
+          if ('mapImage' in scene && scene.mapImage) {
+            assetsToLoad.push({ url: scene.mapImage, type: 'image' });
+          }
+          // Preload location popup images
+          if ('locations' in scene && scene.locations) {
+            scene.locations.forEach((location) => {
+              if (location.image) {
+                assetsToLoad.push({ url: location.image, type: 'image' });
+              }
+            });
+          }
+        }
+        // Preload item images for anachronism scenes
+        if (scene.type === 'anachronism' && 'items' in scene && scene.items) {
+          scene.items.forEach((item) => {
+            if (item.image) {
+              assetsToLoad.push({ url: item.image, type: 'image' });
+            }
+          });
         }
       });
 
@@ -125,6 +148,9 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
       await assetLoader.preloadAssets(assetsToLoad, (prog) => {
         setLoadingProgress(prog.percentage);
       });
+
+      // Small delay to ensure final progress update renders
+      await new Promise(resolve => setTimeout(resolve, 50));
 
       setIsLoading(false);
     };
@@ -318,9 +344,18 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
   }, [progress, currentQuiz, currentChapter, adventure.id, adventure.chapters.length]);
 
   const handleQuizRetry = useCallback(() => {
+    // Clear the quiz from triggered IDs so it can be triggered again after retaking
+    if (currentQuiz) {
+      setTriggeredIds((prev) => {
+        const newSet = new Set(prev);
+        newSet.delete(currentQuiz.id);
+        return newSet;
+      });
+    }
+
     setShowQuizResults(false);
     setShowQuiz(true);
-  }, []);
+  }, [currentQuiz]);
 
   const handleQuizContinue = useCallback(() => {
     console.log('handleQuizContinue called - showing chapter navigation');
@@ -338,6 +373,12 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
 
   const handleChapterSelect = useCallback((chapterId: string) => {
     if (!progress) return;
+
+    // If selecting the current chapter, just close the modal
+    if (chapterId === currentChapter?.id) {
+      setShowChapterNavigation(false);
+      return;
+    }
 
     // Close modal and show loading screen immediately (synchronously)
     setShowChapterNavigation(false);
@@ -736,6 +777,7 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
           onChapterSelect={handleChapterSelect}
           onFinalQuizSelect={handleFinalQuizSelect}
           onClose={() => setShowChapterNavigation(false)}
+          onFinishAdventure={onExit}
         />
       )}
     </div>
