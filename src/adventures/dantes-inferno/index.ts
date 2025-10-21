@@ -32,7 +32,11 @@ const chapters = [
 export const dantesInferno: Adventure = {
   id: 'dantes-inferno',
   title: "Dante's Inferno",
+  author: 'Dante Alighieri',
+  originalTitle: 'La Divina Commedia',
   description: 'Journey through the Nine Circles of Hell with Dante and Virgil in this epic exploration of medieval literature, theology, and Renaissance Italy.',
+  authoringDate: 1320,
+  period: 'Medieval Period (476 - 1450)',
   searchKeywords: [
     'Divine Comedy', 'Dante Alighieri', 'Virgil', 'Beatrice',
     'Hell', 'Inferno', 'Nine Circles', 'Underworld',

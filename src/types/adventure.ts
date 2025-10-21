@@ -3,10 +3,14 @@
 export interface Adventure {
   id: string;
   title: string;
+  author: string; // original author(s)
+  originalTitle?: string; // original title if different from display title
   description: string;
   searchKeywords?: string[]; // additional keywords for search (character names, alternative titles, etc.)
   estimatedTime: number; // in minutes (calculated from effort level)
   effort: number; // difficulty/complexity level (1.0 - 2.0) - used to calculate time
+  authoringDate: number; // approximate year of original authoring (e.g., 800 for Homer's works, 1605 for Don Quixote)
+  period: LiteraryPeriod; // historical/literary period for filtering
   coverArt: string; // path to cover image
   coverVideo?: string; // optional video URL (plays on hover)
   theme: AdventureTheme;
@@ -14,6 +18,16 @@ export interface Adventure {
   chapters: Chapter[];
   finalQuiz: Quiz;
 }
+
+export type LiteraryPeriod =
+  | 'Ancient Greece & Rome (800 BCE - 476 CE)'
+  | 'Medieval Period (476 - 1450)'
+  | 'Renaissance (1450 - 1600)'
+  | 'Early Modern (1600 - 1800)'
+  | 'Romantic Period (1800 - 1850)'
+  | 'Victorian Era (1850 - 1900)'
+  | 'Modern Period (1900 - 1945)'
+  | 'Contemporary (1945 - Present)';
 
 export interface AdventureTheme {
   primaryColor: string;
@@ -101,14 +115,19 @@ export interface AnnotationTooltip {
 export interface SceneEvents {
   onEnter?: SceneTrigger[];
   onExit?: SceneTrigger[];
+  onBack?: SceneTrigger[]; // Triggers when user clicks back button
   onChoice?: Record<string, SceneTrigger[]>; // Per-choice triggers
 }
 
 export interface SceneTrigger {
-  type: 'quiz' | 'mini-game' | 'cutscene' | 'custom';
-  componentId: string; // ID of quiz, mini-game, or custom component
+  type: 'quiz' | 'mini-game' | 'cutscene' | 'custom' | 'music-fade';
+  componentId?: string; // ID of quiz, mini-game, or custom component (optional for music-fade)
   condition?: TriggerCondition;
   data?: Record<string, unknown>; // Optional data to pass to component
+  // Music fade specific properties
+  fadeDirection?: 'out' | 'in';
+  fadeDuration?: number; // Duration in milliseconds
+  targetVolume?: number; // 0-1, defaults to 0 for fadeOut, 1 for fadeIn
 }
 
 export interface TriggerCondition {

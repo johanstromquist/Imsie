@@ -917,7 +917,83 @@ customGameRegistry.register('memory-match', MemoryMatchGame);
 export default MemoryMatchGame;
 ```
 
-**Example Included:** See `src/components/mini-games/custom/MemoryMatchGame.tsx` and `src/components/mini-games/custom/README.md` for a complete implementation.
+**Examples Included:**
+- **Memory Match Game:** See `src/components/mini-games/custom/MemoryMatchGame.tsx`
+- **Rhythm Game:** See `src/components/mini-games/custom/RhythmGame.tsx`
+- **Documentation:** See `src/components/mini-games/custom/README.md` for complete implementation details
+
+### Built-in Custom Games
+
+#### Rhythm Game (`rhythm-game`)
+
+An audio-synchronized rhythm game where players tap in time with musical beats.
+
+**Configuration:**
+
+```typescript
+{
+  id: 'sirens-song',
+  type: 'custom-mini-game',
+  gameType: 'rhythm-game',
+
+  config: {
+    // Required
+    audioFile: '/path/to/audio.mp3',
+    beats: [1.5, 3.0, 4.5, 6.0, 7.5],  // Beat timestamps in seconds
+    tolerance: 0.3,  // Timing window in seconds (± from beat time)
+
+    // Visual customization
+    backgroundImage: 'https://path/to/background.png',
+    introImage: 'https://path/to/intro-image.png',
+
+    // Text customization
+    title: 'The Sirens\' Song',
+    introText: 'Listen to the haunting melody and tap in rhythm...',
+    instructionsText: 'Press SPACEBAR or click when beats appear!',
+    startButtonText: 'Begin Challenge',
+    successTitle: 'You Resisted!',
+    successText: 'Your perfect rhythm kept you safe from the Sirens\' spell.',
+    failureTitle: 'Practice Makes Perfect',
+    failureText: 'The rhythm was tricky—try again!',
+    continueButtonText: 'Continue Journey →',
+
+    // Gameplay
+    passingScore: 70,  // Percentage required to pass (default 70)
+    showAccuracyInResults: true,  // Show accuracy stat (default true)
+    showComboInResults: true,  // Show max combo stat (default true)
+  },
+
+  learningPoints: [
+    {
+      id: 'lp-sirens-resistance',
+      content: 'Odysseus\' discipline allowed him to experience the Sirens\' song while maintaining control.',
+      category: 'character-analysis',
+    },
+  ],
+}
+```
+
+**Features:**
+- Audio synchronization with precise beat timing
+- Score multiplier for combos (up to 4x)
+- Real-time feedback (PERFECT!, GREAT!, GOOD, MISS)
+- Visual beat indicators moving across track
+- Keyboard (SPACEBAR) and mouse input
+- Configurable passing threshold
+- Skip button for accessibility
+
+**Scoring:**
+- **PERFECT** (>90% accuracy): 200 points × combo multiplier
+- **GREAT** (>70% accuracy): 150 points × combo multiplier
+- **GOOD** (≤70% accuracy): 100 points × combo multiplier
+- **MISS**: Resets combo to 0
+
+**Best Practices:**
+- Test audio timing carefully to ensure beats align
+- Use tolerance of 0.2-0.4 seconds for most songs
+- Place beats on strong musical accents (downbeats, melody peaks)
+- Keep beat count reasonable (10-20 beats for most scenes)
+- Provide clear context for why rhythm matters in your story
 
 ### Features
 

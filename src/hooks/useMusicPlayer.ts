@@ -111,6 +111,36 @@ export const useMusicPlayer = ({ playlist }: UseMusicPlayerProps) => {
     }
   }, [isMuted]);
 
+  // Fade volume smoothly over a duration
+  const fadeVolume = useCallback((targetVolume: number, duration: number) => {
+    if (!audioRef.current) return;
+
+    const audio = audioRef.current;
+    const startVolume = audio.volume;
+    const volumeChange = targetVolume - startVolume;
+    const startTime = performance.now();
+
+    const fade = (currentTime: number) => {
+      if (!audioRef.current) return;
+
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Ease-in-out cubic for smoother fade
+      const easedProgress = progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+      audioRef.current.volume = Math.max(0, Math.min(1, startVolume + volumeChange * easedProgress));
+
+      if (progress < 1) {
+        requestAnimationFrame(fade);
+      }
+    };
+
+    requestAnimationFrame(fade);
+  }, []);
+
   return {
     isMuted,
     isPlaying,
@@ -118,5 +148,6 @@ export const useMusicPlayer = ({ playlist }: UseMusicPlayerProps) => {
     currentTrackIndex,
     startMusic,
     toggleMute,
+    fadeVolume,
   };
 };

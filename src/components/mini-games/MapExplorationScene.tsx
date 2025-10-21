@@ -1,10 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type {
   MapExplorationScene as MapExplorationSceneType,
   AdventureTheme,
   MapLocation,
 } from '../../types';
 import { assetLoader } from '../../services/assetLoader';
+
+// Custom hook for responsive breakpoints
+const useMediaQuery = (query: string): boolean => {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    setMatches(media.matches);
+
+    const listener = (e: MediaQueryListEvent) => setMatches(e.matches);
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
+  }, [query]);
+
+  return matches;
+};
 
 interface MapExplorationSceneProps {
   scene: MapExplorationSceneType;
@@ -21,6 +37,7 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
   onBack,
   canGoBack,
 }) => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
   const [visitedLocations, setVisitedLocations] = useState<Set<string>>(new Set());
   const [selectedLocation, setSelectedLocation] = useState<MapLocation | null>(null);
 
@@ -83,7 +100,7 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundColor: theme.primaryColor,
-        padding: '2rem',
+        padding: isMobile ? '1rem' : '2rem',
         position: 'relative',
       }}
     >
@@ -91,7 +108,7 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
       {sceneImage && (
         <div
           style={{
-            marginBottom: '2rem',
+            marginBottom: isMobile ? '1rem' : '2rem',
             display: 'flex',
             justifyContent: 'center',
             maxWidth: '1200px',
@@ -117,7 +134,7 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
           maxWidth: '1200px',
           width: '100%',
           backgroundColor: 'rgba(0, 0, 0, 0.85)',
-          padding: '2rem',
+          padding: isMobile ? '1rem' : '2rem',
           borderRadius: '1rem',
           color: 'white',
           backdropFilter: 'blur(10px)',
@@ -125,7 +142,7 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
         }}
       >
         {/* Header with prompt and progress */}
-        <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+        <div style={{ marginBottom: isMobile ? '1rem' : '1.5rem', textAlign: 'center' }}>
           <h2
             style={{
               fontSize: '1.75rem',
@@ -193,8 +210,8 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
                   left: `${location.x}%`,
                   top: `${location.y}%`,
                   transform: 'translate(-50%, -50%)',
-                  width: '40px',
-                  height: '40px',
+                  width: '44px',
+                  height: '44px',
                   borderRadius: '50%',
                   backgroundColor: isVisited
                     ? theme.secondaryColor
@@ -213,14 +230,18 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
                   boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1.3)';
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.5)';
-                  e.currentTarget.style.zIndex = '20';
+                  if (!isMobile) {
+                    e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1.3)';
+                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.5)';
+                    e.currentTarget.style.zIndex = '20';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1)';
-                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
-                  e.currentTarget.style.zIndex = '10';
+                  if (!isMobile) {
+                    e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1)';
+                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
+                    e.currentTarget.style.zIndex = '10';
+                  }
                 }}
                 aria-label={location.name}
                 title={location.name}
@@ -235,10 +256,10 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
         {/* Location legend */}
         <div
           style={{
-            marginTop: '1.5rem',
+            marginTop: isMobile ? '1rem' : '1.5rem',
             display: 'flex',
             justifyContent: 'center',
-            gap: '2rem',
+            gap: isMobile ? '1rem' : '2rem',
             flexWrap: 'wrap',
             fontSize: '0.875rem',
             color: '#ccc',
@@ -271,12 +292,12 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
         </div>
 
         {/* Continue button */}
-        <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+        <div style={{ marginTop: isMobile ? '1rem' : '2rem', textAlign: 'center' }}>
           <button
             onClick={handleContinue}
             disabled={!canProceed}
             style={{
-              padding: '1rem 3rem',
+              padding: isMobile ? '0.75rem 2rem' : '1rem 3rem',
               fontSize: '1.125rem',
               fontWeight: 'bold',
               backgroundColor: canProceed ? theme.secondaryColor : '#555',
@@ -288,13 +309,13 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
               opacity: canProceed ? 1 : 0.5,
             }}
             onMouseEnter={(e) => {
-              if (canProceed) {
+              if (canProceed && !isMobile) {
                 e.currentTarget.style.transform = 'translateY(-2px)';
                 e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.3)';
               }
             }}
             onMouseLeave={(e) => {
-              if (canProceed) {
+              if (canProceed && !isMobile) {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = 'none';
               }
@@ -310,7 +331,7 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
             style={{
               borderLeft: `4px solid ${theme.secondaryColor}`,
               paddingLeft: '1rem',
-              marginTop: '2rem',
+              marginTop: isMobile ? '1rem' : '2rem',
               fontStyle: 'italic',
               color: '#ccc',
             }}
@@ -328,10 +349,11 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
           <button
             onClick={onBack}
             style={{
-              position: 'absolute',
-              left: '-22.5px',
-              top: '50%',
-              transform: 'translateY(-50%)',
+              position: isMobile ? 'fixed' : 'absolute',
+              left: isMobile ? '1rem' : '-22.5px',
+              top: isMobile ? 'auto' : '50%',
+              bottom: isMobile ? '1rem' : 'auto',
+              transform: isMobile ? 'none' : 'translateY(-50%)',
               width: '45px',
               height: '45px',
               borderRadius: '50%',
@@ -345,14 +367,19 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
               justifyContent: 'center',
               opacity: 0.2,
               transition: 'opacity 0.3s, transform 0.2s',
+              zIndex: 100,
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.opacity = '1';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+              if (!isMobile) {
+                e.currentTarget.style.opacity = '1';
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+              }
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.opacity = '0.2';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+              if (!isMobile) {
+                e.currentTarget.style.opacity = '0.2';
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+              }
             }}
             aria-label="Go back"
           >
@@ -375,7 +402,7 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
             alignItems: 'center',
             justifyContent: 'center',
             zIndex: 1000,
-            padding: '2rem',
+            padding: isMobile ? '1rem' : '2rem',
             animation: 'fadeIn 0.3s ease-in',
           }}
           onClick={handleCloseLocationDetail}
@@ -386,7 +413,7 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
               width: '100%',
               backgroundColor: 'rgba(0, 0, 0, 0.95)',
               borderRadius: '1rem',
-              padding: '2rem',
+              padding: isMobile ? '1rem' : '2rem',
               border: `2px solid ${theme.secondaryColor}`,
               boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
             }}
@@ -406,7 +433,7 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
             {selectedLocation.image && (() => {
               const locationImage = assetLoader.getImage(selectedLocation.image);
               return locationImage ? (
-                <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+                <div style={{ marginBottom: isMobile ? '1rem' : '1.5rem', textAlign: 'center' }}>
                   <img
                     src={locationImage.src}
                     alt={selectedLocation.name}
@@ -420,7 +447,7 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
               ) : null;
             })()}
 
-            <div style={{ marginBottom: '1.5rem' }}>
+            <div style={{ marginBottom: isMobile ? '1rem' : '1.5rem' }}>
               {selectedLocation.content.split('\n\n').map((paragraph, index) => (
                 <div
                   key={index}

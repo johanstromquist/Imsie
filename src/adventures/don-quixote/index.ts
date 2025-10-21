@@ -19,7 +19,11 @@ const chapters = [
 export const donQuixote: Adventure = {
   id: 'don-quixote',
   title: 'Don Quixote',
+  author: 'Miguel de Cervantes',
+  originalTitle: 'El ingenioso hidalgo don Quijote de la Mancha',
   description: 'Journey through the adventures of the ingenious nobleman Don Quixote de la Mancha as he tilts at windmills and pursues chivalric ideals in Golden Age Spain.',
+  authoringDate: 1605,
+  period: 'Early Modern (1600 - 1800)',
   searchKeywords: [
     'Cervantes', 'Miguel de Cervantes', 'Don Quijote',
     'Sancho Panza', 'Dulcinea', 'Rocinante', 'Dapple',

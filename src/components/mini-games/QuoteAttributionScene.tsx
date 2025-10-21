@@ -1,6 +1,22 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import type { QuoteAttributionScene as QuoteAttributionSceneType, AdventureTheme } from '../../types';
 import { assetLoader } from '../../services/assetLoader';
+
+// Custom hook for responsive breakpoints
+const useMediaQuery = (query: string): boolean => {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    setMatches(media.matches);
+
+    const listener = (e: MediaQueryListEvent) => setMatches(e.matches);
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
+  }, [query]);
+
+  return matches;
+};
 
 interface QuoteAttributionSceneProps {
   scene: QuoteAttributionSceneType;
@@ -23,6 +39,7 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
   onBack,
   canGoBack,
 }) => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showResult, setShowResult] = useState(false);
@@ -118,7 +135,7 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundColor: theme.primaryColor,
-          padding: '2rem',
+          padding: isMobile ? '1rem' : '2rem',
           position: 'relative',
         }}
       >
@@ -126,7 +143,7 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
         {sceneImage && (
           <div
             style={{
-              marginBottom: '2rem',
+              marginBottom: isMobile ? '1rem' : '2rem',
               display: 'flex',
               justifyContent: 'center',
               maxWidth: '900px',
@@ -151,7 +168,7 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
             maxWidth: '900px',
             width: '100%',
             backgroundColor: 'rgba(0, 0, 0, 0.85)',
-            padding: '2.5rem',
+            padding: isMobile ? '1rem' : '2.5rem',
             borderRadius: '1rem',
             color: 'white',
             backdropFilter: 'blur(10px)',
@@ -164,8 +181,8 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
           <div
             style={{
               textAlign: 'center',
-              marginBottom: '2rem',
-              paddingBottom: '2rem',
+              marginBottom: isMobile ? '1rem' : '2rem',
+              paddingBottom: isMobile ? '1rem' : '2rem',
               borderBottom: `2px solid ${theme.secondaryColor}`,
             }}
           >
@@ -195,12 +212,12 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
           </div>
 
           {/* Results breakdown */}
-          <div style={{ marginBottom: '2rem' }}>
+          <div style={{ marginBottom: isMobile ? '1rem' : '2rem' }}>
             <h3
               style={{
                 fontSize: '1.5rem',
                 fontWeight: 'bold',
-                marginBottom: '1.5rem',
+                marginBottom: isMobile ? '1rem' : '1.5rem',
                 color: theme.secondaryColor,
               }}
             >
@@ -334,7 +351,7 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
               style={{
                 borderLeft: `4px solid ${theme.secondaryColor}`,
                 paddingLeft: '1rem',
-                marginBottom: '2rem',
+                marginBottom: isMobile ? '1rem' : '2rem',
                 fontStyle: 'italic',
                 color: '#ccc',
               }}
@@ -391,7 +408,7 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundColor: theme.primaryColor,
-        padding: '2rem',
+        padding: isMobile ? '1rem' : '2rem',
         position: 'relative',
       }}
     >
@@ -400,7 +417,7 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
           maxWidth: '800px',
           width: '100%',
           backgroundColor: 'rgba(0, 0, 0, 0.85)',
-          padding: '2.5rem',
+          padding: isMobile ? '1rem' : '2.5rem',
           borderRadius: '1rem',
           color: 'white',
           backdropFilter: 'blur(10px)',
@@ -425,7 +442,7 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
         </div>
 
         {/* Prompt */}
-        <div style={{ marginBottom: '2rem' }}>
+        <div style={{ marginBottom: isMobile ? '1rem' : '2rem' }}>
           <h2
             style={{
               fontSize: '1.5rem',
@@ -441,9 +458,9 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
         {/* Quote display */}
         <div
           style={{
-            padding: '2rem',
+            padding: isMobile ? '1rem' : '2rem',
             textAlign: 'center',
-            marginBottom: '2rem',
+            marginBottom: isMobile ? '1rem' : '2rem',
             backgroundColor: 'rgba(255, 255, 255, 0.05)',
             borderRadius: '0.75rem',
           }}
@@ -468,14 +485,14 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
         {showResult ? (
           <div
             style={{
-              marginBottom: '2rem',
+              marginBottom: isMobile ? '1rem' : '2rem',
               animation: 'fadeIn 0.5s ease-in',
             }}
           >
             {/* Feedback */}
             <div
               style={{
-                padding: '1.5rem',
+                padding: isMobile ? '1rem' : '1.5rem',
                 backgroundColor:
                   answers[currentQuote.id] === currentQuote.speaker
                     ? 'rgba(74, 222, 128, 0.15)'
@@ -605,9 +622,9 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '1rem',
-              marginBottom: '2rem',
+              gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: isMobile ? '0.75rem' : '1rem',
+              marginBottom: isMobile ? '1rem' : '2rem',
             }}
           >
             {speakerOptions.map((speaker) => (
@@ -628,7 +645,7 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
                   fontWeight: '500',
                 }}
                 onMouseEnter={(e) => {
-                  if (!hasAnswered) {
+                  if (!hasAnswered && !isMobile) {
                     e.currentTarget.style.transform = 'translateY(-4px)';
                     e.currentTarget.style.borderColor = theme.secondaryColor;
                     e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
@@ -636,7 +653,7 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
                   }
                 }}
                 onMouseLeave={(e) => {
-                  if (!hasAnswered) {
+                  if (!hasAnswered && !isMobile) {
                     e.currentTarget.style.transform = 'translateY(0)';
                     e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
                     e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
@@ -680,10 +697,11 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
           <button
             onClick={onBack}
             style={{
-              position: 'absolute',
-              left: '-22.5px',
-              top: '50%',
-              transform: 'translateY(-50%)',
+              position: isMobile ? 'fixed' : 'absolute',
+              left: isMobile ? '1rem' : '-22.5px',
+              top: isMobile ? 'auto' : '50%',
+              bottom: isMobile ? '1rem' : 'auto',
+              transform: isMobile ? 'none' : 'translateY(-50%)',
               width: '45px',
               height: '45px',
               borderRadius: '50%',
@@ -697,14 +715,19 @@ const QuoteAttributionScene: React.FC<QuoteAttributionSceneProps> = ({
               justifyContent: 'center',
               opacity: 0.2,
               transition: 'opacity 0.3s, transform 0.2s',
+              zIndex: 100,
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.opacity = '1';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+              if (!isMobile) {
+                e.currentTarget.style.opacity = '1';
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+              }
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.opacity = '0.2';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+              if (!isMobile) {
+                e.currentTarget.style.opacity = '0.2';
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+              }
             }}
             aria-label="Go back"
           >

@@ -39,7 +39,7 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
   const [showChapterNavigation, setShowChapterNavigation] = useState(false);
 
   // Initialize music player if playlist is available
-  const { isMuted, needsUserInteraction, startMusic, toggleMute } = useMusicPlayer({
+  const { isMuted, needsUserInteraction, startMusic, toggleMute, fadeVolume } = useMusicPlayer({
     playlist: adventure.musicPlaylist || [],
   });
   const [showStartOverlay, setShowStartOverlay] = useState(true);
@@ -137,6 +137,22 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
             }
           });
         }
+        // Preload primary source content for primary-source scenes
+        if (scene.type === 'primary-source' && 'source' in scene && scene.source) {
+          if (scene.source.type === 'image' && scene.source.content) {
+            assetsToLoad.push({ url: scene.source.content, type: 'image' });
+          } else if (scene.source.type === 'audio' && scene.source.content) {
+            assetsToLoad.push({ url: scene.source.content, type: 'audio' });
+          }
+        }
+        // Preload timeline event images for timeline-game scenes
+        if (scene.type === 'timeline-game' && 'timelineEvents' in scene && scene.timelineEvents) {
+          scene.timelineEvents.forEach((event) => {
+            if (event.image) {
+              assetsToLoad.push({ url: event.image, type: 'image' });
+            }
+          });
+        }
       });
 
       // Add adventure theme music
@@ -187,12 +203,18 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
 
   // Process a trigger (show quiz, mini-game, etc.)
   const processTrigger = useCallback((trigger: SceneTrigger) => {
-    // Mark as triggered
-    setTriggeredIds((prev) => new Set(prev).add(trigger.componentId));
+    // Mark as triggered (only if componentId exists)
+    if (trigger.componentId) {
+      setTriggeredIds((prev) => new Set(prev).add(trigger.componentId!));
+    }
 
     // Handle based on trigger type
     switch (trigger.type) {
       case 'quiz': {
+        if (!trigger.componentId) {
+          console.warn('Quiz trigger missing componentId');
+          break;
+        }
         const quiz = resolveQuizData(trigger.componentId, adventure);
         if (quiz) {
           setCurrentQuiz(quiz);
@@ -215,8 +237,22 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
         // Future: Handle custom triggers
         console.warn('Custom triggers not yet implemented');
         break;
+
+      case 'music-fade': {
+        // Fade background music in or out
+        const duration = trigger.fadeDuration || 1000; // Default 1 second
+        let targetVolume = trigger.targetVolume;
+
+        // Set defaults based on fade direction if targetVolume not specified
+        if (targetVolume === undefined) {
+          targetVolume = trigger.fadeDirection === 'out' ? 0 : 0.3;
+        }
+
+        fadeVolume(targetVolume, duration);
+        break;
+      }
     }
-  }, [adventure]);
+  }, [adventure, fadeVolume]);
 
   const handleSceneComplete = useCallback(async (sceneId: string) => {
     if (!progress || !currentChapter) return;
@@ -239,9 +275,15 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
       const triggers = getActiveTriggers(scene.events.onExit, progress, adventure, triggeredIds);
 
       if (triggers.length > 0) {
-        // Process first trigger
-        processTrigger(triggers[0]);
-        return; // Don't advance to next scene yet
+        // Process all triggers
+        triggers.forEach(trigger => processTrigger(trigger));
+
+        // Only block scene progression for blocking trigger types (quiz, cutscene)
+        const hasBlockingTrigger = triggers.some(t => t.type === 'quiz' || t.type === 'cutscene');
+        if (hasBlockingTrigger) {
+          return; // Don't advance to next scene yet
+        }
+        // For non-blocking triggers like music-fade, continue to next scene
       }
     }
 
@@ -262,13 +304,20 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
   }, [progress, currentChapter, adventure.id, processTrigger, triggeredIds]);
 
   const handleSceneBack = useCallback(() => {
-    if (!currentChapter || !currentScene) return;
+    if (!currentChapter || !currentScene || !progress) return;
 
     // Find current scene index
     const currentSceneIndex = currentChapter.scenes.findIndex((s) => s.id === currentScene.id);
 
     // Can't go back if we're on the first scene
     if (currentSceneIndex <= 0) return;
+
+    // Process onBack triggers for the current scene
+    if (currentScene.events?.onBack && currentScene.events.onBack.length > 0) {
+      const triggers = getActiveTriggers(currentScene.events.onBack, progress, adventure, triggeredIds);
+      // Process all triggers (onBack triggers should be non-blocking like music-fade)
+      triggers.forEach(trigger => processTrigger(trigger));
+    }
 
     // Get the previous scene
     const previousScene = currentChapter.scenes[currentSceneIndex - 1];
@@ -280,7 +329,7 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
       }
       setCurrentScene(previousScene);
     }
-  }, [currentChapter, currentScene, sceneHistory]);
+  }, [currentChapter, currentScene, sceneHistory, progress, adventure, triggeredIds, processTrigger]);
 
   const handleChapterComplete = useCallback(() => {
     // Find next chapter
@@ -502,6 +551,7 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
           right: '1rem',
           display: 'flex',
           gap: '0.5rem',
+          zIndex: 1000,
         }}>
           {adventure.musicPlaylist && adventure.musicPlaylist.length > 0 && (
             <button
@@ -517,7 +567,19 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
               }}
               title={isMuted ? 'Unmute music' : 'Mute music'}
             >
-              {isMuted ? '🔇' : '🎵'}
+              {isMuted ? (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                  <line x1="23" y1="9" x2="17" y2="15" />
+                  <line x1="17" y1="9" x2="23" y2="15" />
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18V5l12-2v13" />
+                  <circle cx="6" cy="18" r="3" />
+                  <circle cx="18" cy="16" r="3" />
+                </svg>
+              )}
             </button>
           )}
           <button
@@ -574,6 +636,7 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
           right: '1rem',
           display: 'flex',
           gap: '0.5rem',
+          zIndex: 1000,
         }}>
           {adventure.musicPlaylist && adventure.musicPlaylist.length > 0 && (
             <button
@@ -589,7 +652,19 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
               }}
               title={isMuted ? 'Unmute music' : 'Mute music'}
             >
-              {isMuted ? '🔇' : '🎵'}
+              {isMuted ? (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                  <line x1="23" y1="9" x2="17" y2="15" />
+                  <line x1="17" y1="9" x2="23" y2="15" />
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18V5l12-2v13" />
+                  <circle cx="6" cy="18" r="3" />
+                  <circle cx="18" cy="16" r="3" />
+                </svg>
+              )}
             </button>
           )}
           <button
@@ -715,6 +790,7 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
         right: '1rem',
         display: 'flex',
         gap: '0.5rem',
+        zIndex: 100,
       }}>
         {/* Music control */}
         {adventure.musicPlaylist && adventure.musicPlaylist.length > 0 && (
@@ -731,7 +807,19 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
             }}
             title={isMuted ? 'Unmute music' : 'Mute music'}
           >
-            {isMuted ? '🔇' : '🎵'}
+            {isMuted ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <line x1="23" y1="9" x2="17" y2="15" />
+                <line x1="17" y1="9" x2="23" y2="15" />
+              </svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 18V5l12-2v13" />
+                <circle cx="6" cy="18" r="3" />
+                <circle cx="18" cy="16" r="3" />
+              </svg>
+            )}
           </button>
         )}
 

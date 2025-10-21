@@ -18,7 +18,11 @@ const chapters = [
 export const arabianNights: Adventure = {
   id: 'arabian-nights',
   title: 'Tales from the Arabian Nights',
+  author: 'Anonymous',
+  originalTitle: 'One Thousand and One Nights (ألف ليلة وليلة)',
   description: 'Journey through the legendary stories of Scheherazade, exploring the rich tapestry of Middle Eastern folklore, culture, and wisdom.',
+  authoringDate: 900,
+  period: 'Medieval Period (476 - 1450)',
   searchKeywords: [
     'One Thousand and One Nights', '1001 Nights',
     'Aladdin', 'Ali Baba', 'Sinbad', 'Scheherazade',

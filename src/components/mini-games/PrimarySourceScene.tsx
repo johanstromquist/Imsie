@@ -14,6 +14,22 @@ interface PrimarySourceSceneProps {
   canGoBack: boolean;
 }
 
+// Custom hook for responsive breakpoints
+const useMediaQuery = (query: string): boolean => {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    setMatches(media.matches);
+
+    const listener = (e: MediaQueryListEvent) => setMatches(e.matches);
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
+  }, [query]);
+
+  return matches;
+};
+
 const PrimarySourceScene: React.FC<PrimarySourceSceneProps> = ({
   scene,
   theme,
@@ -27,6 +43,9 @@ const PrimarySourceScene: React.FC<PrimarySourceSceneProps> = ({
   const [allQuestionsAnswered, setAllQuestionsAnswered] = useState(false);
   const [currentAnswer, setCurrentAnswer] = useState<string>('');
   const [shuffledOptions, setShuffledOptions] = useState<Record<string, string[]>>({});
+
+  // Responsive breakpoints
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   const backgroundImage = scene.backgroundImage
     ? assetLoader.getImage(scene.backgroundImage)
@@ -284,20 +303,20 @@ const PrimarySourceScene: React.FC<PrimarySourceSceneProps> = ({
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '2rem',
-            padding: '2rem',
-            minHeight: '500px',
+            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+            gap: isMobile ? '1rem' : '2rem',
+            padding: isMobile ? '1rem' : '2rem',
+            minHeight: isMobile ? 'auto' : '500px',
           }}
         >
           {/* Left side: Source document */}
           <div
             style={{
               backgroundColor: 'rgba(0, 0, 0, 0.3)',
-              padding: '1.5rem',
+              padding: isMobile ? '1rem' : '1.5rem',
               borderRadius: '0.75rem',
               overflowY: 'auto',
-              maxHeight: '600px',
+              maxHeight: isMobile ? 'none' : '600px',
             }}
           >
             <div style={{ marginBottom: '1rem' }}>
@@ -692,9 +711,9 @@ const PrimarySourceScene: React.FC<PrimarySourceSceneProps> = ({
         <button
           onClick={onBack}
           style={{
-            position: 'absolute',
-            left: '2rem',
-            bottom: '2rem',
+            position: isMobile ? 'fixed' : 'absolute',
+            left: isMobile ? '1rem' : '2rem',
+            bottom: isMobile ? '1rem' : '2rem',
             width: '45px',
             height: '45px',
             borderRadius: '50%',
@@ -708,6 +727,7 @@ const PrimarySourceScene: React.FC<PrimarySourceSceneProps> = ({
             justifyContent: 'center',
             opacity: 0.3,
             transition: 'opacity 0.3s, transform 0.2s',
+            zIndex: 100,
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.opacity = '1';

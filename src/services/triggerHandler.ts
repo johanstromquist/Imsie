@@ -37,7 +37,7 @@ export function shouldTriggerFire(
 
     case 'if-not-completed':
       // Check if the component (e.g., quiz) has been completed AND passed
-      if (trigger.type === 'quiz' && adventure) {
+      if (trigger.type === 'quiz' && adventure && trigger.componentId) {
         // Find the quiz score
         const quizScore = progress.quizScores.find(
           (score) => score.quizId === trigger.componentId
@@ -84,7 +84,7 @@ export function getActiveTriggers(
   triggeredIds: Set<string> = new Set()
 ): SceneTrigger[] {
   return triggers.filter((trigger) => {
-    const triggeredBefore = triggeredIds.has(trigger.componentId);
+    const triggeredBefore = trigger.componentId ? triggeredIds.has(trigger.componentId) : false;
     return shouldTriggerFire(trigger, progress, adventure, triggeredBefore);
   });
 }

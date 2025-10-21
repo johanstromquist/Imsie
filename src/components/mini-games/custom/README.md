@@ -211,10 +211,11 @@ To maintain consistency with other scenes, follow these styling patterns:
 - Warning: `#fb923c` (orange)
 - Neutral: `#ccc`, `#aaa`, `rgba(255, 255, 255, 0.1)`
 
-## Example: Memory Match Game
+## Built-in Examples
 
-See `MemoryMatchGame.tsx` for a complete working example that demonstrates:
+### Memory Match Game (`MemoryMatchGame.tsx`)
 
+A complete working example that demonstrates:
 - Config type casting
 - Game state management
 - Card flipping mechanics
@@ -223,6 +224,25 @@ See `MemoryMatchGame.tsx` for a complete working example that demonstrates:
 - Reset functionality
 - Proper styling and navigation
 - Asset loading with `assetLoader`
+
+### Rhythm Game (`RhythmGame.tsx`)
+
+An audio-synchronized rhythm game that demonstrates:
+- Audio playback and synchronization
+- Real-time beat detection and timing
+- Score system with combo multipliers
+- Visual feedback animations (PERFECT!, GREAT!, GOOD, MISS)
+- Keyboard and mouse input handling
+- Moving beat indicators with accurate timing
+- Configurable difficulty and passing thresholds
+- Skip button for accessibility
+- Results screen with detailed stats
+
+**Use Cases:**
+- Musical scenes (e.g., Sirens' song in The Odyssey)
+- Rhythm-based challenges
+- Audio-visual synchronization exercises
+- Interactive musical education
 
 ## Best Practices
 

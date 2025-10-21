@@ -1,9 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type {
   AnachronismScene as AnachronismSceneType,
   AdventureTheme,
 } from '../../types';
 import { assetLoader } from '../../services/assetLoader';
+
+// Custom hook for responsive breakpoints
+const useMediaQuery = (query: string): boolean => {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    setMatches(media.matches);
+
+    const listener = (e: MediaQueryListEvent) => setMatches(e.matches);
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
+  }, [query]);
+
+  return matches;
+};
 
 interface AnachronismSceneProps {
   scene: AnachronismSceneType;
@@ -22,6 +38,7 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
   onBack,
   canGoBack,
 }) => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
   const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [results, setResults] = useState<Record<string, ResultType>>({});
@@ -135,7 +152,7 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundColor: theme.primaryColor,
-        padding: '2rem',
+        padding: isMobile ? '1rem' : '2rem',
         position: 'relative',
       }}
     >
@@ -143,7 +160,7 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
       {sceneImage && (
         <div
           style={{
-            marginBottom: '2rem',
+            marginBottom: isMobile ? '1rem' : '2rem',
             display: 'flex',
             justifyContent: 'center',
             maxWidth: '1200px',
@@ -169,7 +186,7 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
           maxWidth: '1200px',
           width: '100%',
           backgroundColor: 'rgba(0, 0, 0, 0.85)',
-          padding: '2.5rem',
+          padding: isMobile ? '1rem' : '2.5rem',
           borderRadius: '1rem',
           color: 'white',
           backdropFilter: 'blur(10px)',
@@ -177,7 +194,7 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
         }}
       >
         {/* Header */}
-        <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
+        <div style={{ marginBottom: isMobile ? '1rem' : '2rem', textAlign: 'center' }}>
           <h2
             style={{
               fontSize: '1.75rem',
@@ -215,8 +232,8 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
         {isSubmitted && score && (
           <div
             style={{
-              marginBottom: '2rem',
-              padding: '1.5rem',
+              marginBottom: isMobile ? '1rem' : '2rem',
+              padding: isMobile ? '1rem' : '1.5rem',
               backgroundColor: 'rgba(255, 255, 255, 0.1)',
               borderRadius: '0.75rem',
               borderLeft: `4px solid ${theme.secondaryColor}`,
@@ -264,9 +281,9 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '1.5rem',
-            marginBottom: '2rem',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: isMobile ? '1rem' : '1.5rem',
+            marginBottom: isMobile ? '1rem' : '2rem',
           }}
         >
           {scene.items.map((item) => {
@@ -292,13 +309,13 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
                   flexDirection: 'column',
                 }}
                 onMouseEnter={(e) => {
-                  if (!isSubmitted) {
+                  if (!isSubmitted && !isMobile) {
                     e.currentTarget.style.transform = 'translateY(-4px)';
                     e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.3)';
                   }
                 }}
                 onMouseLeave={(e) => {
-                  if (!isSubmitted) {
+                  if (!isSubmitted && !isMobile) {
                     e.currentTarget.style.transform = 'translateY(0)';
                     e.currentTarget.style.boxShadow = 'none';
                   }
@@ -406,7 +423,7 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
         {isSubmitted && (
           <div
             style={{
-              marginBottom: '2rem',
+              marginBottom: isMobile ? '1rem' : '2rem',
               animation: 'fadeIn 0.5s ease-in 0.3s backwards',
             }}
           >
@@ -414,13 +431,13 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
               style={{
                 fontSize: '1.5rem',
                 fontWeight: 'bold',
-                marginBottom: '1rem',
+                marginBottom: isMobile ? '0.75rem' : '1rem',
                 color: theme.secondaryColor,
               }}
             >
               Explanations
             </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '0.75rem' : '1rem' }}>
               {scene.items.map((item) => {
                 const isAnachronism = scene.correctAnswers.includes(item.id);
                 return (
@@ -507,7 +524,7 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
               onClick={handleSubmit}
               disabled={!canSubmit}
               style={{
-                padding: '1rem 3rem',
+                padding: isMobile ? '0.75rem 2rem' : '1rem 3rem',
                 fontSize: '1.125rem',
                 fontWeight: 'bold',
                 backgroundColor: canSubmit ? theme.secondaryColor : '#555',
@@ -519,13 +536,13 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
                 opacity: canSubmit ? 1 : 0.5,
               }}
               onMouseEnter={(e) => {
-                if (canSubmit) {
+                if (canSubmit && !isMobile) {
                   e.currentTarget.style.transform = 'translateY(-2px)';
                   e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.3)';
                 }
               }}
               onMouseLeave={(e) => {
-                if (canSubmit) {
+                if (canSubmit && !isMobile) {
                   e.currentTarget.style.transform = 'translateY(0)';
                   e.currentTarget.style.boxShadow = 'none';
                 }
@@ -537,7 +554,7 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
             <button
               onClick={onComplete}
               style={{
-                padding: '1rem 3rem',
+                padding: isMobile ? '0.75rem 2rem' : '1rem 3rem',
                 fontSize: '1.125rem',
                 fontWeight: 'bold',
                 backgroundColor: theme.secondaryColor,
@@ -548,12 +565,16 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
                 transition: 'transform 0.2s, box-shadow 0.2s',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.3)';
+                if (!isMobile) {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.3)';
+                }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
+                if (!isMobile) {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }
               }}
             >
               Continue →
@@ -567,7 +588,7 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
             style={{
               borderLeft: `4px solid ${theme.secondaryColor}`,
               paddingLeft: '1rem',
-              marginTop: '2rem',
+              marginTop: isMobile ? '1rem' : '2rem',
               fontStyle: 'italic',
               color: '#ccc',
             }}
@@ -585,10 +606,11 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
           <button
             onClick={onBack}
             style={{
-              position: 'absolute',
-              left: '-22.5px',
-              top: '50%',
-              transform: 'translateY(-50%)',
+              position: isMobile ? 'fixed' : 'absolute',
+              left: isMobile ? '1rem' : '-22.5px',
+              top: isMobile ? 'auto' : '50%',
+              bottom: isMobile ? '1rem' : 'auto',
+              transform: isMobile ? 'none' : 'translateY(-50%)',
               width: '45px',
               height: '45px',
               borderRadius: '50%',
@@ -602,14 +624,19 @@ const AnachronismScene: React.FC<AnachronismSceneProps> = ({
               justifyContent: 'center',
               opacity: 0.2,
               transition: 'opacity 0.3s, transform 0.2s',
+              zIndex: 100,
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.opacity = '1';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+              if (!isMobile) {
+                e.currentTarget.style.opacity = '1';
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+              }
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.opacity = '0.2';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+              if (!isMobile) {
+                e.currentTarget.style.opacity = '0.2';
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+              }
             }}
             aria-label="Go back"
           >

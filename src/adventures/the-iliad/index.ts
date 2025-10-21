@@ -36,7 +36,11 @@ import { finalQuiz } from './quizzes/final-quiz';
 export const theIliad: Adventure = {
   id: 'the-iliad',
   title: 'The Iliad',
+  author: 'Homer',
+  originalTitle: 'Ἰλιάς (Iliás)',
   description: 'Experience Homer\'s epic tale of the Trojan War. Witness the rage of Achilles, the tragedy of Hector, and the devastating human cost of glory in ancient Greece\'s greatest story.',
+  authoringDate: -750,  // Approximate date, around 8th century BCE
+  period: 'Ancient Greece & Rome (800 BCE - 476 CE)',
   estimatedTime: 300,  // minutes (5 hours including optional prologue and epilogue)
   coverArt: 'https://cdn.midjourney.com/1bc0db5f-60b0-4b1c-9b11-d8700c9a672d/0_0.png',
   coverVideo: 'https://cdn.midjourney.com/video/a5e48034-422d-4bd3-8519-3fc88f5e5996/3.mp4',

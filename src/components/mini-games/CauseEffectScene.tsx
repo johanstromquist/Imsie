@@ -21,6 +21,22 @@ interface EffectOption {
   pairId?: string; // ID of the pair this effect belongs to
 }
 
+// Custom hook for responsive breakpoints
+const useMediaQuery = (query: string): boolean => {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    setMatches(media.matches);
+
+    const listener = (e: MediaQueryListEvent) => setMatches(e.matches);
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
+  }, [query]);
+
+  return matches;
+};
+
 const CauseEffectScene: React.FC<CauseEffectSceneProps> = ({
   scene,
   theme,
@@ -33,6 +49,9 @@ const CauseEffectScene: React.FC<CauseEffectSceneProps> = ({
   const [matches, setMatches] = useState<Record<string, string>>({}); // causeId -> effectId
   const [selectedCause, setSelectedCause] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Responsive breakpoints
+  const isMobile = useMediaQuery('(max-width: 768px)');
   const [results, setResults] = useState<Record<string, boolean>>({});
 
   const backgroundImage = scene.backgroundImage
@@ -253,8 +272,8 @@ const CauseEffectScene: React.FC<CauseEffectSceneProps> = ({
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '2rem',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+            gap: isMobile ? '1rem' : '2rem',
             marginBottom: '2rem',
           }}
         >
@@ -646,10 +665,11 @@ const CauseEffectScene: React.FC<CauseEffectSceneProps> = ({
           <button
             onClick={onBack}
             style={{
-              position: 'absolute',
-              left: '-22.5px',
-              top: '50%',
-              transform: 'translateY(-50%)',
+              position: isMobile ? 'fixed' : 'absolute',
+              left: isMobile ? '1rem' : '-22.5px',
+              top: isMobile ? 'auto' : '50%',
+              bottom: isMobile ? '1rem' : 'auto',
+              transform: isMobile ? 'none' : 'translateY(-50%)',
               width: '45px',
               height: '45px',
               borderRadius: '50%',
@@ -663,14 +683,19 @@ const CauseEffectScene: React.FC<CauseEffectSceneProps> = ({
               justifyContent: 'center',
               opacity: 0.2,
               transition: 'opacity 0.3s, transform 0.2s',
+              zIndex: 100,
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = '1';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+              if (!isMobile) {
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+              }
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.opacity = '0.2';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+              if (!isMobile) {
+                e.currentTarget.style.opacity = '0.2';
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+              }
             }}
             aria-label="Go back"
           >

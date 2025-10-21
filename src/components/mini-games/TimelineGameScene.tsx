@@ -14,6 +14,22 @@ interface TimelineGameSceneProps {
   canGoBack: boolean;
 }
 
+// Custom hook for responsive breakpoints
+const useMediaQuery = (query: string): boolean => {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    setMatches(media.matches);
+
+    const listener = (e: MediaQueryListEvent) => setMatches(e.matches);
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
+  }, [query]);
+
+  return matches;
+};
+
 const TimelineGameScene: React.FC<TimelineGameSceneProps> = ({
   scene,
   theme,
@@ -26,6 +42,9 @@ const TimelineGameScene: React.FC<TimelineGameSceneProps> = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [score, setScore] = useState<number | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
+
+  // Responsive breakpoints
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   const backgroundImage = scene.backgroundImage
     ? assetLoader.getImage(scene.backgroundImage)
@@ -224,7 +243,7 @@ const TimelineGameScene: React.FC<TimelineGameSceneProps> = ({
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+                  gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(250px, 1fr))',
                   gap: '1rem',
                 }}
               >
@@ -541,7 +560,7 @@ const TimelineGameScene: React.FC<TimelineGameSceneProps> = ({
 
               {/* Show user's timeline vs correct */}
               {showExplanation && (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '1rem' : '2rem' }}>
                   {/* User's timeline */}
                   <div>
                     <h3
@@ -763,10 +782,11 @@ const TimelineGameScene: React.FC<TimelineGameSceneProps> = ({
           <button
             onClick={onBack}
             style={{
-              position: 'absolute',
-              left: '-22.5px',
-              top: '50%',
-              transform: 'translateY(-50%)',
+              position: isMobile ? 'fixed' : 'absolute',
+              left: isMobile ? '1rem' : '-22.5px',
+              top: isMobile ? 'auto' : '50%',
+              bottom: isMobile ? '1rem' : 'auto',
+              transform: isMobile ? 'none' : 'translateY(-50%)',
               width: '45px',
               height: '45px',
               borderRadius: '50%',
@@ -780,14 +800,19 @@ const TimelineGameScene: React.FC<TimelineGameSceneProps> = ({
               justifyContent: 'center',
               opacity: 0.2,
               transition: 'opacity 0.3s, transform 0.2s',
+              zIndex: 100,
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = '1';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+              if (!isMobile) {
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+              }
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.opacity = '0.2';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+              if (!isMobile) {
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+              }
             }}
             aria-label="Go back"
           >

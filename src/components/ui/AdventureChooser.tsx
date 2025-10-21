@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import type { Adventure, GlobalProgress, AdventureProgress } from '../../types';
+import type { Adventure, GlobalProgress, AdventureProgress, LiteraryPeriod } from '../../types';
 import { adventures } from '../../adventures/adventure-registry';
 import { progressManager } from '../../services/progressManager';
 
@@ -18,6 +18,7 @@ interface AdventureCardProps {
 const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }) => {
   const [globalProgress, setGlobalProgress] = useState<GlobalProgress | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [periodFilter, setPeriodFilter] = useState<string>('all');
   const [showAbout, setShowAbout] = useState(false);
   const [showLicense, setShowLicense] = useState(false);
   const heroImageUrl = `${import.meta.env.BASE_URL}assets/cover.jpg`;
@@ -100,25 +101,67 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
     return `${mins}m`;
   };
 
-  const filteredAdventures = adventures.filter((adventure) => {
-    if (!searchQuery) return true;
-    const query = searchQuery.toLowerCase();
-    return (
-      adventure.title.toLowerCase().includes(query) ||
-      adventure.description.toLowerCase().includes(query) ||
-      (adventure.searchKeywords && adventure.searchKeywords.some(keyword =>
-        keyword.toLowerCase().includes(query)
-      ))
-    );
-  });
+  // Get unique periods for filter dropdown in chronological order
+  const periodOrder: LiteraryPeriod[] = [
+    'Ancient Greece & Rome (800 BCE - 476 CE)',
+    'Medieval Period (476 - 1450)',
+    'Renaissance (1450 - 1600)',
+    'Early Modern (1600 - 1800)',
+    'Romantic Period (1800 - 1850)',
+    'Victorian Era (1850 - 1900)',
+    'Modern Period (1900 - 1945)',
+    'Contemporary (1945 - Present)',
+  ];
+  const uniquePeriods = Array.from(new Set(adventures.map(a => a.period)));
+  const availablePeriods = periodOrder.filter(period => uniquePeriods.includes(period));
+
+  const filteredAdventures = adventures
+    .filter((adventure) => {
+      // Period filter
+      if (periodFilter !== 'all' && adventure.period !== periodFilter) {
+        return false;
+      }
+
+      // Search filter
+      if (!searchQuery) return true;
+      const query = searchQuery.toLowerCase();
+      return (
+        adventure.title.toLowerCase().includes(query) ||
+        adventure.description.toLowerCase().includes(query) ||
+        (adventure.searchKeywords && adventure.searchKeywords.some(keyword =>
+          keyword.toLowerCase().includes(query)
+        ))
+      );
+    })
+    .sort((a, b) => a.authoringDate - b.authoringDate); // Sort by authoring date (oldest first)
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        background: 'linear-gradient(135deg, #1a0f2e 0%, #0a0515 100%)',
-      }}
-    >
+    <>
+      <style>{`
+        @media (min-width: 769px) {
+          .show-on-mobile {
+            display: none !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .hide-on-mobile {
+            display: none !important;
+          }
+          .show-on-mobile {
+            display: inline !important;
+          }
+          .period-filter-wrapper {
+            max-width: 140px !important;
+            min-width: 120px !important;
+          }
+        }
+      `}</style>
+      <div
+        style={{
+          minHeight: '100vh',
+          background: 'linear-gradient(135deg, #1a0f2e 0%, #0a0515 100%)',
+        }}
+      >
       {/* Hero Section with Header */}
       <div
         style={{
@@ -145,7 +188,7 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
             />
             <p
               style={{
-                fontSize: '1.25rem',
+                fontSize: 'clamp(0.875rem, 3vw, 1.25rem)', // Responsive font size that never wraps
                 color: 'rgba(255, 255, 255, 0.9)',
                 margin: 0,
                 textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)',
@@ -154,63 +197,153 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
                 left: '50%',
                 transform: 'translateX(-50%)',
                 width: '100%',
+                padding: '0 1rem', // Add padding to prevent edge touching
+                whiteSpace: 'nowrap', // Prevent wrapping
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
               }}
             >
               Immersive Adventures in History and Literature
             </p>
           </header>
 
-          {/* Search Bar */}
-          <div style={{ maxWidth: '600px', margin: '0 auto 2rem auto' }}>
-            <div style={{ position: 'relative' }}>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="rgba(255, 255, 255, 0.7)"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                style={{
-                  position: 'absolute',
-                  left: '1rem',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  pointerEvents: 'none',
-                  zIndex: 1,
-                }}
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.35-4.35" />
-              </svg>
-              <input
-                type="text"
-                placeholder="Search adventures..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '0.875rem 1rem 0.875rem 3rem',
-                  fontSize: '1rem',
-                  backgroundColor: 'rgba(255, 255, 255, 0.15)',
-                  backdropFilter: 'blur(10px)',
-                  border: '2px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '0.75rem',
-                  color: 'white',
-                  outline: 'none',
-                  transition: 'all 0.2s',
-                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
-                }}
-                onFocus={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
-                }}
-                onBlur={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                }}
-              />
+          {/* Search Bar and Period Filter */}
+          <div style={{ maxWidth: '800px', margin: '0 auto 2rem auto' }}>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+              {/* Search Input */}
+              <div style={{ position: 'relative', flex: 1 }}>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255, 255, 255, 0.7)"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    position: 'absolute',
+                    left: '1rem',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    pointerEvents: 'none',
+                    zIndex: 1,
+                  }}
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Search adventures..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '0.875rem 1rem 0.875rem 3rem',
+                    fontSize: '1rem',
+                    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                    backdropFilter: 'blur(10px)',
+                    border: '2px solid rgba(255, 255, 255, 0.2)',
+                    borderRadius: '0.75rem',
+                    color: 'white',
+                    outline: 'none',
+                    transition: 'all 0.2s',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                  }}
+                />
+              </div>
+
+              {/* Period Filter Dropdown */}
+              <div className="period-filter-wrapper" style={{ position: 'relative', minWidth: '150px', width: 'auto', flexShrink: 2 }}>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255, 255, 255, 0.7)"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    position: 'absolute',
+                    left: '1rem',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    pointerEvents: 'none',
+                    zIndex: 1,
+                  }}
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                <select
+                  value={periodFilter}
+                  onChange={(e) => setPeriodFilter(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '0.875rem 2.5rem 0.875rem 3rem',
+                    fontSize: '0.9rem',
+                    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                    backdropFilter: 'blur(10px)',
+                    border: '2px solid rgba(255, 255, 255, 0.2)',
+                    borderRadius: '0.75rem',
+                    color: 'white',
+                    outline: 'none',
+                    transition: 'all 0.2s',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
+                    cursor: 'pointer',
+                    appearance: 'none',
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                  }}
+                >
+                  <option value="all" style={{ backgroundColor: '#1a0f2e', color: 'white' }}>
+                    All Periods
+                  </option>
+                  {availablePeriods.map((period) => (
+                    <option key={period} value={period} style={{ backgroundColor: '#1a0f2e', color: 'white' }}>
+                      {period}
+                    </option>
+                  ))}
+                </select>
+                {/* Dropdown arrow */}
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255, 255, 255, 0.7)"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    position: 'absolute',
+                    right: '1rem',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    pointerEvents: 'none',
+                  }}
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </div>
             </div>
           </div>
 
@@ -234,7 +367,11 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
             >
               <div>
                 <p style={{ margin: 0, fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.8)' }}>
-                  Total Play Time: {formatPlayTime(globalProgress.totalPlayTime)}
+                  <span style={{ display: 'inline' }}>
+                    <span className="hide-on-mobile">Total Play Time: </span>
+                    <span className="show-on-mobile" style={{ display: 'none' }}>Time Played: </span>
+                    {formatPlayTime(globalProgress.totalPlayTime)}
+                  </span>
                 </p>
               </div>
               <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
@@ -259,7 +396,8 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
                     e.currentTarget.style.backgroundColor = 'rgba(74, 158, 255, 0.2)';
                   }}
                 >
-                  Export Progress
+                  <span className="hide-on-mobile">Export Progress</span>
+                  <span className="show-on-mobile" style={{ display: 'none' }}>Export</span>
                 </button>
                 <label
                   style={{
@@ -282,7 +420,8 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
                     e.currentTarget.style.backgroundColor = 'rgba(110, 201, 74, 0.2)';
                   }}
                 >
-                  Import Progress
+                  <span className="hide-on-mobile">Import Progress</span>
+                  <span className="show-on-mobile" style={{ display: 'none' }}>Import</span>
                   <input
                     type="file"
                     accept=".json"
@@ -302,7 +441,7 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                padding: '0.75rem 1.5rem',
+                padding: '0.5rem 1rem',
                 backgroundColor: 'rgba(255, 255, 255, 0.15)',
                 backdropFilter: 'blur(10px)',
                 color: 'white',
@@ -310,7 +449,7 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
                 borderRadius: '0.5rem',
                 cursor: 'pointer',
                 fontSize: '0.875rem',
-                fontWeight: '600',
+                fontWeight: '500',
                 textDecoration: 'none',
                 transition: 'all 0.2s',
                 boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
@@ -333,7 +472,8 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
                 <line x1="12" y1="17" x2="12.01" y2="17" />
               </svg>
-              About Imsie
+              <span className="hide-on-mobile">About Imsie</span>
+              <span className="show-on-mobile" style={{ display: 'none' }}>About</span>
             </button>
             <a
               href="https://www.patreon.com/eldritchconcerns"
@@ -343,7 +483,7 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                padding: '0.75rem 1.5rem',
+                padding: '0.5rem 1rem',
                 backgroundColor: 'rgba(255, 66, 77, 0.2)',
                 backdropFilter: 'blur(10px)',
                 color: '#ff424d',
@@ -351,7 +491,7 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
                 borderRadius: '0.5rem',
                 cursor: 'pointer',
                 fontSize: '0.875rem',
-                fontWeight: '600',
+                fontWeight: '500',
                 textDecoration: 'none',
                 transition: 'all 0.2s',
                 boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
@@ -372,7 +512,8 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
               </svg>
-              Show Your Support
+              <span className="hide-on-mobile">Show Your Support</span>
+              <span className="show-on-mobile" style={{ display: 'none' }}>Support</span>
             </a>
           </div>
         </div>
@@ -779,6 +920,7 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
         </footer>
       </div>
     </div>
+    </>
   );
 };
 
@@ -899,9 +1041,15 @@ const AdventureCard: React.FC<AdventureCardProps> = ({
               {/* Info */}
               <div style={{ padding: '1.5rem', color: 'white', display: 'flex', flexDirection: 'column', flex: 1 }}>
                 <div>
-                  <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.5rem' }}>
+                  <h3 style={{ margin: '0 0 0.25rem 0', fontSize: '1.5rem' }}>
                     {adventure.title}
                   </h3>
+                  <div style={{ margin: '0 0 0.5rem 0', fontSize: '0.875rem', color: '#aaa', fontStyle: 'italic' }}>
+                    {adventure.author}
+                    {adventure.originalTitle && (
+                      <span style={{ marginLeft: '0.5rem' }}>• {adventure.originalTitle}</span>
+                    )}
+                  </div>
                   <p style={{ margin: '0 0 1rem 0', color: '#ccc', fontSize: '0.875rem' }}>
                     {adventure.description}
                   </p>

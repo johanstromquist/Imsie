@@ -38,11 +38,15 @@ const chapters = [
 export const tristanIsolde: Adventure = {
   id: 'tristan-isolde',
   title: 'Tristan & Isolde: A Tale of Forbidden Love',
+  author: 'Various (Medieval Romance)',
+  originalTitle: 'Tristan and Iseult',
 
   description:
     'Experience the legendary medieval romance of Tristan and Isolde--a tale of forbidden love, ' +
     'duty versus desire, and tragic destiny. Explore Celtic traditions, courtly love, and the ' +
     'timeless themes that have captivated audiences for nearly a millennium.',
+  authoringDate: 1210,
+  period: 'Medieval Period (476 - 1450)',
   searchKeywords: [
     'Tristan and Isolde', 'Iseult', 'Yseult', 'King Mark', 'Brangien',
     'Courtly Love', 'Forbidden Love', 'Romance', 'Tragic Love',
