@@ -2,6 +2,7 @@
 
 export interface Adventure {
   id: string;
+  slug: string; // URL-friendly slug for routing
   title: string;
   author: string; // original author(s)
   originalTitle?: string; // original title if different from display title
@@ -313,6 +314,54 @@ export interface CustomMiniGameScene extends BaseScene {
   type: 'custom-mini-game';
   gameType: string; // identifier for custom game component
   config: Record<string, unknown>; // flexible config for custom games
+}
+
+// Gallery Mini-Game (Shooting Gallery style categorization game)
+export interface GalleryGameConfig {
+  prompt: string; // Instructions for the player
+  timePerRound: number; // seconds per round
+  rounds: GalleryRound[];
+
+  // Scoring configuration
+  correctPoints: number; // base points for correct click
+  wrongPenalty: number; // penalty for wrong click
+  speedBonusMultiplier: number; // multiply by time remaining for speed bonus
+  passingScore: number; // minimum score to pass (percentage)
+
+  // Visual labels
+  targetLabel?: string; // Label for target display (e.g., "The Form:")
+  itemLabel?: string; // Label for items section (e.g., "Shadows:")
+
+  // Visual customization
+  backgroundImage?: string; // Optional background image URL
+
+  // Completion messages
+  successMessage?: string; // Message shown when player passes
+  failureMessage?: string; // Message shown when player fails
+}
+
+export interface GalleryRound {
+  id: string;
+  target: GalleryTarget; // The thing players must match TO
+  items: GalleryItem[]; // The things that pop up
+  itemsToShow: number; // How many items appear simultaneously on screen
+  itemDisplayTime: number; // How long each item stays visible (seconds)
+  spawnInterval: number; // Time between item spawns (seconds)
+}
+
+export interface GalleryTarget {
+  id: string;
+  image: string; // URL to target image
+  label: string; // Display name (e.g., "The Form of Justice")
+  description?: string; // Optional tooltip/description
+}
+
+export interface GalleryItem {
+  id: string;
+  image: string; // URL to item image
+  label: string; // Display name
+  isCorrect: boolean; // Does this match the current target?
+  explanation?: string; // Shown at end: why correct/incorrect
 }
 
 // Quiz System

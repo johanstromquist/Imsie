@@ -35,6 +35,7 @@ import { finalQuiz } from './quizzes/final-quiz';
  */
 export const theIliad: Adventure = {
   id: 'the-iliad',
+  slug: 'the-iliad',
   title: 'The Iliad',
   author: 'Homer',
   originalTitle: 'Ἰλιάς (Iliás)',

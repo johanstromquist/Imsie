@@ -1,5 +1,6 @@
 import type { CustomMiniGameScene as CustomMiniGameSceneType, AdventureTheme } from '../../types/adventure';
 import { customGameRegistry } from './customGameRegistry';
+import './custom'; // Import all custom games to ensure registration
 
 interface CustomMiniGameSceneProps {
   scene: CustomMiniGameSceneType;

@@ -17,6 +17,7 @@ const chapters = [
 
 export const arabianNights: Adventure = {
   id: 'arabian-nights',
+  slug: 'arabian-nights',
   title: 'Tales from the Arabian Nights',
   author: 'Anonymous',
   originalTitle: 'One Thousand and One Nights (ألف ليلة وليلة)',

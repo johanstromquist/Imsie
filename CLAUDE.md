@@ -66,7 +66,7 @@ Quick reference - **see `docs/SCENE_TYPES_REFERENCE.md` for complete documentati
 8. **`primary-source`** - Analyze historical documents/media
 9. **`anachronism`** - Find items that don't belong in time period
 10. **`custom-mini-game`** - Extensible registry for unique games
-   - **Built-in games:** Memory Match, Rhythm Game (audio-sync)
+   - **Built-in games:** Memory Match, Rhythm Game, Gallery Game
 
 ### Typical Chapter Flow
 ```

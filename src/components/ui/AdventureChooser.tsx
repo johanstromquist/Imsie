@@ -1,11 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { Adventure, GlobalProgress, AdventureProgress, LiteraryPeriod } from '../../types';
 import { adventures } from '../../adventures/adventure-registry';
 import { progressManager } from '../../services/progressManager';
-
-interface AdventureChooserProps {
-  onAdventureSelect: (adventure: Adventure) => void;
-}
 
 interface AdventureCardProps {
   adventure: Adventure;
@@ -15,7 +12,8 @@ interface AdventureCardProps {
   formatEstimatedTime: (minutes: number) => string;
 }
 
-const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }) => {
+const AdventureChooser: React.FC = () => {
+  const navigate = useNavigate();
   const [globalProgress, setGlobalProgress] = useState<GlobalProgress | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [periodFilter, setPeriodFilter] = useState<string>('all');
@@ -856,7 +854,7 @@ const AdventureChooser: React.FC<AdventureChooserProps> = ({ onAdventureSelect }
                   key={adventure.id}
                   adventure={adventure}
                   progress={progress}
-                  onSelect={() => onAdventureSelect(adventure)}
+                  onSelect={() => navigate(`/${adventure.slug}`)}
                   onRestart={(e) => handleRestartAdventure(adventure.id, adventure.title, e)}
                   formatEstimatedTime={formatEstimatedTime}
                 />

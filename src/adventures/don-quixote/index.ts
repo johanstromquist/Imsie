@@ -18,6 +18,7 @@ const chapters = [
 
 export const donQuixote: Adventure = {
   id: 'don-quixote',
+  slug: 'don-quixote',
   title: 'Don Quixote',
   author: 'Miguel de Cervantes',
   originalTitle: 'El ingenioso hidalgo don Quijote de la Mancha',

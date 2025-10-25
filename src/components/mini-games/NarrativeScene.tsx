@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import type { NarrativeScene as NarrativeSceneType, AdventureTheme } from '../../types';
 import { assetLoader } from '../../services/assetLoader';
 import ContentWithAnnotations from '../common/ContentWithAnnotations';
@@ -11,6 +12,17 @@ interface NarrativeSceneProps {
 }
 
 const NarrativeScene: React.FC<NarrativeSceneProps> = ({ scene, theme, onComplete, onBack, canGoBack }) => {
+  const [buttonOpacity, setButtonOpacity] = useState(1);
+
+  // Fade buttons from full opacity to subtle after 2 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setButtonOpacity(0.2);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [scene.id]); // Reset when scene changes
+
   const backgroundImage = scene.backgroundImage
     ? assetLoader.getImage(scene.backgroundImage)
     : null;
@@ -146,7 +158,11 @@ const NarrativeScene: React.FC<NarrativeSceneProps> = ({ scene, theme, onComplet
           >
             {scene.learningPoints.map((lp) => (
               <div key={lp.id} style={{ marginBottom: '0.5rem' }}>
-                {lp.content}
+                <ContentWithAnnotations
+                  content={lp.content}
+                  annotations={scene.inlineAnnotations}
+                  theme={theme}
+                />
               </div>
             ))}
           </div>
@@ -172,15 +188,15 @@ const NarrativeScene: React.FC<NarrativeSceneProps> = ({ scene, theme, onComplet
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              opacity: 0.2,
-              transition: 'opacity 0.3s, transform 0.2s',
+              opacity: buttonOpacity,
+              transition: 'opacity 5s ease-out, transform 0.2s',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = '1';
               e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.opacity = '0.2';
+              e.currentTarget.style.opacity = String(buttonOpacity);
               e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
             }}
             aria-label="Go back"
@@ -207,15 +223,15 @@ const NarrativeScene: React.FC<NarrativeSceneProps> = ({ scene, theme, onComplet
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            opacity: 0.2,
-            transition: 'opacity 0.3s, transform 0.2s',
+            opacity: buttonOpacity,
+            transition: 'opacity 5s ease-out, transform 0.2s',
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.opacity = '1';
             e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.opacity = '0.2';
+            e.currentTarget.style.opacity = String(buttonOpacity);
             e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
           }}
           aria-label={scene.continueButtonText || 'Continue'}

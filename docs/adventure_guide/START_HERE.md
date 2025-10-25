@@ -9,7 +9,7 @@ This guide walks you through creating an educational adventure for Imsie from in
 
 ---
 
-## Overview: The 10-Step Process
+## Overview: The 11-Step Process
 
 Creating an adventure involves these major phases:
 
@@ -22,7 +22,8 @@ Creating an adventure involves these major phases:
 7. **Quiz Creation** - Build all quizzes and verify question types
 8. **Type & Lint Checking** - Run automated checks to catch errors
 9. **Asset Integration** - User provides URLs/files, we integrate them
-10. **Adventure Registration** - Register adventure in main application
+10. **Consistency Review** - Verify portraits, images, formatting, and educational flow
+11. **Adventure Registration** - Register adventure in main application
 
 **Estimated Timeline:** 2-4 months for a complete adventure
 
@@ -234,17 +235,47 @@ When a user asks you to help create an adventure, follow this exact workflow. **
 - Run build to ensure no broken references
 
 **After integration complete, inform user:**
-"Asset integration complete! Now proceeding to register the adventure in the application."
+"Asset integration complete! Now proceeding to consistency review before registration."
 
 **Automatically proceed to Step 10 when complete.**
 
 ---
 
-#### Step 10: Adventure Registration
-**INSTRUCTION:** Create a todo list and follow `10_adventure_registration.md`.
+#### Step 10: Consistency Review
+**INSTRUCTION:** Create todo lists and follow `10_consistency_review.md`.
+
+**CRITICAL:** Execute Phase 1 tasks (1-4) IN PARALLEL for maximum efficiency.
+
+**Phase 1 - Asset Consistency (Parallel Tasks):**
+- Task 1: Review all dialogue scenes for character portraits
+- Task 2: Review all map-exploration scenes for location images
+- Task 3: Review all anachronism scenes for unique item images
+- Task 4: Review all primary-source scenes for formatting and assets
+
+**Phase 2 - Educational Consistency (Sequential Tasks):**
+- Task 5: Review decision scenes for historical accuracy and transitions
+- Task 6: Review interactive scene placement and preceding context
+
+**For each task:**
+- Document issues found
+- Recommend fixes
+- Report number of scenes verified
+
+**After all reviews complete:**
+- Fix any issues found
+- Re-verify affected scenes
+- Inform user of results
+
+**Automatically proceed to Step 11 when all checks pass.**
+
+---
+
+#### Step 11: Adventure Registration
+**INSTRUCTION:** Create a todo list and follow `11_adventure_registration.md`.
 
 **Todo items should include:**
 - Read the adventure registration guide
+- Add search keywords to adventure definition (recommended)
 - Verify adventure export in `index.ts`
 - Import adventure in `src/adventures/adventure-registry.ts`
 - Add adventure to `adventures` array
@@ -252,6 +283,7 @@ When a user asks you to help create an adventure, follow this exact workflow. **
 - Run build (`npm run build`)
 - Start dev server and verify adventure appears
 - Test adventure loads and plays correctly
+- Test search finds adventure by keywords
 
 **After registration complete, inform user:**
 "Registration complete! The adventure is now live in the application and ready for play testing. Please test thoroughly on different devices and report any issues."
@@ -298,7 +330,8 @@ Each step has its own detailed guide:
 - **[07_quiz_creation.md](07_quiz_creation.md)** - Question writing, type selection, validation
 - **[08_type_lint_checking.md](08_type_lint_checking.md)** - Automated error checking
 - **[09_asset_integration.md](09_asset_integration.md)** - Integrating user-provided assets
-- **[10_adventure_registration.md](10_adventure_registration.md)** - Register adventure in application
+- **[10_consistency_review.md](10_consistency_review.md)** - Educational and asset consistency verification
+- **[11_adventure_registration.md](11_adventure_registration.md)** - Register adventure in application
 
 **Additional Resources:**
 - **[appendices.md](appendices.md)** - Reference materials, tools, glossary

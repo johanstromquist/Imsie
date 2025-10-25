@@ -456,7 +456,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
                         border: `2px solid ${theme.secondaryColor}`,
                         borderRadius: '0.5rem',
                         overflow: 'hidden',
-                        zIndex: 100,
+                        zIndex: 1000,
                         boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
                         backdropFilter: 'blur(10px)',
                       }}
@@ -554,7 +554,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
               left: 0,
               right: 0,
               bottom: 0,
-              zIndex: 99,
+              zIndex: 999,
             }}
           />
         )}

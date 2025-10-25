@@ -31,6 +31,7 @@ const chapters = [
  */
 export const dantesInferno: Adventure = {
   id: 'dantes-inferno',
+  slug: 'dantes-inferno',
   title: "Dante's Inferno",
   author: 'Dante Alighieri',
   originalTitle: 'La Divina Commedia',

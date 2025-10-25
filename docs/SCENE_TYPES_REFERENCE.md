@@ -995,6 +995,88 @@ An audio-synchronized rhythm game where players tap in time with musical beats.
 - Keep beat count reasonable (10-20 beats for most scenes)
 - Provide clear context for why rhythm matters in your story
 
+#### Gallery Game (`gallery`)
+
+A fast-paced categorization game where players click matching items as they appear across the screen.
+
+**Configuration:**
+
+```typescript
+{
+  id: 'scene-gallery',
+  type: 'custom-mini-game',
+  gameType: 'gallery',
+
+  config: {
+    prompt: 'Click items that match the target!',
+    timePerRound: 30,
+
+    rounds: [
+      {
+        id: 'round-1',
+        target: {
+          id: 'target-1',
+          image: '/path/to/target.png',
+          label: 'Target Name',
+          description: 'Optional description',
+        },
+        items: [
+          {
+            id: 'item-1',
+            image: '/path/to/item.png',
+            label: 'Item Name',
+            isCorrect: true,
+            explanation: 'Why this matches the target',
+          },
+          // 6-12 items per round
+        ],
+        itemDisplayTime: 3,
+        spawnInterval: 0.8,
+      },
+    ],
+
+    correctPoints: 100,
+    wrongPenalty: 50,
+    speedBonusMultiplier: 10,
+    passingScore: 70,
+
+    // Optional
+    targetLabel: 'Find:',
+    backgroundImage: '/path/to/background.png',
+    successMessage: 'You succeeded!',
+    failureMessage: 'Try again!',
+  },
+
+  learningPoints: [
+    {
+      id: 'lp-categorization',
+      content: 'Educational insight about categorization',
+      category: 'thematic-analysis',
+    },
+  ],
+}
+```
+
+**Features:**
+- Multi-round progression with different targets
+- Continuous item spawning at configurable intervals
+- Speed bonuses for quick responses
+- Round-by-round feedback
+- Skip button for accessibility
+
+**Scoring:**
+- **Correct click**: Base points + (speed bonus × time remaining)
+- **Wrong click**: Penalty deduction
+- **Pass threshold**: Percentage of max possible score
+
+**Best Practices:**
+- Use 6-12 items per round
+- Set itemDisplayTime to 2-4 seconds
+- Set spawnInterval to 0.5-1.5 seconds
+- Include 40-60% correct items
+- Use 2-4 rounds per game
+- Set passingScore to 60-75%
+
 ### Features
 
 - **Fully Flexible:** Any React component can be a mini-game

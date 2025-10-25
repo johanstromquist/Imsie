@@ -18,6 +18,7 @@ import '../../components/mini-games/custom/RhythmGame';
 
 export const theOdyssey: Adventure = {
   id: 'the-odyssey',
+  slug: 'the-odyssey',
   title: 'The Odyssey',
   author: 'Homer',
   originalTitle: 'Ὀδύσσεια (Odýsseia)',

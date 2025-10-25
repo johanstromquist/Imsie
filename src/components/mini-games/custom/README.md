@@ -244,6 +244,21 @@ An audio-synchronized rhythm game that demonstrates:
 - Audio-visual synchronization exercises
 - Interactive musical education
 
+### Gallery Game (`GalleryGame.tsx`)
+
+A shooting gallery-style categorization game that demonstrates:
+- Multi-round timed gameplay with dynamic item spawning
+- Speed-based scoring with bonuses and penalties
+- Round summaries with detailed feedback
+- State management across game phases
+- Random positioning and timing mechanics
+
+**Use Cases:**
+- Visual categorization (Forms vs Shadows)
+- Pattern recognition (art styles, artifacts)
+- Quick decision-making under time pressure
+- Conceptual sorting
+
 ## Best Practices
 
 1. **Type Safety**: Always define an interface for your config and cast it from `Record<string, unknown>`

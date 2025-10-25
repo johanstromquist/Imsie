@@ -423,7 +423,11 @@ const DialogueScene: React.FC<DialogueSceneProps> = ({
           >
             {scene.learningPoints.map((lp) => (
               <div key={lp.id} style={{ marginBottom: '0.5rem', fontSize: '0.95rem' }}>
-                {lp.content}
+                <ContentWithAnnotations
+                  content={lp.content}
+                  annotations={scene.inlineAnnotations}
+                  theme={theme}
+                />
               </div>
             ))}
           </div>

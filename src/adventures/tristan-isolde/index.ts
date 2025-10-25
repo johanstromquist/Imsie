@@ -37,6 +37,7 @@ const chapters = [
 
 export const tristanIsolde: Adventure = {
   id: 'tristan-isolde',
+  slug: 'tristan-isolde',
   title: 'Tristan & Isolde: A Tale of Forbidden Love',
   author: 'Various (Medieval Romance)',
   originalTitle: 'Tristan and Iseult',

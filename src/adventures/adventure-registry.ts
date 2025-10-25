@@ -5,6 +5,7 @@ import { tristanIsolde } from './tristan-isolde';
 import { donQuixote } from './don-quixote';
 import { theIliad } from './the-iliad';
 import { theOdyssey } from './the-odyssey';
+import { theClassicalThinkers } from './the-classical-thinkers';
 
 // Registry of all available adventures
 export const adventures: Adventure[] = [
@@ -14,6 +15,7 @@ export const adventures: Adventure[] = [
   donQuixote,
   theIliad,
   theOdyssey,
+  theClassicalThinkers,
 ];
 
 // Helper function to get adventure by ID

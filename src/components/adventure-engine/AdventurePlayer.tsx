@@ -65,8 +65,23 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
       const chapter = adventure.chapters.find((c) => c.id === prog!.currentChapterId);
       const scene = chapter?.scenes.find((s) => s.id === prog!.currentSceneId);
 
-      setCurrentChapter(chapter || adventure.chapters[0]);
-      setCurrentScene(scene || adventure.chapters[0].scenes[0]);
+      // If chapter or scene not found, reset to first scene of the intended chapter
+      if (!chapter) {
+        // Chapter doesn't exist - reset to first chapter
+        const firstChapter = adventure.chapters[0];
+        setCurrentChapter(firstChapter);
+        setCurrentScene(firstChapter.scenes[0]);
+        await progressManager.updateCurrentScene(adventure.id, firstChapter.id, firstChapter.scenes[0].id);
+      } else if (!scene) {
+        // Chapter exists but scene doesn't - reset to first scene of this chapter
+        setCurrentChapter(chapter);
+        setCurrentScene(chapter.scenes[0]);
+        await progressManager.updateCurrentScene(adventure.id, chapter.id, chapter.scenes[0].id);
+      } else {
+        // Both chapter and scene exist
+        setCurrentChapter(chapter);
+        setCurrentScene(scene);
+      }
     };
 
     initProgress();
@@ -152,6 +167,42 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
               assetsToLoad.push({ url: event.image, type: 'image' });
             }
           });
+        }
+        // Preload custom mini-game assets
+        if (scene.type === 'custom-mini-game' && 'config' in scene && scene.config) {
+          const config = scene.config as any;
+
+          // Gallery game assets
+          if (scene.gameType === 'gallery' && config.rounds) {
+            config.rounds.forEach((round: any) => {
+              // Preload target image
+              if (round.target?.image) {
+                assetsToLoad.push({ url: round.target.image, type: 'image' });
+              }
+              // Preload all item images
+              if (round.items) {
+                round.items.forEach((item: any) => {
+                  if (item.image) {
+                    assetsToLoad.push({ url: item.image, type: 'image' });
+                  }
+                });
+              }
+            });
+          }
+
+          // Memory match game assets
+          if (scene.gameType === 'memory-match' && config.cards) {
+            config.cards.forEach((card: any) => {
+              if (card.image) {
+                assetsToLoad.push({ url: card.image, type: 'image' });
+              }
+            });
+          }
+
+          // Rhythm game assets (if any images/audio in config)
+          if (scene.gameType === 'rhythm' && config.backgroundImage) {
+            assetsToLoad.push({ url: config.backgroundImage, type: 'image' });
+          }
         }
       });
 
