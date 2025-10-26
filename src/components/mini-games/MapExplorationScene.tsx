@@ -404,6 +404,7 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
             zIndex: 1000,
             padding: isMobile ? '1rem' : '2rem',
             animation: 'fadeIn 0.3s ease-in',
+            overflowY: 'auto',
           }}
           onClick={handleCloseLocationDetail}
         >
@@ -416,6 +417,9 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
               padding: isMobile ? '1rem' : '2rem',
               border: `2px solid ${theme.secondaryColor}`,
               boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
+              maxHeight: isMobile ? '90vh' : '80vh',
+              overflowY: 'auto',
+              margin: 'auto',
             }}
             onClick={(e) => e.stopPropagation()}
           >

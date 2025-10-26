@@ -87,6 +87,13 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
     initProgress();
   }, [adventure]);
 
+  // Scroll to top when scene changes
+  useEffect(() => {
+    if (currentScene) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [currentScene]);
+
   // Preload assets when chapter changes
   useEffect(() => {
     if (!currentChapter) return;
