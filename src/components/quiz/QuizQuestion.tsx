@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import type { QuizQuestion as QuizQuestionType, AdventureTheme } from '../../types';
 
 interface QuizQuestionProps {
@@ -8,6 +8,22 @@ interface QuizQuestionProps {
   currentAnswer?: string | string[] | Record<string, string>;
   showFeedback: boolean;
 }
+
+// Custom hook for responsive breakpoints
+const useMediaQuery = (query: string): boolean => {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    setMatches(media.matches);
+
+    const listener = (e: MediaQueryListEvent) => setMatches(e.matches);
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
+  }, [query]);
+
+  return matches;
+};
 
 const QuizQuestion: React.FC<QuizQuestionProps> = ({
   question,
@@ -192,7 +208,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
 
   function renderTrueFalse() {
     return (
-      <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
         {['True', 'False'].map((value) => {
           const isSelected = localAnswer === value;
           return (
@@ -201,8 +217,8 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
               onClick={() => handleTrueFalse(value)}
               disabled={showFeedback}
               style={{
-                padding: '1.5rem 3rem',
-                fontSize: '1.25rem',
+                padding: '1.25rem 2.5rem',
+                fontSize: '1.125rem',
                 fontWeight: 'bold',
                 backgroundColor: isSelected
                   ? theme.secondaryColor
@@ -213,7 +229,9 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
                 cursor: showFeedback ? 'default' : 'pointer',
                 transition: 'all 0.2s',
                 outline: 'none',
-                minWidth: '150px',
+                flex: '1 1 auto',
+                minWidth: '120px',
+                maxWidth: '200px',
               }}
               onMouseEnter={(e) => {
                 if (!showFeedback) {
@@ -288,6 +306,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
       return <div>Invalid matching question configuration</div>;
     }
 
+    const isMobile = useMediaQuery('(max-width: 768px)');
     const correctAnswer = question.correctAnswer as Record<string, string>;
 
     // Extract question.id to a separate variable for stable dependency
@@ -347,25 +366,26 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
                 key={item}
                 style={{
                   display: 'flex',
-                  alignItems: 'stretch',
+                  flexDirection: isMobile ? 'column' : 'row',
+                  alignItems: isMobile ? 'stretch' : 'stretch',
                   gap: '1rem',
-                  padding: '1.25rem',
+                  padding: isMobile ? '1rem' : '1.25rem',
                   backgroundColor: 'rgba(255, 255, 255, 0.05)',
                   borderRadius: '0.75rem',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   transition: 'all 0.2s',
                 }}
               >
-                {/* Left side - Item name */}
+                {/* Item name */}
                 <div
                   style={{
-                    flex: '1',
-                    fontSize: '1.05rem',
+                    flex: isMobile ? 'none' : '1',
+                    fontSize: isMobile ? '1rem' : '1.05rem',
                     color: 'white',
                     fontWeight: '600',
                     display: 'flex',
                     alignItems: 'center',
-                    paddingRight: '1rem',
+                    paddingRight: isMobile ? '0' : '1rem',
                   }}
                 >
                   {item}
@@ -376,16 +396,18 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
                   style={{
                     display: 'flex',
                     alignItems: 'center',
+                    justifyContent: isMobile ? 'center' : 'flex-start',
                     color: theme.secondaryColor,
                     fontSize: '1.5rem',
                     fontWeight: 'bold',
+                    transform: isMobile ? 'rotate(90deg)' : 'none',
                   }}
                 >
                   →
                 </div>
 
-                {/* Right side - Custom dropdown */}
-                <div style={{ flex: '1', position: 'relative' }}>
+                {/* Custom dropdown */}
+                <div style={{ flex: isMobile ? 'none' : '1', position: 'relative' }}>
                   <button
                     onClick={() => {
                       if (!showFeedback) {
@@ -456,7 +478,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
                         border: `2px solid ${theme.secondaryColor}`,
                         borderRadius: '0.5rem',
                         overflow: 'hidden',
-                        zIndex: 1000,
+                        zIndex: 9999,
                         boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
                         backdropFilter: 'blur(10px)',
                       }}
