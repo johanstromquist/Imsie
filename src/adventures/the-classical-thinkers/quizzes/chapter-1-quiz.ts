@@ -157,7 +157,7 @@ export const chapter1Quiz: Quiz = {
       question: 'What Greek word did Democritus use for his indivisible particles, meaning "uncuttable"?',
       type: 'short-answer',
       points: 10,
-      correctAnswer: 'atoms',
+      correctAnswer: ['atom', 'atoms'],
       explanation: 'Democritus called his indivisible particles "atoms," from the Greek atomos meaning "uncuttable" or "indivisible." He proposed that reality consists of infinitely many eternal, unchanging atoms moving through empty space (the void), combining and separating to create the changes we observe.',
       relatedLearningPoints: ['lp-ch1-10-atomism'],
     },

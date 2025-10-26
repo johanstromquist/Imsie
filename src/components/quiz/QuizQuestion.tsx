@@ -50,6 +50,14 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
       return correct.toLowerCase().trim() === localAnswer.toLowerCase().trim();
     }
 
+    // Handle short-answer with multiple acceptable answers (e.g., singular/plural)
+    if (Array.isArray(correct) && typeof localAnswer === 'string') {
+      return correct.some(
+        (acceptableAnswer) =>
+          acceptableAnswer.toLowerCase().trim() === localAnswer.toLowerCase().trim()
+      );
+    }
+
     if (Array.isArray(correct) && Array.isArray(localAnswer)) {
       return (
         correct.length === localAnswer.length &&
