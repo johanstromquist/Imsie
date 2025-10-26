@@ -598,9 +598,17 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
             borderRadius: '0.5rem',
             color: 'rgba(255, 200, 0, 0.9)',
             fontSize: '0.9rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
           }}
         >
-          ℹ️ This is a reflection question. You'll compare your answer to a model answer and self-assess after submitting the quiz.
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 16v-4" />
+            <path d="M12 8h.01" />
+          </svg>
+          This is a reflection question. You'll compare your answer to a model answer and self-assess after submitting the quiz.
         </div>
         <textarea
           value={typeof localAnswer === 'string' ? localAnswer : ''}
