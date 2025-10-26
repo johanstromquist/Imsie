@@ -90,7 +90,11 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
   // Scroll to top when scene changes
   useEffect(() => {
     if (currentScene) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Scroll to top on scene change
+      // Small delay to ensure DOM has updated before scrolling
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     }
   }, [currentScene]);
 
