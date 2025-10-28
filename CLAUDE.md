@@ -66,7 +66,7 @@ Quick reference - **see `docs/SCENE_TYPES_REFERENCE.md` for complete documentati
 8. **`primary-source`** - Analyze historical documents/media
 9. **`anachronism`** - Find items that don't belong in time period
 10. **`custom-mini-game`** - Extensible registry for unique games
-   - **Built-in games:** Memory Match, Rhythm Game, Gallery Game
+   - **Built-in games:** Memory Match, Rhythm Game, (Shooting) Gallery Game, Spectrum (Profile) Game
 
 ### Typical Chapter Flow
 ```
@@ -157,7 +157,7 @@ export const chapterXQuiz: Quiz = {
     {
       id: 'q1',
       question: 'Question text?',
-      type: 'multiple-choice', // or 'true-false', 'short-answer', 'matching'
+      type: 'multiple-choice', // or 'true-false', 'short-answer', 'matching', 'self-assment'
       points: 10,
       options: ['Option A', 'Option B', 'Option C', 'Option D'],
       correctAnswer: 'Option B',
@@ -216,7 +216,7 @@ events: {
 ## Checklist Before Finalizing a Chapter
 
 - [ ] All IDs are unique across the adventure
-- [ ] 8-15 scenes with varied types
+- [ ] 8-15 scenes (or more) with varied types
 - [ ] Every scene has learning points
 - [ ] 3-5 learning objectives defined
 - [ ] Quiz with 8-15 questions linking to learning points
@@ -231,6 +231,7 @@ events: {
 
 ❌ Too many narrative scenes in a row (boring)
 ❌ Interactive scenes without clear instructions
+❌ Interactive scenes with challenges that haven't got adequate pretext in prior scenes
 ❌ Decisions without meaningful consequences
 ❌ Missing learning points
 ❌ Quiz questions not linked to learning points
@@ -272,28 +273,6 @@ Import from `src/utils/sceneHelpers.ts`:
 - `normalizeString()` - String comparison
 - `getScoreColor()` - Color by performance
 - And more...
-
----
-
-## Current Status
-
-### Arabian Nights Adventure
-- ✅ Chapter 1: Scheherazade (9 scenes, complete)
-- ✅ Chapter 2: Merchant & Jinni (10 scenes, complete)
-- ✅ Chapter 3: Aladdin (15 scenes, complete)
-- 🚧 Chapter 4: Ali Baba (in progress)
-- 🚧 Chapter 5: Sinbad (in progress)
-- 📋 Final Quiz (defined but needs expansion)
-
-### Platform Features
-- ✅ All 10 scene types implemented
-- ✅ Quiz system with multiple question types
-- ✅ Progress tracking (IndexedDB)
-- ✅ Asset caching
-- ✅ Music player
-- ✅ Export/import progress
-- ⏳ Achievement system (types exist, not implemented)
-- ⏳ Settings/preferences (not implemented)
 
 ---
 

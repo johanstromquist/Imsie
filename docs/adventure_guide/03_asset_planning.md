@@ -18,6 +18,7 @@ This guide walks you through planning and documenting all visual and audio asset
 
 ## Overview of Asset Types
 
+### Core Assets (Always Required)
 | Asset Type | Dimensions | Format | Count (typical) | Purpose |
 |-----------|-----------|--------|----------------|----------|
 | Cover Art | 800x1200px | PNG/JPG | 1 | Adventure selection screen |
@@ -27,6 +28,14 @@ This guide walks you through planning and documenting all visual and audio asset
 | Maps | 1920x1080px | PNG/JPG | 1-5 | Map exploration scenes |
 | Background Videos | 1920x1080px | MP4 | 0-10 | Animated backdrops (optional) |
 | Music Tracks | Variable | MP3 | 1-4 | Background ambience |
+
+### Interactive Scene Assets (Scene-Type Dependent)
+| Asset Type | Dimensions | Format | Count (typical) | Required For |
+|-----------|-----------|--------|----------------|--------------|
+| Map Location Images | 600x400px | PNG/JPG | 3-8 per map | Map-exploration scenes |
+| Timeline Event Images | 600x400px | PNG/JPG | 4-8 per timeline | Timeline-game scenes |
+| Anachronism Item Images | 400x400px | PNG/JPG | 4-8 per scene | Anachronism scenes |
+| Primary Source Documents | Variable | PNG/JPG/PDF | 1-3 per scene | Primary-source scenes |
 
 ---
 
@@ -44,9 +53,10 @@ This guide walks you through planning and documenting all visual and audio asset
 8. Document all scene illustrations
 9. Document all character portraits
 10. Document maps (if needed)
-11. Document music requirements
-12. **CRITICAL SANITY CHECK** - Verify alignment with outline
-13. Prioritize asset generation phases
+11. **Document interactive scene assets** (location images, timeline events, anachronism items, primary sources)
+12. Document music requirements
+13. **CRITICAL SANITY CHECK** - Verify alignment with outline
+14. Prioritize asset generation phases
 
 ---
 
@@ -338,6 +348,162 @@ All image generation prompts follow this structure:
 
 ---
 
+## Map Location Images (600x400px)
+
+**CRITICAL: Each location in a map-exploration scene needs its own image that appears when clicked.**
+
+### Map 1: [Map Name] - Locations
+
+#### Location 1: [Location Name]
+- **File:** `locations/[map-slug]-[location-slug].png`
+- **Prompt:**
+```
+[Tone]: [Specific scene showing this location - architecture, landscape, defining features, atmospheric details]. [Style suffix] --ar 3:2
+```
+- **Usage:** Chapter [X], Scene [Y] - Map exploration popup
+- **Coordinates:** x: [X]%, y: [Y]%
+- **URL/Status:** [Link or status]
+
+#### Location 2: [Location Name]
+- **File:** `locations/[map-slug]-[location-slug].png`
+- **Prompt:**
+```
+[Tone]: [Specific scene showing this location]. [Style suffix] --ar 3:2
+```
+- **Usage:** Chapter [X], Scene [Y] - Map exploration popup
+- **Coordinates:** x: [X]%, y: [Y]%
+- **URL/Status:** [Link or status]
+
+[Continue for ALL locations in the map scene...]
+
+### Map 2: [Second Map Name] - Locations
+[Repeat pattern for all locations in second map...]
+
+---
+
+## Timeline Event Images (600x400px)
+
+**CRITICAL: Each event in a timeline-game scene needs its own illustrative image.**
+
+### Timeline 1: [Timeline Scene Name]
+
+#### Event 1: [Event Title]
+- **File:** `timeline-events/[timeline-slug]-[event-slug].png`
+- **Prompt:**
+```
+[Tone]: [Key moment or visual representation of this event - action, characters involved, setting, emotional tone]. [Style suffix] --ar 3:2
+```
+- **Usage:** Chapter [X], Scene [Y] - Timeline event
+- **Chronological Position:** [1st/2nd/3rd/etc.]
+- **Historical Context:** [Brief note about what this depicts]
+- **URL/Status:** [Link or status]
+
+#### Event 2: [Event Title]
+- **File:** `timeline-events/[timeline-slug]-[event-slug].png`
+- **Prompt:**
+```
+[Tone]: [Scene description]. [Style suffix] --ar 3:2
+```
+- **Usage:** Chapter [X], Scene [Y] - Timeline event
+- **Chronological Position:** [Position]
+- **URL/Status:** [Link or status]
+
+[Continue for ALL events in the timeline scene...]
+
+### Timeline 2: [Second Timeline Scene]
+[Repeat pattern for all events in second timeline...]
+
+---
+
+## Anachronism Item Images (400x400px)
+
+**CRITICAL: Each item (both anachronistic AND period-appropriate) needs a distinct, recognizable image.**
+
+### Anachronism Scene 1: [Scene Name/Description]
+
+#### Anachronistic Items (DON'T belong)
+
+##### Item 1: [Item Name]
+- **File:** `anachronism-items/[scene-slug]-[item-slug].png`
+- **Type:** Anachronistic (incorrect for the period/setting)
+- **Prompt:**
+```
+[Tone]: Clear, isolated image of [item description], shown from recognizable angle, clean background, focused on the object. [Style suffix] --ar 1:1
+```
+- **Why Anachronistic:** [Brief explanation of why this is wrong for the setting]
+- **Usage:** Chapter [X], Scene [Y] - Player must identify as anachronistic
+- **URL/Status:** [Link or status]
+
+##### Item 2: [Item Name]
+- **File:** `anachronism-items/[scene-slug]-[item-slug].png`
+- **Type:** Anachronistic
+- **Prompt:**
+```
+[Tone]: [Object description]. [Style suffix] --ar 1:1
+```
+- **Why Anachronistic:** [Explanation]
+- **URL/Status:** [Link or status]
+
+[Continue for all anachronistic items...]
+
+#### Period-Appropriate Items (DO belong)
+
+##### Item 1: [Item Name]
+- **File:** `anachronism-items/[scene-slug]-[item-slug].png`
+- **Type:** Period-appropriate (correct for the setting)
+- **Prompt:**
+```
+[Tone]: [Object description]. [Style suffix] --ar 1:1
+```
+- **Why Appropriate:** [Brief explanation of why this belongs]
+- **Usage:** Chapter [X], Scene [Y] - Distractor item
+- **URL/Status:** [Link or status]
+
+[Continue for all period-appropriate items...]
+
+### Anachronism Scene 2: [Scene Name]
+[Repeat full pattern for second scene...]
+
+**Design Notes:**
+- Items should be easily distinguishable from each other
+- Use clear, frontal views or iconic angles
+- Avoid items that look too similar
+- Each image should work as a standalone icon
+- Keep backgrounds simple so items are clearly visible
+
+---
+
+## Primary Source Documents (Variable Sizes)
+
+**Note: Some primary-source scenes use text-only sources (embedded in code). Only document here if you need custom document images.**
+
+### Primary Source 1: [Document Name]
+- **File:** `primary-sources/[document-slug].png` or `.jpg`
+- **Type:** [Manuscript page / Historical letter / Ancient text / Photograph / Artwork / etc.]
+- **Dimensions:** [Width]x[Height]px (maintain readability)
+- **Prompt/Source:**
+```
+[For AI generation]: [Tone]: [Description of document appearance - aged paper, handwriting style, seals, decorative elements, etc.]. [Style suffix] --ar [ratio]
+
+[For historical sources]: Source URL or reference - [Link or citation]
+Notes: [Any special considerations for sourcing or licensing]
+```
+- **Content Overview:** [What text/information this document contains]
+- **Usage:** Chapter [X], Scene [Y] (primary-source scene)
+- **Educational Purpose:** [What students should learn from analyzing this]
+- **URL/Status:** [Link or status]
+
+### Primary Source 2: [Document Name]
+[Repeat pattern...]
+
+**Important Considerations:**
+- Historical documents may require copyright clearance or public domain verification
+- Text must be legible at intended display size
+- Consider providing both full document view and zoomed details if text is dense
+- Annotated versions may need separate image files with markup overlays
+
+---
+
 ## Music & Audio
 
 ### Background Music
@@ -383,17 +549,26 @@ All image generation prompts follow this structure:
 1. Remaining backgrounds for Chapters 2-3
 2. Scene illustrations for key narrative moments
 3. Additional character portraits
+4. **Interactive scene assets for Chapters 1-2** (location images, timeline events, anachronism items)
 
 **Phase 3 - Complete (Generate Third):**
 1. All remaining backgrounds (Chapters 4-5)
 2. All remaining scene illustrations
-3. Maps
-4. Optional videos
+3. Maps (base map images)
+4. **All remaining interactive scene assets** (locations, timeline events, items for Chapters 3-5)
+5. Primary source document images (if needed)
 
 **Phase 4 - Polish (Generate Last):**
-1. Music variations
-2. Ambient sounds
-3. Video enhancements
+1. Optional videos
+2. Music variations
+3. Ambient sounds
+4. Video enhancements
+
+**Important Notes:**
+- Don't generate maps without also generating their location images - they go together
+- Timeline scenes are incomplete without event images
+- Anachronism scenes won't function without all item images
+- Budget extra time for interactive assets - they're often forgotten but essential
 
 ---
 
@@ -416,15 +591,31 @@ All image generation prompts follow this structure:
 
 ## Asset Checklist
 
+### Core Assets
 - [ ] Cover art created
 - [ ] All backgrounds generated (0/[X])
 - [ ] All scene illustrations created (0/[X])
 - [ ] All character portraits created (0/[X])
 - [ ] Maps created (0/[X])
 - [ ] Music composed/selected (0/[X])
+
+### Interactive Scene Assets
+- [ ] **Map location images created (0/[X])**
+  - [ ] Map 1: [Name] - (0/[X] locations)
+  - [ ] Map 2: [Name] - (0/[X] locations)
+- [ ] **Timeline event images created (0/[X])**
+  - [ ] Timeline 1: [Name] - (0/[X] events)
+  - [ ] Timeline 2: [Name] - (0/[X] events)
+- [ ] **Anachronism item images created (0/[X])**
+  - [ ] Scene 1: [Name] - (0/[X] items)
+  - [ ] Scene 2: [Name] - (0/[X] items)
+- [ ] **Primary source documents created (0/[X])**
+
+### Technical
 - [ ] All assets optimized for web (<500KB per image)
 - [ ] All assets uploaded to correct paths
 - [ ] All URLs updated in this document
+- [ ] Verified all interactive scenes have complete asset sets
 
 ---
 
@@ -434,29 +625,49 @@ All image generation prompts follow this structure:
 public/assets/[adventure-name]/
 ├── cover.png                        # 800x1200px
 ├── cover-video.mp4                  # Optional, 5-8s loop
-├── backgrounds/                     # 1920x1080px
+├── backgrounds/                     # 1920x1080px - Scene backdrops
 │   ├── chapter-1-scene-1.png
 │   ├── chapter-1-scene-2.png
 │   ├── chapter-2-scene-1.png
 │   └── ...
-├── scenes/                          # 600x400px
+├── scenes/                          # 600x400px - Narrative illustrations
 │   ├── chapter-1-illustration-1.png
 │   ├── chapter-1-illustration-2.png
 │   └── ...
-├── portraits/                       # 600x600px
+├── portraits/                       # 600x600px - Character portraits
 │   ├── character-main.png
 │   ├── character-supporting.png
 │   └── ...
-├── maps/                           # 1920x1080px
+├── maps/                           # 1920x1080px - Map exploration base maps
 │   ├── world-map.png
+│   ├── region-map.png
 │   └── ...
-├── music/                          # MP3
+├── locations/                      # 600x400px - Map location popup images
+│   ├── world-map-location-1.png
+│   ├── world-map-location-2.png
+│   ├── region-map-location-1.png
+│   └── ...
+├── timeline-events/                # 600x400px - Timeline game event images
+│   ├── timeline-1-event-1.png
+│   ├── timeline-1-event-2.png
+│   ├── timeline-2-event-1.png
+│   └── ...
+├── anachronism-items/              # 400x400px - Anachronism scene item images
+│   ├── scene-1-item-musket.png
+│   ├── scene-1-item-armor.png
+│   ├── scene-1-item-lance.png
+│   └── ...
+├── primary-sources/                # Variable - Historical document images
+│   ├── manuscript-1.png
+│   ├── letter-fragment.png
+│   └── ...
+├── music/                          # MP3 - Background music
 │   ├── theme.mp3
 │   └── ...
-├── videos/                         # MP4 (optional)
+├── videos/                         # MP4 - Optional animated assets
 │   ├── background-animated.mp4
 │   └── ...
-└── README.md                       # Asset inventory
+└── README.md                       # Asset inventory and status
 ```
 ```
 
@@ -500,6 +711,54 @@ Medieval artwork: Tristan and Isolde sharing the love potion aboard a ship, inti
 **Canterbury Tales - Pilgrimage Route:**
 ```
 14th century manuscript: Medieval map showing pilgrimage route from London to Canterbury, stylized cities represented as clusters of towers and walls, winding road marked clearly, decorative compass rose in corner, parchment texture, key locations labeled in gothic script, educational cartography style with illustrated landmarks. In the style of medieval manuscript maps with illuminated borders, aged parchment aesthetic --ar 16:9
+```
+
+### Map Location Image Examples
+
+**Greek Myths - Mount Olympus (location popup from map):**
+```
+Classical Greek art: Majestic view of Mount Olympus rising above the clouds, divine golden temples and columns visible at the peak, ethereal lighting suggesting divine presence, purple-blue cloudy sky, sense of grandeur and otherworldliness. In the style of classical Greek pottery art meets modern digital painting, rich jewel tones, educational and inspiring --ar 3:2
+```
+
+**Arabian Nights - Baghdad Marketplace:**
+```
+Arabian Nights: Bustling marketplace in Baghdad, colorful fabric awnings, merchants displaying spices and treasures, busy crowds of people in traditional Middle Eastern dress, architectural details of buildings with ornate arches, warm golden afternoon light. In the style of Nimona. --ar 3:2
+```
+
+### Timeline Event Image Examples
+
+**Greek Myths - Theseus Defeating the Minotaur:**
+```
+Classical Greek art: Theseus confronting the Minotaur in the dark labyrinth, hero holding sword ready, monster's bull head and muscular body illuminated by torchlight, stone walls with ancient Greek patterns, dramatic action moment frozen in time. In the style of classical Greek pottery art meets modern digital painting, rich jewel tones --ar 3:2
+```
+
+**Don Quixote - Windmill Charge:**
+```
+17th century Spanish art: Don Quixote on horseback charging at a windmill with lance extended, windmill sails turning dramatically, dust kicking up from horse's hooves, Sancho Panza in background looking concerned, Spanish countryside setting. In the style of Spanish Golden Age painting with warm earth tones, dynamic composition --ar 3:2
+```
+
+### Anachronism Item Image Examples
+
+**Don Quixote - Musket (anachronistic):**
+```
+17th century Spanish art: Clear, detailed image of a period musket firearm, shown at slight angle to display mechanism and stock, simple neutral background, historically accurate details visible. In the style of Spanish Golden Age painting with precise detail --ar 1:1
+```
+
+**Don Quixote - Knight's Lance (period-appropriate):**
+```
+Medieval artwork: Traditional knight's lance weapon, long wooden shaft with metal tip, shown at diagonal angle, simple background, weapon clearly recognizable. In the style of medieval manuscript illumination with clear linework --ar 1:1
+```
+
+**Greek Myths - Modern Smartphone (anachronistic for ancient setting):**
+```
+Classical Greek art: Modern smartphone device shown clearly, recognizable screen and shape, but rendered in Greek art style creating deliberate visual clash between ancient artistic style and modern object. Humorous educational contrast --ar 1:1
+```
+
+### Primary Source Document Examples
+
+**Dante's Inferno - Medieval Manuscript Page:**
+```
+Medieval manuscript: Aged parchment page with Latin text in gothic script, decorative illuminated capital letter 'I' with gold leaf and red details, marginal annotations, weathered edges, authentic medieval manuscript appearance. In the style of 14th century Italian manuscript illumination, aged and authentic --ar 3:2
 ```
 
 ---
@@ -571,16 +830,44 @@ Medieval artwork: Tristan and Isolde sharing the love potion aboard a ship, inti
   - Count maps documented: _____
   - Each map has all required locations listed? _____ (Yes/No)
 
-- [ ] **Special assets documented**
-  - Anachronism scenes need props/items documented? _____ (Yes/No)
-  - Primary source scenes need historical documents? _____ (Yes/No)
-  - Timeline scenes have date markers/visuals? _____ (Yes/No)
+- [ ] **CRITICAL: Map location images documented**
+  - List all map-exploration scenes: ___________________
+  - For EACH map scene:
+    - Scene ID: _____ | Locations count: _____ | Images documented: _____
+    - Every location has its own 600x400px image? _____ (Yes/No)
+  - Total location images needed: _____
+  - Total location images documented: _____
+
+- [ ] **CRITICAL: Timeline event images documented**
+  - List all timeline-game scenes: ___________________
+  - For EACH timeline scene:
+    - Scene ID: _____ | Events count: _____ | Images documented: _____
+    - Every event has its own image? _____ (Yes/No)
+  - Total timeline event images needed: _____
+  - Total timeline event images documented: _____
+
+- [ ] **CRITICAL: Anachronism item images documented**
+  - List all anachronism scenes: ___________________
+  - For EACH anachronism scene:
+    - Scene ID: _____ | Total items: _____ | Anachronistic: _____ | Period-appropriate: _____
+    - Every item (both types) has unique image? _____ (Yes/No)
+    - All images are visually distinct? _____ (Yes/No)
+  - Total anachronism item images needed: _____
+  - Total anachronism item images documented: _____
+
+- [ ] **Primary source document images (if needed)**
+  - List all primary-source scenes: ___________________
+  - Which scenes need custom document images? ___________________
+  - All required document images documented? _____ (Yes/No)
 
 - [ ] **Asset counts are realistic**
   - Backgrounds per chapter: _____ (should be close to scene count)
   - Total backgrounds: _____ (typically 20-40)
   - Total portraits: _____ (typically 5-15)
   - Total illustrations: _____ (typically 15-30)
+  - Total location images: _____ (3-8 per map scene)
+  - Total timeline images: _____ (4-8 per timeline scene)
+  - Total anachronism items: _____ (4-8 per anachronism scene)
 
 ### Common Misalignments to Fix
 
@@ -599,6 +886,17 @@ Medieval artwork: Tristan and Isolde sharing the love potion aboard a ship, inti
 **Map details missing:**
 - Each map must list all clickable locations from outline
 - Verify location names match those in scene structure
+
+**MOST COMMON ERROR: Missing interactive scene assets**
+- Map-exploration scenes: Forgetting that EACH location needs its own popup image
+- Timeline-game scenes: Forgetting that EACH event needs an illustrative image
+- Anachronism scenes: Forgetting that ALL items (both wrong AND correct) need unique images
+- Primary-source scenes: Not documenting custom document images when needed
+
+**Asset duplication or similarity issues:**
+- Anachronism items must be visually distinct from each other
+- Timeline events should have clearly different imagery
+- Location images should show unique characteristics of each place
 
 ---
 

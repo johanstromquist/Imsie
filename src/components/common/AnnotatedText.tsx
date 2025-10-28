@@ -26,7 +26,7 @@ const AnnotatedText: React.FC<AnnotatedTextProps> = ({ id, text, tooltip, theme 
 
   // Calculate tooltip position
   useEffect(() => {
-    if (isOpen && textRef.current) {
+    if (isOpen && textRef.current && tooltipRef.current) {
       const rect = textRef.current.getBoundingClientRect();
       const spaceAbove = rect.top;
       const spaceBelow = window.innerHeight - rect.bottom;
@@ -35,8 +35,20 @@ const AnnotatedText: React.FC<AnnotatedTextProps> = ({ id, text, tooltip, theme 
       const newPosition = spaceAbove < 200 && spaceBelow > spaceAbove ? 'bottom' : 'top';
       setPosition(newPosition);
 
-      // Calculate absolute position for portal
-      const left = rect.left + rect.width / 2;
+      // Calculate tooltip dimensions (approximate if not yet rendered)
+      const tooltipWidth = tooltipRef.current.offsetWidth || 400; // fallback to maxWidth
+      const tooltipHalfWidth = tooltipWidth / 2;
+
+      // Calculate ideal centered position
+      let left = rect.left + rect.width / 2;
+
+      // Adjust if tooltip would go off-screen horizontally
+      const minLeft = tooltipHalfWidth + 10; // 10px padding from edge
+      const maxLeft = window.innerWidth - tooltipHalfWidth - 10;
+
+      // Clamp the position to keep tooltip within viewport
+      left = Math.max(minLeft, Math.min(maxLeft, left));
+
       const top = newPosition === 'top' ? rect.top : rect.bottom;
 
       setTooltipPosition({ top, left });

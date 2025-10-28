@@ -181,18 +181,19 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
         }
         // Preload custom mini-game assets
         if (scene.type === 'custom-mini-game' && 'config' in scene && scene.config) {
-          const config = scene.config as any;
+          const config = scene.config as Record<string, unknown>;
 
           // Gallery game assets
-          if (scene.gameType === 'gallery' && config.rounds) {
-            config.rounds.forEach((round: any) => {
+          if (scene.gameType === 'gallery' && Array.isArray(config.rounds)) {
+            config.rounds.forEach((round: unknown) => {
+              const r = round as { target?: { image?: string }; items?: Array<{ image?: string }> };
               // Preload target image
-              if (round.target?.image) {
-                assetsToLoad.push({ url: round.target.image, type: 'image' });
+              if (r.target?.image) {
+                assetsToLoad.push({ url: r.target.image, type: 'image' });
               }
               // Preload all item images
-              if (round.items) {
-                round.items.forEach((item: any) => {
+              if (r.items) {
+                r.items.forEach((item) => {
                   if (item.image) {
                     assetsToLoad.push({ url: item.image, type: 'image' });
                   }
@@ -202,17 +203,44 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
           }
 
           // Memory match game assets
-          if (scene.gameType === 'memory-match' && config.cards) {
-            config.cards.forEach((card: any) => {
-              if (card.image) {
-                assetsToLoad.push({ url: card.image, type: 'image' });
+          if (scene.gameType === 'memory-match' && Array.isArray(config.cards)) {
+            config.cards.forEach((card: unknown) => {
+              const c = card as { image?: string };
+              if (c.image) {
+                assetsToLoad.push({ url: c.image, type: 'image' });
               }
             });
           }
 
           // Rhythm game assets (if any images/audio in config)
-          if (scene.gameType === 'rhythm' && config.backgroundImage) {
+          if (scene.gameType === 'rhythm' && typeof config.backgroundImage === 'string') {
             assetsToLoad.push({ url: config.backgroundImage, type: 'image' });
+          }
+
+          // Image choice game assets
+          if (scene.gameType === 'image-choice') {
+            // Preload background image
+            if (typeof config.backgroundImage === 'string') {
+              assetsToLoad.push({ url: config.backgroundImage, type: 'image' });
+            }
+            // Preload scenario images and option images
+            if (Array.isArray(config.scenarios)) {
+              config.scenarios.forEach((scenario: unknown) => {
+                const s = scenario as { image?: string; options?: Array<{ image?: string }> };
+                // Preload scenario image
+                if (s.image) {
+                  assetsToLoad.push({ url: s.image, type: 'image' });
+                }
+                // Preload option images
+                if (s.options) {
+                  s.options.forEach((option) => {
+                    if (option.image) {
+                      assetsToLoad.push({ url: option.image, type: 'image' });
+                    }
+                  });
+                }
+              });
+            }
           }
         }
       });

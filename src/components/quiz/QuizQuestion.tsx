@@ -36,6 +36,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
     currentAnswer || ''
   );
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   // Check if answer is correct (for feedback display)
   const isCorrect = showFeedback && checkAnswer();
@@ -314,7 +315,6 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
       return <div>Invalid matching question configuration</div>;
     }
 
-    const isMobile = useMediaQuery('(max-width: 768px)');
     const correctAnswer = question.correctAnswer as Record<string, string>;
 
     // Extract question.id to a separate variable for stable dependency

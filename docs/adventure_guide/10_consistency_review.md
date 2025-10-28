@@ -9,8 +9,41 @@ This guide covers the critical consistency review phase that ensures educational
 
 **IMPORTANT AUTO-FIX PRINCIPLES:**
 - **Missing Assets:** Automatically update the `[adventure-name]_assets.md` file with new asset requirements and generation prompts. Add a "Consistency Review Additions" section documenting all missing assets.
+- **Placeholders During Development:** When placeholders like `[PLACEHOLDER-*]` are found without real URLs, this is NOT necessarily an error during development. Document them in assets.md if missing.
+- **Placeholders During Integration:** All placeholders MUST be replaced with real URLs before final registration. Any remaining placeholders at integration time are errors.
+- **Consistency Review Timing:** This review can run at development time (expect placeholders) OR integration time (expect zero placeholders). Different expectations at each phase.
 - **Formatting Issues:** Automatically fix formatting problems (paragraph breaks, spacing) directly in chapter files. No need to just report - fix immediately.
 - **Context Issues:** Report pedagogical/educational concerns for user decision. Do not auto-fix content/educational design without user approval.
+
+---
+
+## When to Run This Review
+
+Consistency review can be performed at different stages with different expectations:
+
+### 1. Development Phase Review
+**When:** After chapter content is written but before assets generated
+**Expectations:**
+- Placeholders like `[PLACEHOLDER-*]` are acceptable and expected
+- All placeholders should have corresponding entries in `[adventure-name]_assets.md`
+- No ambiguous paths that look real but aren't (e.g., `/assets/.../location.png`)
+- Focus on content structure and educational flow
+
+### 2. Pre-Integration Review
+**When:** Assets are being planned/generated
+**Purpose:**
+- Verify all placeholders are documented in assets.md
+- Ensure asset generation prompts are complete
+- Plan asset generation workflow
+- Check placeholder format consistency
+
+### 3. Integration Review (Final)
+**When:** Assets are generated and ready to integrate
+**Expectations:**
+- **ZERO placeholders allowed** - all must be replaced with real URLs
+- All URLs must be valid (Midjourney CDN or verified local paths)
+- This is the final gate before adventure registration
+- Any remaining placeholder is a blocker
 
 ---
 
@@ -33,7 +66,10 @@ Before consistency review:
 
 **What to check:**
 - Each dialogue node has a `portrait` field where relevant
-- Portrait URLs are valid (Midjourney CDN or local `/Imsie/` paths)
+- Portrait format: Real URL (Midjourney CDN or local `/Imsie/` paths) OR development placeholder (`[PLACEHOLDER-PORTRAIT-*]`)
+- **Placeholder format check:** No ambiguous paths like `/assets/.../portrait.png`
+- If placeholder: Corresponding entry exists in assets.md with generation prompt
+- If real URL: URL is accessible and loads correctly
 - Portraits match the character speaking
 - No missing portraits for named characters
 - Generic/narrator dialogue may omit portraits appropriately
@@ -52,15 +88,28 @@ grep -r "type: 'dialogue'" src/adventures/[adventure-name]/chapters/
 
 **Common issues:**
 - Missing portrait field for main character
-- Placeholder paths not replaced with actual URLs
+- Ambiguous paths like `/assets/.../portrait.png` (should be `[PLACEHOLDER-PORTRAIT-*]`)
+- Placeholder without corresponding assets.md entry
+- **Integration phase:** Placeholder not replaced with real URL (blocking error)
 - Wrong character portrait used
 - Portrait URL points to background image instead
+- Invalid URL that doesn't load
 
 **AUTO-FIX ACTION:**
-If portraits are missing, immediately update `[adventure-name]_assets.md`:
-1. Add "## Consistency Review Additions" section at the end if it doesn't exist
-2. Document each missing portrait with generation prompt
-3. Report findings to user for asset generation
+If portraits are missing or improperly formatted, take these actions:
+
+**Development Phase:**
+1. If portrait field missing entirely: Add `[PLACEHOLDER-PORTRAIT-charactername]` placeholder
+2. If ambiguous path found (e.g., `/assets/.../portrait.png`): Replace with proper placeholder format
+3. Update `[adventure-name]_assets.md`:
+   - Add "## Consistency Review Additions" section if it doesn't exist
+   - Document each placeholder with generation prompt
+4. Report findings to user
+
+**Integration Phase:**
+1. If placeholder still exists: Report as BLOCKING ERROR - must have real URL
+2. If invalid URL: Report as ERROR - URL must be accessible
+3. Do NOT auto-fix placeholders during integration - user must provide real assets
 
 **Example - Correct:**
 ```typescript
@@ -89,9 +138,13 @@ If portraits are missing, immediately update `[adventure-name]_assets.md`:
 
 **What to check:**
 - Each location in `locations` array has an `image` field
-- Image URLs are valid
+- Image format: Real URL OR development placeholder (`[PLACEHOLDER-LOC-*]`)
+- **Placeholder format check:** No ambiguous paths like `/assets/.../location.png`
+- If placeholder: Corresponding entry exists in assets.md with generation prompt
+- If real URL: URL is accessible and loads correctly
 - Images are appropriate for the location being shown
-- No placeholder or missing images
+- No duplicate images across different locations
+- **Integration phase:** Zero placeholders allowed
 
 **How to review:**
 ```bash
@@ -107,16 +160,29 @@ grep -r "type: 'map-exploration'" src/adventures/[adventure-name]/chapters/
 
 **Common issues:**
 - Location missing `image` field entirely
-- Placeholder path like `/assets/.../location.png` not replaced
-- Same image used for multiple distinct locations
+- Ambiguous paths like `/assets/.../location.png` (should be `[PLACEHOLDER-LOC-*]`)
+- Placeholder without corresponding assets.md entry
+- **Integration phase:** Placeholder not replaced with real URL (blocking error)
+- Same image URL used for multiple distinct locations
 - Image doesn't match location description
+- Invalid URL that doesn't load
 
 **AUTO-FIX ACTION:**
-If location images are missing, immediately update `[adventure-name]_assets.md`:
-1. Add to "## Consistency Review Additions" section
-2. Document each missing location image with appropriate generation prompt based on location name and content
-3. Follow the adventure's established visual style and prompt format
-4. Report total missing locations to user
+
+**Development Phase:**
+1. If image field missing: Add `[PLACEHOLDER-LOC-locationid]` placeholder
+2. If ambiguous path found: Replace with proper placeholder format
+3. Update `[adventure-name]_assets.md`:
+   - Add to "## Consistency Review Additions" section
+   - Document each placeholder with generation prompt based on location name and content
+   - Follow the adventure's established visual style
+4. Report total placeholders to user
+
+**Integration Phase:**
+1. If placeholder still exists: Report as BLOCKING ERROR
+2. If invalid URL: Report as ERROR
+3. If duplicate URLs across locations: Report as WARNING (may be intentional but verify)
+4. Do NOT auto-fix placeholders - user must provide real assets
 
 **Example - Correct:**
 ```typescript
@@ -130,7 +196,7 @@ If location images are missing, immediately update `[adventure-name]_assets.md`:
       name: 'The Agora',
       x: 35,
       y: 50,
-      image: 'https://cdn.midjourney.com/agora.../0_0.png', // ✓ Has image
+      image: 'https://cdn.midjourney.com/agora.../0_0.png', // ✓ Real URL (integration ready)
       content: '...',
     },
     {
@@ -138,7 +204,7 @@ If location images are missing, immediately update `[adventure-name]_assets.md`:
       name: 'Plato\'s Academy',
       x: 60,
       y: 30,
-      image: 'https://cdn.midjourney.com/academy.../0_0.png', // ✓ Has image
+      image: 'https://cdn.midjourney.com/academy.../0_0.png', // ✓ Real URL (integration ready)
       content: '...',
     },
   ],
@@ -153,9 +219,13 @@ If location images are missing, immediately update `[adventure-name]_assets.md`:
 
 **What to check:**
 - Each event in `timelineEvents` array has an `image` field
-- Image URLs are valid
+- Image format: Real URL OR development placeholder (`[PLACEHOLDER-EVENT-*]`)
+- **Placeholder format check:** No ambiguous paths like `/assets/.../event.png`
+- If placeholder: Corresponding entry exists in assets.md with generation prompt
+- If real URL: URL is accessible and loads correctly
 - Images are appropriate for the historical event being depicted
-- No placeholder or missing images
+- No duplicate images across different events
+- **Integration phase:** Zero placeholders allowed
 
 **How to review:**
 ```bash
@@ -171,16 +241,29 @@ grep -r "type: 'timeline-game'" src/adventures/[adventure-name]/chapters/
 
 **Common issues:**
 - Event missing `image` field entirely
-- Placeholder path like `/assets/.../event.png` not replaced
-- Same image used for multiple distinct events
+- Ambiguous paths like `/assets/.../event.png` (should be `[PLACEHOLDER-EVENT-*]`)
+- Placeholder without corresponding assets.md entry
+- **Integration phase:** Placeholder not replaced with real URL (blocking error)
+- Same image URL used for multiple distinct events
 - Image doesn't match historical event description
+- Invalid URL that doesn't load
 
 **AUTO-FIX ACTION:**
-If event images are missing, immediately update `[adventure-name]_assets.md`:
-1. Add to "## Consistency Review Additions" section
-2. Document each missing event image with appropriate generation prompt based on event title and description
-3. Follow the adventure's established visual style and prompt format
-4. Report total missing events to user
+
+**Development Phase:**
+1. If image field missing: Add `[PLACEHOLDER-EVENT-eventid]` placeholder
+2. If ambiguous path found: Replace with proper placeholder format
+3. Update `[adventure-name]_assets.md`:
+   - Add to "## Consistency Review Additions" section
+   - Document each placeholder with generation prompt based on event title and description
+   - Follow the adventure's established visual style
+4. Report total placeholders to user
+
+**Integration Phase:**
+1. If placeholder still exists: Report as BLOCKING ERROR
+2. If invalid URL: Report as ERROR
+3. If duplicate URLs across events: Report as WARNING
+4. Do NOT auto-fix placeholders - user must provide real assets
 
 **Example - Correct:**
 ```typescript
@@ -194,14 +277,14 @@ If event images are missing, immediately update `[adventure-name]_assets.md`:
       title: 'Birth of Socrates',
       year: -469,
       description: 'Socrates is born in Athens',
-      image: 'https://cdn.midjourney.com/socrates-birth.../0_0.png', // ✓ Has image
+      image: 'https://cdn.midjourney.com/socrates-birth.../0_0.png', // ✓ Real URL (integration ready)
     },
     {
       id: 'trial-socrates',
       title: 'Trial of Socrates',
       year: -399,
       description: 'Socrates is tried and sentenced to death',
-      image: 'https://cdn.midjourney.com/socrates-trial.../0_0.png', // ✓ Has image
+      image: 'https://cdn.midjourney.com/socrates-trial.../0_0.png', // ✓ Real URL (integration ready)
     },
   ],
 }
@@ -211,13 +294,18 @@ If event images are missing, immediately update `[adventure-name]_assets.md`:
 
 ### 4. Anachronism Scene Unique Images Verification
 
-**Objective:** Ensure anachronism scenes have unique, distinct images for each item.
+**Objective:** Ensure anachronism scenes have unique, distinct images for ALL items (both anachronistic and period-appropriate).
 
 **What to check:**
-- Each item in `items` array has an `image` field
-- All images are unique (no duplicates)
-- Images clearly show the specific anachronistic item
-- Scene image (`sceneImage`) is different from item images
+- **Every item** in `items` array has an `image` field (anachronisms AND period-appropriate items)
+- Image format: Real URL OR development placeholder (`[PLACEHOLDER-ITEM-*]`)
+- **Placeholder format check:** No ambiguous paths like `/assets/.../item.png`
+- If placeholder: Corresponding entry exists in assets.md with generation prompt
+- If real URL: URL is accessible and loads correctly
+- All image URLs are unique - no duplicate URLs across different items
+- Images clearly show the specific item concept
+- Scene image (`sceneImage`) is different from all item images
+- **Integration phase:** Zero placeholders allowed
 
 **How to review:**
 ```bash
@@ -232,17 +320,31 @@ grep -r "type: 'anachronism'" src/adventures/[adventure-name]/chapters/
 4. Ensure `sceneImage` is distinct from item images
 
 **Common issues:**
-- Same image used for multiple different items
-- Missing `image` field on some items
+- Missing `image` field on any item (anachronistic OR period-appropriate)
+- Ambiguous paths like `/assets/.../item.png` (should be `[PLACEHOLDER-ITEM-*]`)
+- Placeholder without corresponding assets.md entry
+- **Integration phase:** Placeholder not replaced with real URL (blocking error)
+- Duplicate image URL used for multiple different items (common error!)
 - Item image is identical to scene background
-- Placeholder paths not replaced
+- Invalid URL that doesn't load
 
 **AUTO-FIX ACTION:**
-If item images are missing, immediately update `[adventure-name]_assets.md`:
-1. Add to "## Consistency Review Additions" section
-2. Document each missing item image with generation prompt describing the specific item/concept
-3. Ensure prompts create distinct, recognizable icons/illustrations
-4. Report total missing items to user
+
+**Development Phase:**
+1. If image field missing: Add `[PLACEHOLDER-ITEM-itemid]` placeholder
+2. If ambiguous path found: Replace with proper placeholder format
+3. Update `[adventure-name]_assets.md`:
+   - Add to "## Consistency Review Additions" section
+   - Document each placeholder with generation prompt describing the specific item/concept
+   - Ensure prompts create distinct, recognizable icons/illustrations
+4. Check for duplicate placeholders (each item needs unique asset)
+5. Report total placeholders to user
+
+**Integration Phase:**
+1. If placeholder still exists: Report as BLOCKING ERROR
+2. If invalid URL: Report as ERROR
+3. **If duplicate URLs found across items:** Report as CRITICAL ERROR (each item must have unique image)
+4. Do NOT auto-fix placeholders - user must provide real assets
 
 **Example - Correct:**
 ```typescript
@@ -254,21 +356,21 @@ If item images are missing, immediately update `[adventure-name]_assets.md`:
     {
       id: 'wristwatch',
       name: 'Wristwatch',
-      image: 'https://cdn.midjourney.com/watch.../0_0.png', // ✓ Unique
+      image: 'https://cdn.midjourney.com/watch.../0_0.png', // ✓ Unique real URL
       isAnachronism: true,
       explanation: '...',
     },
     {
       id: 'smartphone',
       name: 'Smartphone',
-      image: 'https://cdn.midjourney.com/phone.../0_0.png', // ✓ Unique, different from watch
+      image: 'https://cdn.midjourney.com/phone.../0_0.png', // ✓ Unique real URL, different from watch
       isAnachronism: true,
       explanation: '...',
     },
     {
       id: 'amphora',
       name: 'Clay Amphora',
-      image: 'https://cdn.midjourney.com/amphora.../0_0.png', // ✓ Unique
+      image: 'https://cdn.midjourney.com/amphora.../0_0.png', // ✓ Unique real URL (period-appropriate item also needs image)
       isAnachronism: false,
       explanation: '...',
     },
@@ -285,10 +387,16 @@ If item images are missing, immediately update `[adventure-name]_assets.md`:
 **What to check:**
 - Document text has appropriate paragraph breaks (`\n\n` for new paragraphs)
 - Text is readable and not a wall of text
-- If `documentImage` is used, URL is valid
-- If `documentVideo` is used, URL is valid
+- If `documentImage` is used:
+  - Format: Real URL OR development placeholder (`[PLACEHOLDER-DOC-*]`)
+  - If placeholder: Entry exists in assets.md
+  - If real URL: URL is accessible
+- If `documentVideo` is used:
+  - Format: Real URL (no placeholders supported for video)
+  - URL must be accessible
 - Images/videos enhance understanding, not distract
 - Transcription matches historical accuracy (if applicable)
+- **Integration phase:** Zero placeholders allowed
 
 **How to review:**
 ```bash
@@ -305,10 +413,13 @@ grep -r "type: 'primary-source'" src/adventures/[adventure-name]/chapters/
 
 **Common issues:**
 - Wall of text with no paragraph breaks
-- Using placeholder image paths
+- Ambiguous paths like `/assets/.../document.png` (should be `[PLACEHOLDER-DOC-*]`)
+- Placeholder without corresponding assets.md entry
+- **Integration phase:** Placeholder not replaced with real URL
 - Image doesn't match the source being presented
 - Text too long without breaks for student readability
 - Missing critical spacing around quotes or sections
+- Invalid URL that doesn't load
 
 **AUTO-FIX ACTION:**
 For formatting issues, immediately fix in chapter files:
@@ -316,7 +427,18 @@ For formatting issues, immediately fix in chapter files:
 2. Break long passages into readable chunks (3-4 sentences per paragraph)
 3. Ensure proper spacing around quotes, citations, and transitions
 4. No need to report - just fix formatting directly
-5. For missing images, update assets file as with other asset issues
+
+For asset issues:
+
+**Development Phase:**
+1. If image missing: Add `[PLACEHOLDER-DOC-sceneid]` placeholder
+2. If ambiguous path found: Replace with proper placeholder format
+3. Update assets.md with generation prompt
+
+**Integration Phase:**
+1. If placeholder still exists: Report as BLOCKING ERROR
+2. If invalid URL: Report as ERROR
+3. Do NOT auto-fix placeholders - user must provide real assets
 
 **Example - Correct:**
 ```typescript
@@ -324,7 +446,7 @@ For formatting issues, immediately fix in chapter files:
   id: 'scene-primary-source',
   type: 'primary-source',
   documentTitle: 'Letter to Menoeceus',
-  documentImage: 'https://cdn.midjourney.com/letter.../0_0.png', // ✓ Valid URL
+  documentImage: 'https://cdn.midjourney.com/letter.../0_0.png', // ✓ Real URL (integration ready)
   documentText: `Let no one be slow to seek wisdom when he is young nor weary in the search thereof when he is grown old.
 
 For no age is too early or too late for the health of the soul.
@@ -606,22 +728,54 @@ For each review task, report:
 ```markdown
 ## [Task Name] Review Results
 
+**Review Phase:** [Development / Pre-Integration / Integration]
 **Chapters Reviewed:** [List]
 **Total Scenes Checked:** [Number]
 
+### Asset Status Summary
+
+**Real URLs (Ready):** [Number]
+**Valid Placeholders (Development OK):** [Number]
+**Ambiguous Paths (Need Format Fix):** [Number]
+**Missing Fields (Need Placeholder):** [Number]
+**Placeholders at Integration (BLOCKING):** [Number]
+**Invalid URLs (ERROR):** [Number]
+**Duplicate URLs (WARNING/ERROR):** [Number]
+
 ### Issues Found: [Number]
 
-1. **[Chapter X, Scene Y]:** [Description of issue]
-   - Current state: [What's wrong]
-   - Recommended fix: [What should be done]
+#### BLOCKING Errors (Integration Phase Only)
+1. **[Chapter X, Scene Y]:** [Placeholder not replaced]
+   - Current: `[PLACEHOLDER-TYPE-id]`
+   - Required: Real Midjourney or local URL
+   - Severity: BLOCKING - prevents registration
 
-2. **[Chapter X, Scene Z]:** [Description]
-   - Current state:
-   - Recommended fix:
+#### Errors (All Phases)
+1. **[Chapter X, Scene Y]:** [Invalid URL]
+   - Current: `https://...`
+   - Issue: URL not accessible / 404
+   - Action: Replace with valid URL
+
+#### Warnings (Development Phase)
+1. **[Chapter X, Scene Y]:** [Ambiguous path format]
+   - Current: `/assets/.../file.png`
+   - Recommended: `[PLACEHOLDER-TYPE-id]`
+   - Action: Auto-fixed to proper placeholder
+
+#### Auto-Fixed
+1. **[Chapter X, Scene Y]:** [Missing image field]
+   - Added: `[PLACEHOLDER-TYPE-id]`
+   - Documented in: `assets.md` under "Consistency Review Additions"
 
 ### Scenes Verified: [Number]
 
 All other scenes passed this review criterion.
+
+### Assets Documentation Status
+
+**Assets.md updated:** [Yes/No]
+**New entries added:** [Number]
+**Generation prompts complete:** [Yes/No]
 
 ### Recommendations:
 
@@ -691,15 +845,39 @@ And to say that the season for studying philosophy has not yet come, or that it 
 
 ## Completion Checklist
 
-- [ ] All dialogue scenes have character portraits
-- [ ] All map-exploration locations have images
-- [ ] All timeline-game events have images
-- [ ] All anachronism items have unique images
+### Development Phase
+- [ ] All dialogue scenes have portraits (real URLs OR valid placeholders)
+- [ ] All map-exploration locations have images (real URLs OR valid placeholders)
+- [ ] All timeline-game events have images (real URLs OR valid placeholders)
+- [ ] All anachronism items have unique images (real URLs OR valid placeholders)
+- [ ] No ambiguous paths like `/assets/.../file.png` (all converted to `[PLACEHOLDER-*]` format)
+- [ ] All placeholders have corresponding entries in assets.md
+- [ ] All assets.md entries have generation prompts
 - [ ] All primary sources are well-formatted
 - [ ] Decision scenes are historically accurate (where applicable)
 - [ ] All interactive scenes have adequate preceding context
 - [ ] All issues documented and reported
-- [ ] Recommended fixes clear and actionable
+
+### Pre-Integration Phase
+- [ ] Asset generation prompts reviewed and complete
+- [ ] Asset workflow planned
+- [ ] Placeholder-to-URL mapping documented
+- [ ] Expected asset delivery timeline clear
+
+### Integration Phase (Final Gate)
+- [ ] **ZERO placeholders remain** - all replaced with real URLs
+- [ ] All URLs are valid and accessible (tested)
+- [ ] No duplicate URLs where uniqueness required (anachronism items)
+- [ ] All dialogue portraits load correctly
+- [ ] All map location images load correctly
+- [ ] All timeline event images load correctly
+- [ ] All anachronism item images are unique and load correctly
+- [ ] All primary source images/videos load correctly
+- [ ] All primary sources are well-formatted
+- [ ] Decision scenes are historically accurate (where applicable)
+- [ ] All interactive scenes have adequate preceding context
+- [ ] All issues resolved
+- [ ] Adventure ready for registration
 
 ---
 

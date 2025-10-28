@@ -94,17 +94,31 @@ const PrimarySourceScene: React.FC<PrimarySourceSceneProps> = ({
     switch (scene.source.type) {
       case 'text':
         return (
-          <ContentWithAnnotations
-            content={scene.source.content}
-            annotations={[]}
-            theme={theme}
-            enableMarkdown={true}
+          <div
             style={{
               lineHeight: '1.75',
               fontSize: '1rem',
               color: '#ddd',
             }}
-          />
+            className="primary-source-content"
+          >
+            <ContentWithAnnotations
+              content={scene.source.content}
+              annotations={[]}
+              theme={theme}
+              enableMarkdown={true}
+            />
+            <style>
+              {`
+                .primary-source-content p {
+                  margin-bottom: 1rem;
+                }
+                .primary-source-content p:last-child {
+                  margin-bottom: 0;
+                }
+              `}
+            </style>
+          </div>
         );
       case 'image': {
         const img = assetLoader.getImage(scene.source.content);

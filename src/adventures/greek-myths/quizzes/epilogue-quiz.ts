@@ -1,0 +1,331 @@
+import type { Quiz } from '../../../types';
+
+export const epilogueQuiz: Quiz = {
+  id: 'quiz-epilogue',
+  title: 'Epilogue Quiz: Echoes Through Time',
+  description: 'Test your understanding of how Greek myths shaped Western literature and continue to influence modern storytelling.',
+  passingScore: 70,
+  allowRetry: true,
+
+  questions: [
+    {
+      id: 'q1-continuity',
+      question: 'How long have Greek myths continuously influenced Western literature?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'About 500 years, since the Renaissance',
+        'Over 2,500 years, adapting to each new medium and era',
+        'Only in ancient times; they lost influence after Rome fell',
+        'About 1,000 years, from ancient Greece to medieval Europe',
+      ],
+      correctAnswer: 'Over 2,500 years, adapting to each new medium and era',
+      explanation: 'Greek myths have influenced Western literature continuously for over 2,500 years. They survived through Roman adoption, medieval preservation, Renaissance revival, and continue to shape modern storytelling across all media.',
+      relatedLearningPoints: ['lp-epilogue-1-continuity'],
+    },
+
+    {
+      id: 'q2-transmission',
+      question: 'Which of the following best describes how Greek myths were transmitted through history?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'They remained unchanged and pure from ancient times',
+        'Romans adopted them, medieval monks preserved them, and Renaissance scholars rediscovered them—each adding interpretations',
+        'They were completely forgotten until archaeologists rediscovered them in the 1800s',
+        'They only survived in Greece and never spread to other cultures',
+      ],
+      correctAnswer: 'Romans adopted them, medieval monks preserved them, and Renaissance scholars rediscovered them—each adding interpretations',
+      explanation: 'Greek myths underwent cultural transmission through multiple stages: Romans adapted them, medieval monks preserved manuscripts, and Renaissance scholars revived interest. Each era added its own interpretations while preserving core narratives.',
+      relatedLearningPoints: ['lp-epilogue-1-transmission'],
+    },
+
+    {
+      id: 'q3-literary-timeline',
+      question: 'Which of these works influenced by Greek mythology came FIRST chronologically?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'James Joyce\'s "Ulysses"',
+        'Dante Alighieri\'s "The Divine Comedy"',
+        'Margaret Atwood\'s "The Penelopiad"',
+        'John Milton\'s "Paradise Lost"',
+      ],
+      correctAnswer: 'Dante Alighieri\'s "The Divine Comedy"',
+      explanation: 'Dante\'s "The Divine Comedy" (1320) is the earliest of these works, using Greek underworld mythology to structure his journey through Hell, Purgatory, and Heaven—featuring figures like Charon and the Minotaur.',
+      relatedLearningPoints: ['lp-epilogue-2-influence'],
+    },
+
+    {
+      id: 'q4-heros-journey',
+      question: 'What is Joseph Campbell\'s "Hero\'s Journey" framework, and why is it significant?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'A travel guide for visiting ancient Greek sites',
+        'A universal story structure derived from Greek myths that became the blueprint for modern Hollywood storytelling',
+        'A religious pilgrimage route through Greece',
+        'A psychological therapy technique unrelated to storytelling',
+      ],
+      correctAnswer: 'A universal story structure derived from Greek myths that became the blueprint for modern Hollywood storytelling',
+      explanation: 'Joseph Campbell identified a universal hero narrative pattern (Call to Adventure, Supernatural Aid, Trials, Return) first fully articulated in Greek myths. His framework became the structural blueprint for films like Star Wars, shaping modern storytelling.',
+      relatedLearningPoints: ['lp-epilogue-3-campbell'],
+    },
+
+    {
+      id: 'q5-universality',
+      question: 'Why does the hero\'s journey pattern resonate across different cultures and time periods?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'Because Hollywood forces all stories to follow the same formula',
+        'Because it mirrors universal human experiences: leaving safety, facing trials, returning transformed',
+        'Because ancient Greek culture conquered all other civilizations',
+        'Because modern people are obsessed with ancient history',
+      ],
+      correctAnswer: 'Because it mirrors universal human experiences: leaving safety, facing trials, returning transformed',
+      explanation: 'The hero\'s journey resonates universally because it reflects fundamental human experiences everyone can relate to: stepping out of comfort zones, facing challenges, growing through adversity, and returning changed. These patterns transcend specific cultures.',
+      relatedLearningPoints: ['lp-epilogue-3-universality'],
+    },
+
+    {
+      id: 'q6-adaptation',
+      question: 'What do modern retellings like Rick Riordan\'s Percy Jackson series preserve from Greek myths while updating for contemporary audiences?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'The exact wording and language of ancient texts',
+        'The core emotional beats—young heroes using courage and quick thinking to overcome powerful opponents',
+        'Only the names of characters, nothing else',
+        'The ancient Greek religious beliefs unchanged',
+      ],
+      correctAnswer: 'The core emotional beats—young heroes using courage and quick thinking to overcome powerful opponents',
+      explanation: 'Modern retellings preserve essential heroic moments: ordinary people facing overwhelming odds, improvising solutions, and prevailing through courage rather than superior strength. The emotional core remains while details update for contemporary accessibility.',
+      relatedLearningPoints: ['lp-epilogue-4-adaptation', 'lp-epilogue-4-riordan'],
+    },
+
+    {
+      id: 'q7-superhero-values',
+      question: 'The quote "With great power comes great responsibility" from Spider-Man echoes which Greek heroic value?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'Kleos (glory/fame)',
+        'Arete (excellence/virtue—using abilities for good)',
+        'Hubris (excessive pride)',
+        'Xenia (hospitality)',
+      ],
+      correctAnswer: 'Arete (excellence/virtue—using abilities for good)',
+      explanation: 'Arete demanded that Greek heroes use their exceptional abilities responsibly and virtuously, not selfishly. Spider-Man\'s defining principle directly echoes this ancient Greek value that shaped all heroic narratives.',
+      relatedLearningPoints: ['lp-epilogue-5-values'],
+    },
+
+    {
+      id: 'q8-archetypes',
+      question: 'Character archetypes like the Mentor, Threshold Guardian, and Shapeshifter originated in Greek myths. Why do these same character types appear in modern stories?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'Modern writers are lazy and copy from Greek myths',
+        'Film studios require these characters by contract',
+        'These archetypes reflect universal patterns in the human psyche that audiences instinctively recognize',
+        'They only appear in stories intentionally copying Greek myths',
+      ],
+      correctAnswer: 'These archetypes reflect universal patterns in the human psyche that audiences instinctively recognize',
+      explanation: 'As Carl Jung argued, archetypes reflect universal patterns in the human unconscious. Greek myths first identified these character types (Mentor, Threshold Guardian, etc.), and they recur because human psyches recognize and respond to these fundamental roles.',
+      relatedLearningPoints: ['lp-epilogue-6-archetypes', 'lp-epilogue-6-psychology'],
+    },
+
+    {
+      id: 'q9-narrative-tropes',
+      question: 'Tony Stark creating Ultron in the Marvel films demonstrates which Greek mythological trope?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'The unavoidable prophecy (like Oedipus)',
+        'The underworld descent (katabasis)',
+        'Hubris leading to downfall (like Icarus or Bellerophon)',
+        'The monster that was once human (like Medusa)',
+      ],
+      correctAnswer: 'Hubris leading to downfall (like Icarus or Bellerophon)',
+      explanation: 'Stark\'s godlike confidence that he alone can save humanity creates the very threat he feared—classic Greek hubris where excessive pride and overreach create catastrophe, echoing Icarus and Bellerophon\'s falls.',
+      relatedLearningPoints: ['lp-epilogue-7-tropes'],
+    },
+
+    {
+      id: 'q10-perseus-luke',
+      question: 'What structural similarity do Perseus and Luke Skywalker share in their hero narratives?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'Both are farmers who never receive any special training',
+        'Both receive supernatural/divine aid (gods/Force), mentor guidance, and transform through trials',
+        'Both are born as gods with unlimited power',
+        'Neither faces any significant challenges or obstacles',
+      ],
+      correctAnswer: 'Both receive supernatural/divine aid (gods/Force), mentor guidance, and transform through trials',
+      explanation: 'Perseus and Luke share identical heroic DNA: supernatural aid (Athena and Hermes / the Force), mentor guidance (Athena / Obi-Wan and Yoda), facing fears despite being outmatched, and transforming through trials. They\'re the same hero across millennia.',
+      relatedLearningPoints: ['lp-epilogue-8-continuity', 'lp-epilogue-8a-parallel'],
+    },
+
+    {
+      id: 'q11-kleos-value',
+      question: 'What eternal question does the Greek value of kleos (pursuit of glory) force heroes to confront?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'How to become the strongest warrior',
+        'Whether lasting fame is worth personal sacrifice—Achilles\' choice between long quiet life or short glorious death',
+        'Which god to worship',
+        'How to accumulate the most wealth',
+      ],
+      correctAnswer: 'Whether lasting fame is worth personal sacrifice—Achilles\' choice between long quiet life or short glorious death',
+      explanation: 'Kleos forces the fundamental question: is being remembered worth the personal cost? Achilles chose short, glorious life over long, unremarkable one. His name echoes through millennia—but was that worth dying young? The value always asks this.',
+      relatedLearningPoints: ['lp-epilogue-9a-kleos'],
+    },
+
+    {
+      id: 'q12-arete-modern',
+      question: 'How does the Greek value of arete (using gifts for good) manifest in modern superhero narratives?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'Superheroes always seek personal wealth and fame',
+        'Heroes must use abilities for good rather than personal gain—gifts are responsibilities, not possessions',
+        'Heroes avoid using their powers to help others',
+        'Superheroes have no moral obligations',
+      ],
+      correctAnswer: 'Heroes must use abilities for good rather than personal gain—gifts are responsibilities, not possessions',
+      explanation: 'Arete demands using abilities responsibly and virtuously. Perseus gave Medusa\'s head to Athena rather than keeping power. Modern superheroes embody this: powers aren\'t theirs to keep—they\'re responsibilities to shoulder.',
+      relatedLearningPoints: ['lp-epilogue-9b-arete'],
+    },
+
+    {
+      id: 'q13-xenia-relevance',
+      question: 'Why might xenia (sacred hospitality toward strangers) be the most radical Greek value for contemporary society?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'Because ancient people were naturally more generous than modern people',
+        'Because in a polarized world, the reminder that strangers deserve dignity and care feels urgent',
+        'Because hospitality is no longer practiced anywhere',
+        'Because xenia only applied to Greek citizens, not actual strangers',
+      ],
+      correctAnswer: 'Because in a polarized world, the reminder that strangers deserve dignity and care feels urgent',
+      explanation: 'In our increasingly polarized and divided world, xenia\'s insistence on welcoming and protecting strangers feels particularly radical and necessary. Greek heroes survived through xenia; those who violated it (like the suitors) paid with their lives.',
+      relatedLearningPoints: ['lp-epilogue-9c-xenia'],
+    },
+
+    {
+      id: 'q14-sophrosyne',
+      question: 'What does sophrosyne (knowing your limits) offer as wisdom about success and failure?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'That you should never attempt difficult things',
+        'That unlimited ambition always leads to success',
+        'That wisdom comes from knowing what you should do, not just what you can do—sustainable success over dramatic failure',
+        'That mortals should never challenge themselves',
+      ],
+      correctAnswer: 'That wisdom comes from knowing what you should do, not just what you can do—sustainable success over dramatic failure',
+      explanation: 'Sophrosyne teaches that true wisdom isn\'t about capability—it\'s about judgment. Icarus, Bellerophon, and Arachne lacked it and fell. Odysseus had it—knowing when to fight, flee, speak, or stay silent. It offers sustainable success over spectacular failure.',
+      relatedLearningPoints: ['lp-epilogue-9d-sophrosyne'],
+    },
+
+    {
+      id: 'q15-eternal-questions',
+      question: 'According to the epilogue, why do Greek myths still matter to contemporary audiences?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'Because they provide historically accurate information about Bronze Age Greece',
+        'Because they explore timeless questions about mortality, identity, and purpose that every generation must answer',
+        'Because they are required reading in schools',
+        'Because ancient Greek was a beautiful language',
+      ],
+      correctAnswer: 'Because they explore timeless questions about mortality, identity, and purpose that every generation must answer',
+      explanation: 'Greek myths endure because they address eternal human questions: What makes life meaningful? Who am I? Why am I here? These aren\'t Bronze Age questions—they\'re our questions. The myths help every generation think through these fundamental concerns.',
+      relatedLearningPoints: ['lp-epilogue-10-mortality'],
+    },
+
+    {
+      id: 'q16-complexity',
+      question: 'What advantage does Greek mythology\'s moral ambiguity (heroes with flaws, gods with failures) offer over simple good-versus-evil narratives?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'It makes stories more confusing and harder to understand',
+        'It reflects real life\'s complexity better—Medusa is victim and monster, Odysseus is hero and liar',
+        'It proves Greek storytellers were morally confused',
+        'It has no advantages; simple stories are always better',
+      ],
+      correctAnswer: 'It reflects real life\'s complexity better—Medusa is victim and monster, Odysseus is hero and liar',
+      explanation: 'Greek myths\' moral complexity (Medusa as both victim and monster, Odysseus as both hero and liar, gods as powerful yet petty) reflects real life better than simple morality tales. Life is complicated; Greek myths honor that truth.',
+      relatedLearningPoints: ['lp-epilogue-10-complexity'],
+    },
+
+    {
+      id: 'q17-archetype-recognition',
+      question: 'Being able to recognize Greek archetypes in modern media (Mentor, Shadow, Trickster, etc.) reveals what about contemporary storytelling?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'That modern writers lack originality',
+        'How deeply Greek mythological patterns structure all genres of storytelling, from romance to sci-fi',
+        'That only fantasy stories use these patterns',
+        'That audiences have become less sophisticated over time',
+      ],
+      correctAnswer: 'How deeply Greek mythological patterns structure all genres of storytelling, from romance to sci-fi',
+      explanation: 'Recognizing Greek archetypes everywhere—from Dumbledore (Mentor) to Loki (Trickster) to Gollum (Shadow)—reveals how profoundly these patterns structure ALL contemporary storytelling across every genre. They\'re the deep grammar of narrative.',
+      relatedLearningPoints: ['lp-epilogue-11-recognition'],
+    },
+
+    {
+      id: 'q18-eternal-return',
+      question: 'What does the concept of "eternal return" mean for Greek mythology?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'That Greek myths are outdated and irrelevant today',
+        'That each generation receives these stories, transforms them for their context, while preserving core human questions',
+        'That the same exact stories must be told without any changes',
+        'That mythology died with ancient Greece',
+      ],
+      correctAnswer: 'That each generation receives these stories, transforms them for their context, while preserving core human questions',
+      explanation: 'Eternal return means Greek mythology is a living conversation across time. Each generation (Romans, medieval writers, Renaissance artists, modernists, contemporary authors) transforms these stories for their era while wrestling with the same fundamental questions.',
+      relatedLearningPoints: ['lp-epilogue-12-eternal'],
+    },
+
+    {
+      id: 'q19-participation',
+      question: 'By studying and engaging with Greek myths today, what do you become?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'An ancient Greek citizen',
+        'A participant in a 3,000-year conversation about what it means to be human',
+        'A historian specializing only in dead cultures',
+        'Someone stuck in the past',
+      ],
+      correctAnswer: 'A participant in a 3,000-year conversation about what it means to be human',
+      explanation: 'Engaging with Greek myths makes you a participant in an ongoing 3,000-year dialogue about fundamental human questions. You\'re not studying a dead past—you\'re joining a living conversation that continues to shape how we understand ourselves.',
+      relatedLearningPoints: ['lp-epilogue-12-participation'],
+    },
+
+    {
+      id: 'q20-age-of-heroes',
+      question: 'According to the epilogue\'s conclusion, what is the true status of the "Age of Heroes" today?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'It ended with ancient Greece and exists only in history books',
+        'It never existed in the first place',
+        'It didn\'t end—it evolved and is still here in every story about ordinary people doing extraordinary things',
+        'It will return only if we bring back ancient Greek culture',
+      ],
+      correctAnswer: 'It didn\'t end—it evolved and is still here in every story about ordinary people doing extraordinary things',
+      explanation: 'The Age of Heroes never ended—it transformed. It lives in every narrative about ordinary people facing fears, finding purpose, and doing extraordinary things. From Star Wars to The Hunger Games, the heroes\' journey continues. We\'re still writing it.',
+      relatedLearningPoints: ['lp-epilogue-12-eternal', 'lp-epilogue-10-mortality'],
+    },
+  ],
+};

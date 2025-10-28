@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { DecisionScene as DecisionSceneType, AdventureTheme, Choice } from '../../types';
 import { assetLoader } from '../../services/assetLoader';
+import ContentWithAnnotations from '../common/ContentWithAnnotations';
 
 interface DecisionSceneProps {
   scene: DecisionSceneType;
@@ -157,15 +158,20 @@ const DecisionScene: React.FC<DecisionSceneProps> = ({
             {scene.prompt}
           </h2>
           {scene.context && (
-            <p
+            <div
               style={{
                 fontSize: '1.125rem',
                 lineHeight: '1.75',
                 color: '#ddd',
               }}
             >
-              {scene.context}
-            </p>
+              <ContentWithAnnotations
+                content={scene.context}
+                annotations={[]}
+                theme={theme}
+                enableMarkdown={true}
+              />
+            </div>
           )}
         </div>
 

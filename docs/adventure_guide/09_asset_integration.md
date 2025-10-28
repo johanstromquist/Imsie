@@ -17,6 +17,74 @@ Before beginning asset integration:
 
 ---
 
+## Understanding Placeholders
+
+During chapter development, asset fields use **obvious placeholder text** to indicate where real assets will be added later. This prevents confusion and makes it easy to identify which assets still need integration.
+
+### Placeholder Format
+
+Placeholders follow this pattern:
+```
+[PLACEHOLDER-CATEGORY-DESCRIPTION]
+```
+
+**Standard placeholder categories:**
+- `[PLACEHOLDER-BG-...]` - Background images
+- `[PLACEHOLDER-IMG-...]` - Scene images
+- `[PLACEHOLDER-PORTRAIT-...]` - Character portraits
+- `[PLACEHOLDER-MAP-...]` - Map images
+- `[PLACEHOLDER-LOC-...]` - Location images (map exploration popups)
+- `[PLACEHOLDER-EVENT-...]` - Timeline event images
+- `[PLACEHOLDER-ITEM-...]` - Anachronism item images
+- `[PLACEHOLDER-DOC-...]` - Primary source documents
+- `[PLACEHOLDER-VIDEO-...]` - Video assets
+- `[PLACEHOLDER-MUSIC-...]` - Audio/music files
+
+**Examples:**
+```typescript
+backgroundImage: '[PLACEHOLDER-BG-PALACE-NIGHT]'
+image: '[PLACEHOLDER-IMG-SCHEHERAZADE-STORYTELLING]'
+portrait: '[PLACEHOLDER-PORTRAIT-SCHEHERAZADE-HAPPY]'
+mapImage: '[PLACEHOLDER-MAP-BAGHDAD]'
+image: '[PLACEHOLDER-LOC-MARKETPLACE]'  // location popup
+image: '[PLACEHOLDER-EVENT-BATTLE]'  // timeline event
+image: '[PLACEHOLDER-ITEM-SMARTPHONE]'  // anachronism item
+documentImage: '[PLACEHOLDER-DOC-MANUSCRIPT]'  // primary source
+backgroundVideo: '[PLACEHOLDER-VIDEO-STORM-ANIMATION]'
+background: '[PLACEHOLDER-MUSIC-THEME]'
+```
+
+### Why Use Obvious Placeholders?
+
+1. **Clear identification** - Easy to spot what needs replacing
+2. **Prevent broken paths** - Won't accidentally point to wrong files
+3. **Search friendly** - Simple to find all placeholders with grep
+4. **Self-documenting** - Placeholder name describes what asset is needed
+5. **TypeScript safe** - Strings compile without errors
+
+### Placeholder-to-Asset Documentation Link
+
+Each placeholder should correspond to an entry in your `[adventure-name]_assets.md` file:
+
+**In chapter code:**
+```typescript
+backgroundImage: '[PLACEHOLDER-BG-PALACE-NIGHT]'
+```
+
+**In assets.md:**
+```markdown
+### Chapter 1, Scene 1: Palace at Night
+- **Type:** Background Image
+- **Description:** Grand palace exterior at night, moonlit courtyard
+- **File:** `backgrounds/palace-night.png`
+- **URL:** `https://cdn.midjourney.com/35fd23fc.../0_0.png`
+- **Status:** ✅ Generated
+```
+
+When integrating assets, you'll replace `[PLACEHOLDER-BG-PALACE-NIGHT]` with the actual URL from the assets.md file.
+
+---
+
 ## Asset Hosting Options
 
 Imsie supports two approaches for hosting visual assets:
@@ -68,6 +136,185 @@ public/assets/[adventure-name]/
 **Best Practice:**
 - Use **CDN URLs** for all AI-generated images (backgrounds, scenes, portraits, maps)
 - Use **local paths** (with `/Imsie/` prefix) for audio files (music, sound effects) and images that cannot be AI-generated
+
+---
+
+## Placeholder Naming Conventions
+
+### Best Practices for Naming Placeholders
+
+When creating placeholders during chapter development, follow these conventions to maintain clear correspondence with asset documentation:
+
+**Structure:** `[PLACEHOLDER-CATEGORY-DESCRIPTION]`
+
+**Category codes:**
+- `BG` - Background images
+- `IMG` - Scene images (foreground images in narrative scenes)
+- `PORTRAIT` - Character portraits
+- `MAP` - Map images
+- `LOC` - Location images (for map-exploration scenes)
+- `EVENT` - Timeline event images (for timeline-game scenes)
+- `ITEM` - Item images (for anachronism scenes)
+- `DOC` - Document images (for primary-source scenes)
+- `VIDEO` - Video assets
+- `MUSIC` - Audio/music files
+
+**Description tips:**
+- Be specific enough to identify the asset
+- Reference scene context when helpful
+- Include character names or emotions for portraits
+- Keep it concise but descriptive
+
+**Examples with context:**
+
+```typescript
+// Chapter opening scene
+{
+  id: 'ch1-scene1',
+  backgroundImage: '[PLACEHOLDER-BG-PALACE-COURTYARD]',
+  image: '[PLACEHOLDER-SCENE-MOONLIT-FOUNTAIN]',
+  // ...
+}
+
+// Dialogue scene
+{
+  id: 'ch1-dialogue',
+  backgroundImage: '[PLACEHOLDER-BG-THRONE-ROOM]',
+  dialogueTree: {
+    nodes: {
+      'start': {
+        speaker: 'Scheherazade',
+        portrait: '[PLACEHOLDER-PORTRAIT-SCHEHERAZADE-DETERMINED]',
+        // ...
+      },
+      'king': {
+        speaker: 'Sultan',
+        portrait: '[PLACEHOLDER-PORTRAIT-SULTAN-ANGRY]',
+        // ...
+      }
+    }
+  }
+}
+
+// Map exploration scene
+{
+  id: 'ch2-map',
+  backgroundImage: '[PLACEHOLDER-BG-SKY]',
+  mapImage: '[PLACEHOLDER-MAP-BAGHDAD-OVERVIEW]',
+  // ...
+}
+```
+
+### Mapping Placeholders to Assets.md Sections
+
+Your `_assets.md` file should be organized to match your placeholders:
+
+```markdown
+## Chapter 1: Scheherazade
+
+### Backgrounds
+- **[PLACEHOLDER-BG-PALACE-COURTYARD]**
+  - URL: `https://cdn.midjourney.com/.../palace-courtyard.png`
+  - Status: ✅ Generated
+
+- **[PLACEHOLDER-BG-THRONE-ROOM]**
+  - URL: `https://cdn.midjourney.com/.../throne-room.png`
+  - Status: ✅ Generated
+
+### Scene Images
+- **[PLACEHOLDER-SCENE-MOONLIT-FOUNTAIN]**
+  - URL: `https://cdn.midjourney.com/.../fountain.png`
+  - Status: ✅ Generated
+
+### Character Portraits
+- **[PLACEHOLDER-PORTRAIT-SCHEHERAZADE-DETERMINED]**
+  - URL: `https://cdn.midjourney.com/.../scheherazade-determined.png`
+  - Status: ✅ Generated
+```
+
+This organization makes it trivial to find the replacement URL for each placeholder.
+
+---
+
+## Step 0: Find All Placeholders
+
+Before you can replace placeholders with real assets, you need to identify every placeholder in your chapter files.
+
+### Create a Complete Placeholder Inventory
+
+**1. Search for all placeholders in chapter files:**
+
+```bash
+grep -r "\[PLACEHOLDER" src/adventures/[adventure-name]/chapters/
+```
+
+**Example output:**
+```
+src/adventures/arabian-nights/chapters/chapter-1-scheherazade.ts:  backgroundImage: '[PLACEHOLDER-BG-PALACE-COURTYARD]',
+src/adventures/arabian-nights/chapters/chapter-1-scheherazade.ts:  image: '[PLACEHOLDER-SCENE-MOONLIT-FOUNTAIN]',
+src/adventures/arabian-nights/chapters/chapter-1-scheherazade.ts:  backgroundImage: '[PLACEHOLDER-BG-THRONE-ROOM]',
+src/adventures/arabian-nights/chapters/chapter-1-scheherazade.ts:  portrait: '[PLACEHOLDER-PORTRAIT-SCHEHERAZADE-DETERMINED]',
+```
+
+**2. Search for placeholders in theme files:**
+
+```bash
+grep -r "\[PLACEHOLDER" src/adventures/[adventure-name]/theme.ts
+```
+
+**3. Search for placeholders in the main adventure file:**
+
+```bash
+grep -r "\[PLACEHOLDER" src/adventures/[adventure-name]/index.ts
+```
+
+### Create a Replacement Checklist
+
+Using the grep results, create a checklist of all placeholders that need replacement:
+
+```markdown
+## Asset Replacement Checklist
+
+### Chapter 1
+- [ ] [PLACEHOLDER-BG-PALACE-COURTYARD]
+- [ ] [PLACEHOLDER-SCENE-MOONLIT-FOUNTAIN]
+- [ ] [PLACEHOLDER-BG-THRONE-ROOM]
+- [ ] [PLACEHOLDER-PORTRAIT-SCHEHERAZADE-DETERMINED]
+- [ ] [PLACEHOLDER-PORTRAIT-SULTAN-ANGRY]
+- [ ] [PLACEHOLDER-MAP-BAGHDAD-OVERVIEW]
+
+### Chapter 2
+- [ ] [PLACEHOLDER-BG-MARKETPLACE]
+- [ ] [PLACEHOLDER-SCENE-MERCHANT-STALL]
+- ... etc ...
+
+### Theme
+- [ ] [PLACEHOLDER-MUSIC-MAIN-THEME]
+
+### Cover Art
+- [ ] [PLACEHOLDER-COVER-MAIN]
+```
+
+### Map Placeholders to Asset Documentation
+
+For each placeholder found, locate its corresponding entry in `[adventure-name]_assets.md`:
+
+**Placeholder found in code:**
+```typescript
+backgroundImage: '[PLACEHOLDER-BG-PALACE-COURTYARD]'
+```
+
+**Corresponding entry in assets.md:**
+```markdown
+### [PLACEHOLDER-BG-PALACE-COURTYARD]
+- **URL:** `https://cdn.midjourney.com/35fd23fc.../palace.png`
+- **Dimensions:** 1920x1080px
+- **Status:** ✅ Generated
+```
+
+If you find a placeholder in code that's NOT in assets.md, add it to the documentation immediately with status "📋 Needed".
+
+If you find an entry in assets.md that's NOT used in code, mark it as "⚠️ Unused" or remove it.
 
 ---
 
@@ -124,12 +371,12 @@ Work through each chapter file systematically to update asset references.
 **Location:** Scene objects → `backgroundImage` field
 
 ```typescript
-// BEFORE (placeholder path from chapter development)
+// BEFORE (placeholder from chapter development)
 {
   id: 'scene-1',
   type: 'narrative' as const,
   title: 'The Palace at Night',
-  backgroundImage: '/Imsie/assets/arabian-nights/backgrounds/palace-night.png',
+  backgroundImage: '[PLACEHOLDER-BG-PALACE-NIGHT]',
   content: `...`,
   // ...
 }
@@ -160,13 +407,13 @@ Work through each chapter file systematically to update asset references.
 **Location:** Individual scene objects → `image` field
 
 ```typescript
-// BEFORE (placeholder path from chapter development)
+// BEFORE (placeholders from chapter development)
 {
   id: 'scene-2',
   type: 'narrative' as const,
   title: 'The Transformation',
-  backgroundImage: '/Imsie/assets/arabian-nights/backgrounds/transformation.png',
-  image: '/Imsie/assets/arabian-nights/scenes/transformation-detail.png',
+  backgroundImage: '[PLACEHOLDER-BG-TRANSFORMATION]',
+  image: '[PLACEHOLDER-SCENE-TRANSFORMATION-DETAIL]',
   content: `...`,
   // ...
 }
@@ -188,16 +435,16 @@ Work through each chapter file systematically to update asset references.
 **Location:** Dialogue scenes → `portrait` field (within character dialogue nodes)
 
 ```typescript
-// BEFORE (placeholder path from chapter development)
+// BEFORE (placeholders from chapter development)
 {
   id: 'scene-dialogue',
   type: 'dialogue' as const,
-  backgroundImage: '/Imsie/assets/arabian-nights/backgrounds/palace-interior.png',
+  backgroundImage: '[PLACEHOLDER-BG-PALACE-INTERIOR]',
   dialogueTree: {
     nodes: {
       'start': {
         speaker: 'Scheherazade',
-        portrait: '/Imsie/assets/arabian-nights/portraits/scheherazade.png',
+        portrait: '[PLACEHOLDER-PORTRAIT-SCHEHERAZADE-NEUTRAL]',
         text: 'Welcome, traveler...',
         // ...
       }
@@ -229,24 +476,35 @@ Work through each chapter file systematically to update asset references.
 **Note:** Videos can use CDN URLs if the service supports them
 
 ```typescript
-// BEFORE (placeholder path from chapter development - note /Imsie/ prefix for local paths)
+// BEFORE (placeholders from chapter development)
 {
   id: 'scene-animated',
   type: 'narrative' as const,
   title: 'The Storm',
-  backgroundImage: '/Imsie/assets/arabian-nights/backgrounds/storm.png', // fallback image
-  backgroundVideo: '/Imsie/assets/arabian-nights/videos/storm-animation.mp4', // Optional video
+  backgroundImage: '[PLACEHOLDER-BG-STORM]', // fallback image
+  backgroundVideo: '[PLACEHOLDER-VIDEO-STORM-ANIMATION]', // Optional video
   content: `...`,
   // ...
 }
 
-// AFTER (with CDN URLs - recommended, no /Imsie/ prefix needed)
+// AFTER (with CDN URLs - recommended)
 {
   id: 'scene-animated',
   type: 'narrative' as const,
   title: 'The Storm',
   backgroundImage: 'https://cdn.midjourney.com/abc123.../0_0.png',
-  backgroundVideo: 'https://cdn.midjourney.com/video/xyz789.../0.mp4',
+  backgroundVideo: 'https://cdn.runwayml.com/video/xyz789.../storm.mp4',
+  content: `...`,
+  // ...
+}
+
+// OR (with local paths - note /Imsie/ prefix)
+{
+  id: 'scene-animated',
+  type: 'narrative' as const,
+  title: 'The Storm',
+  backgroundImage: '/Imsie/assets/arabian-nights/backgrounds/storm.png',
+  backgroundVideo: '/Imsie/assets/arabian-nights/videos/storm-animation.mp4',
   content: `...`,
   // ...
 }
@@ -257,14 +515,14 @@ Work through each chapter file systematically to update asset references.
 **Location:** Map exploration scenes → `mapImage` field
 
 ```typescript
-// BEFORE (placeholder path from chapter development - note /Imsie/ prefix)
+// BEFORE (placeholders from chapter development)
 {
   id: 'scene-map',
   type: 'map-exploration' as const,
   title: 'Explore Baghdad',
-  backgroundImage: '/Imsie/assets/arabian-nights/backgrounds/baghdad-sky.png',
+  backgroundImage: '[PLACEHOLDER-BG-BAGHDAD-SKY]',
   prompt: 'Click on locations to explore them',
-  mapImage: '/Imsie/assets/arabian-nights/maps/baghdad-map.png',
+  mapImage: '[PLACEHOLDER-MAP-BAGHDAD]',
   locations: [
     {
       id: 'marketplace',
@@ -279,7 +537,7 @@ Work through each chapter file systematically to update asset references.
   // ...
 }
 
-// AFTER (with CDN URLs - recommended, no /Imsie/ prefix needed)
+// AFTER (with CDN URLs - recommended)
 {
   id: 'scene-map',
   type: 'map-exploration' as const,
@@ -307,22 +565,32 @@ Work through each chapter file systematically to update asset references.
 **Location:** Primary source scenes → `documentImage` or `documentVideo` fields
 
 ```typescript
-// Local path example (note /Imsie/ prefix)
+// BEFORE (placeholder from chapter development)
 {
   id: 'scene-manuscript',
   type: 'primary-source' as const,
   title: 'Ancient Manuscript',
-  documentImage: '/Imsie/assets/arabian-nights/primary-sources/manuscript-page.jpg',
+  documentImage: '[PLACEHOLDER-DOC-MANUSCRIPT-PAGE]',
   documentTitle: 'Original Tale Fragment',
   // ...
 }
 
-// OR with CDN URL (recommended for AI-generated images, no prefix needed)
+// AFTER with CDN URL (recommended for AI-generated images)
 {
   id: 'scene-manuscript',
   type: 'primary-source' as const,
   title: 'Ancient Manuscript',
   documentImage: 'https://cdn.midjourney.com/manuscript123.../0_0.png',
+  documentTitle: 'Original Tale Fragment',
+  // ...
+}
+
+// OR with local path (for scanned historical documents - note /Imsie/ prefix)
+{
+  id: 'scene-manuscript',
+  type: 'primary-source' as const,
+  title: 'Ancient Manuscript',
+  documentImage: '/Imsie/assets/arabian-nights/primary-sources/manuscript-page.jpg',
   documentTitle: 'Original Tale Fragment',
   // ...
 }
@@ -333,17 +601,17 @@ Work through each chapter file systematically to update asset references.
 **Location:** Anachronism scenes → `sceneImage` and `items[].image` fields
 
 ```typescript
-// Local path example (note /Imsie/ prefix for all local assets)
+// BEFORE (placeholders from chapter development)
 {
   id: 'scene-anachronism',
   type: 'anachronism' as const,
   title: 'Find the Anachronisms',
-  sceneImage: '/Imsie/assets/arabian-nights/scenes/marketplace-anachronisms.jpg',
+  sceneImage: '[PLACEHOLDER-SCENE-MARKETPLACE-ANACHRONISMS]',
   items: [
     {
       id: 'wristwatch',
       name: 'Wristwatch',
-      image: '/Imsie/assets/arabian-nights/scenes/wristwatch-closeup.jpg',
+      image: '[PLACEHOLDER-ITEM-WRISTWATCH]',
       // ...
     },
     // ...
@@ -351,7 +619,7 @@ Work through each chapter file systematically to update asset references.
   // ...
 }
 
-// OR with CDN URLs (recommended, no prefix needed)
+// AFTER with CDN URLs (recommended)
 {
   id: 'scene-anachronism',
   type: 'anachronism' as const,
@@ -379,7 +647,7 @@ Update the adventure's theme file with music and audio assets.
 **Location:** `src/adventures/[adventure-name]/theme.ts`
 
 ```typescript
-// BEFORE
+// BEFORE (placeholder from chapter development)
 export const arabianNightsTheme: AdventureTheme = {
   colors: {
     primary: '#8B4513',
@@ -389,7 +657,7 @@ export const arabianNightsTheme: AdventureTheme = {
     heading: 'Cinzel, serif',
     // ...
   },
-  music: undefined, // or placeholder
+  music: '[PLACEHOLDER-MUSIC-MAIN-THEME]',
 };
 
 // AFTER (note the /Imsie/ prefix for locally-hosted audio)
@@ -403,7 +671,7 @@ export const arabianNightsTheme: AdventureTheme = {
     // ...
   },
   music: {
-    background: '/Imsie/assets/arabian-nights/audio/arabian-nights-theme.mp3',
+    background: '/Imsie/assets/arabian-nights/music/arabian-nights-theme.mp3',
     volume: 0.3,
     loop: true,
   },
@@ -440,12 +708,12 @@ Update the main adventure file with cover art and optional cover video.
 ### Cover Image (Required)
 
 ```typescript
-// BEFORE
+// BEFORE (placeholder from chapter development)
 export const arabianNightsAdventure: Adventure = {
   id: 'arabian-nights',
   title: 'Tales from the Arabian Nights',
   description: '...',
-  coverArt: undefined, // or placeholder
+  coverArt: '[PLACEHOLDER-COVER-MAIN]',
   // ...
 };
 
@@ -458,7 +726,7 @@ export const arabianNightsAdventure: Adventure = {
   // ...
 };
 
-// AFTER (with local path - for custom assets, note /Imsie/ prefix)
+// OR (with local path - for custom assets, note /Imsie/ prefix)
 export const arabianNightsAdventure: Adventure = {
   id: 'arabian-nights',
   title: 'Tales from the Arabian Nights',
@@ -473,13 +741,23 @@ export const arabianNightsAdventure: Adventure = {
 Add an optional cover video that plays on hover or as an animated alternative to the static cover image:
 
 ```typescript
-// With both cover image and video (CDN URLs)
+// BEFORE (placeholders from chapter development)
+export const arabianNightsAdventure: Adventure = {
+  id: 'arabian-nights',
+  title: 'Tales from the Arabian Nights',
+  description: '...',
+  coverArt: '[PLACEHOLDER-COVER-MAIN]',
+  coverVideo: '[PLACEHOLDER-VIDEO-COVER-ANIMATION]',
+  // ...
+};
+
+// AFTER (with both cover image and video using CDN URLs)
 export const arabianNightsAdventure: Adventure = {
   id: 'arabian-nights',
   title: 'Tales from the Arabian Nights',
   description: '...',
   coverArt: 'https://cdn.midjourney.com/35fd23fc-d77d-4bee-9220-0310a6cc0dd1/0_0.png',
-  coverVideo: 'https://cdn.midjourney.com/video/35fd23fc-d77d-4bee-9220-0310a6cc0dd1/0.mp4',
+  coverVideo: 'https://cdn.runwayml.com/video/xyz789.../cover.mp4',
   // ...
 };
 ```
@@ -491,34 +769,247 @@ export const arabianNightsAdventure: Adventure = {
 
 ---
 
+## Systematic Replacement Strategy
+
+Follow this methodical approach to ensure all placeholders are replaced correctly:
+
+### 1. Work Through Assets.md Sequentially
+
+Open your `[adventure-name]_assets.md` file and work through it section by section:
+
+```markdown
+## Chapter 1: Scheherazade
+
+### Backgrounds
+- **[PLACEHOLDER-BG-PALACE-COURTYARD]**
+  - URL: `https://cdn.midjourney.com/.../palace.png`
+  - Status: ✅ Generated → 🔄 Integrating
+
+### Scene Images
+- **[PLACEHOLDER-SCENE-MOONLIT-FOUNTAIN]**
+  - URL: `https://cdn.midjourney.com/.../fountain.png`
+  - Status: ✅ Generated
+```
+
+### 2. For Each Asset Entry
+
+**Step 1:** Copy the placeholder name (e.g., `[PLACEHOLDER-BG-PALACE-COURTYARD]`)
+
+**Step 2:** Search for it in your chapter files:
+```bash
+grep -r "\[PLACEHOLDER-BG-PALACE-COURTYARD\]" src/adventures/[adventure-name]/
+```
+
+**Step 3:** Copy the real URL from assets.md
+
+**Step 4:** Replace the placeholder with the URL in your code:
+```typescript
+// Find this:
+backgroundImage: '[PLACEHOLDER-BG-PALACE-COURTYARD]',
+
+// Replace with this:
+backgroundImage: 'https://cdn.midjourney.com/.../palace.png',
+```
+
+**Step 5:** Update the status in assets.md:
+```markdown
+- **[PLACEHOLDER-BG-PALACE-COURTYARD]**
+  - URL: `https://cdn.midjourney.com/.../palace.png`
+  - Status: ✅ Integrated  # Changed from "Generated"
+```
+
+**Step 6:** Test the scene in browser to verify the asset loads
+
+### 3. Track Your Progress
+
+Use checkboxes in assets.md or a separate checklist:
+
+```markdown
+## Integration Progress
+
+### Chapter 1 - Completed: 5/8
+- [x] [PLACEHOLDER-BG-PALACE-COURTYARD] → Integrated
+- [x] [PLACEHOLDER-SCENE-MOONLIT-FOUNTAIN] → Integrated
+- [x] [PLACEHOLDER-BG-THRONE-ROOM] → Integrated
+- [x] [PLACEHOLDER-PORTRAIT-SCHEHERAZADE-DETERMINED] → Integrated
+- [x] [PLACEHOLDER-PORTRAIT-SULTAN-ANGRY] → Integrated
+- [ ] [PLACEHOLDER-MAP-BAGHDAD] → Next up
+- [ ] [PLACEHOLDER-VIDEO-STORM] → Pending
+- [ ] [PLACEHOLDER-MUSIC-MAIN-THEME] → Pending
+```
+
+### 4. Handle Multiple Occurrences
+
+Some placeholders may appear multiple times (e.g., same background in multiple scenes):
+
+```bash
+# Find all occurrences
+grep -rn "\[PLACEHOLDER-BG-THRONE-ROOM\]" src/adventures/arabian-nights/
+
+# Output shows line numbers:
+# chapters/chapter-1.ts:45:  backgroundImage: '[PLACEHOLDER-BG-THRONE-ROOM]',
+# chapters/chapter-1.ts:78:  backgroundImage: '[PLACEHOLDER-BG-THRONE-ROOM]',
+# chapters/chapter-2.ts:12:  backgroundImage: '[PLACEHOLDER-BG-THRONE-ROOM]',
+```
+
+Replace ALL occurrences with the same URL. Use your editor's "Replace All" feature carefully, or replace them one by one.
+
+### 5. Commit Incrementally
+
+After completing each chapter or major section:
+
+```bash
+git add src/adventures/[adventure-name]/
+git commit -m "Integrate Chapter 1 assets: backgrounds and scene images"
+```
+
+This creates restore points if you need to revert changes.
+
+### 6. Verify After Each Chapter
+
+Before moving to the next chapter:
+- [ ] All placeholders replaced in chapter file
+- [ ] TypeScript compiles without errors
+- [ ] Play through chapter in browser
+- [ ] All assets load correctly
+- [ ] Update assets.md with integration status
+
+### Common Replacement Patterns
+
+**Single placeholder → Single URL:**
+```typescript
+backgroundImage: '[PLACEHOLDER-BG-PALACE]'
+// becomes
+backgroundImage: 'https://cdn.midjourney.com/.../palace.png'
+```
+
+**Same placeholder used multiple times → Same URL everywhere:**
+```typescript
+// Scene 1
+backgroundImage: '[PLACEHOLDER-BG-THRONE-ROOM]'
+// Scene 3
+backgroundImage: '[PLACEHOLDER-BG-THRONE-ROOM]'
+// Scene 7
+backgroundImage: '[PLACEHOLDER-BG-THRONE-ROOM]'
+
+// All become the same URL:
+backgroundImage: 'https://cdn.midjourney.com/.../throne-room.png'
+```
+
+**Multiple placeholders in one scene → Multiple different URLs:**
+```typescript
+// Before
+{
+  backgroundImage: '[PLACEHOLDER-BG-MARKETPLACE]',
+  image: '[PLACEHOLDER-SCENE-MERCHANT-STALL]',
+  // ...
+}
+
+// After
+{
+  backgroundImage: 'https://cdn.midjourney.com/.../marketplace.png',
+  image: 'https://cdn.midjourney.com/.../merchant-stall.png',
+  // ...
+}
+```
+
+### Dealing with Missing Assets
+
+If you find a placeholder in code but NO corresponding URL in assets.md:
+
+1. **Check if asset is truly needed** - Maybe it's optional
+2. **Add to assets.md with status "📋 Needed"**
+3. **Note in project documentation** - Add to generation queue
+4. **Consider temporary solutions:**
+   - Use a similar existing asset temporarily
+   - Leave placeholder and mark chapter as "incomplete"
+   - Generate asset immediately if critical
+
+### Automation Tips (Advanced)
+
+For large adventures with many assets, you can create a simple script:
+
+```bash
+# Example: List all unique placeholders
+grep -rh "\[PLACEHOLDER-[^]]*\]" src/adventures/arabian-nights/ | \
+  sort | uniq > placeholders-to-replace.txt
+```
+
+This gives you a complete list to work through systematically.
+
+---
+
 ## Step 5: Verification Process
 
-### 5.1 Path Verification
+### 5.1 Check for Remaining Placeholders
+
+**CRITICAL STEP:** Verify that ALL placeholders have been replaced.
+
+**Search for any remaining placeholders in all adventure files:**
+
+```bash
+grep -r "\[PLACEHOLDER" src/adventures/[adventure-name]/
+```
+
+**Expected result:** **ZERO matches** when integration is complete.
+
+**If you find remaining placeholders:**
+- Each one represents an asset that hasn't been integrated yet
+- Check assets.md for the corresponding URL
+- Replace the placeholder or mark the asset as needed
+
+**Check specific file types:**
+
+```bash
+# Check chapter files
+grep -r "\[PLACEHOLDER" src/adventures/[adventure-name]/chapters/
+
+# Check theme file
+grep "\[PLACEHOLDER" src/adventures/[adventure-name]/theme.ts
+
+# Check main adventure file
+grep "\[PLACEHOLDER" src/adventures/[adventure-name]/index.ts
+```
+
+### 5.2 Path Verification
 
 **Check all paths are correct:**
 
-1. **Search for asset references:**
+1. **For CDN URLs, verify format:**
    ```bash
-   grep -r "assets/[adventure-name]" src/adventures/[adventure-name]/
+   # CDN URLs should start with https://
+   grep -r "backgroundImage: 'http://" src/adventures/[adventure-name]/
+   grep -r "image: 'http://" src/adventures/[adventure-name]/
+   # These should return no results (all should be https://)
    ```
 
-2. **Verify files exist:**
+2. **For local paths, verify /Imsie/ prefix:**
    ```bash
-   # Check each path exists in public directory
+   # Search for local asset paths
+   grep -r "assets/[adventure-name]" src/adventures/[adventure-name]/
+
+   # All local paths should start with /Imsie/assets/
+   # Incorrect: "assets/..." or "/assets/..."
+   # Correct: "/Imsie/assets/..."
+   ```
+
+3. **Verify local files exist:**
+   ```bash
+   # Check each path exists in public directory (if using local hosting)
    ls public/assets/[adventure-name]/backgrounds/
-   ls public/assets/[adventure-name]/scenes/
-   ls public/assets/[adventure-name]/characters/
+   ls public/assets/[adventure-name]/music/
    # etc.
    ```
 
-3. **Check for common path errors:**
+4. **Check for common path errors:**
    - Missing `/Imsie/` prefix: `/assets/...` should be `/Imsie/assets/...` for local files
    - Missing leading slash: `assets/...` should be `/Imsie/assets/...`
    - Double slashes: `/Imsie/assets//adventure/...`
    - Wrong extension: `.png` vs `.jpg`
    - Case sensitivity: `File.jpg` vs `file.jpg`
+   - Leftover placeholders: `[PLACEHOLDER-...]`
 
-### 5.2 Reference Audit
+### 5.3 Reference Audit
 
 **Ensure no broken references remain:**
 
@@ -529,19 +1020,25 @@ export const arabianNightsAdventure: Adventure = {
    grep -r "characterPortrait: undefined" src/adventures/[adventure-name]/chapters/
    ```
 
-2. **Search for placeholder text:**
+2. **Search for any text that might indicate incomplete integration:**
    ```bash
-   grep -ri "placeholder" src/adventures/[adventure-name]/
    grep -ri "TBD" src/adventures/[adventure-name]/
    grep -ri "TODO" src/adventures/[adventure-name]/
+   grep -ri "FIXME" src/adventures/[adventure-name]/
    ```
 
-3. **Check asset documentation matches code:**
+3. **Verify no placeholders remain (double-check):**
+   ```bash
+   # This should return ZERO results:
+   grep -r "\[PLACEHOLDER" src/adventures/[adventure-name]/
+   ```
+
+4. **Check asset documentation matches code:**
    - Cross-reference `_assets.md` entries with actual code
    - Verify all documented assets are used
    - Note any documented assets not yet integrated
 
-### 5.3 TypeScript Validation
+### 5.4 TypeScript Validation
 
 **Ensure code compiles without errors:**
 
@@ -556,7 +1053,7 @@ npx tsc --noEmit
 - Incorrect field names for asset properties
 - Type mismatches (string vs undefined)
 
-### 5.4 Build Verification
+### 5.5 Build Verification
 
 **Test the production build:**
 
@@ -569,8 +1066,9 @@ npm run build
 - Verify all imports are correct
 - Ensure no circular dependencies were introduced
 - Check for missing exports
+- Look for any remaining placeholders in error output
 
-### 5.5 Runtime Testing
+### 5.6 Runtime Testing
 
 **Test in development environment:**
 
@@ -589,25 +1087,69 @@ npm run dev
 - [ ] Videos play and loop correctly (if used)
 - [ ] No console errors related to asset loading
 - [ ] All interactive scenes function with their images
+- [ ] No placeholder text visible in UI
+- [ ] Browser console shows no 404 errors for assets
+
+**Check browser console for placeholder references:**
+
+Open browser developer tools (F12) and look for:
+- Any `[PLACEHOLDER-...]` text in the console
+- 404 errors for asset files
+- Network tab showing failed asset requests
 
 ---
 
 ## Common Issues and Fixes
 
-### Issue 1: Assets Not Loading (404 Errors)
+### Issue 1: Placeholder Still Present in Code
+
+**Symptoms:**
+- Asset not loading at all
+- Console shows placeholder text like `[PLACEHOLDER-BG-PALACE]` in error
+- Visual inspection shows placeholder text instead of image
+- Browser tries to load a URL containing `[PLACEHOLDER-...]`
+
+**Diagnosis:**
+The placeholder hasn't been replaced with the actual asset URL yet.
+
+**Fixes:**
+1. Search for the specific placeholder:
+   ```bash
+   grep -r "\[PLACEHOLDER-BG-PALACE\]" src/adventures/[adventure-name]/
+   ```
+
+2. Check `_assets.md` for the corresponding asset URL
+
+3. If URL exists in assets.md:
+   - Replace the placeholder with the real URL in your code
+   - Save the file and refresh browser
+
+4. If URL NOT in assets.md:
+   - Asset hasn't been generated yet
+   - Add entry to assets.md with status "📋 Needed"
+   - Generate the asset or use a temporary placeholder
+
+5. After fixing, verify no placeholders remain:
+   ```bash
+   grep -r "\[PLACEHOLDER" src/adventures/[adventure-name]/
+   ```
+
+### Issue 2: Assets Not Loading (404 Errors)
 
 **Symptoms:**
 - Broken image icons in UI
 - Console errors: `GET /assets/... 404 (Not Found)`
+- Asset URL is real (not a placeholder) but file doesn't load
 
 **Fixes:**
-1. Verify file exists in `public/` directory
-2. Check path starts with `/assets/` (leading slash)
+1. Verify file exists in `public/` directory (for local hosting)
+2. Check path starts with `/Imsie/assets/` for local files
 3. Verify exact filename match (case-sensitive)
-4. Clear browser cache and hard refresh (Cmd/Ctrl + Shift + R)
-5. Restart development server
+4. For CDN URLs, test the URL directly in browser
+5. Clear browser cache and hard refresh (Cmd/Ctrl + Shift + R)
+6. Restart development server
 
-### Issue 2: Wrong File Extension
+### Issue 3: Wrong File Extension
 
 **Symptoms:**
 - Asset not displaying despite correct path
@@ -617,7 +1159,7 @@ npm run dev
 2. Update code to match: `.jpg` vs `.jpeg` vs `.png`
 3. Standardize extensions across project if needed
 
-### Issue 3: Path Case Sensitivity
+### Issue 4: Path Case Sensitivity
 
 **Symptoms:**
 - Works on Windows/Mac but fails on Linux/production
@@ -631,7 +1173,7 @@ npm run dev
    Chapter-1-Background.jpg (avoid)
    ```
 
-### Issue 4: Large File Sizes
+### Issue 5: Large File Sizes
 
 **Symptoms:**
 - Slow page loads
@@ -647,7 +1189,7 @@ npm run dev
 3. Consider using WebP format for better compression
 4. Implement lazy loading for non-critical assets
 
-### Issue 5: Missing Fallback Images
+### Issue 6: Missing Fallback Images
 
 **Symptoms:**
 - Blank spaces when optional video assets fail to load
@@ -656,11 +1198,11 @@ npm run dev
 1. Always provide `background` image when using `backgroundVideo`
 2. Add error handling for optional assets:
    ```typescript
-   background: '/Imsie/assets/adventure/backgrounds/fallback.jpg',
-   backgroundVideo: '/Imsie/assets/adventure/videos/animation.mp4', // optional
+   backgroundImage: 'https://cdn.midjourney.com/.../fallback.jpg',
+   backgroundVideo: 'https://cdn.runwayml.com/.../animation.mp4', // optional
    ```
 
-### Issue 6: Incorrect Aspect Ratios
+### Issue 7: Incorrect Aspect Ratios
 
 **Symptoms:**
 - Images appear stretched or cropped incorrectly
@@ -674,7 +1216,7 @@ npm run dev
 2. Regenerate assets with correct dimensions
 3. Use CSS object-fit if minor adjustments needed
 
-### Issue 7: Video Not Playing
+### Issue 8: Video Not Playing
 
 **Symptoms:**
 - Video asset shows as image or doesn't display
@@ -684,9 +1226,10 @@ npm run dev
 2. Check video file size (< 5MB recommended)
 3. Ensure video has no audio track (causes issues with background music)
 4. Test video plays in browser directly
-5. Add proper attributes in code:
+5. Verify placeholder has been replaced with actual video URL
+6. Add proper attributes in code:
    ```typescript
-   backgroundVideo: '/Imsie/assets/adventure/videos/loop.mp4',
+   backgroundVideo: 'https://cdn.runwayml.com/.../loop.mp4',
    videoOptions: {
      loop: true,
      muted: true,
@@ -694,20 +1237,29 @@ npm run dev
    }
    ```
 
-### Issue 8: Asset Documentation Out of Sync
+### Issue 9: Asset Documentation Out of Sync
 
 **Symptoms:**
 - Code references assets not in documentation
 - Documentation lists unused assets
+- Placeholders in code don't match entries in assets.md
 
 **Fixes:**
 1. Update `_assets.md` to match actual usage
 2. Add status indicators:
-   - ✅ Implemented and working
-   - 🚧 In progress
-   - 📋 Planned but not yet added
-3. Remove references to deprecated assets
-4. Document any placeholder assets still needed
+   - ✅ Integrated - Asset is in code with real URL
+   - ✅ Generated - Asset exists but not yet integrated
+   - 🚧 In progress - Asset being generated
+   - 📋 Needed - Asset needs to be created
+3. Ensure placeholder names match between code and documentation
+4. Remove references to deprecated or unused assets
+5. Run placeholder audit to find discrepancies:
+   ```bash
+   # Find all placeholders in code
+   grep -rh "\[PLACEHOLDER-[^]]*\]" src/adventures/[adventure-name]/ | sort | uniq
+
+   # Compare with entries in assets.md
+   ```
 
 ---
 
@@ -717,12 +1269,19 @@ Use this checklist to ensure complete asset integration:
 
 ### Pre-Integration
 - [ ] All required assets generated and uploaded
-- [ ] Asset documentation (`_assets.md`) updated with paths
-- [ ] File naming follows conventions
+- [ ] Asset documentation (`_assets.md`) updated with URLs/paths
+- [ ] Placeholder names match between code and assets.md
+- [ ] File naming follows conventions (for local hosting)
 - [ ] Assets organized in correct folder structure
 
+### Placeholder Audit
+- [ ] Found all placeholders using grep command
+- [ ] Created replacement checklist
+- [ ] Mapped each placeholder to assets.md entry
+- [ ] Identified any missing assets that need generation
+
 ### Code Updates
-- [ ] Chapter background images updated
+- [ ] Chapter background images updated (placeholders → URLs)
 - [ ] Scene images updated (all narrative scenes)
 - [ ] Character portraits updated (all dialogue scenes)
 - [ ] Map images updated (map-exploration scenes)
@@ -733,15 +1292,17 @@ Use this checklist to ensure complete asset integration:
 - [ ] Adventure cover image updated
 - [ ] Adventure cover video updated (if applicable)
 
-### Verification
+### Verification - Critical
+- [ ] **NO placeholders remain** (`grep -r "\[PLACEHOLDER" returns zero results`)
 - [ ] TypeScript compiles without errors
 - [ ] Build succeeds (`npm run build`)
 - [ ] No 404 errors in browser console
+- [ ] No placeholder text visible in browser console
 - [ ] All images display correctly in UI
 - [ ] Videos play and loop properly
 - [ ] Music plays without errors
 - [ ] Asset documentation matches code
-- [ ] No placeholder references remain
+- [ ] All asset statuses updated to "✅ Integrated"
 
 ### Testing
 - [ ] Played through at least one complete chapter
@@ -814,52 +1375,102 @@ Integrating assets for "Arabian Nights" Chapter 1 (Scheherazade).
 
 ### Step-by-Step
 
-1. **Review documentation:**
+1. **Find all placeholders:**
+   ```bash
+   grep -r "\[PLACEHOLDER" src/adventures/arabian-nights/chapters/chapter-1-scheherazade.ts
+   ```
+   Found 8 placeholders:
+   - `[PLACEHOLDER-BG-PALACE-COURTYARD]`
+   - `[PLACEHOLDER-SCENE-SCHEHERAZADE-STORYTELLING]`
+   - `[PLACEHOLDER-BG-THRONE-ROOM]`
+   - `[PLACEHOLDER-PORTRAIT-SCHEHERAZADE-NEUTRAL]`
+   - `[PLACEHOLDER-PORTRAIT-SULTAN-ANGRY]`
+   - `[PLACEHOLDER-MAP-BAGHDAD]`
+   - (2 more...)
+
+2. **Review documentation:**
    ```
    src/adventures/arabian-nights/arabian-nights_assets.md
    ```
-   Confirmed all Chapter 1 assets uploaded with paths documented.
+   Confirmed all Chapter 1 placeholders have corresponding URLs documented.
 
-2. **Update chapter file:**
-   ```
-   src/adventures/arabian-nights/chapters/chapter-1-scheherazade.ts
-   ```
-   - Updated chapter background
-   - Added scene images to 6 narrative scenes
-   - Added Scheherazade portrait to dialogue scene
-   - Added map image to map-exploration scene
+3. **Replace placeholders systematically:**
 
-3. **Update theme:**
+   **Example replacement 1:**
+   ```typescript
+   // BEFORE
+   backgroundImage: '[PLACEHOLDER-BG-PALACE-COURTYARD]',
+
+   // AFTER (from assets.md)
+   backgroundImage: 'https://cdn.midjourney.com/35fd23fc.../palace-courtyard.png',
+   ```
+
+   **Example replacement 2:**
+   ```typescript
+   // BEFORE
+   portrait: '[PLACEHOLDER-PORTRAIT-SCHEHERAZADE-NEUTRAL]',
+
+   // AFTER (from assets.md)
+   portrait: 'https://cdn.midjourney.com/abc123.../scheherazade-neutral.png',
+   ```
+
+4. **Update theme:**
    ```
    src/adventures/arabian-nights/theme.ts
    ```
-   - Added background music path
-   - Set volume to 0.3, loop enabled
+   ```typescript
+   // BEFORE
+   music: '[PLACEHOLDER-MUSIC-MAIN-THEME]',
 
-4. **Update adventure index:**
+   // AFTER
+   music: {
+     background: '/Imsie/assets/arabian-nights/music/theme.mp3',
+     volume: 0.3,
+     loop: true,
+   }
+   ```
+
+5. **Update adventure index:**
    ```
    src/adventures/arabian-nights/index.ts
    ```
-   - Added cover image path
+   ```typescript
+   // BEFORE
+   coverArt: '[PLACEHOLDER-COVER-MAIN]',
 
-5. **Verify:**
+   // AFTER
+   coverArt: 'https://cdn.midjourney.com/xyz789.../cover.png',
+   ```
+
+6. **Verify no placeholders remain:**
+   ```bash
+   grep -r "\[PLACEHOLDER" src/adventures/arabian-nights/chapters/chapter-1-scheherazade.ts
+   # Expected: No results ✅
+   ```
+
+7. **Build and test:**
    ```bash
    npm run type-check    # ✅ No errors
    npm run build         # ✅ Build succeeded
    npm run dev           # ✅ Started dev server
    ```
 
-6. **Test in browser:**
+8. **Test in browser:**
    - Navigated to Arabian Nights adventure
    - Played through Chapter 1 completely
-   - Verified all images loaded
+   - Verified all images loaded (no broken images)
    - Checked music playback
    - No console errors
+   - No placeholder text visible
 
-7. **Document:**
-   - Updated `_assets.md` with ✅ status for all Chapter 1 assets
-   - Noted background music implementation details
-   - Committed changes with descriptive message
+9. **Update documentation:**
+   - Updated `_assets.md` with ✅ Integrated status for all Chapter 1 assets
+   - Noted any implementation details
+   - Committed changes:
+   ```bash
+   git add .
+   git commit -m "Integrate Chapter 1 assets: Replace all placeholders with real URLs"
+   ```
 
 ---
 

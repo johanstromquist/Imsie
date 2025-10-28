@@ -77,6 +77,9 @@ const GalleryGame: React.FC<GalleryGameProps> = ({ config, theme, onComplete, on
   useEffect(() => {
     if (gameState !== 'playing') return;
 
+    // Capture the current ref value for cleanup
+    const timersRef = displayTimerRefs.current;
+
     // Randomize item pool
     const itemPool = shuffleArray([...currentRound.items]);
     let poolIndex = 0;
@@ -139,10 +142,10 @@ const GalleryGame: React.FC<GalleryGameProps> = ({ config, theme, onComplete, on
       if (spawnTimerRef.current) {
         clearTimeout(spawnTimerRef.current);
       }
-      displayTimerRefs.current.forEach(timer => clearTimeout(timer));
-      displayTimerRefs.current.clear();
+      timersRef.forEach(timer => clearTimeout(timer));
+      timersRef.clear();
     };
-  }, [currentRoundIndex, gameState, currentRound, getRandomPosition, config.timePerRound]);
+  }, [currentRoundIndex, gameState, currentRound, getRandomPosition, config.timePerRound, config.correctPoints, config.speedBonusMultiplier]);
 
   // Countdown timer
   useEffect(() => {

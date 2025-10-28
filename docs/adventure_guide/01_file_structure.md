@@ -19,7 +19,9 @@ Before writing any content, you need to establish a consistent file structure th
 
 ## Directory Structure
 
-Create the following structure in `src/adventures/`:
+Create the following structure in `src/adventures/` and `public/assets/`:
+
+### Source Code Structure
 
 ```
 src/adventures/your-adventure-name/
@@ -35,6 +37,29 @@ src/adventures/your-adventure-name/
 │   └── final-quiz.ts
 ├── your-adventure-name_assets.md    # Asset documentation
 └── ADVENTURE_OUTLINE.md             # Planning document
+```
+
+### Public Assets Structure
+
+```
+public/assets/your-adventure-name/
+├── cover.png                        # 800x1200px cover art
+├── backgrounds/                     # 1920x1080px scene backgrounds
+│   ├── prologue-scene-1.png
+│   ├── chapter-1-scene-1.png
+│   └── ...
+├── scenes/                          # 600x400px scene illustrations
+│   ├── illustration-1.png
+│   └── ...
+├── portraits/                       # 600x600px character portraits
+│   ├── character-1.png
+│   └── ...
+├── maps/                           # 1920x1080px maps (if needed)
+│   ├── map-1.png
+│   └── ...
+└── music/                          # MP3 background music
+    ├── theme.mp3
+    └── ...
 ```
 
 ---
@@ -57,14 +82,27 @@ Replace `your-adventure-name` with your adventure's actual name (e.g., `arabian-
 - Keep it concise (2-3 words max)
 - Make it descriptive
 
-### Step 2: Create Subdirectories
+### Step 2: Create Source Subdirectories
 
 ```bash
 mkdir chapters
 mkdir quizzes
 ```
 
-### Step 3: Create Placeholder Files
+### Step 3: Create Public Assets Directories
+
+```bash
+cd ../../..  # Navigate back to project root
+mkdir -p public/assets/your-adventure-name/backgrounds
+mkdir -p public/assets/your-adventure-name/scenes
+mkdir -p public/assets/your-adventure-name/portraits
+mkdir -p public/assets/your-adventure-name/maps
+mkdir -p public/assets/your-adventure-name/music
+```
+
+**Note:** Replace `your-adventure-name` with the same name used in Step 1.
+
+### Step 4: Create Placeholder Files
 
 Create the following files with the templates below:
 

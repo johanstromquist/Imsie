@@ -6,16 +6,156 @@
 
 ## Table of Contents
 
-1. [Chapter Development Workflow](#chapter-development-workflow)
-2. [Chapter File Template](#chapter-file-template)
-3. [Scene Type Selection Guide](#scene-type-selection-guide)
-4. [Writing Narrative Content](#writing-narrative-content)
-5. [Adding Learning Points](#adding-learning-points)
-6. [Using Inline Annotations](#using-inline-annotations)
-7. [Quiz Trigger Setup](#quiz-trigger-setup)
-8. [Quiz Question Types for Scenes](#quiz-question-types-for-scenes)
-9. [Complete Chapter Example](#complete-chapter-example)
-10. [Best Practices](#best-practices)
+1. [Asset Placeholder System](#asset-placeholder-system)
+2. [Chapter Development Workflow](#chapter-development-workflow)
+3. [Chapter File Template](#chapter-file-template)
+4. [Scene Type Selection Guide](#scene-type-selection-guide)
+5. [Writing Narrative Content](#writing-narrative-content)
+6. [Adding Learning Points](#adding-learning-points)
+7. [Using Inline Annotations](#using-inline-annotations)
+8. [Quiz Trigger Setup](#quiz-trigger-setup)
+9. [Quiz Question Types for Scenes](#quiz-question-types-for-scenes)
+10. [Complete Chapter Example](#complete-chapter-example)
+11. [Best Practices](#best-practices)
+
+---
+
+## Asset Placeholder System
+
+### ⚠️ CRITICAL: Understanding Placeholders During Development
+
+When you're developing chapters in **Phase 5**, you **DO NOT** use real asset paths. Instead, use an obvious placeholder format that cannot be mistaken for a real path.
+
+**Why Placeholders?**
+- Chapter development (Phase 5) focuses on content, structure, and educational design
+- Asset creation and integration happens later in **Phase 9: Asset Integration**
+- Placeholders make it clear what assets are needed without committing to final paths
+- Prevents confusion about which assets exist vs. which are planned
+
+### Placeholder Format
+
+**Use this format for ALL asset references during chapter development:**
+
+```typescript
+// Background images
+backgroundImage: '[PLACEHOLDER-BG]/opening-scene.png'
+
+// Scene images
+image: '[PLACEHOLDER-IMG]/marketplace.png'
+
+// Character portraits
+portrait: '[PLACEHOLDER-PORTRAIT]/scheherazade.png'
+
+// Map images
+mapImage: '[PLACEHOLDER-MAP]/baghdad.png'
+
+// Location images within maps
+image: '[PLACEHOLDER-LOC]/palace.png'
+
+// Timeline event images
+image: '[PLACEHOLDER-EVENT]/battle-scene.png'
+
+// Anachronism item images
+image: '[PLACEHOLDER-ITEM]/smartphone.png'
+
+// Primary source documents
+documentImage: '[PLACEHOLDER-DOC]/manuscript.png'
+
+// Video assets
+backgroundVideo: '[PLACEHOLDER-VIDEO]/storm-animation.mp4'
+
+// Music assets
+background: '[PLACEHOLDER-MUSIC]/theme.mp3'
+```
+
+**Alternative descriptive format:**
+```typescript
+backgroundImage: '[Asset pending - see assets.md: backgrounds/palace-exterior]'
+image: '[Asset pending - see assets.md: scenes/storyteller]'
+```
+
+### What These Mean
+
+| Placeholder | Meaning | Real Asset Created In |
+|------------|---------|---------------------|
+| `[PLACEHOLDER-BG]` | Background image needed | Phase 9 |
+| `[PLACEHOLDER-IMG]` | Scene image needed | Phase 9 |
+| `[PLACEHOLDER-PORTRAIT]` | Character portrait needed | Phase 9 |
+| `[PLACEHOLDER-MAP]` | Map image needed | Phase 9 |
+| `[PLACEHOLDER-LOC]` | Map location image needed | Phase 9 |
+| `[PLACEHOLDER-EVENT]` | Timeline event image needed | Phase 9 |
+| `[PLACEHOLDER-ITEM]` | Anachronism item image needed | Phase 9 |
+| `[PLACEHOLDER-DOC]` | Primary source document needed | Phase 9 |
+| `[PLACEHOLDER-VIDEO]` | Video asset needed | Phase 9 |
+| `[PLACEHOLDER-MUSIC]` | Music/audio file needed | Phase 9 |
+
+### When Placeholders Become Real Paths
+
+**Phase 9: Asset Integration** is when you:
+1. Reference your `[adventure]_assets.md` file (created in Phase 3)
+2. Create or commission actual assets
+3. Replace ALL placeholders with real paths
+4. Test that all assets load correctly
+
+**Real path formats** (used AFTER Phase 9):
+- External CDN: `https://cdn.midjourney.com/...`
+- Local public folder: `/assets/[adventure-name]/backgrounds/opening.png`
+
+### How to Track Asset Needs
+
+As you develop chapters, document every placeholder in your `[adventure]_assets.md` file:
+
+```markdown
+## Backgrounds
+- `opening-scene.png` - Used in: Chapter 1, Scene 1 (opening narrative)
+  - Description: Magical book opening with golden light
+  - Placeholder: [PLACEHOLDER-BG]/opening-scene.png
+
+## Scene Images
+- `marketplace.png` - Used in: Chapter 1, Scene 3 (decision scene)
+  - Description: Bustling Middle Eastern bazaar at sunset
+  - Placeholder: [PLACEHOLDER-IMG]/marketplace.png
+```
+
+**Cross-reference:** See **Phase 3: Asset Planning** (`03_asset_planning.md`) for creating comprehensive asset documentation.
+
+### Visual Identification
+
+**If you see this in code:**
+```typescript
+backgroundImage: '/assets/your-adventure/backgrounds/opening.png'
+```
+❌ **WRONG** - This looks like it might be real but uses "your-adventure" (ambiguous)
+
+**If you see this in code:**
+```typescript
+backgroundImage: '[PLACEHOLDER-BG]/opening.png'
+```
+✅ **CORRECT** - Obviously a placeholder, clearly not integrated yet
+
+**If you see this in code:**
+```typescript
+backgroundImage: '/assets/greek-myths/backgrounds/opening.png'
+```
+✅ **CORRECT** - Real path after Phase 9 integration (specific adventure name, actual asset)
+
+### Development Workflow Summary
+
+```
+Phase 5: Chapter Development
+├─ Write chapter content
+├─ Use placeholder format: [PLACEHOLDER-*]
+├─ Document assets in assets.md
+└─ Focus on narrative & educational design
+
+Phase 9: Asset Integration
+├─ Review assets.md requirements
+├─ Create/commission actual assets
+├─ Replace ALL [PLACEHOLDER-*] with real paths
+└─ Test asset loading
+```
+
+**Important:** Never mix placeholder and real paths. Either use all placeholders (during development) or all real paths (after integration).
 
 ---
 
@@ -85,7 +225,7 @@ scenes: [
   {
     id: 'scene-ch1-1-opening',
     type: 'narrative',
-    backgroundImage: '/assets/your-adventure/backgrounds/opening.png',
+    backgroundImage: '[PLACEHOLDER-BG]/opening.png',
 
     content: `Your opening narrative text here.
 
@@ -110,7 +250,7 @@ scenes: [
 {
   id: 'scene-ch1-2-decision',
   type: 'decision',
-  backgroundImage: '/assets/your-adventure/backgrounds/crossroads.png',
+  backgroundImage: '[PLACEHOLDER-BG]/crossroads.png',
 
   prompt: 'What will you do?',
   context: 'Set up the decision with 1-2 paragraphs of context.',
@@ -124,7 +264,7 @@ scenes: [
         {
           id: 'lp-ch1-2a-theme',
           content: 'What this choice teaches about the theme.',
-          category: 'thematic-analysis',
+          category: 'literary-context',
         },
       ],
     },
@@ -145,7 +285,7 @@ scenes: [
 {
   id: 'scene-ch1-final',
   type: 'narrative',
-  backgroundImage: '/assets/your-adventure/backgrounds/chapter-end.png',
+  backgroundImage: '[PLACEHOLDER-BG]/chapter-end.png',
 
   content: `Chapter conclusion text.
 
@@ -155,7 +295,7 @@ scenes: [
     {
       id: 'lp-ch1-final-synthesis',
       content: 'Final synthesizing learning point.',
-      category: 'thematic-analysis',
+      category: 'literary-context',
     },
   ],
 
@@ -415,7 +555,7 @@ Use these standard categories for consistency:
 {
   id: 'lp-sultan-transformation',
   content: 'Sultan Shahryar\'s transformation shows how personal trauma can corrupt even just rulers.',
-  category: 'character-analysis',
+  category: 'literary-context',
 }
 ```
 **Why it works:** Analytical, concise, teaches character psychology
@@ -437,7 +577,7 @@ Use these standard categories for consistency:
 {
   id: 'lp-scheherazade-power',
   content: 'Scheherazade uses storytelling as a tool for survival and transformation, showing that intellect can triumph over violence.',
-  category: 'thematic-analysis',
+  category: 'literary-context',
 }
 ```
 **Why it works:** Deep insight, thematic connection, reveals strategy
@@ -729,8 +869,8 @@ export const chapter1: Chapter = {
     {
       id: 'scene-1-welcome',
       type: 'narrative',
-      backgroundImage: '/assets/adventure/backgrounds/opening.png',
-      image: '/assets/adventure/scenes/book-opening.png',
+      backgroundImage: '[PLACEHOLDER-BG]/opening.png',
+      image: '[PLACEHOLDER-IMG]/book-opening.png',
 
       content: `Welcome to a world where stories hold the power of life and death!
 
@@ -751,7 +891,7 @@ export const chapter1: Chapter = {
     {
       id: 'scene-2-origins',
       type: 'narrative',
-      backgroundImage: '/assets/adventure/backgrounds/library.png',
+      backgroundImage: '[PLACEHOLDER-BG]/library.png',
 
       content: `These tales were compiled between the 9th and 13th centuries, drawing from Persian, Arabic, Indian, and Egyptian sources.
 
@@ -789,8 +929,8 @@ export const chapter1: Chapter = {
     {
       id: 'scene-3-storyteller-choice',
       type: 'decision',
-      backgroundImage: '/assets/adventure/backgrounds/bazaar.png',
-      image: '/assets/adventure/scenes/storyteller.png',
+      backgroundImage: '[PLACEHOLDER-BG]/bazaar.png',
+      image: '[PLACEHOLDER-IMG]/storyteller.png',
 
       prompt: 'What draws you most to a great story?',
       context: `You find yourself in a bustling marketplace. A storyteller sits on a carpet, surrounded by an enthralled crowd. She pauses and looks directly at you.
@@ -806,7 +946,7 @@ export const chapter1: Chapter = {
             {
               id: 'lp-4-adventure',
               content: 'Adventure narratives fulfill our desire to experience danger and excitement vicariously.',
-              category: 'thematic-analysis',
+              category: 'literary-context',
             },
           ],
         },
@@ -818,7 +958,7 @@ export const chapter1: Chapter = {
             {
               id: 'lp-5-wisdom',
               content: 'Didactic storytelling embeds moral and practical lessons within entertaining narratives.',
-              category: 'thematic-analysis',
+              category: 'literary-context',
             },
           ],
         },
@@ -830,7 +970,7 @@ export const chapter1: Chapter = {
             {
               id: 'lp-6-escape',
               content: 'Escapist literature serves the psychological need for temporary respite from reality.',
-              category: 'thematic-analysis',
+              category: 'literary-context',
             },
           ],
         },
@@ -843,7 +983,7 @@ export const chapter1: Chapter = {
     {
       id: 'scene-4-frame-intro',
       type: 'narrative',
-      backgroundImage: '/assets/adventure/backgrounds/palace-exterior.png',
+      backgroundImage: '[PLACEHOLDER-BG]/palace-exterior.png',
 
       content: `"All these answers are true," the storyteller continues. "But there is one more reason people tell and listen to stories—the reason at the heart of this very collection."
 
@@ -864,7 +1004,7 @@ export const chapter1: Chapter = {
     {
       id: 'scene-5-famous-quotes',
       type: 'quote-attribution',
-      backgroundImage: '/assets/adventure/backgrounds/scroll-background.png',
+      backgroundImage: '[PLACEHOLDER-BG]/scroll-background.png',
 
       prompt: 'Test your knowledge: Match these famous phrases to their stories',
 
@@ -912,12 +1052,12 @@ export const chapter1: Chapter = {
     {
       id: 'scene-6-storyteller-dialogue',
       type: 'dialogue',
-      backgroundImage: '/assets/adventure/backgrounds/bazaar-night.png',
+      backgroundImage: '[PLACEHOLDER-BG]/bazaar-night.png',
 
       character: {
         id: 'storyteller',
         name: 'Storyteller',
-        portrait: '/assets/adventure/portraits/storyteller.png',
+        portrait: '[PLACEHOLDER-PORTRAIT]/storyteller.png',
         description: 'A wise keeper of ancient tales',
       },
 
@@ -982,8 +1122,8 @@ export const chapter1: Chapter = {
     {
       id: 'scene-7-chapter-conclusion',
       type: 'narrative',
-      backgroundImage: '/assets/adventure/backgrounds/stars.png',
-      image: '/assets/adventure/scenes/book-glowing.png',
+      backgroundImage: '[PLACEHOLDER-BG]/stars.png',
+      image: '[PLACEHOLDER-IMG]/book-glowing.png',
 
       content: `The storyteller closes her eyes, and for a moment, you see the centuries unfolding—thousands of voices in bazaars, palaces, and humble homes, all weaving the same tales in their own unique ways.
 
@@ -997,7 +1137,7 @@ export const chapter1: Chapter = {
         {
           id: 'lp-12-synthesis',
           content: 'Great literary collections endure because they fulfill multiple human needs simultaneously.',
-          category: 'thematic-analysis',
+          category: 'literary-context',
         },
         {
           id: 'lp-13-transmission',
@@ -1121,12 +1261,22 @@ Once you've completed your chapter:
 
 ## Related Documentation
 
+### Essential References for Phase 5
 - **`docs/SCENE_TYPES_REFERENCE.md`** - Complete technical reference for all 10 scene types
 - **`docs/FEATURE_INLINE_ANNOTATIONS.md`** - Detailed annotation documentation
-- **`docs/adventure_guide/06_structure_review.md`** - Verify scene sequence and flow
-- **`docs/adventure_guide/07_quiz_creation.md`** - Creating effective quizzes
+- **`docs/adventure_guide/03_asset_planning.md`** - Creating asset requirement documentation
 - **`src/adventures/arabian-nights/chapters/`** - Example chapters to reference
 - **`src/types/adventure.ts`** - Type definitions (source of truth)
+
+### Next Steps in Workflow
+- **`docs/adventure_guide/06_structure_review.md`** - Verify scene sequence and flow (Phase 6)
+- **`docs/adventure_guide/07_quiz_creation.md`** - Creating effective quizzes (Phase 7)
+- **`docs/adventure_guide/09_asset_integration.md`** - Replace placeholders with real assets (Phase 9)
+
+### Asset Management
+- **Asset Placeholders:** During chapter development (Phase 5), use `[PLACEHOLDER-*]` format
+- **Asset Documentation:** Track all asset needs in `[adventure]_assets.md` (created in Phase 3)
+- **Asset Integration:** Replace placeholders with real paths in Phase 9
 
 ---
 
@@ -1320,18 +1470,36 @@ Count should match number of scenes. If not, add `learningPoints: []` to scenes 
 
 #### 8. Asset Path Format ✅
 
-**Check asset paths use correct format:**
+**During Phase 5 (Development), check all assets use placeholder format:**
 
 ```bash
-# Check for incorrect asset paths
-grep -n "backgroundImage:\|image:\|mapImage:" src/adventures/[adventure-name]/chapters/chapter-X-name.ts
+# Check for asset paths in chapter
+grep -n "backgroundImage:\|image:\|mapImage:\|portrait:" src/adventures/[adventure-name]/chapters/chapter-X-name.ts
 ```
 
-**Correct formats:**
-- External: `https://cdn.midjourney.com/...` ✅
-- Local: `/Imsie/assets/[adventure-name]/...` ✅ (note capital I)
-- Wrong: `/assets/...` ❌
-- Wrong: `./assets/...` ❌
+**Development Phase (Phase 5) - Use placeholders:**
+- Background: `'[PLACEHOLDER-BG]/scene-name.png'` ✅
+- Scene image: `'[PLACEHOLDER-IMG]/image-name.png'` ✅
+- Portrait: `'[PLACEHOLDER-PORTRAIT]/character-name.png'` ✅
+- Map: `'[PLACEHOLDER-MAP]/map-name.png'` ✅
+- Alternative: `'[Asset pending - see assets.md: backgrounds/scene-name]'` ✅
+
+**WRONG during Phase 5:**
+- `/assets/your-adventure/...` ❌ (Ambiguous - looks real but isn't)
+- `/assets/...` ❌ (Incomplete)
+- Relative paths like `./assets/...` ❌
+
+**After Phase 9 (Asset Integration) - Use real paths:**
+- External CDN: `'https://cdn.midjourney.com/...'` ✅
+- Local public: `'/Imsie/assets/[adventure-name]/backgrounds/opening.png'` ✅
+  - Note: Must include `/Imsie/` prefix (required by Vite config `base: '/Imsie/'`)
+  - Must match actual adventure name (e.g., `greek-myths`, `arabian-nights`)
+  - Files must exist in `public/assets/[adventure-name]/` directory
+
+**How to verify integration status:**
+- If you see `[PLACEHOLDER-*]` → Assets NOT yet integrated (Phase 5 state)
+- If you see real paths → Assets integrated (Phase 9 complete)
+- Never mix placeholders and real paths in the same chapter
 
 #### 9. Final Build Test ✅
 
@@ -1364,7 +1532,9 @@ Chapter: ________________  Date: __________
 □ Quiz trigger exists on LAST scene
 □ No duplicate IDs in chapter
 □ All scenes have learningPoints field
-□ Asset paths use correct format
+□ Asset paths use placeholder format [PLACEHOLDER-*] (Phase 5)
+  OR real paths after integration (Phase 9)
+□ All placeholder assets documented in [adventure]_assets.md
 □ Full build succeeds (npm run build)
 □ Quiz file created and imported
 □ endQuiz field added to chapter
@@ -1373,6 +1543,10 @@ Chapter: ________________  Date: __________
 Notes/Issues:
 _____________________________________________
 _____________________________________________
+
+Asset Integration Status:
+□ Using placeholders - Phase 9 not yet done
+□ Integrated real assets - Phase 9 complete
 ```
 
 ---

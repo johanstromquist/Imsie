@@ -3,6 +3,7 @@ import './MemoryMatchGame';
 import './RhythmGame';
 import './GalleryGame';
 import './SpectrumGame';
+import './ImageChoiceGame';
 
 // Re-export registry for convenience
 export { customGameRegistry } from '../customGameRegistry';
