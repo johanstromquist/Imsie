@@ -203,11 +203,14 @@ const AdventurePlayer: React.FC<AdventurePlayerProps> = ({ adventure, onExit }) 
           }
 
           // Memory match game assets
-          if (scene.gameType === 'memory-match' && Array.isArray(config.cards)) {
-            config.cards.forEach((card: unknown) => {
-              const c = card as { image?: string };
-              if (c.image) {
-                assetsToLoad.push({ url: c.image, type: 'image' });
+          if (scene.gameType === 'memory-match' && Array.isArray(config.pairs)) {
+            config.pairs.forEach((pair: unknown) => {
+              const p = pair as { image?: string; matchImage?: string };
+              if (p.image) {
+                assetsToLoad.push({ url: p.image, type: 'image' });
+              }
+              if (p.matchImage && p.matchImage !== p.image) {
+                assetsToLoad.push({ url: p.matchImage, type: 'image' });
               }
             });
           }

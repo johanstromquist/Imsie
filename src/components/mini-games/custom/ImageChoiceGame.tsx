@@ -44,6 +44,12 @@ const ImageChoiceGame: React.FC<CustomGameProps> = ({
   theme,
   onComplete,
 }) => {
+  // Always call hooks before any conditional returns
+  const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
+  const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
+  const [showExplanation, setShowExplanation] = useState(false);
+  const [score, setScore] = useState(0);
+
   // Type guard to ensure config matches expected structure
   if (!isImageChoiceConfig(config)) {
     return (
@@ -55,10 +61,6 @@ const ImageChoiceGame: React.FC<CustomGameProps> = ({
   }
 
   const gameConfig = config;
-  const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0);
-  const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
-  const [showExplanation, setShowExplanation] = useState(false);
-  const [score, setScore] = useState(0);
 
   const currentScenario = gameConfig.scenarios[currentScenarioIndex];
   const isLastScenario = currentScenarioIndex === gameConfig.scenarios.length - 1;

@@ -55,10 +55,20 @@ export const useMusicPlayer = ({ playlist }: UseMusicPlayerProps) => {
       setCurrentTrackIndex(nextIndex);
     };
 
+    // Handle track loading error - skip to next track
+    const handleError = () => {
+      console.warn(`Failed to load track ${currentTrackIndex}: ${playlist[currentTrackIndex]}`);
+      console.log('Skipping to next track...');
+      const nextIndex = (currentTrackIndex + 1) % playlist.length;
+      setCurrentTrackIndex(nextIndex);
+    };
+
     audio.addEventListener('ended', handleEnded);
+    audio.addEventListener('error', handleError);
 
     return () => {
       audio.removeEventListener('ended', handleEnded);
+      audio.removeEventListener('error', handleError);
     };
   }, [currentTrackIndex, playlist, isPlaying]);
 

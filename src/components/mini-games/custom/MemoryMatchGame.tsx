@@ -264,76 +264,90 @@ const MemoryMatchGame: React.FC<CustomGameProps> = ({
                 onClick={() => handleCardClick(card.id)}
                 style={{
                   aspectRatio: '1',
-                  backgroundColor: card.isMatched
-                    ? `${theme.secondaryColor}80`
-                    : card.isFlipped
-                    ? 'rgba(255, 255, 255, 0.15)'
-                    : 'rgba(255, 255, 255, 0.1)',
-                  border: `2px solid ${
-                    card.isMatched ? theme.secondaryColor : 'rgba(255, 255, 255, 0.2)'
-                  }`,
-                  borderRadius: '0.75rem',
                   cursor: card.isMatched || card.isFlipped ? 'default' : 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1.5rem',
-                  fontWeight: 'bold',
-                  transition: 'all 0.3s',
+                  transition: 'transform 0.6s',
                   transform: card.isFlipped ? 'rotateY(180deg)' : 'rotateY(0)',
                   transformStyle: 'preserve-3d',
                   position: 'relative',
-                  backgroundImage:
-                    card.isFlipped && cardImage ? `url(${cardImage.src})` : 'none',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
                 }}
                 onMouseEnter={(e) => {
                   if (!card.isMatched && !card.isFlipped) {
                     e.currentTarget.style.transform = 'scale(1.05)';
-                    e.currentTarget.style.borderColor = theme.secondaryColor;
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (!card.isMatched && !card.isFlipped) {
                     e.currentTarget.style.transform = 'scale(1)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
                   }
                 }}
               >
-                {!card.isFlipped && !cardImage && (
-                  <div
-                    style={{
-                      fontSize: '2rem',
-                      color: theme.secondaryColor,
-                    }}
-                  >
-                    ?
-                  </div>
-                )}
-                {card.isFlipped && !cardImage && (
-                  <div style={{ fontSize: '1.5rem' }}>{card.value}</div>
-                )}
-                {card.isMatched && (
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: '0.5rem',
-                      right: '0.5rem',
-                      width: '24px',
-                      height: '24px',
-                      borderRadius: '50%',
-                      backgroundColor: theme.secondaryColor,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '1rem',
-                      color: 'white',
-                    }}
-                  >
-                    ✓
-                  </div>
-                )}
+                {/* Card Front (back face when viewing) */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    backfaceVisibility: 'hidden',
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    border: '2px solid rgba(255, 255, 255, 0.2)',
+                    borderRadius: '0.75rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '2rem',
+                    color: theme.secondaryColor,
+                  }}
+                >
+                  ?
+                </div>
+
+                {/* Card Back (front face when flipped) */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    backfaceVisibility: 'hidden',
+                    transform: 'rotateY(180deg)',
+                    backgroundColor: card.isMatched
+                      ? `${theme.secondaryColor}80`
+                      : 'rgba(255, 255, 255, 0.15)',
+                    border: `2px solid ${
+                      card.isMatched ? theme.secondaryColor : 'rgba(255, 255, 255, 0.2)'
+                    }`,
+                    borderRadius: '0.75rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '1.5rem',
+                    fontWeight: 'bold',
+                    backgroundImage: cardImage ? `url(${cardImage.src})` : 'none',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  {!cardImage && <div>{card.value}</div>}
+                  {card.isMatched && (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '0.5rem',
+                        right: '0.5rem',
+                        width: '24px',
+                        height: '24px',
+                        borderRadius: '50%',
+                        backgroundColor: theme.secondaryColor,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '1rem',
+                        color: 'white',
+                      }}
+                    >
+                      ✓
+                    </div>
+                  )}
+                </div>
               </div>
             );
           })}

@@ -675,7 +675,7 @@ const CauseEffectScene: React.FC<CauseEffectSceneProps> = ({
         )}
 
         {/* Back button */}
-        {canGoBack && !isSubmitted && (
+        {canGoBack && (
           <button
             onClick={onBack}
             style={{
