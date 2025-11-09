@@ -5,6 +5,7 @@ import type {
   MapLocation,
 } from '../../types';
 import { assetLoader } from '../../services/assetLoader';
+import ContentWithAnnotations from '../common/ContentWithAnnotations';
 
 // Custom hook for responsive breakpoints
 const useMediaQuery = (query: string): boolean => {
@@ -456,14 +457,20 @@ const MapExplorationScene: React.FC<MapExplorationSceneProps> = ({
                 <div
                   key={index}
                   style={{
-                    fontSize: '1.125rem',
-                    lineHeight: '1.75',
-                    color: '#ddd',
                     marginBottom: index < selectedLocation.content.split('\n\n').length - 1 ? '0.75rem' : '0',
-                    whiteSpace: 'pre-wrap',
                   }}
                 >
-                  {paragraph}
+                  <ContentWithAnnotations
+                    content={paragraph}
+                    annotations={[]}
+                    theme={theme}
+                    enableMarkdown={true}
+                    style={{
+                      fontSize: '1.125rem',
+                      lineHeight: '1.75',
+                      color: '#ddd',
+                    }}
+                  />
                 </div>
               ))}
             </div>

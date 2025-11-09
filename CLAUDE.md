@@ -6,7 +6,92 @@ This guide provides essential information for AI assistants working on the Imsie
 
 **Imsie** is an interactive educational platform that teaches literature and history through narrative adventures. Each adventure contains chapters with multiple scene types, quizzes, and learning points.
 
-**Current State:** Core platform complete with 10 scene types fully implemented. Arabian Nights adventure has 5 chapters (3 complete, 2 in progress).
+**Current State:** Core platform complete with 10 scene types fully implemented. The Edda adventure is complete (6 chapters, 79 scenes) and ready in `dev` branch. Shakespeare adventure is in development on `feature/shakespeare` branch.
+
+---
+
+## Git Branching Strategy
+
+**Imsie uses a GitFlow-style branching model** with `dev` as staging and `main` as production.
+
+### Branch Structure
+
+```
+main (production - published to GitHub Pages)
+  └── dev (staging - complete but unpublished work)
+      ├── feature/adventure-name (individual adventures)
+      └── feature/platform-feature-name (platform improvements)
+```
+
+### Branch Purposes
+
+- **`main`** - Production/published content (triggers GitHub Pages deployment)
+- **`dev`** - Staging/integration branch (complete work ready to publish)
+- **`feature/*`** - Individual features (adventures, platform improvements)
+
+### Workflow for New Adventures
+
+1. **Start from dev** to get all latest platform features:
+   ```bash
+   git checkout dev
+   git checkout -b feature/adventure-name
+   ```
+
+2. **Work on adventure** (commit frequently):
+   ```bash
+   git add .
+   git commit -m "Add Chapter X to Adventure"
+   git push -u origin feature/adventure-name
+   ```
+
+3. **Pull latest platform features** if dev has been updated:
+   ```bash
+   git checkout feature/adventure-name
+   git merge dev  # Or: git rebase dev
+   ```
+
+4. **Merge to dev when complete** (but not yet ready to publish):
+   ```bash
+   git checkout dev
+   git merge feature/adventure-name
+   git push origin dev
+   ```
+
+5. **Publish to production** when ready:
+   ```bash
+   git checkout main
+   git merge dev
+   git push origin main  # Triggers GitHub Pages deployment
+   ```
+
+### Workflow for Platform Features
+
+1. **Create feature branch from dev**:
+   ```bash
+   git checkout dev
+   git checkout -b feature/platform-audio-system
+   ```
+
+2. **Complete feature and merge to dev**:
+   ```bash
+   git checkout dev
+   git merge feature/platform-audio-system
+   git push origin dev
+   ```
+
+3. **Adventure branches pull from dev** to get new features:
+   ```bash
+   git checkout feature/adventure-name
+   git merge dev  # Gets latest platform features
+   ```
+
+### Key Principles
+
+- **`dev` is integration/staging** - test everything together before publishing
+- **Platform features merge to `dev` first** - makes them available to all feature branches
+- **`main` stays clean** - only polished, tested content
+- **Adventure branches start from `dev`** - ensures they have all platform features
+- **Clear promotion path**: `feature` → `dev` → `main`
 
 ---
 
@@ -125,12 +210,15 @@ Narrative → Decision/Dialogue → Interactive Scene → Narrative → Quiz
 ---
 
 ## Asset Requirements
+Most image assets are references to Midjourney URLs to avoid overloading the repo with images. Some images that are not possible to generate are stored in the /Imsie/assets/[adventure]/[asset type] folders.
 
 ### Standard Sizes
 | Type | Dimensions | Format |
 |------|-----------|--------|
 | Background | 1920x1080px | PNG/JPG |
 | Scene Image | 600x400px | PNG/JPG |
+| Timeline Image | 600x400px | PNG/JPG |
+| Anachronism Image | 600x400px | PNG/JPG |
 | Character Portrait | 600x600px | PNG/JPG |
 | Map | 1920x1080px | PNG/JPG |
 
@@ -174,6 +262,7 @@ export const chapterXQuiz: Quiz = {
 - Mix difficulty levels (start easy, build up)
 - Provide educational explanations (teach, don't just grade)
 - Use plausible distractors
+- Only use short-answer question types for questions with one-word-answers
 
 ---
 

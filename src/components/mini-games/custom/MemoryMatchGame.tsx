@@ -15,6 +15,8 @@ interface MemoryMatchConfig {
   pairs: Array<{ id: string; value: string; image?: string }>;
   timeLimit?: number; // in seconds
   showHints?: boolean;
+  title?: string; // Optional custom title
+  prompt?: string; // Optional description/context
 }
 
 function isMemoryMatchConfig(config: unknown): config is MemoryMatchConfig {
@@ -230,7 +232,14 @@ const MemoryMatchGame: React.FC<CustomGameProps> = ({
             textAlign: 'center',
           }}
         >
-          <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Memory Match Game</h2>
+          <h2 style={{ fontSize: '2rem', marginBottom: '1rem', color: theme.secondaryColor }}>
+            {typedConfig.title || 'Memory Match Game'}
+          </h2>
+          {typedConfig.prompt && (
+            <p style={{ fontSize: '1.125rem', marginBottom: '1.5rem', color: '#ddd', lineHeight: '1.6' }}>
+              {typedConfig.prompt}
+            </p>
+          )}
           <div
             style={{
               display: 'flex',
