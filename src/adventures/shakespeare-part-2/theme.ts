@@ -26,7 +26,7 @@ export const shakespearePart2Theme: AdventureTheme = {
   primaryColor: '#1A0000',        // Deep crimson-black (blood, guilt, shadows)
   secondaryColor: '#8B6914',      // Tarnished gold (corrupted power, false glory)
   fontFamily: '"Cormorant Garamond", "Cinzel", serif',  // Elegant Renaissance font with dramatic weight
-  backgroundMusic: '/Imsie/assets/shakespeare-part-2/music/Shakespeare Part 2 - Tragic Power.mp3',
+  backgroundMusic: '/Imsie/assets/shakespeare-part-2/music/Shakespeare  - Tragic Power.mp3',
 };
 
 /**
@@ -49,13 +49,15 @@ export const shakespearePart2Theme: AdventureTheme = {
  * Deliberately darker and more oppressive than Part I's romantic/comedic themes.
  */
 export const musicPlaylist = [
-  '/Imsie/assets/shakespeare-part-2/music/Shakespeare Part 2 - Tragic Power.mp3',
-  '/Imsie/assets/shakespeare-part-2/music/Shakespeare Part 2 - Jealous Madness.mp3',
-  '/Imsie/assets/shakespeare-part-2/music/Shakespeare Part 2 - Guilty Descent.mp3',
-  '/Imsie/assets/shakespeare-part-2/music/Shakespeare Part 2 - Tragic Power-2.mp3',
-  '/Imsie/assets/shakespeare-part-2/music/Shakespeare Part 2 - Jealous Madness-2.mp3',
-  '/Imsie/assets/shakespeare-part-2/music/Shakespeare Part 2 - Guilty Descent-2.mp3',
-  '/Imsie/assets/shakespeare-part-2/music/Shakespeare Part 2 - Tragic Power-3.mp3',
-  '/Imsie/assets/shakespeare-part-2/music/Shakespeare Part 2 - Jealous Madness-3.mp3',
-  '/Imsie/assets/shakespeare-part-2/music/Shakespeare Part 2 - Guilty Descent-3.mp3',
+  '/Imsie/assets/shakespeare-part-2/music/Shakespeare  - Tragic Power.mp3',
+  '/Imsie/assets/shakespeare-part-2/music/Shakespeare  - Jealous Madness.mp3',
+  '/Imsie/assets/shakespeare-part-2/music/Shakespeare  - Guilty Descent.mp3',
+  '/Imsie/assets/shakespeare-part-2/music/Shakespeare  - Tragic Power-2.mp3',
+  '/Imsie/assets/shakespeare-part-2/music/Shakespeare  - Jealous Madness-2.mp3',
+  '/Imsie/assets/shakespeare-part-2/music/Shakespeare  - Guilty Descent-2.mp3',
+  '/Imsie/assets/shakespeare-part-2/music/Shakespeare  - Tragic Power-3.mp3',
+  '/Imsie/assets/shakespeare-part-2/music/Shakespeare  - Jealous Madness-3.mp3',
+  '/Imsie/assets/shakespeare-part-2/music/Shakespeare  - Guilty Descent-3.mp3',
+  '/Imsie/assets/shakespeare-part-2/music/Shakespeare  - Jealous Madness-4.mp3',
+  '/Imsie/assets/shakespeare-part-2/music/Shakespeare  - Guilty Descent-4.mp3',
 ];

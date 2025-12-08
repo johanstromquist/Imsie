@@ -1,0 +1,250 @@
+import type { Quiz } from '../../../types';
+
+export const chapter3Quiz: Quiz = {
+  id: 'quiz-chapter-3-king-lear',
+  title: 'Chapter 3: King Lear Quiz',
+  description: 'Test your understanding of Shakespeare\'s most challenging and nihilistic tragedy.',
+  passingScore: 70,
+  allowRetry: true,
+  questions: [
+    {
+      id: 'q1',
+      question: 'What is the central concept that structures King Lear?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'Love and romance',
+        '"Nothing" - what is said, given, left, and remains',
+        'Military conquest',
+        'Divine providence and redemption',
+      ],
+      correctAnswer: '"Nothing" - what is said, given, left, and remains',
+      explanation: 'Cordelia says "nothing," Lear will be reduced to "nothing," and the play questions whether any meaning remains—"nothing" is the philosophical center of the tragedy.',
+      relatedLearningPoints: ['lp-lear-1-nothing', 'lp-lear-3-nothing'],
+    },
+
+    {
+      id: 'q2',
+      question: 'What is Lear\'s fatal flaw in the love test?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'He demands too much money from his daughters',
+        'He values public flattery over genuine love and truth',
+        'He refuses to divide his kingdom',
+        'He trusts everyone equally',
+      ],
+      correctAnswer: 'He values public flattery over genuine love and truth',
+      explanation: 'Lear mistakes his daughters\' empty, exaggerated declarations for love while rejecting Cordelia\'s honest, measured response. He values appearance over substance.',
+      relatedLearningPoints: ['lp-lear-3-love-test', 'lp-lear-4-honesty'],
+    },
+
+    {
+      id: 'q3',
+      question: 'How does the Gloucester subplot reinforce Lear\'s story?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'It provides comic relief',
+        'It parallels Lear\'s misjudgment of children and the theme of sight/blindness',
+        'It contradicts Lear\'s experiences',
+        'It has no thematic connection to the main plot',
+      ],
+      correctAnswer: 'It parallels Lear\'s misjudgment of children and the theme of sight/blindness',
+      explanation: 'Both Lear and Gloucester misjudge their children, trusting the evil and rejecting the good. Both are "blind" to truth and only "see" after terrible cost.',
+      relatedLearningPoints: ['lp-lear-5-parallel', 'lp-lear-11-parallel'],
+    },
+
+    {
+      id: 'q4',
+      question: 'What does the Fool\'s statement "thou art an O without a figure" mean?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'Lear is perfectly circular',
+        'Lear is a zero, nothing, powerless despite the title "king"',
+        'Lear is wise like the number zero',
+        'Lear has infinite power',
+      ],
+      correctAnswer: 'Lear is a zero, nothing, powerless despite the title "king"',
+      explanation: 'A zero without a figure before it has no value—Lear has given away his power and is now "nothing" despite retaining the empty title of king.',
+      relatedLearningPoints: ['lp-lear-6-o-nothing', 'lp-lear-7-stripping'],
+    },
+
+    {
+      id: 'q5',
+      question: 'What does Lear realize about "poor naked wretches" during the storm?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'That they deserve punishment for their poverty',
+        'That he took too little care of those without power when he was king',
+        'That weather doesn\'t affect the poor',
+        'That poverty is a choice',
+      ],
+      correctAnswer: 'That he took too little care of those without power when he was king',
+      explanation: '"O, I have ta\'en too little care of this!"—Losing power paradoxically enables empathy. Lear sees the suffering of powerless people only when reduced to their level.',
+      relatedLearningPoints: ['lp-lear-9-wretches', 'lp-lear-9-madness-insight'],
+    },
+
+    {
+      id: 'q6',
+      question: 'What is the significance of Gloucester\'s literal blinding?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'It\'s purely a plot device with no symbolic meaning',
+        'It makes explicit the metaphor that he must lose his eyes to truly "see" truth',
+        'It shows that he was always literally blind',
+        'It proves that evil always wins',
+      ],
+      correctAnswer: 'It makes explicit the metaphor that he must lose his eyes to truly "see" truth',
+      explanation: '"I stumbled when I saw"—Gloucester recognizes truth only after being blinded. The play\'s sight/blindness metaphor becomes horrifyingly literal.',
+      relatedLearningPoints: ['lp-lear-11-literal-blind', 'lp-lear-12-sight-metaphor'],
+    },
+
+    {
+      id: 'q7',
+      question: 'According to Renaissance political theory, what was catastrophic about Lear\'s abdication?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'It was a normal, peaceful transition of power',
+        'It violated divine order by separating the king\'s two bodies (natural and political)',
+        'It was illegal under British law',
+        'It had no theoretical significance',
+      ],
+      correctAnswer: 'It violated divine order by separating the king\'s two bodies (natural and political)',
+      explanation: 'Renaissance theory held that the king\'s authority was divinely ordained and inseparable from his person. Lear\'s attempt to remain "king" while giving away power was seen as unnatural and catastrophic.',
+      relatedLearningPoints: ['lp-lear-2-divine-right', 'lp-lear-7-stripping'],
+    },
+
+    {
+      id: 'q8',
+      question: 'Why does Shakespeare set King Lear in pre-Christian Britain?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'For historical accuracy',
+        'To explore tragedy without divine providence or Christian hope',
+        'To avoid offending the Church',
+        'Because it was required by law',
+      ],
+      correctAnswer: 'To explore tragedy without divine providence or Christian hope',
+      explanation: 'The pre-Christian setting allows Shakespeare to create his bleakest tragedy where no divine providence offers redemption—only human suffering without transcendent meaning.',
+      relatedLearningPoints: ['lp-lear-2-pre-christian', 'lp-lear-13-nihilism'],
+    },
+
+    {
+      id: 'q9',
+      question: 'What does Lear mean by "unaccommodated man is no more but such a poor, bare, forked animal"?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'Humans are naturally noble and dignified',
+        'Strip away social roles and humans are just naked animals',
+        'Clothing is more important than character',
+        'Animals are superior to humans',
+      ],
+      correctAnswer: 'Strip away social roles and humans are just naked animals',
+      explanation: 'Lear\'s recognition challenges Renaissance humanism—without civilization\'s trappings, humans are just "poor, bare, forked animals," nothing special or sacred.',
+      relatedLearningPoints: ['lp-lear-13-mad-philosophy', 'lp-lear-13-nihilism'],
+    },
+
+    {
+      id: 'q10',
+      question: 'What is the function of Lear\'s madness in the play?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'It prevents him from understanding anything',
+        'It strips away illusions and brings terrible philosophical insights',
+        'It is purely comic',
+        'It has no thematic purpose',
+      ],
+      correctAnswer: 'It strips away illusions and brings terrible philosophical insights',
+      explanation: 'Lear\'s madness produces savage philosophical truths about justice, authority, and human nature. Sanity may require comforting illusions; madness reveals dark truths.',
+      relatedLearningPoints: ['lp-lear-9-madness-insight', 'lp-lear-13-mad-philosophy'],
+    },
+
+    {
+      id: 'q11',
+      question: 'What does Edmund\'s "Nature, art my goddess" speech reveal?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'He worships nature gods',
+        'He rejects civilized morality for pure self-interest and amoral nature',
+        'He is an environmentalist',
+        'He believes in divine providence',
+      ],
+      correctAnswer: 'He rejects civilized morality for pure self-interest and amoral nature',
+      explanation: 'Edmund rejects civilized laws ("the plague of custom") for natural law (survival of the fittest). His nihilistic philosophy will dominate much of the play\'s world.',
+      relatedLearningPoints: ['lp-lear-5-edmund', 'lp-lear-13-nihilism'],
+    },
+
+    {
+      id: 'q12',
+      question: 'What is the significance of Cordelia\'s death?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'It provides poetic justice',
+        'It completes her character arc positively',
+        'It is unbearable because she is purely innocent and dies senselessly',
+        'It allows Lear to escape',
+      ],
+      correctAnswer: 'It is unbearable because she is purely innocent and dies senselessly',
+      explanation: 'Cordelia\'s death serves no purpose—she is purely good and innocent, yet dies anyway. This meaningless death of the virtuous is central to Lear\'s nihilistic vision.',
+      relatedLearningPoints: ['lp-lear-16-cordelia', 'lp-lear-16-bleakness'],
+    },
+
+    {
+      id: 'q13',
+      question: 'How does King Lear\'s ending differ from typical tragedy?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'It offers clear redemption and restoration',
+        'It provides comic relief in the final scene',
+        'It offers no redemption, restoration, or meaning—only bleakness',
+        'The hero survives and learns his lesson',
+      ],
+      correctAnswer: 'It offers no redemption, restoration, or meaning—only bleakness',
+      explanation: 'Unlike tragedies where order is restored, Lear ends with senseless deaths of good and evil alike. No divine justice, no meaning, only suffering.',
+      relatedLearningPoints: ['lp-lear-16-bleakness', 'lp-lear-17-nihilism'],
+    },
+
+    {
+      id: 'q14',
+      question: 'What is the only possible "redemption" in King Lear according to existential readings?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'Divine intervention saves everyone',
+        'The kingdom is restored to prosperity',
+        'Human love and endurance create meaning even when the universe offers none',
+        'Everyone learns their lesson and changes',
+      ],
+      correctAnswer: 'Human love and endurance create meaning even when the universe offers none',
+      explanation: 'If Lear has redemption, it\'s existential: Cordelia\'s love, Kent\'s loyalty, Edgar\'s endurance create meaning through human choice, not cosmic design.',
+      relatedLearningPoints: ['lp-lear-17-endurance', 'lp-lear-15-grace'],
+    },
+
+    {
+      id: 'q15',
+      question: 'How do the three plays of Part II progress thematically?',
+      type: 'multiple-choice',
+      points: 10,
+      options: [
+        'From light to dark to light again',
+        'From ambition (Macbeth) to jealousy (Othello) to pride (Lear)—each more devastating',
+        'They are unrelated thematically',
+        'From simple to complex plots',
+      ],
+      correctAnswer: 'From ambition (Macbeth) to jealousy (Othello) to pride (Lear)—each more devastating',
+      explanation: 'Part II explores three internal corruptions in ascending order of psychological complexity and philosophical bleakness, culminating in Lear\'s nihilistic vision.',
+      relatedLearningPoints: ['lp-lear-18-part2-synthesis', 'lp-lear-17-part2-progression'],
+    },
+  ],
+};
